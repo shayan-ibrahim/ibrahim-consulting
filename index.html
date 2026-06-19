@@ -602,7 +602,7 @@
       box-shadow: var(--shadow-card-inset);
       display: grid;
       grid-template-columns: 52px 1fr auto;
-      align-items: center;
+      align-items: start;
       gap: 24px;
       transition: transform 0.2s, box-shadow 0.2s;
       cursor: default;
@@ -610,6 +610,9 @@
     .package-card:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-card-inset), rgba(0,0,0,0.05) 0px 6px 20px 0px;
+    }
+    .package-card.featured-card {
+      background: var(--color-obsidian);
     }
     .package-num {
       width: 52px;
@@ -624,6 +627,12 @@
       font-weight: 700;
       color: var(--color-obsidian);
       flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .featured-card .package-num {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.12);
+      color: var(--color-snow);
     }
     .package-info { display: flex; flex-direction: column; gap: 6px; }
     .package-name {
@@ -632,16 +641,29 @@
       color: var(--color-obsidian);
       letter-spacing: -0.2px;
     }
+    .featured-card .package-name { color: var(--color-snow); }
     .package-desc {
       font-size: 14px;
       color: var(--color-steel);
       line-height: 1.55;
     }
+    .featured-card .package-desc { color: var(--color-ash); }
+    .package-includes {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 2px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--color-ash);
+    }
+    .package-includes svg { width: 12px; height: 12px; flex-shrink: 0; }
+    .featured-card .package-includes { color: rgba(161,161,170,0.7); }
     .package-tags {
       display: flex;
       gap: 6px;
       flex-wrap: wrap;
-      margin-top: 4px;
+      margin-top: 6px;
     }
     .package-tag {
       background: var(--color-mist);
@@ -652,20 +674,104 @@
       font-weight: 500;
       color: var(--color-slate);
     }
+    .featured-card .package-tag {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.1);
+      color: var(--color-ash);
+    }
+    /* Right column: price + CTA */
+    .package-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+      min-width: 160px;
+    }
+    .package-price-block {
+      text-align: right;
+    }
+    .package-price {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--color-obsidian);
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+    .featured-card .package-price { color: var(--color-snow); }
+    .package-price-period {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--color-steel);
+      margin-top: 3px;
+    }
+    .featured-card .package-price-period { color: var(--color-ash); }
     .package-badge {
       background: var(--color-graphite);
       color: #fafafa;
       border-radius: var(--radius-badge);
-      padding: 6px 14px;
-      font-size: 12px;
+      padding: 5px 12px;
+      font-size: 11px;
       font-weight: 500;
       white-space: nowrap;
-      flex-shrink: 0;
-      align-self: flex-start;
     }
     .package-badge.featured {
+      background: rgba(255,255,255,0.15);
+      color: var(--color-snow);
+      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: none;
+    }
+    .btn-checkout {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
       background: var(--color-obsidian);
+      color: var(--color-snow);
+      font-family: var(--font-primary);
+      font-size: 13px;
+      font-weight: 500;
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 10px 18px;
+      cursor: pointer;
+      white-space: nowrap;
       box-shadow: var(--shadow-btn-primary);
+      transition: opacity 0.2s, transform 0.15s;
+      text-decoration: none;
+    }
+    .btn-checkout:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-checkout:active { transform: translateY(0); }
+    .featured-card .btn-checkout {
+      background: var(--color-snow);
+      color: var(--color-obsidian);
+      box-shadow: none;
+    }
+    .featured-card .btn-checkout:hover { opacity: 0.9; }
+    @media (max-width: 768px) {
+      .package-card { grid-template-columns: 44px 1fr; gap: 16px; }
+      .package-right { display: none; }
+      .package-mobile-price {
+        display: flex !important;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid var(--color-fog);
+      }
+      .featured-card .package-mobile-price { border-top-color: rgba(255,255,255,0.1); }
+    }
+    .package-mobile-price { display: none; }
+    .package-mobile-price-num {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-obsidian);
+      letter-spacing: -0.3px;
+    }
+    .featured-card .package-mobile-price-num { color: var(--color-snow); }
+    .package-mobile-price-period {
+      font-size: 11px;
+      color: var(--color-steel);
+      font-weight: 400;
     }
 
     /* ─── Why Us ─────────────────────────────────────────────────── */
@@ -1408,79 +1514,170 @@
         Start where you <span class="muted">need to</span>
       </h2>
       <p class="section-sub">
-        Five structured packages that naturally move you from initial discovery into deeper, more impactful engagement.
+        Five structured packages that move you from initial discovery into deeper engagement. Each package builds on and includes everything from the one before it.
       </p>
     </div>
     <div class="packages-list" role="list">
 
+      <!-- Package 1 -->
       <article class="package-card" role="listitem">
         <div class="package-num" aria-hidden="true">1</div>
         <div class="package-info">
-          <h3 class="package-name">Business Audit & Strategic Roadmap</h3>
+          <h3 class="package-name">Business Audit &amp; Strategic Roadmap</h3>
           <p class="package-desc">A 30-day discovery engagement that assesses how your business operates, identifies where time and money are wasted, and delivers a prioritized improvement roadmap. The best starting point.</p>
           <div class="package-tags">
             <span class="package-tag">30-Day Engagement</span>
             <span class="package-tag">Audit + Roadmap</span>
             <span class="package-tag">Entry Point</span>
           </div>
+          <div class="package-mobile-price">
+            <div>
+              <div class="package-mobile-price-num">$3,000</div>
+              <div class="package-price-period">per month</div>
+            </div>
+            <a href="https://buy.stripe.com/REPLACE_PACKAGE_1" target="_blank" rel="noopener" class="btn-checkout">Get Started →</a>
+          </div>
         </div>
-        <div class="package-badge">Entry Point</div>
+        <div class="package-right">
+          <div class="package-price-block">
+            <div class="package-price">$3,000</div>
+            <div class="package-price-period">per month</div>
+          </div>
+          <a href="https://buy.stripe.com/REPLACE_PACKAGE_1" target="_blank" rel="noopener" class="btn-checkout">Get Started →</a>
+          <span class="package-badge">Entry Point</span>
+        </div>
       </article>
 
+      <!-- Package 2 -->
       <article class="package-card" role="listitem">
         <div class="package-num" aria-hidden="true">2</div>
         <div class="package-info">
           <h3 class="package-name">Organizational Diagnostic</h3>
           <p class="package-desc">A focused assessment of leadership alignment, departmental effectiveness, and organizational structure — identifying key performance and accountability gaps across the business.</p>
+          <div class="package-includes" aria-label="Includes everything from Package 1">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,6 5,9 10,3"/></svg>
+            Includes everything in Package 1
+          </div>
           <div class="package-tags">
             <span class="package-tag">Leadership Review</span>
             <span class="package-tag">Org Structure</span>
             <span class="package-tag">Gap Analysis</span>
           </div>
+          <div class="package-mobile-price">
+            <div>
+              <div class="package-mobile-price-num">$4,000</div>
+              <div class="package-price-period">per month</div>
+            </div>
+            <a href="https://buy.stripe.com/REPLACE_PACKAGE_2" target="_blank" rel="noopener" class="btn-checkout">Get Started →</a>
+          </div>
         </div>
-        <div class="package-badge">Diagnostic</div>
+        <div class="package-right">
+          <div class="package-price-block">
+            <div class="package-price">$4,000</div>
+            <div class="package-price-period">per month</div>
+          </div>
+          <a href="https://buy.stripe.com/REPLACE_PACKAGE_2" target="_blank" rel="noopener" class="btn-checkout">Get Started →</a>
+          <span class="package-badge">Diagnostic</span>
+        </div>
       </article>
 
-      <article class="package-card" role="listitem">
+      <!-- Package 3 — Featured -->
+      <article class="package-card featured-card" role="listitem">
         <div class="package-num" aria-hidden="true">3</div>
         <div class="package-info">
           <h3 class="package-name">Organizational Foundation Build</h3>
           <p class="package-desc">Formalizes job descriptions, departmental overviews, reporting lines, and accountability structures — building the operating foundation your business needs to scale.</p>
+          <div class="package-includes" aria-label="Includes everything from Packages 1 and 2">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,6 5,9 10,3"/></svg>
+            Includes everything in Packages 1 &amp; 2
+          </div>
           <div class="package-tags">
             <span class="package-tag">Job Descriptions</span>
             <span class="package-tag">Accountability Maps</span>
             <span class="package-tag">Foundation Build</span>
           </div>
+          <div class="package-mobile-price">
+            <div>
+              <div class="package-mobile-price-num">$5,000</div>
+              <div class="package-price-period">per month</div>
+            </div>
+            <a href="https://buy.stripe.com/REPLACE_PACKAGE_3" target="_blank" rel="noopener" class="btn-checkout">Get Started →</a>
+          </div>
         </div>
-        <div class="package-badge featured">Most Requested</div>
+        <div class="package-right">
+          <div class="package-price-block">
+            <div class="package-price">$5,000</div>
+            <div class="package-price-period">per month</div>
+          </div>
+          <a href="https://buy.stripe.com/REPLACE_PACKAGE_3" target="_blank" rel="noopener" class="btn-checkout">Get Started →</a>
+          <span class="package-badge featured">Most Requested</span>
+        </div>
       </article>
 
+      <!-- Package 4 -->
       <article class="package-card" role="listitem">
         <div class="package-num" aria-hidden="true">4</div>
         <div class="package-info">
-          <h3 class="package-name">Performance & Future-State Transformation</h3>
+          <h3 class="package-name">Performance &amp; Future-State Transformation</h3>
           <p class="package-desc">Builds department performance review tools, redefines responsibilities, develops KPI frameworks, and creates a future-state organizational model aligned to your next stage of growth.</p>
+          <div class="package-includes" aria-label="Includes everything from Packages 1, 2 and 3">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,6 5,9 10,3"/></svg>
+            Includes everything in Packages 1, 2 &amp; 3
+          </div>
           <div class="package-tags">
             <span class="package-tag">Performance Management</span>
             <span class="package-tag">Future-State Design</span>
             <span class="package-tag">KPI Framework</span>
           </div>
+          <div class="package-mobile-price">
+            <div>
+              <div class="package-mobile-price-num">$6,000</div>
+              <div class="package-price-period">per month</div>
+            </div>
+            <a href="https://buy.stripe.com/REPLACE_PACKAGE_4" target="_blank" rel="noopener" class="btn-checkout">Get Started →</a>
+          </div>
         </div>
-        <div class="package-badge">Transformation</div>
+        <div class="package-right">
+          <div class="package-price-block">
+            <div class="package-price">$6,000</div>
+            <div class="package-price-period">per month</div>
+          </div>
+          <a href="https://buy.stripe.com/REPLACE_PACKAGE_4" target="_blank" rel="noopener" class="btn-checkout">Get Started →</a>
+          <span class="package-badge">Transformation</span>
+        </div>
       </article>
 
+      <!-- Package 5 -->
       <article class="package-card" role="listitem">
         <div class="package-num" aria-hidden="true">5</div>
         <div class="package-info">
           <h3 class="package-name">Embedded Scaling Partner</h3>
           <p class="package-desc">The most comprehensive engagement — hands-on implementation support combining workflow design, escalation pathways, field and corporate alignment, leadership coaching, and on-the-ground execution.</p>
+          <div class="package-includes" aria-label="Includes everything from all previous packages">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,6 5,9 10,3"/></svg>
+            Includes everything in Packages 1, 2, 3 &amp; 4
+          </div>
           <div class="package-tags">
             <span class="package-tag">6–12 Month Engagement</span>
             <span class="package-tag">Hands-On Execution</span>
             <span class="package-tag">Full Partnership</span>
           </div>
+          <div class="package-mobile-price">
+            <div>
+              <div class="package-mobile-price-num">$8,000</div>
+              <div class="package-price-period">per month</div>
+            </div>
+            <a href="https://buy.stripe.com/REPLACE_PACKAGE_5" target="_blank" rel="noopener" class="btn-checkout">Get Started →</a>
+          </div>
         </div>
-        <div class="package-badge">Full Partnership</div>
+        <div class="package-right">
+          <div class="package-price-block">
+            <div class="package-price">$8,000</div>
+            <div class="package-price-period">per month</div>
+          </div>
+          <a href="https://buy.stripe.com/REPLACE_PACKAGE_5" target="_blank" rel="noopener" class="btn-checkout">Get Started →</a>
+          <span class="package-badge">Full Partnership</span>
+        </div>
       </article>
 
     </div>
