@@ -46,7 +46,14 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: var(--font-primary);
-      background: var(--color-mist);
+      background-color: #ffffff;
+      background-image: repeating-linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.045) 0px,
+        rgba(0, 0, 0, 0.045) 1px,
+        transparent 1px,
+        transparent 145px
+      );
       color: var(--color-ink);
       font-size: 16px;
       line-height: 1.5;
@@ -424,6 +431,11 @@
       align-items: center;
       justify-content: center;
       margin-top: 1px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--color-ash);
+      letter-spacing: 0;
+      font-family: var(--font-primary);
     }
     .problem-icon svg { width: 12px; height: 12px; }
     .problem-text {
@@ -1283,39 +1295,27 @@
       <div class="problem-right" aria-label="Common business problems">
         <ul class="problem-list">
           <li class="problem-row">
-            <div class="problem-icon" aria-hidden="true">
-              <svg viewBox="0 0 12 12" fill="none" stroke="#a1a1aa" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="6" r="4"/></svg>
-            </div>
+            <div class="problem-icon" aria-hidden="true">01</div>
             <p class="problem-text"><span class="lead">Unclear </span><span class="key">organizational structure and role ownership</span></p>
           </li>
           <li class="problem-row">
-            <div class="problem-icon" aria-hidden="true">
-              <svg viewBox="0 0 12 12" fill="none" stroke="#a1a1aa" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="6" r="4"/></svg>
-            </div>
+            <div class="problem-icon" aria-hidden="true">02</div>
             <p class="problem-text"><span class="lead">Leaders spending all their time </span><span class="key">reacting instead of leading</span></p>
           </li>
           <li class="problem-row">
-            <div class="problem-icon" aria-hidden="true">
-              <svg viewBox="0 0 12 12" fill="none" stroke="#a1a1aa" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="6" r="4"/></svg>
-            </div>
+            <div class="problem-icon" aria-hidden="true">03</div>
             <p class="problem-text"><span class="lead">Departments </span><span class="key">operating in silos with no cross-functional alignment</span></p>
           </li>
           <li class="problem-row">
-            <div class="problem-icon" aria-hidden="true">
-              <svg viewBox="0 0 12 12" fill="none" stroke="#a1a1aa" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="6" r="4"/></svg>
-            </div>
+            <div class="problem-icon" aria-hidden="true">04</div>
             <p class="problem-text"><span class="lead">Wasted </span><span class="key">time, labor, and operating costs from inefficient workflows</span></p>
           </li>
           <li class="problem-row">
-            <div class="problem-icon" aria-hidden="true">
-              <svg viewBox="0 0 12 12" fill="none" stroke="#a1a1aa" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="6" r="4"/></svg>
-            </div>
+            <div class="problem-icon" aria-hidden="true">05</div>
             <p class="problem-text"><span class="lead">Inconsistent </span><span class="key">execution across teams, locations, and managers</span></p>
           </li>
           <li class="problem-row">
-            <div class="problem-icon" aria-hidden="true">
-              <svg viewBox="0 0 12 12" fill="none" stroke="#a1a1aa" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="6" r="4"/></svg>
-            </div>
+            <div class="problem-icon" aria-hidden="true">06</div>
             <p class="problem-text"><span class="lead">Growth that </span><span class="key">has outpaced the company's ability to manage it</span></p>
           </li>
         </ul>
