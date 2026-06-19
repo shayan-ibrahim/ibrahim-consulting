@@ -185,27 +185,55 @@
 
     /* ─── Hero ───────────────────────────────────────────────────── */
     .hero {
-      padding: 80px 0 72px;
+      padding: 0;
+      position: relative;
     }
-    .hero-grid {
+    .hero-bg {
+      position: relative;
+      width: 100%;
+      min-height: 600px;
+      background: url('hero.jpg') center center / cover no-repeat;
+      border-radius: 0 0 var(--radius-card) var(--radius-card);
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(5,10,5,0.3) 0%,
+        rgba(5,10,5,0.55) 50%,
+        rgba(5,10,5,0.75) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: 72px 24px;
       display: grid;
-      grid-template-columns: 1fr 420px;
+      grid-template-columns: 1fr 400px;
       gap: 64px;
-      align-items: center;
+      align-items: flex-end;
     }
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--color-snow);
-      border: 1px solid var(--color-fog);
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
       border-radius: var(--radius-badge);
       padding: 5px 12px;
       font-size: 12px;
       font-weight: 500;
-      color: var(--color-steel);
+      color: rgba(255,255,255,0.75);
       margin-bottom: 28px;
-      box-shadow: var(--shadow-card-inset);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
     .hero-eyebrow-dot {
       width: 6px;
@@ -214,31 +242,31 @@
       background: #22c55e;
     }
     .hero-headline {
-      font-size: clamp(44px, 5.5vw, 64px);
+      font-size: clamp(40px, 5.5vw, 64px);
       font-weight: 700;
-      color: var(--color-obsidian);
+      color: var(--color-snow);
       line-height: 1.06;
       letter-spacing: -1.5px;
       margin-bottom: 0;
     }
-    .hero-headline .muted { color: var(--color-ash); font-weight: 300; }
+    .hero-headline .muted { color: rgba(255,255,255,0.4); font-weight: 300; }
     .hero-tagline {
       margin-top: 24px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.8px;
       text-transform: uppercase;
-      color: var(--color-steel);
+      color: rgba(255,255,255,0.45);
     }
     .hero-right {
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 24px;
     }
     .hero-body {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 400;
-      color: var(--color-steel);
+      color: rgba(255,255,255,0.7);
       line-height: 1.65;
     }
     .hero-cta-row {
@@ -249,11 +277,12 @@
     .hero-input-group {
       display: flex;
       gap: 8px;
-      background: var(--color-snow);
+      background: rgba(255,255,255,0.12);
       border-radius: var(--radius-pill);
       padding: 6px 6px 6px 20px;
-      border: 1px solid var(--color-fog);
-      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
     .hero-input {
       flex: 1;
@@ -262,13 +291,13 @@
       font-family: var(--font-primary);
       font-size: 14px;
       font-weight: 400;
-      color: var(--color-ink);
+      color: var(--color-snow);
       background: transparent;
     }
-    .hero-input::placeholder { color: var(--color-ash); }
+    .hero-input::placeholder { color: rgba(255,255,255,0.4); }
     .hero-note {
       font-size: 12px;
-      color: var(--color-ash);
+      color: rgba(255,255,255,0.4);
       font-weight: 400;
     }
     .hero-social-proof {
@@ -276,27 +305,34 @@
       align-items: center;
       gap: 12px;
     }
-    .hero-avatars {
-      display: flex;
-    }
+    .hero-avatars { display: flex; }
     .hero-avatar {
       width: 32px;
       height: 32px;
       border-radius: 50%;
-      border: 2px solid var(--color-snow);
-      background: var(--color-fog);
+      border: 2px solid rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.15);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 11px;
       font-weight: 600;
-      color: var(--color-slate);
+      color: rgba(255,255,255,0.85);
       margin-left: -8px;
       flex-shrink: 0;
+      backdrop-filter: blur(4px);
     }
     .hero-avatars .hero-avatar:first-child { margin-left: 0; }
-    .hero-social-text { font-size: 13px; color: var(--color-steel); font-weight: 400; }
-    .hero-social-text strong { color: var(--color-ink); font-weight: 600; }
+    .hero-social-text { font-size: 13px; color: rgba(255,255,255,0.55); font-weight: 400; }
+    .hero-social-text strong { color: rgba(255,255,255,0.9); font-weight: 600; }
+    @media (max-width: 1024px) {
+      .hero-content { grid-template-columns: 1fr; gap: 40px; }
+      .hero-right { max-width: 540px; }
+    }
+    @media (max-width: 768px) {
+      .hero-bg { min-height: 520px; }
+      .hero-content { padding: 48px 24px; }
+    }
 
     /* ─── Stats ──────────────────────────────────────────────────── */
     .stats {
@@ -377,7 +413,9 @@
       padding: 0 0 var(--section-gap);
     }
     .problem-panel {
-      background: var(--color-obsidian);
+      background:
+        linear-gradient(rgba(9,9,11,0.80), rgba(9,9,11,0.80)),
+        url('hero.jpg') center / cover fixed;
       border-radius: var(--radius-card);
       padding: 56px 64px;
       display: grid;
@@ -788,7 +826,9 @@
       padding: 0 0 var(--section-gap);
     }
     .why-panel {
-      background: var(--color-obsidian);
+      background:
+        linear-gradient(rgba(9,9,11,0.80), rgba(9,9,11,0.80)),
+        url('hero.jpg') center / cover fixed;
       border-radius: var(--radius-card);
       padding: 56px 64px;
     }
@@ -1266,8 +1306,9 @@
 <!-- ─── Hero ────────────────────────────────────────────────────── -->
 <main>
 <section class="hero" aria-labelledby="hero-heading">
-  <div class="container">
-    <div class="hero-grid">
+  <div class="hero-bg">
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content">
       <!-- Left -->
       <div>
         <div class="hero-eyebrow">
