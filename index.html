@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ibrahim Consulting — Structure. Leadership. Accountability. Growth.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Design Tokens ─────────────────────────────────────────── */
+    :root {
+      --color-obsidian: #09090b;
+      --color-ink: #18181b;
+      --color-graphite: #3f3f46;
+      --color-slate: #52525b;
+      --color-steel: #71717a;
+      --color-ash: #a1a1aa;
+      --color-pebble: #d4d4d8;
+      --color-fog: #ececee;
+      --color-mist: #f4f4f5;
+      --color-snow: #ffffff;
+
+      --font-primary: 'DM Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+      --radius-badge: 12px;
+      --radius-card: 36px;
+      --radius-card-compact: 28px;
+      --radius-pill: 10000px;
+      --radius-input: 14px;
+      --radius-button: 36px;
+
+      --shadow-btn-primary: rgba(255,255,255,0.5) 0px 0.5px 0px 0px inset,
+                            rgba(117,123,133,0.4) 0px 9px 14px -5px inset,
+                            rgb(44,46,52) 0px 0px 0px 1.5px,
+                            rgba(0,0,0,0.14) 0px 4px 6px 0px;
+      --shadow-card: rgba(0,0,0,0.04) 0px 4px 12px 0px;
+      --shadow-card-inset: rgb(228,228,231) 0px 1px 0px 0px inset;
+
+      --page-max-width: 1200px;
+      --section-gap: 80px;
+    }
+
+    /* ─── Reset ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-primary);
+      background: var(--color-mist);
+      color: var(--color-ink);
+      font-size: 16px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ─── Layout Helpers ────────────────────────────────────────── */
+    .container {
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─── Navigation ─────────────────────────────────────────────── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(244,244,245,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-fog);
+    }
+    .nav-inner {
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--color-obsidian);
+      letter-spacing: -0.3px;
+    }
+    .nav-logo span {
+      font-weight: 300;
+      color: var(--color-steel);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-graphite);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--color-obsidian); }
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-obsidian);
+      color: var(--color-snow);
+      font-family: var(--font-primary);
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 10px 20px;
+      cursor: pointer;
+      box-shadow: var(--shadow-btn-primary);
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .btn-pill:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-pill:active { transform: translateY(0); }
+    .btn-pill-lg {
+      font-size: 16px;
+      padding: 14px 28px;
+    }
+    .btn-pill-ghost {
+      background: var(--color-snow);
+      color: var(--color-graphite);
+      border: 1px solid var(--color-graphite);
+      box-shadow: none;
+    }
+    .btn-pill-ghost:hover { background: var(--color-fog); }
+    .nav-mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-mobile-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--color-obsidian);
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+
+    /* ─── Ticker ────────────────────────────────────────────────── */
+    .ticker-wrap {
+      overflow: hidden;
+      background: var(--color-obsidian);
+      padding: 12px 0;
+    }
+    .ticker-track {
+      display: flex;
+      gap: 0;
+      animation: ticker-scroll 30s linear infinite;
+      width: max-content;
+    }
+    .ticker-item {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding: 0 24px;
+      white-space: nowrap;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--color-ash);
+    }
+    .ticker-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--color-graphite);
+      flex-shrink: 0;
+    }
+    @keyframes ticker-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ─── Hero ───────────────────────────────────────────────────── */
+    .hero {
+      padding: 80px 0 72px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 64px;
+      align-items: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-snow);
+      border: 1px solid var(--color-fog);
+      border-radius: var(--radius-badge);
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--color-steel);
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-card-inset);
+    }
+    .hero-eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+    }
+    .hero-headline {
+      font-size: clamp(44px, 5.5vw, 64px);
+      font-weight: 700;
+      color: var(--color-obsidian);
+      line-height: 1.06;
+      letter-spacing: -1.5px;
+      margin-bottom: 0;
+    }
+    .hero-headline .muted { color: var(--color-ash); font-weight: 300; }
+    .hero-tagline {
+      margin-top: 24px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--color-steel);
+    }
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .hero-body {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--color-steel);
+      line-height: 1.65;
+    }
+    .hero-cta-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .hero-input-group {
+      display: flex;
+      gap: 8px;
+      background: var(--color-snow);
+      border-radius: var(--radius-pill);
+      padding: 6px 6px 6px 20px;
+      border: 1px solid var(--color-fog);
+      box-shadow: var(--shadow-card);
+    }
+    .hero-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-family: var(--font-primary);
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--color-ink);
+      background: transparent;
+    }
+    .hero-input::placeholder { color: var(--color-ash); }
+    .hero-note {
+      font-size: 12px;
+      color: var(--color-ash);
+      font-weight: 400;
+    }
+    .hero-social-proof {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-avatars {
+      display: flex;
+    }
+    .hero-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--color-snow);
+      background: var(--color-fog);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-slate);
+      margin-left: -8px;
+      flex-shrink: 0;
+    }
+    .hero-avatars .hero-avatar:first-child { margin-left: 0; }
+    .hero-social-text { font-size: 13px; color: var(--color-steel); font-weight: 400; }
+    .hero-social-text strong { color: var(--color-ink); font-weight: 600; }
+
+    /* ─── Stats ──────────────────────────────────────────────────── */
+    .stats {
+      padding: 0 0 var(--section-gap);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--color-fog);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+    }
+    .stat-block {
+      background: var(--color-snow);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .stat-block:first-child { border-radius: var(--radius-card) 0 0 var(--radius-card); }
+    .stat-block:last-child { border-radius: 0 var(--radius-card) var(--radius-card) 0; }
+    .stat-number {
+      font-size: 44px;
+      font-weight: 700;
+      color: var(--color-obsidian);
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+    .stat-label {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--color-steel);
+      line-height: 1.5;
+    }
+
+    /* ─── Section Headers ────────────────────────────────────────── */
+    .section-header {
+      margin-bottom: 48px;
+    }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--color-steel);
+      margin-bottom: 16px;
+    }
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 1px;
+      background: var(--color-ash);
+    }
+    .section-heading {
+      font-size: clamp(32px, 3.5vw, 44px);
+      font-weight: 700;
+      color: var(--color-obsidian);
+      line-height: 1.1;
+      letter-spacing: -0.8px;
+    }
+    .section-heading .muted { color: var(--color-ash); font-weight: 300; }
+    .section-sub {
+      margin-top: 16px;
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--color-steel);
+      line-height: 1.6;
+      max-width: 560px;
+    }
+
+    /* ─── Problem Panel ──────────────────────────────────────────── */
+    .problem-section {
+      padding: 0 0 var(--section-gap);
+    }
+    .problem-panel {
+      background: var(--color-obsidian);
+      border-radius: var(--radius-card);
+      padding: 56px 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+    .problem-left .section-label { color: var(--color-slate); }
+    .problem-left .section-label::before { background: var(--color-graphite); }
+    .problem-heading {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      color: var(--color-snow);
+      line-height: 1.12;
+      letter-spacing: -0.8px;
+      margin-top: 16px;
+    }
+    .problem-heading .accent { color: var(--color-ash); font-weight: 300; }
+    .problem-body {
+      margin-top: 20px;
+      font-size: 15px;
+      color: var(--color-steel);
+      line-height: 1.6;
+    }
+    .problem-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .problem-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .problem-row:last-child { border-bottom: none; }
+    .problem-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--color-graphite);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .problem-icon svg { width: 12px; height: 12px; }
+    .problem-text {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .problem-text .lead { color: var(--color-ash); font-weight: 400; }
+    .problem-text .key { color: var(--color-snow); font-weight: 600; }
+
+    /* ─── Services ───────────────────────────────────────────────── */
+    .services-section {
+      padding: 0 0 var(--section-gap);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .service-card {
+      background: var(--color-snow);
+      border-radius: var(--radius-card);
+      padding: 32px 28px;
+      box-shadow: var(--shadow-card-inset);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: default;
+    }
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-card-inset), rgba(0,0,0,0.06) 0px 8px 24px 0px;
+    }
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--color-mist);
+      border: 1px solid var(--color-fog);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .service-icon svg { width: 20px; height: 20px; stroke: var(--color-graphite); }
+    .service-badge {
+      display: inline-flex;
+      align-self: flex-start;
+      background: var(--color-graphite);
+      color: #fafafa;
+      border-radius: var(--radius-badge);
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+    .service-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--color-obsidian);
+      line-height: 1.3;
+    }
+    .service-desc {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--color-steel);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .service-outcomes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .outcome-tag {
+      background: var(--color-mist);
+      border: 1px solid var(--color-fog);
+      border-radius: 8px;
+      padding: 3px 9px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--color-slate);
+    }
+
+    /* ─── How We Work ────────────────────────────────────────────── */
+    .methodology-section {
+      padding: 0 0 var(--section-gap);
+    }
+    .methodology-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .method-card {
+      background: var(--color-snow);
+      border-radius: var(--radius-card);
+      padding: 40px 32px;
+      box-shadow: var(--shadow-card-inset);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .method-card:hover { transform: translateY(-3px); }
+    .method-number {
+      font-size: 72px;
+      font-weight: 700;
+      color: var(--color-fog);
+      line-height: 1;
+      position: absolute;
+      top: 16px;
+      right: 24px;
+      letter-spacing: -3px;
+      user-select: none;
+    }
+    .method-phase {
+      display: inline-flex;
+      background: var(--color-obsidian);
+      color: var(--color-snow);
+      border-radius: var(--radius-badge);
+      padding: 5px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .method-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--color-obsidian);
+      margin-bottom: 12px;
+      letter-spacing: -0.3px;
+    }
+    .method-desc {
+      font-size: 14px;
+      color: var(--color-steel);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .method-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .method-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--color-graphite);
+      font-weight: 400;
+    }
+    .method-item::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--color-ash);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    /* ─── Packages ───────────────────────────────────────────────── */
+    .packages-section {
+      padding: 0 0 var(--section-gap);
+    }
+    .packages-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .package-card {
+      background: var(--color-snow);
+      border-radius: var(--radius-card-compact);
+      padding: 28px 32px;
+      box-shadow: var(--shadow-card-inset);
+      display: grid;
+      grid-template-columns: 52px 1fr auto;
+      align-items: center;
+      gap: 24px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: default;
+    }
+    .package-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-card-inset), rgba(0,0,0,0.05) 0px 6px 20px 0px;
+    }
+    .package-num {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: var(--color-mist);
+      border: 1px solid var(--color-fog);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-obsidian);
+      flex-shrink: 0;
+    }
+    .package-info { display: flex; flex-direction: column; gap: 6px; }
+    .package-name {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--color-obsidian);
+      letter-spacing: -0.2px;
+    }
+    .package-desc {
+      font-size: 14px;
+      color: var(--color-steel);
+      line-height: 1.55;
+    }
+    .package-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .package-tag {
+      background: var(--color-mist);
+      border: 1px solid var(--color-fog);
+      border-radius: 8px;
+      padding: 3px 9px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--color-slate);
+    }
+    .package-badge {
+      background: var(--color-graphite);
+      color: #fafafa;
+      border-radius: var(--radius-badge);
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      white-space: nowrap;
+      flex-shrink: 0;
+      align-self: flex-start;
+    }
+    .package-badge.featured {
+      background: var(--color-obsidian);
+      box-shadow: var(--shadow-btn-primary);
+    }
+
+    /* ─── Why Us ─────────────────────────────────────────────────── */
+    .why-section {
+      padding: 0 0 var(--section-gap);
+    }
+    .why-panel {
+      background: var(--color-obsidian);
+      border-radius: var(--radius-card);
+      padding: 56px 64px;
+    }
+    .why-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      margin-bottom: 48px;
+      align-items: end;
+    }
+    .why-heading {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      color: var(--color-snow);
+      line-height: 1.12;
+      letter-spacing: -0.8px;
+    }
+    .why-heading .accent { color: var(--color-ash); font-weight: 300; }
+    .why-sub {
+      font-size: 15px;
+      color: var(--color-steel);
+      line-height: 1.65;
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .why-card {
+      background: rgba(255,255,255,0.04);
+      border-radius: 20px;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .why-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--color-graphite);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .why-icon svg { width: 16px; height: 16px; stroke: var(--color-ash); }
+    .why-card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-snow);
+      line-height: 1.35;
+    }
+    .why-card-desc {
+      font-size: 13px;
+      color: var(--color-steel);
+      line-height: 1.6;
+    }
+
+    /* ─── CTA Section ────────────────────────────────────────────── */
+    .cta-section {
+      padding: 0 0 var(--section-gap);
+    }
+    .cta-panel {
+      background: var(--color-obsidian);
+      border-radius: var(--radius-card);
+      padding: 72px 64px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+    .cta-heading {
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700;
+      color: var(--color-snow);
+      line-height: 1.08;
+      letter-spacing: -1px;
+      max-width: 640px;
+    }
+    .cta-heading .accent { color: var(--color-ash); font-weight: 300; }
+    .cta-sub {
+      font-size: 16px;
+      color: var(--color-steel);
+      line-height: 1.6;
+      max-width: 480px;
+    }
+    .cta-buttons {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .cta-note {
+      font-size: 12px;
+      color: var(--color-slate);
+      font-weight: 400;
+    }
+
+    /* ─── About Strip ────────────────────────────────────────────── */
+    .about-section {
+      padding: 0 0 var(--section-gap);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 480px;
+      gap: 64px;
+      align-items: center;
+    }
+    .about-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .about-badge {
+      background: var(--color-snow);
+      border: 1px solid var(--color-fog);
+      border-radius: var(--radius-badge);
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--color-slate);
+      box-shadow: var(--shadow-card-inset);
+    }
+    .about-heading {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      color: var(--color-obsidian);
+      line-height: 1.12;
+      letter-spacing: -0.8px;
+      margin-bottom: 20px;
+    }
+    .about-heading .muted { color: var(--color-ash); font-weight: 300; }
+    .about-body {
+      font-size: 15px;
+      color: var(--color-steel);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .about-right {
+      background: var(--color-snow);
+      border-radius: var(--radius-card);
+      padding: 36px 32px;
+      box-shadow: var(--shadow-card-inset);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .about-metric {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--color-fog);
+    }
+    .about-metric:last-child { border-bottom: none; padding-bottom: 0; }
+    .about-metric-num {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--color-obsidian);
+      line-height: 1;
+      letter-spacing: -0.5px;
+    }
+    .about-metric-label {
+      font-size: 13px;
+      color: var(--color-steel);
+      font-weight: 400;
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────────── */
+    .footer {
+      background: var(--color-snow);
+      border-top: 1px solid var(--color-fog);
+      padding: 48px 0 32px;
+    }
+    .footer-inner {
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand-col { grid-column: 1; }
+    .footer-logo {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--color-obsidian);
+      margin-bottom: 12px;
+    }
+    .footer-logo span { font-weight: 300; color: var(--color-steel); }
+    .footer-brand-desc {
+      font-size: 13px;
+      color: var(--color-steel);
+      line-height: 1.6;
+    }
+    .footer-col-title {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--color-graphite);
+      margin-bottom: 16px;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links a {
+      font-size: 14px;
+      color: var(--color-steel);
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--color-obsidian); }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 28px;
+      border-top: 1px solid var(--color-fog);
+    }
+    .footer-copy {
+      font-size: 13px;
+      color: var(--color-ash);
+      font-weight: 400;
+    }
+    .footer-tagline {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--color-pebble);
+    }
+
+    /* ─── Mobile Nav Menu ────────────────────────────────────────── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: var(--color-snow);
+      flex-direction: column;
+      padding: 24px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+    .mobile-menu-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--color-mist);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mobile-menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+    .mobile-menu-links a {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--color-obsidian);
+      padding: 14px 0;
+      border-bottom: 1px solid var(--color-fog);
+      letter-spacing: -0.3px;
+    }
+    .mobile-menu-cta { margin-top: 32px; }
+    .mobile-menu-cta .btn-pill { width: 100%; justify-content: center; font-size: 16px; padding: 16px; }
+
+    /* ─── Responsive ─────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-right { max-width: 540px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-block:first-child { border-radius: var(--radius-card) var(--radius-card) 0 0; }
+      .stat-block:last-child { border-radius: 0 0 var(--radius-card) var(--radius-card); }
+      .stat-block:nth-child(2) { border-radius: 0; }
+      .stat-block:nth-child(3) { border-radius: 0; }
+      .problem-panel { grid-template-columns: 1fr; gap: 40px; padding: 40px 36px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .methodology-grid { grid-template-columns: 1fr; gap: 12px; }
+      .why-header { grid-template-columns: 1fr; gap: 20px; }
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .about-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      :root { --section-gap: 56px; }
+      .nav-links { display: none; }
+      .nav-cta-desktop { display: none; }
+      .nav-mobile-toggle { display: flex; }
+      .hero { padding: 48px 0 56px; }
+      .hero-headline { font-size: clamp(36px, 10vw, 48px); letter-spacing: -1px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .problem-panel { padding: 32px 24px; border-radius: var(--radius-card-compact); }
+      .why-panel { padding: 36px 28px; border-radius: var(--radius-card-compact); }
+      .cta-panel { padding: 48px 28px; border-radius: var(--radius-card-compact); }
+      .package-card { grid-template-columns: 44px 1fr; gap: 16px; }
+      .package-badge { display: none; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-block { border-radius: 0 !important; }
+      .stats-grid { border-radius: var(--radius-card-compact); }
+      .hero-tagline { font-size: 11px; letter-spacing: 1.2px; }
+    }
+
+    /* ─── Reduced Motion ─────────────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      .ticker-track { animation: none; }
+      * { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Mobile Menu ─────────────────────────────────────────────── -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="mobile-menu-header">
+    <div class="nav-logo">Ibrahim<span> Consulting</span></div>
+    <button class="mobile-menu-close" onclick="closeMobileMenu()" aria-label="Close menu">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#09090b" stroke-width="2" stroke-linecap="round">
+        <line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/>
+      </svg>
+    </button>
+  </div>
+  <nav class="mobile-menu-links">
+    <a href="#services" onclick="closeMobileMenu()">Services</a>
+    <a href="#methodology" onclick="closeMobileMenu()">How We Work</a>
+    <a href="#packages" onclick="closeMobileMenu()">Packages</a>
+    <a href="#about" onclick="closeMobileMenu()">About</a>
+    <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+  </nav>
+  <div class="mobile-menu-cta">
+    <a href="#contact" onclick="closeMobileMenu()">
+      <button class="btn-pill">Schedule a Discovery Call</button>
+    </a>
+  </div>
+</div>
+
+<!-- ─── Navigation ─────────────────────────────────────────────── -->
+<header>
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" aria-label="Ibrahim Consulting home">Ibrahim<span> Consulting</span></a>
+      <ul class="nav-links" role="list">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#methodology">How We Work</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta-desktop">
+        <button class="btn-pill" aria-label="Schedule a call">Schedule a Call</button>
+      </a>
+      <button class="nav-mobile-toggle" onclick="openMobileMenu()" aria-label="Open menu" aria-expanded="false" id="menuToggle">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- ─── Ticker ──────────────────────────────────────────────────── -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <!-- First copy -->
+    <div class="ticker-item">Startups<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Founder-Led Businesses<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Small Businesses<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Mid-Sized Companies<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Rapid Growth Companies<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Scaling Organizations<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Post-Acquisition Teams<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Restructuring Businesses<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Expanding Enterprises<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Operational Leaders<span class="ticker-dot"></span></div>
+    <!-- Second copy for seamless loop -->
+    <div class="ticker-item">Startups<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Founder-Led Businesses<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Small Businesses<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Mid-Sized Companies<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Rapid Growth Companies<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Scaling Organizations<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Post-Acquisition Teams<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Restructuring Businesses<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Expanding Enterprises<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Operational Leaders<span class="ticker-dot"></span></div>
+  </div>
+</div>
+
+<!-- ─── Hero ────────────────────────────────────────────────────── -->
+<main>
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="container">
+    <div class="hero-grid">
+      <!-- Left -->
+      <div>
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-dot" aria-hidden="true"></span>
+          Organizational Effectiveness Consulting
+        </div>
+        <h1 class="hero-headline" id="hero-heading">
+          Build the<br/>
+          <span class="muted">structure</span> your<br/>
+          business needs<br/>
+          to scale.
+        </h1>
+        <p class="hero-tagline" aria-label="Tagline: Structure. Leadership. Accountability. Growth.">
+          Structure &nbsp;·&nbsp; Leadership &nbsp;·&nbsp; Accountability &nbsp;·&nbsp; Growth
+        </p>
+      </div>
+      <!-- Right -->
+      <div class="hero-right">
+        <p class="hero-body">
+          We help startups, small businesses, and mid-sized companies strengthen their structure, leadership, and operations so they can scale with clarity, accountability, and consistency.
+        </p>
+        <div class="hero-cta-row">
+          <div class="hero-input-group">
+            <input class="hero-input" type="email" placeholder="your@company.com" aria-label="Enter your email address" />
+            <a href="#contact">
+              <button class="btn-pill" type="button">Schedule a Call</button>
+            </a>
+          </div>
+          <p class="hero-note">No commitment required. Discovery calls are complimentary.</p>
+        </div>
+        <div class="hero-social-proof">
+          <div class="hero-avatars" aria-hidden="true">
+            <div class="hero-avatar">JP</div>
+            <div class="hero-avatar">MR</div>
+            <div class="hero-avatar">SK</div>
+            <div class="hero-avatar">AL</div>
+          </div>
+          <p class="hero-social-text"><strong>20+ years</strong> of hands-on business transformation</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Stats ───────────────────────────────────────────────────── -->
+<section class="stats" aria-label="Key statistics">
+  <div class="container">
+    <div class="stats-grid" role="list">
+      <div class="stat-block" role="listitem">
+        <div class="stat-number" aria-label="20 plus years">20+</div>
+        <div class="stat-label">Years of hands-on operational leadership experience</div>
+      </div>
+      <div class="stat-block" role="listitem">
+        <div class="stat-number">6</div>
+        <div class="stat-label">Core service areas across people, process, and structure</div>
+      </div>
+      <div class="stat-block" role="listitem">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Phase methodology — Assess, Design, Implement</div>
+      </div>
+      <div class="stat-block" role="listitem">
+        <div class="stat-number">5</div>
+        <div class="stat-label">Consulting packages from diagnostic to embedded partner</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Problem Panel ────────────────────────────────────────────── -->
+<section class="problem-section" aria-labelledby="problem-heading">
+  <div class="container">
+    <div class="problem-panel">
+      <!-- Left -->
+      <div class="problem-left">
+        <div class="section-label">The Problem</div>
+        <h2 class="problem-heading" id="problem-heading">
+          What's getting<br/>
+          <span class="accent">in the way</span><br/>
+          of growth.
+        </h2>
+        <p class="problem-body">
+          Most companies don't struggle because they lack effort or talent. They struggle because they've outgrown their structure — and haven't yet built the systems, clarity, or accountability to carry them to the next level.
+        </p>
+      </div>
+      <!-- Right -->
+      <div class="problem-right" aria-label="Common business problems">
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-icon" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="#a1a1aa" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="6" r="4"/></svg>
+            </div>
+            <p class="problem-text"><span class="lead">Unclear </span><span class="key">organizational structure and role ownership</span></p>
+          </li>
+          <li class="problem-row">
+            <div class="problem-icon" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="#a1a1aa" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="6" r="4"/></svg>
+            </div>
+            <p class="problem-text"><span class="lead">Leaders spending all their time </span><span class="key">reacting instead of leading</span></p>
+          </li>
+          <li class="problem-row">
+            <div class="problem-icon" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="#a1a1aa" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="6" r="4"/></svg>
+            </div>
+            <p class="problem-text"><span class="lead">Departments </span><span class="key">operating in silos with no cross-functional alignment</span></p>
+          </li>
+          <li class="problem-row">
+            <div class="problem-icon" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="#a1a1aa" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="6" r="4"/></svg>
+            </div>
+            <p class="problem-text"><span class="lead">Wasted </span><span class="key">time, labor, and operating costs from inefficient workflows</span></p>
+          </li>
+          <li class="problem-row">
+            <div class="problem-icon" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="#a1a1aa" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="6" r="4"/></svg>
+            </div>
+            <p class="problem-text"><span class="lead">Inconsistent </span><span class="key">execution across teams, locations, and managers</span></p>
+          </li>
+          <li class="problem-row">
+            <div class="problem-icon" aria-hidden="true">
+              <svg viewBox="0 0 12 12" fill="none" stroke="#a1a1aa" stroke-width="1.5" stroke-linecap="round"><circle cx="6" cy="6" r="4"/></svg>
+            </div>
+            <p class="problem-text"><span class="lead">Growth that </span><span class="key">has outpaced the company's ability to manage it</span></p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Services ─────────────────────────────────────────────────── -->
+<section class="services-section" id="services" aria-labelledby="services-heading">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-heading" id="services-heading">
+        Six areas of <span class="muted">deep expertise</span>
+      </h2>
+      <p class="section-sub">
+        Each service area is designed to address a specific layer of organizational effectiveness — from structure and process to people and culture.
+      </p>
+    </div>
+    <div class="services-grid" role="list">
+
+      <!-- 1 -->
+      <article class="service-card" role="listitem">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="7" height="7" rx="1.5"/><rect x="11" y="2" width="7" height="7" rx="1.5"/>
+            <rect x="2" y="11" width="7" height="7" rx="1.5"/><rect x="11" y="11" width="7" height="7" rx="1.5"/>
+          </svg>
+        </div>
+        <span class="service-badge" aria-label="Category 01">01</span>
+        <h3 class="service-title">Organizational Design</h3>
+        <p class="service-desc">Build a structure that supports accountability, efficiency, and growth. We redesign org charts, clarify reporting lines, map role ownership, and eliminate overlap.</p>
+        <div class="service-outcomes" aria-label="Outcomes">
+          <span class="outcome-tag">Role Clarity</span>
+          <span class="outcome-tag">Accountability</span>
+          <span class="outcome-tag">Scalable Structure</span>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="service-card" role="listitem">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 10h12M10 4l6 6-6 6"/>
+          </svg>
+        </div>
+        <span class="service-badge">02</span>
+        <h3 class="service-title">Operational Effectiveness</h3>
+        <p class="service-desc">Improve the way work flows across the business. We map processes, identify bottlenecks, eliminate redundancy, and design cross-functional operating models that actually work.</p>
+        <div class="service-outcomes">
+          <span class="outcome-tag">Process Efficiency</span>
+          <span class="outcome-tag">Reduced Waste</span>
+          <span class="outcome-tag">Better Handoffs</span>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="service-card" role="listitem">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="10" cy="7" r="3"/><path d="M4 17c0-3.314 2.686-6 6-6s6 2.686 6 6"/>
+          </svg>
+        </div>
+        <span class="service-badge">03</span>
+        <h3 class="service-title">People & Leadership</h3>
+        <p class="service-desc">Strengthen leaders, teams, and management capability. We provide executive advisory, leadership coaching, manager effectiveness support, and team alignment sessions.</p>
+        <div class="service-outcomes">
+          <span class="outcome-tag">Stronger Leaders</span>
+          <span class="outcome-tag">Team Effectiveness</span>
+          <span class="outcome-tag">Better Execution</span>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="service-card" role="listitem">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 6h12M4 10h8M4 14h10"/>
+          </svg>
+        </div>
+        <span class="service-badge">04</span>
+        <h3 class="service-title">People Infrastructure</h3>
+        <p class="service-desc">Build the foundational people systems that make a business scalable. Job descriptions, role scorecards, evaluation frameworks, career paths, and hiring process design.</p>
+        <div class="service-outcomes">
+          <span class="outcome-tag">Clear Expectations</span>
+          <span class="outcome-tag">Talent Management</span>
+          <span class="outcome-tag">Scalable Hiring</span>
+        </div>
+      </article>
+
+      <!-- 5 -->
+      <article class="service-card" role="listitem">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 2l2.09 6.26H18l-5 3.64 1.91 5.86L10 14.27l-4.91 3.49L7 11.9 2 8.26h5.91z"/>
+          </svg>
+        </div>
+        <span class="service-badge">05</span>
+        <h3 class="service-title">Culture & Change</h3>
+        <p class="service-desc">Shape stronger cultures and manage change more effectively. We translate values into behaviors, build accountability cultures, and support leadership through restructuring.</p>
+        <div class="service-outcomes">
+          <span class="outcome-tag">Healthier Culture</span>
+          <span class="outcome-tag">Change Readiness</span>
+          <span class="outcome-tag">Team Alignment</span>
+        </div>
+      </article>
+
+      <!-- 6 -->
+      <article class="service-card" role="listitem">
+        <div class="service-icon" aria-hidden="true">
+          <svg viewBox="0 0 20 20" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="2,17 7,10 11,13 16,6 18,8"/><polyline points="14,6 18,6 18,10"/>
+          </svg>
+        </div>
+        <span class="service-badge">06</span>
+        <h3 class="service-title">Growth Readiness</h3>
+        <p class="service-desc">Prepare for expansion, restructuring, or the next phase of scale. We build the systems, operating discipline, and leadership capability your company needs to grow with confidence.</p>
+        <div class="service-outcomes">
+          <span class="outcome-tag">Scale Readiness</span>
+          <span class="outcome-tag">Operating Systems</span>
+          <span class="outcome-tag">Leadership Alignment</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Methodology ───────────────────────────────────────────────── -->
+<section class="methodology-section" id="methodology" aria-labelledby="methodology-heading">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">How We Work</div>
+      <h2 class="section-heading" id="methodology-heading">
+        A three-phase <span class="muted">approach</span>
+      </h2>
+      <p class="section-sub">
+        Every engagement follows a structured path from discovery to implementation — so you always know where you are and what comes next.
+      </p>
+    </div>
+    <div class="methodology-grid" role="list">
+
+      <article class="method-card" role="listitem">
+        <div class="method-number" aria-hidden="true">01</div>
+        <div class="method-phase">Phase 01</div>
+        <h3 class="method-title">Assess</h3>
+        <p class="method-desc">Understand the current state of the business. Identify the gaps, inefficiencies, and structural issues that are limiting performance.</p>
+        <ul class="method-items" aria-label="Phase 01 activities">
+          <li class="method-item">Executive and leadership interviews</li>
+          <li class="method-item">Department and workflow observations</li>
+          <li class="method-item">Organizational structure gap review</li>
+          <li class="method-item">Waste and inefficiency analysis</li>
+          <li class="method-item">Strategic findings and gap report</li>
+        </ul>
+      </article>
+
+      <article class="method-card" role="listitem">
+        <div class="method-number" aria-hidden="true">02</div>
+        <div class="method-phase">Phase 02</div>
+        <h3 class="method-title">Design</h3>
+        <p class="method-desc">Build the structure, tools, and roadmap needed to address what's not working — practical solutions designed for your specific business.</p>
+        <ul class="method-items" aria-label="Phase 02 activities">
+          <li class="method-item">Organizational redesign and structure</li>
+          <li class="method-item">Job descriptions and department overviews</li>
+          <li class="method-item">Process flows and accountability frameworks</li>
+          <li class="method-item">Future-state operating model</li>
+          <li class="method-item">Prioritized implementation roadmap</li>
+        </ul>
+      </article>
+
+      <article class="method-card" role="listitem">
+        <div class="method-number" aria-hidden="true">03</div>
+        <div class="method-phase">Phase 03</div>
+        <h3 class="method-title">Implement</h3>
+        <p class="method-desc">Support the rollout of changes and help leadership execute effectively — from coaching to accountability follow-up to workflow adoption.</p>
+        <ul class="method-items" aria-label="Phase 03 activities">
+          <li class="method-item">Leadership and manager coaching</li>
+          <li class="method-item">Facilitated team alignment sessions</li>
+          <li class="method-item">Implementation planning and support</li>
+          <li class="method-item">Performance review delivery</li>
+          <li class="method-item">Accountability and follow-up sessions</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Packages ─────────────────────────────────────────────────── -->
+<section class="packages-section" id="packages" aria-labelledby="packages-heading">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Consulting Packages</div>
+      <h2 class="section-heading" id="packages-heading">
+        Start where you <span class="muted">need to</span>
+      </h2>
+      <p class="section-sub">
+        Five structured packages that naturally move you from initial discovery into deeper, more impactful engagement.
+      </p>
+    </div>
+    <div class="packages-list" role="list">
+
+      <article class="package-card" role="listitem">
+        <div class="package-num" aria-hidden="true">1</div>
+        <div class="package-info">
+          <h3 class="package-name">Business Audit & Strategic Roadmap</h3>
+          <p class="package-desc">A 30-day discovery engagement that assesses how your business operates, identifies where time and money are wasted, and delivers a prioritized improvement roadmap. The best starting point.</p>
+          <div class="package-tags">
+            <span class="package-tag">30-Day Engagement</span>
+            <span class="package-tag">Audit + Roadmap</span>
+            <span class="package-tag">Entry Point</span>
+          </div>
+        </div>
+        <div class="package-badge">Entry Point</div>
+      </article>
+
+      <article class="package-card" role="listitem">
+        <div class="package-num" aria-hidden="true">2</div>
+        <div class="package-info">
+          <h3 class="package-name">Organizational Diagnostic</h3>
+          <p class="package-desc">A focused assessment of leadership alignment, departmental effectiveness, and organizational structure — identifying key performance and accountability gaps across the business.</p>
+          <div class="package-tags">
+            <span class="package-tag">Leadership Review</span>
+            <span class="package-tag">Org Structure</span>
+            <span class="package-tag">Gap Analysis</span>
+          </div>
+        </div>
+        <div class="package-badge">Diagnostic</div>
+      </article>
+
+      <article class="package-card" role="listitem">
+        <div class="package-num" aria-hidden="true">3</div>
+        <div class="package-info">
+          <h3 class="package-name">Organizational Foundation Build</h3>
+          <p class="package-desc">Formalizes job descriptions, departmental overviews, reporting lines, and accountability structures — building the operating foundation your business needs to scale.</p>
+          <div class="package-tags">
+            <span class="package-tag">Job Descriptions</span>
+            <span class="package-tag">Accountability Maps</span>
+            <span class="package-tag">Foundation Build</span>
+          </div>
+        </div>
+        <div class="package-badge featured">Most Requested</div>
+      </article>
+
+      <article class="package-card" role="listitem">
+        <div class="package-num" aria-hidden="true">4</div>
+        <div class="package-info">
+          <h3 class="package-name">Performance & Future-State Transformation</h3>
+          <p class="package-desc">Builds department performance review tools, redefines responsibilities, develops KPI frameworks, and creates a future-state organizational model aligned to your next stage of growth.</p>
+          <div class="package-tags">
+            <span class="package-tag">Performance Management</span>
+            <span class="package-tag">Future-State Design</span>
+            <span class="package-tag">KPI Framework</span>
+          </div>
+        </div>
+        <div class="package-badge">Transformation</div>
+      </article>
+
+      <article class="package-card" role="listitem">
+        <div class="package-num" aria-hidden="true">5</div>
+        <div class="package-info">
+          <h3 class="package-name">Embedded Scaling Partner</h3>
+          <p class="package-desc">The most comprehensive engagement — hands-on implementation support combining workflow design, escalation pathways, field and corporate alignment, leadership coaching, and on-the-ground execution.</p>
+          <div class="package-tags">
+            <span class="package-tag">6–12 Month Engagement</span>
+            <span class="package-tag">Hands-On Execution</span>
+            <span class="package-tag">Full Partnership</span>
+          </div>
+        </div>
+        <div class="package-badge">Full Partnership</div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Why Us ────────────────────────────────────────────────────── -->
+<section class="why-section" aria-labelledby="why-heading">
+  <div class="container">
+    <div class="why-panel">
+      <div class="why-header">
+        <div>
+          <div class="section-label" style="color: var(--color-slate);">
+            <span style="background: var(--color-graphite);" aria-hidden="true"></span>
+            Our Differentiator
+          </div>
+          <h2 class="why-heading" id="why-heading">
+            Strategy that works<br/>
+            <span class="accent">in the real world,</span><br/>
+            not just on paper.
+          </h2>
+        </div>
+        <p class="why-sub">
+          Many consultants can identify problems. Fewer can translate those findings into realistic solutions that work inside a real business — with real people, limited time, and competing priorities. That's what we do.
+        </p>
+      </div>
+      <div class="why-grid" role="list">
+
+        <div class="why-card" role="listitem">
+          <div class="why-icon" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/>
+            </svg>
+          </div>
+          <h3 class="why-card-title">20+ Years of Real Experience</h3>
+          <p class="why-card-desc">Not theory alone. Deep, hands-on experience leading operational improvement, organizational design, leadership development, and culture transformation in growing businesses.</p>
+        </div>
+
+        <div class="why-card" role="listitem">
+          <div class="why-icon" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12l4-4 3 3 5-7"/>
+            </svg>
+          </div>
+          <h3 class="why-card-title">Implementation-First Solutions</h3>
+          <p class="why-card-desc">Every recommendation is designed to be executed, not just presented. We build practical solutions that fit your business's actual constraints, timeline, and capacity.</p>
+        </div>
+
+        <div class="why-card" role="listitem">
+          <div class="why-icon" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="8" cy="6" r="2.5"/><path d="M3.5 13c0-2.485 2.015-4.5 4.5-4.5s4.5 2.015 4.5 4.5"/>
+            </svg>
+          </div>
+          <h3 class="why-card-title">People + Process Expertise</h3>
+          <p class="why-card-desc">We work across both dimensions — people and process — which allows for a more complete and sustainable solution than addressing one without the other.</p>
+        </div>
+
+        <div class="why-card" role="listitem">
+          <div class="why-icon" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/>
+            </svg>
+          </div>
+          <h3 class="why-card-title">Executive to Frontline Depth</h3>
+          <p class="why-card-desc">We work from executive strategy down to front-line execution — so changes don't stop at the leadership level but actually take hold across the business.</p>
+        </div>
+
+        <div class="why-card" role="listitem">
+          <div class="why-icon" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 2l1.5 4h4l-3.3 2.4 1.3 4L8 10l-3.5 2.4 1.3-4L2.5 6h4z"/>
+            </svg>
+          </div>
+          <h3 class="why-card-title">Customized, Not Generic</h3>
+          <p class="why-card-desc">No off-the-shelf playbooks. Every recommendation is built around how your company actually operates, what it's realistically capable of, and where it needs to go.</p>
+        </div>
+
+        <div class="why-card" role="listitem">
+          <div class="why-icon" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="2,14 5,8 9,11 13,4 14,6"/><polyline points="11,4 14,4 14,7"/>
+            </svg>
+          </div>
+          <h3 class="why-card-title">Long-Term Scalability Focus</h3>
+          <p class="why-card-desc">We build for where you're going, not just where you are. The structures, systems, and leadership capabilities we help you build are designed to support growth beyond this engagement.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── About ─────────────────────────────────────────────────────── -->
+<section class="about-section" id="about" aria-labelledby="about-heading">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="about-badge-row">
+          <span class="about-badge">Organizational Design</span>
+          <span class="about-badge">Leadership Effectiveness</span>
+          <span class="about-badge">Operational Improvement</span>
+          <span class="about-badge">Culture Transformation</span>
+          <span class="about-badge">Workforce Structure</span>
+          <span class="about-badge">Cross-Functional Alignment</span>
+        </div>
+        <h2 class="about-heading" id="about-heading">
+          Built on <span class="muted">real-world</span><br/>
+          operating experience.
+        </h2>
+        <p class="about-body">
+          Ibrahim Consulting was founded on a simple premise: growing businesses deserve consulting that is grounded in practical operating experience, not theoretical frameworks. Our work is built on more than two decades of hands-on leadership — streamlining companies, strengthening leadership teams, formalizing departments, and building the kind of operational structure that actually holds up under growth.
+        </p>
+        <p class="about-body">
+          We don't offer generic advice. We help businesses understand what's not working, why it's happening, and what specific actions will create a stronger, healthier, and more scalable company.
+        </p>
+        <a href="#contact">
+          <button class="btn-pill btn-pill-lg">Start with a Discovery Call</button>
+        </a>
+      </div>
+      <div class="about-right" aria-label="Key firm metrics">
+        <div class="about-metric">
+          <div class="about-metric-num">20+</div>
+          <div class="about-metric-label">Years of operational leadership and business improvement experience</div>
+        </div>
+        <div class="about-metric">
+          <div class="about-metric-num">5</div>
+          <div class="about-metric-label">Consulting packages from entry-level audit to embedded partnership</div>
+        </div>
+        <div class="about-metric">
+          <div class="about-metric-num">6</div>
+          <div class="about-metric-label">Core service areas covering every dimension of organizational effectiveness</div>
+        </div>
+        <div class="about-metric">
+          <div class="about-metric-num">3</div>
+          <div class="about-metric-label">Phase methodology ensuring clear progress from assessment to execution</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ───────────────────────────────────────────────────────── -->
+<section class="cta-section" id="contact" aria-labelledby="cta-heading">
+  <div class="container">
+    <div class="cta-panel">
+      <h2 class="cta-heading" id="cta-heading">
+        Ready to build a<br/>
+        <span class="accent">stronger company?</span>
+      </h2>
+      <p class="cta-sub">
+        Most clients start with a complimentary discovery call. We'll quickly identify whether there's a fit — and what the highest-leverage starting point would be for your business.
+      </p>
+      <div class="cta-buttons">
+        <a href="mailto:hello@northmarkadvisory.com">
+          <button class="btn-pill btn-pill-lg">Schedule a Discovery Call</button>
+        </a>
+        <a href="mailto:hello@northmarkadvisory.com">
+          <button class="btn-pill btn-pill-ghost btn-pill-lg">Send Us a Message</button>
+        </a>
+      </div>
+      <p class="cta-note">Discovery calls are complimentary. No commitment required.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ─── Footer ───────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand-col">
+        <div class="footer-logo">Ibrahim<span> Consulting</span></div>
+        <p class="footer-brand-desc">Business transformation and organizational effectiveness consulting for startups, small businesses, and mid-sized companies.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">Organizational Design</a></li>
+          <li><a href="#services">Operational Effectiveness</a></li>
+          <li><a href="#services">People & Leadership</a></li>
+          <li><a href="#services">People Infrastructure</a></li>
+          <li><a href="#services">Culture & Change</a></li>
+          <li><a href="#services">Growth Readiness</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Packages</div>
+        <ul class="footer-links">
+          <li><a href="#packages">Business Audit</a></li>
+          <li><a href="#packages">Organizational Diagnostic</a></li>
+          <li><a href="#packages">Foundation Build</a></li>
+          <li><a href="#packages">Transformation</a></li>
+          <li><a href="#packages">Embedded Partner</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#methodology">How We Work</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="mailto:hello@northmarkadvisory.com">hello@northmarkadvisory.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Ibrahim Consulting. All rights reserved.</p>
+      <p class="footer-tagline">Structure · Leadership · Accountability · Growth</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function openMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const toggle = document.getElementById('menuToggle');
+    menu.classList.add('open');
+    menu.setAttribute('aria-hidden', 'false');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const toggle = document.getElementById('menuToggle');
+    menu.classList.remove('open');
+    menu.setAttribute('aria-hidden', 'true');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  // Close on escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeMobileMenu();
+  });
+</script>
+</body>
+</html>
