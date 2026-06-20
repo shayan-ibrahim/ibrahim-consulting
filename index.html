@@ -1154,6 +1154,48 @@
       fill: rgba(255,255,255,0.85);
     }
 
+    /* ─── CTA Rating Block ────────────────────────────────────────── */
+    .cta-rating {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 20px 28px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+    }
+    .cta-rating-stars {
+      display: flex;
+      gap: 4px;
+    }
+    .cta-rating-stars svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--color-amber);
+    }
+    .cta-rating-score {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--color-snow);
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+    .cta-rating-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    .cta-rating-text {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      line-height: 1.5;
+      max-width: 240px;
+    }
+
     /* ─── Scroll Down Indicator ──────────────────────────────────── */
     .scroll-down {
       position: absolute;
@@ -2050,6 +2092,18 @@
         </a>
       </div>
       <p class="cta-note">Discovery calls are complimentary. No commitment required.</p>
+      <div class="cta-rating" aria-label="5.0 positive ratings">
+        <div class="cta-rating-stars" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="cta-rating-score">5.0</div>
+        <div class="cta-rating-label">Positive Ratings</div>
+        <div class="cta-rating-text">We ensure a seamless process to realize your company's vision.</div>
+      </div>
     </div>
   </div>
 </section>
