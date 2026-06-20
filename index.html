@@ -43,10 +43,10 @@
 
     /* ─── Reset ─────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; background: #000; }
     body {
       font-family: var(--font-primary);
-      background: var(--color-mist);
+      background: transparent;
       color: var(--color-ink);
       font-size: 16px;
       line-height: 1.5;
@@ -55,6 +55,22 @@
     img { display: block; max-width: 100%; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
+
+    /* ─── Global Background Video ───────────────────────────────── */
+    #bg-video {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0.45;
+      pointer-events: none;
+    }
+    .nav, main, .footer, .ticker-wrap, .mobile-menu { position: relative; z-index: 1; }
+    .stats, .services-section, .methodology-section, .packages-section, .about-section {
+      background: var(--color-mist);
+    }
 
     /* ─── Layout Helpers ────────────────────────────────────────── */
     .container {
@@ -421,9 +437,7 @@
       padding: 0 0 var(--section-gap);
     }
     .problem-panel {
-      position: relative;
-      overflow: hidden;
-      background: rgba(9,9,11,0.80);
+      background: rgba(9,9,11,0.84);
       border-radius: var(--radius-card);
       padding: 56px 64px;
       display: grid;
@@ -829,30 +843,13 @@
       font-weight: 400;
     }
 
-    .panel-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-      opacity: 0.45;
-    }
-    .problem-panel > *:not(.panel-video),
-    .why-panel > *:not(.panel-video),
-    .cta-panel > *:not(.panel-video) {
-      position: relative;
-      z-index: 1;
-    }
 
     /* ─── Why Us ─────────────────────────────────────────────────── */
     .why-section {
       padding: 0 0 var(--section-gap);
     }
     .why-panel {
-      position: relative;
-      overflow: hidden;
-      background: rgba(9,9,11,0.80);
+      background: rgba(9,9,11,0.84);
       border-radius: var(--radius-card);
       padding: 56px 64px;
     }
@@ -916,9 +913,7 @@
       padding: 0 0 var(--section-gap);
     }
     .cta-panel {
-      position: relative;
-      overflow: hidden;
-      background: rgba(9,9,11,0.80);
+      background: rgba(9,9,11,0.84);
       border-radius: var(--radius-card);
       padding: 72px 64px;
       text-align: center;
@@ -1292,6 +1287,10 @@
 </head>
 <body>
 
+<video id="bg-video" autoplay muted loop playsinline aria-hidden="true">
+  <source src="hero-video.mp4" type="video/mp4">
+</video>
+
 <!-- ─── Mobile Menu ─────────────────────────────────────────────── -->
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navigation menu">
   <div class="mobile-menu-header">
@@ -1441,7 +1440,6 @@
 <section class="problem-section" aria-labelledby="problem-heading">
   <div class="container">
     <div class="problem-panel">
-      <video class="panel-video" autoplay muted loop playsinline aria-hidden="true"><source src="hero-video.mp4" type="video/mp4"></video>
       <!-- Left -->
       <div class="problem-left">
         <div class="section-label">The Problem</div>
@@ -1778,7 +1776,6 @@
 <section class="why-section" aria-labelledby="why-heading">
   <div class="container">
     <div class="why-panel">
-      <video class="panel-video" autoplay muted loop playsinline aria-hidden="true"><source src="hero-video.mp4" type="video/mp4"></video>
       <div class="why-header">
         <div>
           <div class="section-label" style="color: var(--color-slate);">
@@ -1913,7 +1910,6 @@
 <section class="cta-section" id="contact" aria-labelledby="cta-heading">
   <div class="container">
     <div class="cta-panel">
-      <video class="panel-video" autoplay muted loop playsinline aria-hidden="true"><source src="hero-video.mp4" type="video/mp4"></video>
       <h2 class="cta-heading" id="cta-heading">
         Ready to build a<br/>
         <span class="accent">stronger company?</span>
