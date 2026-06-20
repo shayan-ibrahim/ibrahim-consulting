@@ -949,11 +949,17 @@
       background: rgba(9,9,11,0.84);
       border-radius: var(--radius-card);
       padding: 72px 64px;
-      text-align: center;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 64px;
+      align-items: center;
+    }
+    .cta-left {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       gap: 32px;
+      text-align: left;
     }
     .cta-heading {
       font-size: clamp(32px, 4vw, 52px);
@@ -1410,7 +1416,9 @@
       .why-grid { grid-template-columns: 1fr; }
       .problem-panel { padding: 32px 24px; border-radius: var(--radius-card-compact); }
       .why-panel { padding: 36px 28px; border-radius: var(--radius-card-compact); }
-      .cta-panel { padding: 48px 28px; border-radius: var(--radius-card-compact); }
+      .cta-panel { padding: 48px 28px; border-radius: var(--radius-card-compact); grid-template-columns: 1fr; }
+      .cta-left { align-items: center; text-align: center; }
+      .cta-rating { width: 100%; }
       .package-card { grid-template-columns: 44px 1fr; gap: 16px; }
       .package-badge { display: none; }
       .footer-top { grid-template-columns: 1fr; gap: 32px; }
@@ -2078,20 +2086,22 @@
 <section class="cta-section" id="contact" aria-labelledby="cta-heading">
   <div class="container">
     <div class="cta-panel">
-      <h2 class="cta-heading" id="cta-heading">
-        Ready to build a<br/>
-        <span class="accent">stronger company?</span>
-      </h2>
-      <p class="cta-sub">
-        Most clients start with a complimentary discovery call. We'll quickly identify whether there's a fit — and what the highest-leverage starting point would be for your business.
-      </p>
-      <div class="cta-buttons">
-        <button class="btn-pill btn-pill-lg" onclick="openBookings()">Schedule a Discovery Call</button>
-        <a href="mailto:shayan.ibrahim@ibrahimconsulting.com">
-          <button class="btn-pill btn-pill-ghost btn-pill-lg">Send Us a Message</button>
-        </a>
+      <div class="cta-left">
+        <h2 class="cta-heading" id="cta-heading">
+          Ready to build a<br/>
+          <span class="accent">stronger company?</span>
+        </h2>
+        <p class="cta-sub">
+          Most clients start with a complimentary discovery call. We'll quickly identify whether there's a fit — and what the highest-leverage starting point would be for your business.
+        </p>
+        <div class="cta-buttons">
+          <button class="btn-pill btn-pill-lg" onclick="openBookings()">Schedule a Discovery Call</button>
+          <a href="mailto:shayan.ibrahim@ibrahimconsulting.com">
+            <button class="btn-pill btn-pill-ghost btn-pill-lg">Send Us a Message</button>
+          </a>
+        </div>
+        <p class="cta-note">Discovery calls are complimentary. No commitment required.</p>
       </div>
-      <p class="cta-note">Discovery calls are complimentary. No commitment required.</p>
       <div class="cta-rating" aria-label="5.0 positive ratings">
         <div class="cta-rating-stars" aria-hidden="true">
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -2107,6 +2117,7 @@
     </div>
   </div>
 </section>
+
 </main>
 
 <!-- ─── Footer ───────────────────────────────────────────────────── -->
