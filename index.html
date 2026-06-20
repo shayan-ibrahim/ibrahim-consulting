@@ -1691,6 +1691,80 @@
       .hero-tagline { font-size: 11px; letter-spacing: 1.2px; }
     }
 
+    /* ─── Mobile Comprehensive Fixes ────────────────────────────── */
+    html, body { overflow-x: hidden; }
+
+    @media (max-width: 768px) {
+      /* ── Hero Option D ── */
+      .hero-bg { min-height: 100svh; }
+      .hero-content {
+        padding: 48px 20px 40px !important;
+        gap: 16px !important;
+      }
+      /* Top row: stack pill above tagline */
+      .hero-content > div:first-child {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+      }
+      /* Bottom grid: single column */
+      .hero-content > div:last-child {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+      .hero-headline { font-size: clamp(32px, 9vw, 44px) !important; }
+
+      /* ── Problem grid: 1 col ── */
+      .problem-list { grid-template-columns: 1fr !important; }
+      .problem-panel { padding: 28px 20px !important; }
+
+      /* ── Methodology ── */
+      .methodology-panel { padding: 28px 20px !important; }
+      .methodology-grid { grid-template-columns: 1fr !important; }
+
+      /* ── Why grid: 1 col ── */
+      .why-grid { grid-template-columns: 1fr !important; }
+      .why-panel { padding: 28px 20px !important; }
+
+      /* ── Results in action: 1 col ── */
+      #results > .container > div > div[style*="repeat(3"] {
+        grid-template-columns: 1fr !important;
+      }
+      .method-card { padding: 20px 16px !important; }
+
+      /* ── Brand logos: stack ── */
+      .brand-logos { flex-direction: column !important; align-items: center !important; gap: 24px !important; }
+
+      /* ── Package grid: 1 col ── */
+      .packages-list { grid-template-columns: 1fr !important; }
+      .packages-entry { grid-template-columns: 1fr !important; }
+      .package-tier-label { margin-top: 16px !important; }
+
+      /* ── About panel ── */
+      .about-panel { padding: 28px 20px !important; }
+      .about-grid { grid-template-columns: 1fr !important; }
+      .about-photo { max-width: 100% !important; }
+      .about-badge-row { margin-bottom: 20px !important; }
+
+      /* ── Stats ── */
+      .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+      /* ── Footer ── */
+      .footer-top { grid-template-columns: 1fr !important; }
+      .footer-inner { padding: 0 20px !important; }
+
+      /* ── Section containers ── */
+      .container { padding: 0 16px !important; }
+      .problem-section, .methodology-section, .why-section { padding-left: 0 !important; padding-right: 0 !important; }
+    }
+
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr !important; }
+      .hero-headline { font-size: clamp(28px, 8vw, 36px) !important; }
+      .hero-tagline { font-size: 10px !important; letter-spacing: 1px !important; }
+      .services-grid { grid-template-columns: 1fr !important; }
+    }
+
     /* ─── Reduced Motion ─────────────────────────────────────────── */
     @media (prefers-reduced-motion: reduce) {
       .ticker-track { animation: none; }
