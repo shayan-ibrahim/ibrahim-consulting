@@ -3,7 +3,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ibrahim Consulting — Structure. Leadership. Accountability. Growth.</title>
+  <title>Ibrahim Consulting — Organizational Effectiveness & Business Consulting | Structure. Leadership. Accountability. Growth.</title>
+  <meta name="description" content="Ibrahim Consulting helps startups, small businesses, and mid-sized companies strengthen structure, leadership, and operations. 18+ years of hands-on experience. Former AT&T Chief of Staff. Schedule a free discovery call." />
+  <meta name="keywords" content="business consulting, organizational design, operational effectiveness, leadership coaching, business transformation, AT&T authorized retailer consulting, wireless retail consulting, founder led business consulting, small business consulting, organizational structure, performance management, business scaling" />
+  <meta name="author" content="Shayan Ibrahim" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://ibrahimconsulting.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ibrahimconsulting.com/" />
+  <meta property="og:title" content="Ibrahim Consulting — Structure. Leadership. Accountability. Growth." />
+  <meta property="og:description" content="We help startups, small businesses, and mid-sized companies build the structure, leadership, and operational discipline they need to scale. Former AT&T Chief of Staff. 18+ years of real-world experience." />
+  <meta property="og:image" content="https://ibrahimconsulting.com/shayan-bio.jpg" />
+  <meta property="og:site_name" content="Ibrahim Consulting" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ibrahim Consulting — Structure. Leadership. Accountability. Growth." />
+  <meta name="twitter:description" content="Organizational effectiveness consulting for growing businesses. Former AT&T Chief of Staff. 18+ years of hands-on experience across 400+ locations." />
+  <meta name="twitter:image" content="https://ibrahimconsulting.com/shayan-bio.jpg" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Ibrahim Consulting",
+    "description": "Ibrahim Consulting helps startups, small businesses, and mid-sized companies strengthen their structure, leadership, and operations to scale with clarity, accountability, and consistency.",
+    "founder": {
+      "@type": "Person",
+      "name": "Shayan Ibrahim",
+      "jobTitle": "Founder & Principal Consultant",
+      "description": "Former Chief of Staff at AT&T, VP overseeing 400+ retail locations across 18 states. 18+ years of hands-on operational leadership.",
+      "sameAs": "https://www.linkedin.com/in/shayanibrahim/"
+    },
+    "url": "https://ibrahimconsulting.com",
+    "telephone": "+13372544728",
+    "email": "shayan.ibrahim@ibrahimconsulting.com",
+    "areaServed": "United States",
+    "serviceType": [
+      "Organizational Design",
+      "Operational Effectiveness",
+      "Leadership Coaching",
+      "Business Transformation",
+      "People Infrastructure",
+      "Culture and Change Management"
+    ],
+    "knowsAbout": [
+      "Organizational Design",
+      "Business Operations",
+      "Leadership Development",
+      "Wireless Retail Consulting",
+      "Multi-location Retail Management",
+      "AT&T Authorized Retailer Operations",
+      "Startup Scaling",
+      "Performance Management"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Consulting Packages",
+      "itemListElement": [
+        {"@type": "Offer", "name": "Business Audit & Strategic Roadmap", "price": "4500", "priceCurrency": "USD"},
+        {"@type": "Offer", "name": "Organizational Diagnostic", "price": "5500", "priceCurrency": "USD"},
+        {"@type": "Offer", "name": "Organizational Foundation Build", "price": "6500", "priceCurrency": "USD"},
+        {"@type": "Offer", "name": "Performance & Future-State Transformation", "price": "7500", "priceCurrency": "USD"},
+        {"@type": "Offer", "name": "Embedded Scaling Partner", "price": "8500", "priceCurrency": "USD"}
+      ]
+    }
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
@@ -1116,6 +1187,80 @@
       color: var(--color-pebble);
     }
 
+    /* ─── Package Tier Labels ──────────────────────────────────────── */
+    .package-tier-label {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 0 0 24px;
+    }
+    .package-tier-line {
+      flex: 1;
+      height: 1px;
+      background: var(--color-fog);
+    }
+    .package-tier-text {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--color-steel);
+      white-space: nowrap;
+    }
+
+    /* ─── Micro CTA ─────────────────────────────────────────────────── */
+    .section-micro-cta {
+      display: flex;
+      justify-content: center;
+      padding: 32px 0 0;
+    }
+    .micro-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-obsidian);
+      cursor: pointer;
+      border: none;
+      background: none;
+      font-family: var(--font-primary);
+      transition: gap 0.2s;
+    }
+    .micro-cta-btn:hover { gap: 12px; }
+    .micro-cta-btn svg { width: 16px; height: 16px; }
+    .dark-micro-cta .micro-cta-btn { color: rgba(255,255,255,0.7); }
+    .dark-micro-cta .micro-cta-btn:hover { color: #fff; }
+
+    /* ─── Industry Tags ─────────────────────────────────────────────── */
+    .industry-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .industry-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--color-snow);
+      border: 1px solid var(--color-fog);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--color-graphite);
+      box-shadow: var(--shadow-card-inset);
+    }
+    .industry-tag::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--color-amber);
+      flex-shrink: 0;
+    }
+
     /* ─── Brand Strip ─────────────────────────────────────────────── */
     .brand-strip {
       background: var(--color-mist);
@@ -1686,7 +1831,7 @@
 <!-- ─── Brand Strip ──────────────────────────────────────────────── -->
 <section class="brand-strip" aria-label="Brands we have supported">
   <div class="container">
-    <div class="brand-strip-label">Authorized Retailers We've Successfully Supported</div>
+    <div class="brand-strip-label">Authorized Retailers We've Successfully Built Into Top Dealers</div>
     <div class="brand-logos">
       <div class="brand-logo-item">
         <div class="brand-logo-att">
@@ -1699,17 +1844,18 @@
           </svg>
           <span class="att-wordmark">AT&amp;T</span>
         </div>
-        <div style="font-size:11px;color:var(--color-ash);margin-top:4px">18 Authorized Retailers</div>
+        <div style="font-size:11px;color:var(--color-ash);margin-top:6px;text-align:center">18 Authorized Retailers<br/>developed into top AT&amp;T dealers</div>
       </div>
-      <div style="width:1px;height:60px;background:var(--color-fog)"></div>
+      <div style="width:1px;height:72px;background:var(--color-fog)"></div>
       <div class="brand-logo-item">
         <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
           <span class="metro-wordmark">Metro</span>
           <span class="metro-sub">by T-Mobile</span>
         </div>
-        <div style="font-size:11px;color:var(--color-ash);margin-top:4px">1 Authorized Retailer</div>
+        <div style="font-size:11px;color:var(--color-ash);margin-top:6px;text-align:center">1 Authorized Retailer<br/>scaled to a top Metro dealer nationally</div>
       </div>
     </div>
+    <p style="text-align:center;font-size:12px;color:var(--color-ash);margin-top:20px;font-style:italic">18 companies. 18 different starting points. Every one built into a top dealer for their carrier.</p>
   </div>
 </section>
 
@@ -1773,6 +1919,14 @@
       <p class="section-sub">
         Each service area is designed to address a specific layer of organizational effectiveness, from structure and process to people and culture.
       </p>
+      <div class="industry-tags" aria-label="Industries we specialize in">
+        <span class="industry-tag">Founder-Led Service Businesses</span>
+        <span class="industry-tag">Multi-Location Retail &amp; Franchise</span>
+        <span class="industry-tag">Post-Series A Tech Startups</span>
+        <span class="industry-tag">Wireless &amp; Telecommunications</span>
+        <span class="industry-tag">Authorized Retail Networks</span>
+        <span class="industry-tag">Rapid Growth Companies</span>
+      </div>
     </div>
     <div class="services-grid" role="list">
 
@@ -1879,6 +2033,12 @@
         </div>
       </article>
 
+      <div class="section-micro-cta">
+        <button class="micro-cta-btn" onclick="openBookings()">
+          Schedule a Discovery Call
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="8" x2="14" y2="8"/><polyline points="9,3 14,8 9,13"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -1943,6 +2103,12 @@
       </article>
 
     </div>
+      <div class="section-micro-cta dark-micro-cta">
+        <button class="micro-cta-btn" onclick="openBookings()">
+          Schedule a Discovery Call
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="8" x2="14" y2="8"/><polyline points="9,3 14,8 9,13"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -1956,10 +2122,16 @@
         Start where you <span class="muted">need to</span>
       </h2>
       <p class="section-sub">
-        Five structured packages that move you from initial discovery into deeper engagement. Each package builds on and includes everything from the one before it.
+        Choose your entry point below. Packages 1 and 2 are standalone engagements — no prior work required. Packages 3 through 5 are deepening engagements designed for clients ready to go further.
       </p>
     </div>
-    <div class="packages-list" role="list">
+
+    <div class="package-tier-label" role="heading" aria-level="3">
+      <span class="package-tier-line"></span>
+      <span class="package-tier-text">Entry Points — Start Here</span>
+      <span class="package-tier-line"></span>
+    </div>
+    <div class="packages-list packages-entry" role="list" style="grid-template-columns:repeat(2,1fr);margin-bottom:48px">
 
       <!-- Package 1 -->
       <article class="package-card" role="listitem">
@@ -1986,6 +2158,16 @@
         <div class="package-price">$5,500</div>
         <a href="https://buy.stripe.com/dRm8wCcCCccaeoJa4TgEg01" target="_blank" rel="noopener" class="btn-checkout">Get Started →</a>
       </article>
+
+    </div>
+
+    <div class="package-tier-label" role="heading" aria-level="3">
+      <span class="package-tier-line"></span>
+      <span class="package-tier-text">Deepening Engagements — Go Further</span>
+      <span class="package-tier-line"></span>
+    </div>
+    <p style="font-size:14px;color:var(--color-steel);text-align:center;margin-bottom:28px;max-width:560px;margin-left:auto;margin-right:auto">For clients who've completed an audit or diagnostic and are ready to build, transform, or embed — these packages go deeper.</p>
+    <div class="packages-list" role="list">
 
       <!-- Package 3 — Featured -->
       <article class="package-card featured-card" role="listitem">
@@ -2044,6 +2226,12 @@
         <span class="coming-badge">Coming Soon</span>
       </article>
 
+      <div class="section-micro-cta">
+        <button class="micro-cta-btn" onclick="openBookings()">
+          Schedule a Discovery Call
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="8" x2="14" y2="8"/><polyline points="9,3 14,8 9,13"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -2131,6 +2319,12 @@
         </div>
 
       </div>
+      <div class="section-micro-cta dark-micro-cta">
+        <button class="micro-cta-btn" onclick="openBookings()">
+          Schedule a Discovery Call
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="8" x2="14" y2="8"/><polyline points="9,3 14,8 9,13"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -2190,9 +2384,7 @@
       </p>
       <div class="cta-buttons">
         <button class="btn-pill btn-pill-lg" onclick="openBookings()">Schedule a Discovery Call</button>
-        <a href="mailto:shayan.ibrahim@ibrahimconsulting.com">
-          <button class="btn-pill btn-pill-ghost btn-pill-lg">Send Us a Message</button>
-        </a>
+
       </div>
       <p class="cta-note">Discovery calls are complimentary. No commitment required.</p>
     </div>
