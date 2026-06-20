@@ -140,7 +140,7 @@
       pointer-events: none;
     }
     .nav, main, .footer, .ticker-wrap, .mobile-menu { position: relative; z-index: 1; }
-    .stats, .brand-strip, .services-section, .packages-section, .about-section {
+    .stats, .brand-strip, .services-section, .packages-section {
       background: var(--color-mist);
     }
 
@@ -1071,8 +1071,19 @@
 
     /* ─── About Strip ────────────────────────────────────────────── */
     .about-section {
-      padding: 80px 0 var(--section-gap);
+      padding: 64px 0 var(--section-gap);
     }
+    .about-panel {
+      background: rgba(9,9,11,0.84);
+      border-radius: var(--radius-card);
+      padding: 56px 64px;
+    }
+    .about-section .about-heading { color: var(--color-snow); }
+    .about-section .about-heading .muted { color: var(--color-amber); font-weight: 300; }
+    .about-section .about-body { color: rgba(255,255,255,0.75); }
+    .about-section .about-body-first { color: var(--color-snow); font-style: italic; }
+    .about-section .about-badge { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); color: var(--color-ash); box-shadow: none; }
+    .about-section .about-photo-caption { color: var(--color-ash); }
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 480px;
@@ -2440,6 +2451,7 @@
 <!-- ─── About ─────────────────────────────────────────────────────── -->
 <section class="about-section" id="about" aria-labelledby="about-heading">
   <div class="container">
+    <div class="about-panel">
     <div class="about-grid">
       <div>
         <div class="about-badge-row">
@@ -2474,6 +2486,7 @@
         <img src="about-image.jpg" alt="Shayan Ibrahim, Founder of Ibrahim Consulting" class="about-photo" />
         <div class="about-photo-caption">Shayan Ibrahim — Founder, Ibrahim Consulting</div>
       </div>
+    </div>
     </div>
   </div>
 </section>
