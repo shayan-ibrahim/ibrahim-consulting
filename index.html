@@ -2037,25 +2037,11 @@
     toggle.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }
+  const bookingsUrl = 'https://outlook.office.com/bookwithme/user/69d18e0d1400441c82dfd0c222074676@ibrahimconsulting.com/meetingtype/GK9O0WUNx0i3Yz7XMbS3BQ2?anonymous&ismsaljsauthenabled&ep=mLinkFromTile';
   function openBookings() {
-    const overlay = document.getElementById('bookingsOverlay');
-    const frame = document.getElementById('bookingsFrame');
-    if (!frame.src || frame.src === window.location.href) {
-      frame.src = frame.dataset.src;
-    }
-    overlay.classList.add('open');
-    overlay.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+    window.open(bookingsUrl, '_blank', 'noopener,noreferrer');
   }
-  function closeBookings() {
-    const overlay = document.getElementById('bookingsOverlay');
-    overlay.classList.remove('open');
-    overlay.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-  document.getElementById('bookingsOverlay').addEventListener('click', function(e) {
-    if (e.target === this) closeBookings();
-  });
+  function closeBookings() {}
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') { closeMobileMenu(); closeBookings(); }
   });
