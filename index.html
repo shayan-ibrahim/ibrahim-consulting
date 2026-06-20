@@ -454,8 +454,10 @@
       flex-direction: column;
       gap: 6px;
     }
-    .stat-block:first-child { border-radius: var(--radius-card) 0 0 var(--radius-card); }
-    .stat-block:last-child { border-radius: 0 var(--radius-card) var(--radius-card) 0; }
+    .stat-block:first-child { border-radius: var(--radius-card) 0 0 0; }
+    .stat-block:nth-child(4) { border-radius: 0 var(--radius-card) 0 0; }
+    .stat-block:nth-child(5) { border-radius: 0 0 0 var(--radius-card); }
+    .stat-block:last-child { border-radius: 0 0 var(--radius-card) 0; }
     .stat-number {
       font-size: 44px;
       font-weight: 700;
@@ -1813,7 +1815,23 @@
         <div class="stat-label">Years of hands-on operational leadership experience</div>
       </div>
       <div class="stat-block" role="listitem">
-        <div class="stat-number">18</div>
+        <div class="stat-number">6</div>
+        <div class="stat-label">Core service areas across people, process, and structure</div>
+      </div>
+      <div class="stat-block" role="listitem">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Phase methodology — Assess, Design, Implement</div>
+      </div>
+      <div class="stat-block" role="listitem">
+        <div class="stat-number">5</div>
+        <div class="stat-label">Consulting packages from diagnostic to embedded partner</div>
+      </div>
+      <div class="stat-block" role="listitem">
+        <div class="stat-number">14</div>
+        <div class="stat-label">Top ranked dealers amongst their respected entities</div>
+      </div>
+      <div class="stat-block" role="listitem">
+        <div class="stat-number">23</div>
         <div class="stat-label">AT&amp;T Authorized Retailers successfully supported</div>
       </div>
       <div class="stat-block" role="listitem">
@@ -1821,8 +1839,8 @@
         <div class="stat-label">Metro by T-Mobile Authorized Retailer supported</div>
       </div>
       <div class="stat-block" role="listitem">
-        <div class="stat-number">400+</div>
-        <div class="stat-label">Retail locations overseen across 18 states</div>
+        <div class="stat-number">1,100+</div>
+        <div class="stat-label">Retail locations overseen across the nation</div>
       </div>
     </div>
   </div>
