@@ -702,8 +702,10 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      transition: transform 0.2s;
+      transition: transform 0.2s, background 0.2s;
+      cursor: default;
     }
+    .method-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.07); }
     .method-card:hover { transform: translateY(-3px); }
     .method-number {
       display: none;
