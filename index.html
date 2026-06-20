@@ -541,16 +541,18 @@
       line-height: 1.6;
     }
     .problem-list {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
     }
     .problem-row {
       display: flex;
       align-items: flex-start;
-      gap: 14px;
-      padding: 14px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      gap: 12px;
+      padding: 16px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 14px;
+      border-bottom: none;
     }
     .problem-row:last-child { border-bottom: none; }
     .problem-icon {
