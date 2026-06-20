@@ -519,9 +519,13 @@
       background: rgba(9,9,11,0.84);
       border-radius: var(--radius-card);
       padding: 56px 64px;
+    }
+    .problem-header {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 64px;
+      margin-bottom: 48px;
+      align-items: end;
     }
     .problem-left .section-label { color: var(--color-snow); }
     .problem-left .section-label::before { background: var(--color-snow); }
@@ -535,10 +539,9 @@
     }
     .problem-heading .accent { color: var(--color-amber); font-weight: 300; }
     .problem-body {
-      margin-top: 20px;
       font-size: 15px;
       color: var(--color-snow);
-      line-height: 1.6;
+      line-height: 1.65;
     }
     .problem-list {
       display: grid;
@@ -549,10 +552,10 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 10px;
-      padding: 16px;
+      gap: 12px;
+      padding: 28px 24px;
       background: rgba(255,255,255,0.04);
-      border-radius: 14px;
+      border-radius: 20px;
       border-bottom: none;
     }
     .problem-row:last-child { border-bottom: none; }
@@ -1869,47 +1872,51 @@
 <section class="problem-section" aria-labelledby="problem-heading">
   <div class="container">
     <div class="problem-panel">
-      <!-- Left -->
-      <div class="problem-left">
-        <div class="section-label">The Problem</div>
-        <h2 class="problem-heading" id="problem-heading">
-          What's getting<br/>
-          <span class="accent">in the way</span><br/>
-          of growth.
-        </h2>
+      <div class="problem-header">
+        <div class="problem-left">
+          <div class="section-label">The Problem</div>
+          <h2 class="problem-heading" id="problem-heading">
+            What's getting<br/>
+            <span class="accent">in the way</span><br/>
+            of growth.
+          </h2>
+        </div>
         <p class="problem-body">
           Most companies don't struggle because they lack effort or talent. They struggle because they've outgrown their structure and haven't yet built the systems, clarity, or accountability to carry them to the next level.
         </p>
       </div>
-      <!-- Right -->
-      <div class="problem-right" aria-label="Common business problems">
-        <ul class="problem-list">
-          <li class="problem-row">
-            <div class="problem-icon" aria-hidden="true">01</div>
-            <p class="problem-text"><span class="lead">Unclear </span><span class="key">organizational structure and role ownership</span></p>
-          </li>
-          <li class="problem-row">
-            <div class="problem-icon" aria-hidden="true">02</div>
-            <p class="problem-text"><span class="lead">Leaders spending all their time </span><span class="key">reacting instead of leading</span></p>
-          </li>
-          <li class="problem-row">
-            <div class="problem-icon" aria-hidden="true">03</div>
-            <p class="problem-text"><span class="lead">Departments </span><span class="key">operating in silos with no cross-functional alignment</span></p>
-          </li>
-          <li class="problem-row">
-            <div class="problem-icon" aria-hidden="true">04</div>
-            <p class="problem-text"><span class="lead">Wasted </span><span class="key">time, labor, and operating costs from inefficient workflows</span></p>
-          </li>
-          <li class="problem-row">
-            <div class="problem-icon" aria-hidden="true">05</div>
-            <p class="problem-text"><span class="lead">Inconsistent </span><span class="key">execution across teams, locations, and managers</span></p>
-          </li>
-          <li class="problem-row">
-            <div class="problem-icon" aria-hidden="true">06</div>
-            <p class="problem-text"><span class="lead">Growth that </span><span class="key">has outpaced the company's ability to manage it</span></p>
-          </li>
-        </ul>
-      </div>
+      <ul class="problem-list" aria-label="Common business problems">
+        <li class="problem-row">
+          <div class="problem-icon" aria-hidden="true">01</div>
+          <p class="why-card-title">Unclear organizational structure and role ownership</p>
+          <p class="why-card-desc">Roles overlap, accountability is murky, and no one is sure who owns what.</p>
+        </li>
+        <li class="problem-row">
+          <div class="problem-icon" aria-hidden="true">02</div>
+          <p class="why-card-title">Leaders reacting instead of leading</p>
+          <p class="why-card-desc">Leadership spends its time putting out fires rather than driving strategy.</p>
+        </li>
+        <li class="problem-row">
+          <div class="problem-icon" aria-hidden="true">03</div>
+          <p class="why-card-title">Departments operating in silos</p>
+          <p class="why-card-desc">Teams work independently with no cross-functional alignment or shared direction.</p>
+        </li>
+        <li class="problem-row">
+          <div class="problem-icon" aria-hidden="true">04</div>
+          <p class="why-card-title">Wasted time, labor, and operating costs</p>
+          <p class="why-card-desc">Inefficient workflows drain resources and slow down execution across the business.</p>
+        </li>
+        <li class="problem-row">
+          <div class="problem-icon" aria-hidden="true">05</div>
+          <p class="why-card-title">Inconsistent execution across teams</p>
+          <p class="why-card-desc">Performance varies wildly by location, manager, and market with no standard model.</p>
+        </li>
+        <li class="problem-row">
+          <div class="problem-icon" aria-hidden="true">06</div>
+          <p class="why-card-title">Growth that has outpaced the structure</p>
+          <p class="why-card-desc">The business has scaled faster than its systems, clarity, and accountability can support.</p>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
