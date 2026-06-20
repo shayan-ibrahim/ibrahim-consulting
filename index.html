@@ -183,14 +183,25 @@
     .ticker-item {
       display: flex;
       align-items: center;
-      gap: 32px;
-      padding: 0 24px;
+      gap: 28px;
+      padding: 0;
       white-space: nowrap;
       font-size: 13px;
       font-weight: 500;
       color: var(--color-ash);
+      margin-right: 28px;
     }
     .ticker-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--color-graphite);
+      flex-shrink: 0;
+      display: none;
+    }
+    .ticker-item::after {
+      content: '';
+      display: block;
       width: 4px;
       height: 4px;
       border-radius: 50%;
