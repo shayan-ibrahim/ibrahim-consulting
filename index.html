@@ -69,7 +69,7 @@
       pointer-events: none;
     }
     .nav, main, .footer, .ticker-wrap, .mobile-menu { position: relative; z-index: 1; }
-    .stats, .services-section, .packages-section, .about-section {
+    .stats, .brand-strip, .services-section, .packages-section, .about-section {
       background: var(--color-mist);
     }
 
@@ -941,17 +941,11 @@
       background: rgba(9,9,11,0.84);
       border-radius: var(--radius-card);
       padding: 72px 64px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 64px;
-      align-items: center;
-    }
-    .cta-left {
+      text-align: center;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       gap: 32px;
-      text-align: left;
     }
     .cta-heading {
       font-size: clamp(32px, 4vw, 52px);
@@ -1120,6 +1114,99 @@
       letter-spacing: 1.5px;
       text-transform: uppercase;
       color: var(--color-pebble);
+    }
+
+    /* ─── Brand Strip ─────────────────────────────────────────────── */
+    .brand-strip {
+      background: var(--color-mist);
+      padding: 32px 0 var(--section-gap);
+    }
+    .brand-strip-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--color-ash);
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .brand-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 56px;
+      flex-wrap: wrap;
+    }
+    .brand-logo-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+    }
+    .brand-logo-item:hover { opacity: 1; }
+    .brand-logo-att {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .att-globe {
+      width: 48px;
+      height: 48px;
+    }
+    .att-wordmark {
+      font-size: 28px;
+      font-weight: 700;
+      color: #00a8e0;
+      letter-spacing: -0.5px;
+      font-family: var(--font-primary);
+    }
+    .metro-wordmark {
+      font-size: 18px;
+      font-weight: 700;
+      color: #e20074;
+      letter-spacing: -0.3px;
+      font-family: var(--font-primary);
+      line-height: 1;
+    }
+    .metro-sub {
+      font-size: 11px;
+      font-weight: 500;
+      color: #e20074;
+      letter-spacing: 0.5px;
+    }
+
+    /* ─── About Photo ─────────────────────────────────────────────── */
+    .about-photo-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .about-photo {
+      width: 100%;
+      max-width: 460px;
+      border-radius: var(--radius-card);
+      object-fit: cover;
+      object-position: center top;
+      aspect-ratio: 3/4;
+      box-shadow: var(--shadow-card);
+    }
+    .about-photo-caption {
+      font-size: 12px;
+      color: var(--color-ash);
+      font-weight: 400;
+      text-align: center;
+    }
+    .about-body-first {
+      font-style: italic;
+      font-size: 16px;
+      color: var(--color-obsidian) !important;
+      font-weight: 400;
+    }
+    @media (max-width: 1024px) {
+      .about-photo { max-width: 100%; }
     }
 
     /* ─── Social Icons ────────────────────────────────────────────── */
@@ -1534,10 +1621,7 @@
           We help startups, small businesses, and mid-sized companies strengthen their structure, leadership, and operations so they can scale with clarity, accountability, and consistency.
         </p>
         <div class="hero-cta-row">
-          <div class="hero-input-group">
-            <input class="hero-input" type="email" placeholder="your@company.com" aria-label="Enter your email address" />
-            <button class="btn-pill" type="button" onclick="openBookings()">Schedule a Call</button>
-          </div>
+          <button class="btn-pill btn-pill-lg" type="button" onclick="openBookings()">Schedule a Discovery Call</button>
           <p class="hero-note">No commitment required. Discovery calls are complimentary.</p>
         </div>
         <div class="hero-social-proof">
@@ -1584,16 +1668,46 @@
         <div class="stat-label">Years of hands-on operational leadership experience</div>
       </div>
       <div class="stat-block" role="listitem">
-        <div class="stat-number">6</div>
-        <div class="stat-label">Core service areas across people, process, and structure</div>
+        <div class="stat-number">18</div>
+        <div class="stat-label">AT&amp;T Authorized Retailers successfully supported</div>
       </div>
       <div class="stat-block" role="listitem">
-        <div class="stat-number">3</div>
-        <div class="stat-label">Phase methodology — Assess, Design, Implement</div>
+        <div class="stat-number">1</div>
+        <div class="stat-label">Metro by T-Mobile Authorized Retailer supported</div>
       </div>
       <div class="stat-block" role="listitem">
-        <div class="stat-number">5</div>
-        <div class="stat-label">Consulting packages from diagnostic to embedded partner</div>
+        <div class="stat-number">400+</div>
+        <div class="stat-label">Retail locations overseen across 18 states</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Brand Strip ──────────────────────────────────────────────── -->
+<section class="brand-strip" aria-label="Brands we have supported">
+  <div class="container">
+    <div class="brand-strip-label">Authorized Retailers We've Successfully Supported</div>
+    <div class="brand-logos">
+      <div class="brand-logo-item">
+        <div class="brand-logo-att">
+          <svg class="att-globe" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="22" fill="none" stroke="#00a8e0" stroke-width="2"/>
+            <ellipse cx="24" cy="24" rx="11" ry="22" fill="none" stroke="#00a8e0" stroke-width="2"/>
+            <line x1="2" y1="24" x2="46" y2="24" stroke="#00a8e0" stroke-width="2"/>
+            <line x1="4" y1="14" x2="44" y2="14" stroke="#00a8e0" stroke-width="1.5"/>
+            <line x1="4" y1="34" x2="44" y2="34" stroke="#00a8e0" stroke-width="1.5"/>
+          </svg>
+          <span class="att-wordmark">AT&amp;T</span>
+        </div>
+        <div style="font-size:11px;color:var(--color-ash);margin-top:4px">18 Authorized Retailers</div>
+      </div>
+      <div style="width:1px;height:60px;background:var(--color-fog)"></div>
+      <div class="brand-logo-item">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:2px">
+          <span class="metro-wordmark">Metro</span>
+          <span class="metro-sub">by T-Mobile</span>
+        </div>
+        <div style="font-size:11px;color:var(--color-ash);margin-top:4px">1 Authorized Retailer</div>
       </div>
     </div>
   </div>
@@ -1852,10 +1966,9 @@
         <div class="package-num" aria-hidden="true">1</div>
         <span class="package-badge">Entry Point</span>
         <h3 class="package-name">Business Audit &amp; Strategic Roadmap</h3>
-        <p class="package-desc">A 30-day discovery engagement that assesses how your business operates, identifies where time and money are wasted, and delivers a prioritized improvement roadmap.</p>
+        <p class="package-desc">A discovery engagement that assesses how your business operates, identifies where time and money are wasted, and delivers a prioritized improvement roadmap.</p>
         <div class="package-divider"></div>
-        <div class="package-price">$2,500</div>
-        <div class="package-price-period">per month</div>
+        <div class="package-price">$4,500</div>
         <a href="https://buy.stripe.com/5kQ3cidGG2BA94p4KzgEg00" target="_blank" rel="noopener" class="btn-checkout">Get Started →</a>
       </article>
 
@@ -1870,8 +1983,7 @@
           Includes everything in Package 1
         </div>
         <div class="package-divider"></div>
-        <div class="package-price">$3,500</div>
-        <div class="package-price-period">per month</div>
+        <div class="package-price">$5,500</div>
         <a href="https://buy.stripe.com/dRm8wCcCCccaeoJa4TgEg01" target="_blank" rel="noopener" class="btn-checkout">Get Started →</a>
       </article>
 
@@ -1886,8 +1998,7 @@
           Includes everything in Packages 1 &amp; 2
         </div>
         <div class="package-divider"></div>
-        <div class="package-price">$4,500</div>
-        <div class="package-price-period">per month</div>
+        <div class="package-price">$6,500</div>
         <a href="https://buy.stripe.com/14AeV08mmdge4O97WLgEg02" target="_blank" rel="noopener" class="btn-checkout">Get Started →</a>
       </article>
 
@@ -1902,8 +2013,7 @@
           Includes everything in Packages 1, 2 &amp; 3
         </div>
         <div class="package-divider"></div>
-        <div class="package-price">$6,500</div>
-        <div class="package-price-period">per month</div>
+        <div class="package-price">$7,500</div>
         <a href="https://buy.stripe.com/8x2aEK7ii5NM1BXa4TgEg03" target="_blank" rel="noopener" class="btn-checkout">Get Started →</a>
       </article>
 
@@ -1919,7 +2029,6 @@
         </div>
         <div class="package-divider"></div>
         <div class="package-price">$8,500</div>
-        <div class="package-price-period">per month</div>
         <a href="https://buy.stripe.com/5kQcMS322a421BXcd1gEg04" target="_blank" rel="noopener" class="btn-checkout">Get Started →</a>
       </article>
 
@@ -2040,34 +2149,29 @@
           <span class="about-badge">Cross-Functional Alignment</span>
         </div>
         <h2 class="about-heading" id="about-heading">
-          Built on <span class="muted">real-world</span><br/>
-          operating experience.
+          Built on <span class="muted">real experience.</span><br/>
+          Led by a real person.
         </h2>
-        <p class="about-body">
-          Ibrahim Consulting was founded on a simple premise: growing businesses deserve consulting that is grounded in practical operating experience, not theoretical frameworks. Our work is built on more than two decades of hands-on leadership streamlining companies, strengthening leadership teams, formalizing departments, and building the kind of operational structure that actually holds up under growth.
+        <p class="about-body about-body-first">
+          I'm Shayan Ibrahim — and if you're looking for someone who genuinely understands what it feels like to be inside a growing company trying to figure things out, you've found the right person. I've spent 18 years not just advising businesses, but actually running them. This work isn't abstract to me. It's personal.
         </p>
         <p class="about-body">
-          We don't offer generic advice. We help businesses understand what's not working, why it's happening, and what specific actions will create a stronger, healthier, and more scalable company.
+          I grew up as a Pakistani American in south Louisiana, where community and showing up for people aren't values you talk about — they're how you operate. It's also where I met my best friend, who is now my fiancée. That tells you everything about how I approach relationships: with commitment, care, and a long-term mindset.
+        </p>
+        <p class="about-body">
+          I started with Apple, then joined AT&T where I spent over a decade building things that lasted. As Chief of Staff to AT&T's Consumer CEO, I helped lead a division responsible for $13 billion in revenue, aligned eight C-suite executives, and supported strategy across 5,700+ retail locations nationwide. I wrote the cultural playbook that contributed to AT&T's JD Power Customer Experience Award. I didn't just learn how great companies operate — I helped design it.
+        </p>
+        <p class="about-body">
+          From there, I moved into the authorized retail space as Vice President, overseeing 400+ locations and 1,200+ employees across 18 states. I've successfully supported 18 AT&T authorized retailers and 1 Metro by T-Mobile authorized retailer — helping each one build structure, scale profitably, and operate with the discipline of an enterprise while keeping the soul of a small business.
+        </p>
+        <p class="about-body">
+          I went to school for Architecture. I loved the systems logic and design thinking, but quickly realized my true passion was people. I've carried that same structural mindset into every business I've touched since. What I bring to Ibrahim Consulting is what I wish more of my clients had access to earlier — strategic clarity, operational rigor, and a people-first approach that makes growth feel less like chaos and more like momentum.
         </p>
         <button class="btn-pill btn-pill-lg" onclick="openBookings()">Start with a Discovery Call</button>
       </div>
-      <div class="about-right" aria-label="Key firm metrics">
-        <div class="about-metric">
-          <div class="about-metric-num">18+</div>
-          <div class="about-metric-label">Years of operational leadership and business improvement experience</div>
-        </div>
-        <div class="about-metric">
-          <div class="about-metric-num">5</div>
-          <div class="about-metric-label">Consulting packages from entry-level audit to embedded partnership</div>
-        </div>
-        <div class="about-metric">
-          <div class="about-metric-num">6</div>
-          <div class="about-metric-label">Core service areas covering every dimension of organizational effectiveness</div>
-        </div>
-        <div class="about-metric">
-          <div class="about-metric-num">3</div>
-          <div class="about-metric-label">Phase methodology ensuring clear progress from assessment to execution</div>
-        </div>
+      <div class="about-photo-col">
+        <img src="shayan-bio.jpg" alt="Shayan Ibrahim, Founder of Ibrahim Consulting" class="about-photo" />
+        <div class="about-photo-caption">Shayan Ibrahim — Founder, Ibrahim Consulting</div>
       </div>
     </div>
   </div>
@@ -2077,34 +2181,20 @@
 <section class="cta-section" id="contact" aria-labelledby="cta-heading">
   <div class="container">
     <div class="cta-panel">
-      <div class="cta-left">
-        <h2 class="cta-heading" id="cta-heading">
-          Ready to build a<br/>
-          <span class="accent">stronger company?</span>
-        </h2>
-        <p class="cta-sub">
-          Most clients start with a complimentary discovery call. We'll quickly identify whether there's a fit and what the highest-leverage starting point would be for your business.
-        </p>
-        <div class="cta-buttons">
-          <button class="btn-pill btn-pill-lg" onclick="openBookings()">Schedule a Discovery Call</button>
-          <a href="mailto:shayan.ibrahim@ibrahimconsulting.com">
-            <button class="btn-pill btn-pill-ghost btn-pill-lg">Send Us a Message</button>
-          </a>
-        </div>
-        <p class="cta-note">Discovery calls are complimentary. No commitment required.</p>
+      <h2 class="cta-heading" id="cta-heading">
+        Ready to build a<br/>
+        <span class="accent">stronger company?</span>
+      </h2>
+      <p class="cta-sub">
+        Most clients start with a complimentary discovery call. We'll quickly identify whether there's a fit and what the highest-leverage starting point would be for your business.
+      </p>
+      <div class="cta-buttons">
+        <button class="btn-pill btn-pill-lg" onclick="openBookings()">Schedule a Discovery Call</button>
+        <a href="mailto:shayan.ibrahim@ibrahimconsulting.com">
+          <button class="btn-pill btn-pill-ghost btn-pill-lg">Send Us a Message</button>
+        </a>
       </div>
-      <div class="cta-rating" aria-label="5.0 positive ratings">
-        <div class="cta-rating-score">5.0</div>
-        <div class="cta-rating-label">Positive Ratings</div>
-        <div class="cta-rating-stars" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <div class="cta-rating-text">We ensure a seamless process to realize your company's vision.</div>
-      </div>
+      <p class="cta-note">Discovery calls are complimentary. No commitment required.</p>
     </div>
   </div>
 </section>
