@@ -138,6 +138,8 @@
       z-index: 0;
       opacity: 0.45;
       pointer-events: none;
+      will-change: transform;
+      transform: translateZ(0);
     }
     .nav, main, .footer, .ticker-wrap, .mobile-menu { position: relative; z-index: 1; }
     .stats, .brand-strip, .services-section, .packages-section {
@@ -1692,7 +1694,7 @@
     }
 
     /* ─── Mobile Comprehensive Fixes ────────────────────────────── */
-    html, body { overflow-x: hidden; }
+    body { overflow-x: hidden; -webkit-overflow-scrolling: touch; }
 
     @media (max-width: 768px) {
 
