@@ -1773,6 +1773,13 @@
       .results-grid { grid-template-columns: 1fr !important; }
       .about-photo-mobile { display: block !important; width: 100%; border-radius: var(--radius-card-compact); margin: 16px 0; aspect-ratio: 2/3; object-fit: cover; object-position: center top; }
       .about-photo-col { display: none !important; }
+      /* Bottom stats: 2-col on mobile, reset inline border-radii */
+      .firm-stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      .firm-stats-grid > div { border-radius: 0 !important; }
+      .firm-stats-grid > div:first-child { border-radius: var(--radius-card) var(--radius-card) 0 0 !important; }
+      .firm-stats-grid > div:nth-child(2) { border-radius: 0 !important; }
+      .firm-stats-grid > div:nth-child(3) { border-radius: 0 !important; }
+      .firm-stats-grid > div:last-child { border-radius: 0 0 var(--radius-card) var(--radius-card) !important; }
     }
     .about-photo-mobile { display: none; }
 
