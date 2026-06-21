@@ -1770,7 +1770,10 @@
     @media (max-width: 768px) {
       .scroll-down { margin-top: 24px !important; }
       .results-grid { grid-template-columns: 1fr !important; }
+      .about-photo-mobile { display: block !important; width: 100%; border-radius: var(--radius-card-compact); margin: 16px 0; aspect-ratio: 2/3; object-fit: cover; object-position: center top; }
+      .about-photo-col { display: none !important; }
     }
+    .about-photo-mobile { display: none; }
 
     @media (max-width: 480px) {
       .stats-grid { grid-template-columns: 1fr !important; }
@@ -2569,6 +2572,7 @@
           Led at the highest levels.<br/>
           <span class="muted">Built for growing businesses.</span>
         </h2>
+        <img src="about-image.jpg" alt="Shayan Ibrahim, Founder of Ibrahim Consulting" class="about-photo about-photo-mobile" />
         <p class="about-body about-body-first">
           My name is Shayan Ibrahim [pronounced shy-awn]. If you're looking for someone who genuinely understands what it feels like to be inside a growing company trying to figure things out, you've found the right person. I've led at the highest levels of corporate America and brought that knowledge to growing businesses. I've spent 18 years not just advising businesses, but actually running them. This work isn't abstract to me. It's personal and where I excel.
         </p>
