@@ -1769,6 +1769,7 @@
 
     @media (max-width: 768px) {
       .scroll-down { margin-top: 24px !important; }
+      .results-grid { grid-template-columns: 1fr !important; }
     }
 
     @media (max-width: 480px) {
@@ -2241,7 +2242,7 @@
         What this looks like <span class="muted">in practice</span>
       </h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+    <div class="results-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
 
       <!-- Case Study 1 -->
       <div style="background:var(--color-snow);border-radius:var(--radius-card);padding:32px 28px;box-shadow:var(--shadow-card-inset);display:flex;flex-direction:column;transition:transform 0.2s,box-shadow 0.2s;cursor:default;" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset,rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset'">
