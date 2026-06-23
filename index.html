@@ -353,6 +353,20 @@
       margin-bottom: 0;
     }
     .hero-headline .muted { color: var(--color-amber); font-weight: 300; }
+    @keyframes tagline-rotate {
+      0%, 22% { color: #F54927; }
+      25%, 100% { color: rgba(255,255,255,0.92); }
+    }
+    .tagline-word {
+      display: inline;
+      color: rgba(255,255,255,0.92);
+      animation: tagline-rotate 20s infinite;
+      transition: color 0.4s ease;
+    }
+    .tagline-word:nth-child(1) { animation-delay: 0s; }
+    .tagline-word:nth-child(2) { animation-delay: 5s; }
+    .tagline-word:nth-child(3) { animation-delay: 10s; }
+    .tagline-word:nth-child(4) { animation-delay: 15s; }
     .hero-tagline {
       margin-top: 24px;
       font-size: 12px;
@@ -1889,7 +1903,7 @@
           Organizational Effectiveness Consulting
         </div>
         <p class="hero-tagline" aria-label="Tagline: Structure. Leadership. Accountability. Growth.">
-          Structure &nbsp;·&nbsp; Leadership &nbsp;·&nbsp; Accountability &nbsp;·&nbsp; Growth
+          <span class="tagline-word">Structure</span> &nbsp;·&nbsp; <span class="tagline-word">Leadership</span> &nbsp;·&nbsp; <span class="tagline-word">Accountability</span> &nbsp;·&nbsp; <span class="tagline-word">Growth</span>
         </p>
       </div>
       <!-- Full-width headline -->
