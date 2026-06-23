@@ -2806,6 +2806,20 @@
   }, { threshold: 0.08 });
 
   fadeEls.forEach(el => observer.observe(el));
+
+  // ── Content protection ──────────────────────────────────────
+  document.addEventListener('contextmenu', e => e.preventDefault());
+  document.addEventListener('keydown', e => {
+    if (
+      e.key === 'F12' ||
+      (e.ctrlKey && ['u','s','a','c','p'].includes(e.key.toLowerCase())) ||
+      (e.metaKey && ['u','s','a','c','p'].includes(e.key.toLowerCase()))
+    ) e.preventDefault();
+  });
+  document.addEventListener('dragstart', e => e.preventDefault());
+  document.addEventListener('selectstart', e => {
+    if (!['INPUT','TEXTAREA'].includes(e.target.tagName)) e.preventDefault();
+  });
 </script>
 </body>
 </html>
