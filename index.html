@@ -740,6 +740,11 @@
     .method-number {
       display: none;
     }
+    .method-card:hover .method-phase {
+      background: var(--color-amber);
+      border-color: var(--color-amber);
+      color: #fff;
+    }
     .method-phase {
       display: inline-flex;
       align-self: flex-start;
@@ -750,6 +755,7 @@
       padding: 4px 12px;
       font-size: 10px;
       font-weight: 600;
+      transition: background 0.2s, border-color 0.2s;
       letter-spacing: 1.2px;
       text-transform: uppercase;
       margin-bottom: 4px;
