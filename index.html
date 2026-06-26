@@ -482,12 +482,15 @@
     .stat-block:nth-child(5) { border-radius: 0 var(--radius-card) 0 0; }
     .stat-block:nth-child(6) { border-radius: 0 0 0 var(--radius-card); }
     .stat-block:last-child { border-radius: 0 0 var(--radius-card) 0; }
+    .stat-block:hover .stat-number { color: var(--color-amber); }
+    .firm-stats-grid > div:hover .firm-stat-num { color: var(--color-amber) !important; }
     .stat-number {
       font-size: 44px;
       font-weight: 700;
       color: var(--color-obsidian);
       line-height: 1;
       letter-spacing: -1px;
+      transition: color 0.2s;
     }
     .stat-label {
       font-size: 13px;
@@ -2687,23 +2690,23 @@
   <div class="container">
     <div class="firm-stats-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:2px;background:var(--color-fog);border-radius:var(--radius-card);overflow:hidden">
       <div style="background:var(--color-snow);padding:28px 24px;display:flex;flex-direction:column;gap:6px;border-radius:var(--radius-card) 0 0 var(--radius-card);transition:transform 0.2s,box-shadow 0.2s;cursor:default;position:relative;z-index:0" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='none'">
-        <div style="font-size:40px;font-weight:700;color:var(--color-obsidian);line-height:1;letter-spacing:-1px">18+</div>
+        <div style="font-size:40px;font-weight:700;color:var(--color-obsidian);line-height:1;letter-spacing:-1px;transition:color 0.2s" class="firm-stat-num">18+</div>
         <div style="font-size:13px;color:var(--color-steel);line-height:1.5">Years of hands-on operational leadership experience</div>
       </div>
       <div style="background:var(--color-snow);padding:28px 24px;display:flex;flex-direction:column;gap:6px;transition:transform 0.2s,box-shadow 0.2s;cursor:default;position:relative;z-index:0" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='none'">
-        <div style="font-size:40px;font-weight:700;color:var(--color-obsidian);line-height:1;letter-spacing:-1px">6</div>
+        <div style="font-size:40px;font-weight:700;color:var(--color-obsidian);line-height:1;letter-spacing:-1px;transition:color 0.2s" class="firm-stat-num">6</div>
         <div style="font-size:13px;color:var(--color-steel);line-height:1.5">Core service areas across people, process, and structure</div>
       </div>
       <div style="background:var(--color-snow);padding:28px 24px;display:flex;flex-direction:column;gap:6px;transition:transform 0.2s,box-shadow 0.2s;cursor:default;position:relative;z-index:0" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='none'">
-        <div style="font-size:40px;font-weight:700;color:var(--color-obsidian);line-height:1;letter-spacing:-1px">3</div>
+        <div style="font-size:40px;font-weight:700;color:var(--color-obsidian);line-height:1;letter-spacing:-1px;transition:color 0.2s" class="firm-stat-num">3</div>
         <div style="font-size:13px;color:var(--color-steel);line-height:1.5">Phase methodology — Assess, Design, Implement</div>
       </div>
       <div style="background:var(--color-snow);padding:28px 24px;display:flex;flex-direction:column;gap:6px;transition:transform 0.2s,box-shadow 0.2s;cursor:default;position:relative;z-index:0" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='none'">
-        <div style="font-size:40px;font-weight:700;color:var(--color-obsidian);line-height:1;letter-spacing:-1px">5</div>
+        <div style="font-size:40px;font-weight:700;color:var(--color-obsidian);line-height:1;letter-spacing:-1px;transition:color 0.2s" class="firm-stat-num">5</div>
         <div style="font-size:13px;color:var(--color-steel);line-height:1.5">Consulting packages from diagnostic to embedded partner</div>
       </div>
       <div style="background:var(--color-snow);padding:28px 24px;display:flex;flex-direction:column;gap:6px;border-radius:0 var(--radius-card) var(--radius-card) 0;transition:transform 0.2s,box-shadow 0.2s;cursor:default;position:relative;z-index:0" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='none'">
-        <div style="font-size:40px;font-weight:700;color:var(--color-obsidian);line-height:1;letter-spacing:-1px">110%</div>
+        <div style="font-size:40px;font-weight:700;color:var(--color-obsidian);line-height:1;letter-spacing:-1px;transition:color 0.2s" class="firm-stat-num">110%</div>
         <div style="font-size:13px;color:var(--color-steel);line-height:1.5">Commitment to every client, every engagement</div>
       </div>
     </div>
