@@ -859,12 +859,18 @@
       font-size: 11px;
       font-weight: 500;
     }
+    .package-card:hover .package-num {
+      background: var(--color-amber);
+      border-color: var(--color-amber);
+      color: #fff;
+    }
     .package-num {
       width: 44px;
       height: 44px;
       border-radius: 14px;
       background: var(--color-mist);
       border: 1px solid var(--color-fog);
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1035,6 +1041,9 @@
       cursor: default;
     }
     .why-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.07); }
+    .why-card:hover .why-icon {
+      background: var(--color-amber);
+    }
     .why-icon {
       width: 36px;
       height: 36px;
@@ -1043,6 +1052,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: background 0.2s;
     }
     .why-icon svg { width: 16px; height: 16px; stroke: var(--color-ash); }
     .why-card-title {
