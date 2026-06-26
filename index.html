@@ -1126,7 +1126,20 @@
     .about-section .about-heading .muted { color: var(--color-amber); font-weight: 300; }
     .about-section .about-body { color: rgba(255,255,255,0.75); }
     .about-section .about-body-first { color: var(--color-snow) !important; font-style: italic; }
-    .about-section .about-badge { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); color: var(--color-ash); box-shadow: none; }
+    @keyframes badge-highlight {
+      0% { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); color: var(--color-ash); }
+      5% { background: var(--color-amber); border-color: var(--color-amber); color: #fff; }
+      20% { background: var(--color-amber); border-color: var(--color-amber); color: #fff; }
+      27% { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); color: var(--color-ash); }
+      100% { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); color: var(--color-ash); }
+    }
+    .about-section .about-badge { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); color: var(--color-ash); box-shadow: none; animation: badge-highlight 30s infinite; }
+    .about-section .about-badge:nth-child(1) { animation-delay: 0s; }
+    .about-section .about-badge:nth-child(2) { animation-delay: 5s; }
+    .about-section .about-badge:nth-child(3) { animation-delay: 10s; }
+    .about-section .about-badge:nth-child(4) { animation-delay: 15s; }
+    .about-section .about-badge:nth-child(5) { animation-delay: 20s; }
+    .about-section .about-badge:nth-child(6) { animation-delay: 25s; }
     .about-section .about-photo-caption { color: var(--color-ash); }
     .about-grid {
       display: grid;
