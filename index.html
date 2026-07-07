@@ -960,9 +960,14 @@
     .alacarte-plus {
       font-size: 24px;
       line-height: 0;
-      color: var(--color-amber);
-      border: 2px solid var(--color-amber);
+      color: var(--color-obsidian);
+      border: 2px solid var(--color-obsidian);
       background: transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .alacarte-card:hover .alacarte-plus {
+      color: var(--color-amber);
+      border-color: var(--color-amber);
     }
     .alacarte-grid {
       display: grid;
