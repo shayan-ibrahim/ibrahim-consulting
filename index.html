@@ -989,16 +989,46 @@
       font-size: 13.5px;
       color: var(--color-graphite);
       line-height: 1.5;
-      padding-left: 14px;
+      padding-left: 24px;
       position: relative;
+      cursor: default;
+      transition: color 0.2s;
     }
     .alacarte-list li::before {
-      content: '—';
+      content: '';
       position: absolute;
       left: 0;
-      color: var(--color-ash);
-      font-size: 11px;
       top: 1px;
+      width: 14px;
+      height: 14px;
+      border: 1.5px solid var(--color-ash);
+      border-radius: 3px;
+      background: transparent;
+      transition: background 0.2s, border-color 0.2s;
+      box-sizing: border-box;
+    }
+    .alacarte-list li::after {
+      content: '';
+      position: absolute;
+      left: 3px;
+      top: 4px;
+      width: 8px;
+      height: 5px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg) scale(0);
+      transform-origin: center;
+      transition: transform 0.15s ease;
+    }
+    .alacarte-list li:hover {
+      color: var(--color-obsidian);
+    }
+    .alacarte-list li:hover::before {
+      background: var(--color-amber);
+      border-color: var(--color-amber);
+    }
+    .alacarte-list li:hover::after {
+      transform: rotate(-45deg) scale(1);
     }
     @media (max-width: 768px) {
       .alacarte-grid { grid-template-columns: 1fr; }
