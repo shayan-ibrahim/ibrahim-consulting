@@ -964,18 +964,20 @@
     }
     .service-outcomes {
       display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
+      flex-wrap: nowrap;
+      gap: 5px;
       margin-top: 4px;
+      overflow: hidden;
     }
     .outcome-tag {
       background: var(--color-mist);
       border: 1px solid var(--color-fog);
       border-radius: 12px;
-      padding: 3px 9px;
-      font-size: 11px;
+      padding: 3px 8px;
+      font-size: 10.5px;
       font-weight: 500;
       color: var(--color-slate);
+      white-space: nowrap;
     }
 
     /* ─── How We Work ────────────────────────────────────────────── */
@@ -1695,6 +1697,12 @@
       color: var(--color-graphite);
       box-shadow: var(--shadow-card-inset);
     }
+    @keyframes dot-pulse-green {
+      0%, 100% { background: var(--color-amber); transform: scale(1); }
+      5% { background: #22c55e; transform: scale(1.4); }
+      15% { background: #22c55e; transform: scale(1); }
+      20% { background: var(--color-amber); transform: scale(1); }
+    }
     .industry-tag::before {
       content: '';
       width: 5px;
@@ -1702,7 +1710,13 @@
       border-radius: 50%;
       background: var(--color-amber);
       flex-shrink: 0;
+      transition: background 0.3s;
     }
+    .industry-tag:nth-child(1)::before { animation: dot-pulse-green 10s infinite 0s; }
+    .industry-tag:nth-child(2)::before { animation: dot-pulse-green 10s infinite 2s; }
+    .industry-tag:nth-child(3)::before { animation: dot-pulse-green 10s infinite 4s; }
+    .industry-tag:nth-child(4)::before { animation: dot-pulse-green 10s infinite 6s; }
+    .industry-tag:nth-child(5)::before { animation: dot-pulse-green 10s infinite 8s; }
 
     /* ─── Brand Strip ─────────────────────────────────────────────── */
     .brand-strip {
