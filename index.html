@@ -206,9 +206,7 @@
     [data-theme="dark"] [style*="background: var(--color-fog)"] { background: #212126 !important; }
 
     /* Divider lines */
-    [data-theme="dark"] [style*="background:var(--color-fog)"],
-    [data-theme="dark"] [style*="width:1px"],
-    [data-theme="dark"] [style*="height:1px"] { opacity: 0.15; }
+    [data-theme="dark"] .brand-logos [style*="background:var(--color-fog)"] { opacity: 0.15; }
 
     /* Nav */
     [data-theme="dark"] .nav {
@@ -328,8 +326,6 @@
     [data-theme="dark"] .why-card:hover .why-icon svg { stroke: #ffffff !important; }
 
     /* Firm stats (bottom) — match top stats bar */
-    [data-theme="dark"] .firm-stats-section { background: #141416 !important; }
-    [data-theme="dark"] .firm-stats-grid { background: rgba(255,255,255,0.05) !important; }
     [data-theme="dark"] .firm-stats-grid > div { background: #1a1a1d !important; border-color: rgba(255,255,255,0.06) !important; }
     [data-theme="dark"] .firm-stats-grid > div:hover { background: #212126 !important; }
     [data-theme="dark"] .firm-stat-num { color: #f0f0f2 !important; }
@@ -372,33 +368,8 @@
     [data-theme="dark"] .scroll-down { color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.15); }
 
     /* Back to top */
-    [data-theme="dark"] #back-to-top { background: #1a1a1d; border-color: rgba(255,255,255,0.1); color: #f0f0f2; }
+    [data-theme="dark"] #backToTop { background: #1a1a1d; border-color: rgba(255,255,255,0.1); color: #f0f0f2; }
 
-    /* ─── Theme Toggle Button ────────────────────────────────────── */
-    .theme-toggle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      border: 1px solid var(--color-fog);
-      border-radius: 50%;
-      padding: 7px;
-      cursor: pointer;
-      color: var(--color-steel);
-      transition: border-color 0.2s, color 0.2s, background 0.2s;
-      flex-shrink: 0;
-      margin-right: 12px;
-      width: 34px;
-      height: 34px;
-    }
-    .theme-toggle:hover { border-color: var(--color-ash); color: var(--color-graphite); background: var(--color-mist); }
-    [data-theme="dark"] .theme-toggle { border-color: rgba(255,255,255,0.1); color: #9090a0; }
-    [data-theme="dark"] .theme-toggle:hover { border-color: rgba(255,255,255,0.2); color: #f0f0f2; background: rgba(255,255,255,0.05); }
-    .theme-toggle-icon { width: 16px; height: 16px; flex-shrink: 0; }
-    .theme-toggle .icon-sun { display: block; }
-    .theme-toggle .icon-moon { display: none; }
-    [data-theme="dark"] .theme-toggle .icon-sun { display: none; }
-    [data-theme="dark"] .theme-toggle .icon-moon { display: block; }
 
     /* ─── Reset ─────────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -906,7 +877,6 @@
       cursor: default;
     }
     .problem-row:hover { transform: translateY(-3px); background: rgba(255,255,255,0.07); }
-    .problem-row:last-child { border-bottom: none; }
     .problem-icon {
       width: 28px;
       height: 28px;
@@ -1059,7 +1029,6 @@
       cursor: default;
     }
     .method-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.07); }
-    .method-card:hover { transform: translateY(-3px); }
     .method-number {
       display: none;
     }
@@ -2104,7 +2073,6 @@
 
     /* ─── Responsive ─────────────────────────────────────────────── */
     @media (max-width: 1024px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
       .hero-right { max-width: 540px; }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .stat-block:first-child { border-radius: var(--radius-card) var(--radius-card) 0 0; }
@@ -2275,7 +2243,7 @@
     <a href="#results" onclick="closeMobileMenu()">Results</a>
     <a href="#packages" onclick="closeMobileMenu()">Packages</a>
     <a href="#about" onclick="closeMobileMenu()">About</a>
-    <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+    <a href="javascript:void(0)" onclick="closeMobileMenu(); openBookings();">Contact</a>
   </nav>
   <div class="mobile-menu-cta">
     <button class="btn-pill" onclick="closeMobileMenu(); openBookings();">Schedule a Discovery Call</button>
@@ -2307,27 +2275,27 @@
 <div class="ticker-wrap" aria-hidden="true">
   <div class="ticker-track">
     <!-- First copy -->
-    <div class="ticker-item">Startups<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Founder-Led Businesses<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Small Businesses<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Mid-Sized Companies<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Rapid Growth Companies<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Scaling Organizations<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Post-Acquisition Teams<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Restructuring Businesses<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Expanding Enterprises<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Operational Leaders<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Startups</div>
+    <div class="ticker-item">Founder-Led Businesses</div>
+    <div class="ticker-item">Small Businesses</div>
+    <div class="ticker-item">Mid-Sized Companies</div>
+    <div class="ticker-item">Rapid Growth Companies</div>
+    <div class="ticker-item">Scaling Organizations</div>
+    <div class="ticker-item">Post-Acquisition Teams</div>
+    <div class="ticker-item">Restructuring Businesses</div>
+    <div class="ticker-item">Expanding Enterprises</div>
+    <div class="ticker-item">Operational Leaders</div>
     <!-- Second copy for seamless loop -->
-    <div class="ticker-item">Startups<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Founder-Led Businesses<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Small Businesses<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Mid-Sized Companies<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Rapid Growth Companies<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Scaling Organizations<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Post-Acquisition Teams<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Restructuring Businesses<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Expanding Enterprises<span class="ticker-dot"></span></div>
-    <div class="ticker-item">Operational Leaders<span class="ticker-dot"></span></div>
+    <div class="ticker-item">Startups</div>
+    <div class="ticker-item">Founder-Led Businesses</div>
+    <div class="ticker-item">Small Businesses</div>
+    <div class="ticker-item">Mid-Sized Companies</div>
+    <div class="ticker-item">Rapid Growth Companies</div>
+    <div class="ticker-item">Scaling Organizations</div>
+    <div class="ticker-item">Post-Acquisition Teams</div>
+    <div class="ticker-item">Restructuring Businesses</div>
+    <div class="ticker-item">Expanding Enterprises</div>
+    <div class="ticker-item">Operational Leaders</div>
   </div>
 </div>
 
@@ -2681,7 +2649,6 @@
       <div class="methodology-grid" role="list">
 
       <article class="method-card" role="listitem">
-        <div class="method-number" aria-hidden="true">01</div>
         <div class="method-phase">Phase 01</div>
         <h3 class="method-title">We listen first.</h3>
         <p class="method-desc">Before recommending anything, we get inside your business. We talk to your people, observe how things actually run, and find what's really getting in the way.</p>
@@ -2695,7 +2662,6 @@
       </article>
 
       <article class="method-card" role="listitem">
-        <div class="method-number" aria-hidden="true">02</div>
         <div class="method-phase">Phase 02</div>
         <h3 class="method-title">We build the fix.</h3>
         <p class="method-desc">No templates dropped on your desk. We design solutions around how your business actually works — org structures, frameworks, and roadmaps you can actually use.</p>
@@ -2709,7 +2675,6 @@
       </article>
 
       <article class="method-card" role="listitem">
-        <div class="method-number" aria-hidden="true">03</div>
         <div class="method-phase">Phase 03</div>
         <h3 class="method-title">We stay until it works.</h3>
         <p class="method-desc">We don't hand over a deck and disappear. We stay in it — coaching, adjusting, following up — until the changes are real and your team owns them.</p>
@@ -3248,7 +3213,7 @@
           <li><a href="#about">About</a></li>
           <li><a href="#methodology">Solutions</a></li>
         <li><a href="#results">Results</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="javascript:void(0)" onclick="openBookings()">Contact</a></li>
           <li><a href="mailto:info@ibrahimconsulting.com">info@ibrahimconsulting.com</a></li>
         </ul>
       </div>
@@ -3313,16 +3278,6 @@
   function openBookings() {
     window.open(bookingsUrl, '_blank', 'noopener,noreferrer');
   }
-  function toggleTheme() {
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    const next = isDark ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('ic-theme', next);
-  }
-  (function() {
-    const saved = localStorage.getItem('ic-theme');
-    if (saved) document.documentElement.setAttribute('data-theme', saved);
-  })();
   function toggleAlacarte(btn) {
     const body = document.getElementById('alacarte-body');
     const caret = btn.querySelector('.alacarte-caret');
@@ -3339,9 +3294,8 @@
       caret.style.transform = 'rotate(180deg)';
     }
   }
-  function closeBookings() {}
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeMobileMenu(); closeBookings(); }
+    if (e.key === 'Escape') closeMobileMenu();
   });
 
   const backToTop = document.getElementById('backToTop');
@@ -3373,19 +3327,6 @@
 
   fadeEls.forEach(el => observer.observe(el));
 
-  // ── Content protection ──────────────────────────────────────
-  document.addEventListener('contextmenu', e => e.preventDefault());
-  document.addEventListener('keydown', e => {
-    if (
-      e.key === 'F12' ||
-      (e.ctrlKey && ['u','s','a','c','p'].includes(e.key.toLowerCase())) ||
-      (e.metaKey && ['u','s','a','c','p'].includes(e.key.toLowerCase()))
-    ) e.preventDefault();
-  });
-  document.addEventListener('dragstart', e => e.preventDefault());
-  document.addEventListener('selectstart', e => {
-    if (!['INPUT','TEXTAREA'].includes(e.target.tagName)) e.preventDefault();
-  });
 </script>
 </body>
 </html>
