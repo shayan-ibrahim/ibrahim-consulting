@@ -957,6 +957,18 @@
       border: 1.5px dashed rgba(63,63,70,0.6);
       background: rgba(255,255,255,0.6);
     }
+    @keyframes caret-wiggle {
+      0%, 100% { transform: translateY(0); }
+      25% { transform: translateY(3px); }
+      75% { transform: translateY(-1px); }
+    }
+    .alacarte-caret {
+      animation: caret-wiggle 1.4s ease-in-out infinite;
+    }
+    .alacarte-toggle[aria-expanded="true"] .alacarte-caret {
+      animation: none;
+      transform: rotate(180deg);
+    }
     .alacarte-plus {
       font-size: 24px;
       line-height: 0;
@@ -2686,7 +2698,7 @@
       <span class="package-tier-line"></span>
       <span class="package-tier-text" style="display:flex;align-items:center;gap:10px;white-space:nowrap">
         À La Carte — Build Your Own Engagement
-        <svg class="alacarte-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;transition:transform 0.3s;flex-shrink:0"><polyline points="4,6 8,10 12,6"/></svg>
+        <svg class="alacarte-caret" viewBox="0 0 16 16" fill="none" stroke="var(--color-amber)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;transition:transform 0.3s;flex-shrink:0"><polyline points="4,6 8,10 12,6"/></svg>
       </span>
       <span class="package-tier-line"></span>
     </button>
