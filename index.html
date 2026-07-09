@@ -257,6 +257,9 @@
     [data-theme="dark"] .stat-block:hover { background: #212126; box-shadow: none; transform: none; }
     [data-theme="dark"] .stat-number { color: #f0f0f2; }
     [data-theme="dark"] .stat-label { color: #6a6a78; }
+    [data-theme="dark"] .stat-divider { background: rgba(255,255,255,0.1); }
+    [data-theme="dark"] .stat-category { color: var(--color-amber); }
+    [data-theme="dark"] .firm-stats-grid { background: rgba(255,255,255,0.05) !important; }
 
     /* Brand strip */
     [data-theme="dark"] .brand-strip { border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
@@ -752,10 +755,10 @@
     }
     .stat-block {
       background: var(--color-snow);
-      padding: 32px 28px;
+      padding: 24px 22px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 10px;
       transition: transform 0.2s, box-shadow 0.2s;
       cursor: default;
       position: relative;
@@ -768,16 +771,46 @@
     .stat-block:last-child { border-radius: 0 0 var(--radius-card) 0; }
     .stat-block:hover .stat-number { color: var(--color-amber); }
     .firm-stats-grid > div:hover .firm-stat-num { color: var(--color-amber) !important; }
-    .stat-number {
-      font-size: 44px;
+    .stat-category {
+      font-size: 9px;
       font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-amber);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .stat-category::before {
+      content: '';
+      width: 14px;
+      height: 1px;
+      background: var(--color-amber);
+      opacity: 0.6;
+      flex-shrink: 0;
+    }
+    .stat-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .stat-divider {
+      width: 1px;
+      height: 28px;
+      background: var(--color-fog);
+      flex-shrink: 0;
+    }
+    .stat-number {
+      font-size: 36px;
+      font-weight: 800;
       color: var(--color-obsidian);
       line-height: 1;
-      letter-spacing: -1px;
+      letter-spacing: -1.5px;
+      flex-shrink: 0;
       transition: color 0.2s;
     }
     .stat-label {
-      font-size: 13px;
+      font-size: 11.5px;
       font-weight: 400;
       color: var(--color-steel);
       line-height: 1.5;
@@ -2374,24 +2407,44 @@
   <div class="container">
     <div class="stats-grid" role="list">
       <div class="stat-block" role="listitem">
-        <div class="stat-number">14</div>
-        <div class="stat-label">Companies ranked in the top 10% of their carrier network</div>
+        <div class="stat-category">Reach</div>
+        <div class="stat-row">
+          <div class="stat-number">14</div>
+          <div class="stat-divider"></div>
+          <div class="stat-label">Companies ranked in the top 10% of their carrier network</div>
+        </div>
       </div>
       <div class="stat-block" role="listitem">
-        <div class="stat-number">13</div>
-        <div class="stat-label">AT&amp;T Retailers successfully supported</div>
+        <div class="stat-category">AT&amp;T</div>
+        <div class="stat-row">
+          <div class="stat-number">13</div>
+          <div class="stat-divider"></div>
+          <div class="stat-label">Retailers successfully supported</div>
+        </div>
       </div>
       <div class="stat-block" role="listitem">
-        <div class="stat-number">3</div>
-        <div class="stat-label">Cricket Retailers successfully supported</div>
+        <div class="stat-category">Cricket</div>
+        <div class="stat-row">
+          <div class="stat-number">3</div>
+          <div class="stat-divider"></div>
+          <div class="stat-label">Retailers successfully supported</div>
+        </div>
       </div>
       <div class="stat-block" role="listitem">
-        <div class="stat-number">1</div>
-        <div class="stat-label">Metro by T-Mobile Retailer successfully supported</div>
+        <div class="stat-category">T-Mobile</div>
+        <div class="stat-row">
+          <div class="stat-number">1</div>
+          <div class="stat-divider"></div>
+          <div class="stat-label">Metro retailer successfully supported</div>
+        </div>
       </div>
       <div class="stat-block" role="listitem">
-        <div class="stat-number">1,100+</div>
-        <div class="stat-label">Retail locations overseen across the nation</div>
+        <div class="stat-category">Scale</div>
+        <div class="stat-row">
+          <div class="stat-number">1,100+</div>
+          <div class="stat-divider"></div>
+          <div class="stat-label">Retail locations overseen across the nation</div>
+        </div>
       </div>
     </div>
   </div>
@@ -3125,25 +3178,45 @@
 <section style="background:var(--color-mist);padding:64px 0;position:relative;z-index:1" aria-label="About Ibrahim Consulting">
   <div class="container">
     <div class="firm-stats-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:2px;background:var(--color-fog);border-radius:var(--radius-card);overflow:hidden">
-      <div style="background:var(--color-snow);padding:28px 24px;display:flex;flex-direction:column;gap:6px;border-radius:var(--radius-card) 0 0 var(--radius-card);transition:transform 0.2s,box-shadow 0.2s;cursor:default;position:relative;z-index:0" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='none'">
-        <div style="font-size:40px;font-weight:700;color:var(--color-obsidian);line-height:1;letter-spacing:-1px;transition:color 0.2s" class="firm-stat-num">18+</div>
-        <div style="font-size:13px;color:var(--color-steel);line-height:1.5">Years of hands-on operational leadership experience</div>
+      <div class="stat-block" style="border-radius:var(--radius-card) 0 0 var(--radius-card)" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px';this.querySelector('.firm-stat-num').style.color='var(--color-amber)'" onmouseleave="this.style.transform='';this.style.boxShadow='';this.querySelector('.firm-stat-num').style.color=''">
+        <div class="stat-category">Experience</div>
+        <div class="stat-row">
+          <div class="stat-number firm-stat-num">18+</div>
+          <div class="stat-divider"></div>
+          <div class="stat-label">Years of hands-on operational leadership</div>
+        </div>
       </div>
-      <div style="background:var(--color-snow);padding:28px 24px;display:flex;flex-direction:column;gap:6px;transition:transform 0.2s,box-shadow 0.2s;cursor:default;position:relative;z-index:0" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='none'">
-        <div style="font-size:40px;font-weight:700;color:var(--color-obsidian);line-height:1;letter-spacing:-1px;transition:color 0.2s" class="firm-stat-num">6</div>
-        <div style="font-size:13px;color:var(--color-steel);line-height:1.5">Core service areas across people, process, and structure</div>
+      <div class="stat-block" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px';this.querySelector('.firm-stat-num').style.color='var(--color-amber)'" onmouseleave="this.style.transform='';this.style.boxShadow='';this.querySelector('.firm-stat-num').style.color=''">
+        <div class="stat-category">Services</div>
+        <div class="stat-row">
+          <div class="stat-number firm-stat-num">6</div>
+          <div class="stat-divider"></div>
+          <div class="stat-label">Core areas across people, process, and structure</div>
+        </div>
       </div>
-      <div style="background:var(--color-snow);padding:28px 24px;display:flex;flex-direction:column;gap:6px;transition:transform 0.2s,box-shadow 0.2s;cursor:default;position:relative;z-index:0" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='none'">
-        <div style="font-size:40px;font-weight:700;color:var(--color-obsidian);line-height:1;letter-spacing:-1px;transition:color 0.2s" class="firm-stat-num">3</div>
-        <div style="font-size:13px;color:var(--color-steel);line-height:1.5">Phase methodology — Assess, Design, Implement</div>
+      <div class="stat-block" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px';this.querySelector('.firm-stat-num').style.color='var(--color-amber)'" onmouseleave="this.style.transform='';this.style.boxShadow='';this.querySelector('.firm-stat-num').style.color=''">
+        <div class="stat-category">Method</div>
+        <div class="stat-row">
+          <div class="stat-number firm-stat-num">3</div>
+          <div class="stat-divider"></div>
+          <div class="stat-label">Phase process — Assess, Design, Implement</div>
+        </div>
       </div>
-      <div style="background:var(--color-snow);padding:28px 24px;display:flex;flex-direction:column;gap:6px;transition:transform 0.2s,box-shadow 0.2s;cursor:default;position:relative;z-index:0" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='none'">
-        <div style="font-size:40px;font-weight:700;color:var(--color-obsidian);line-height:1;letter-spacing:-1px;transition:color 0.2s" class="firm-stat-num">5</div>
-        <div style="font-size:13px;color:var(--color-steel);line-height:1.5">Consulting packages from diagnostic to embedded partner</div>
+      <div class="stat-block" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px';this.querySelector('.firm-stat-num').style.color='var(--color-amber)'" onmouseleave="this.style.transform='';this.style.boxShadow='';this.querySelector('.firm-stat-num').style.color=''">
+        <div class="stat-category">Packages</div>
+        <div class="stat-row">
+          <div class="stat-number firm-stat-num">5</div>
+          <div class="stat-divider"></div>
+          <div class="stat-label">From diagnostic to embedded partner</div>
+        </div>
       </div>
-      <div style="background:var(--color-snow);padding:28px 24px;display:flex;flex-direction:column;gap:6px;border-radius:0 var(--radius-card) var(--radius-card) 0;transition:transform 0.2s,box-shadow 0.2s;cursor:default;position:relative;z-index:0" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='none'">
-        <div style="font-size:40px;font-weight:700;color:var(--color-obsidian);line-height:1;letter-spacing:-1px;transition:color 0.2s" class="firm-stat-num">110%</div>
-        <div style="font-size:13px;color:var(--color-steel);line-height:1.5">Commitment to every client, every engagement</div>
+      <div class="stat-block" style="border-radius:0 var(--radius-card) var(--radius-card) 0" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px';this.querySelector('.firm-stat-num').style.color='var(--color-amber)'" onmouseleave="this.style.transform='';this.style.boxShadow='';this.querySelector('.firm-stat-num').style.color=''">
+        <div class="stat-category">Commitment</div>
+        <div class="stat-row">
+          <div class="stat-number firm-stat-num">110%</div>
+          <div class="stat-divider"></div>
+          <div class="stat-label">To every client, every engagement</div>
+        </div>
       </div>
     </div>
   </div>
