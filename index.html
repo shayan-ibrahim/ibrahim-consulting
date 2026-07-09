@@ -2214,6 +2214,130 @@
       .hero-tagline { font-size: 10px !important; letter-spacing: 1px !important; }
     }
 
+    /* ─── Package Confirm Modal ──────────────────────────────────── */
+    .pkg-confirm-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      background: rgba(9,9,11,0.6);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .pkg-confirm-overlay.open { display: flex; }
+    .pkg-confirm-modal {
+      background: var(--color-snow);
+      border-radius: var(--radius-card);
+      width: 100%;
+      max-width: 480px;
+      padding: 40px 36px 32px;
+      box-shadow: rgba(0,0,0,0.25) 0px 24px 64px 0px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    [data-theme="dark"] .pkg-confirm-modal { background: #1a1a1d; }
+    .pkg-confirm-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--color-mist);
+      border: 1px solid var(--color-fog);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    [data-theme="dark"] .pkg-confirm-icon { background: #212126; border-color: rgba(255,255,255,0.07); }
+    .pkg-confirm-icon svg { width: 20px; height: 20px; stroke: var(--color-amber); }
+    .pkg-confirm-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--color-obsidian);
+      letter-spacing: -0.3px;
+      line-height: 1.2;
+    }
+    [data-theme="dark"] .pkg-confirm-title { color: #f0f0f2; }
+    .pkg-confirm-body {
+      font-size: 14px;
+      color: var(--color-steel);
+      line-height: 1.65;
+      margin-top: -4px;
+    }
+    .pkg-confirm-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-amber);
+      background: rgba(245,73,39,0.08);
+      border-radius: 8px;
+      padding: 8px 12px;
+    }
+    .pkg-confirm-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .pkg-confirm-primary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--color-obsidian);
+      color: var(--color-snow);
+      font-family: var(--font-primary);
+      font-size: 14px;
+      font-weight: 500;
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 13px 20px;
+      cursor: pointer;
+      box-shadow: var(--shadow-btn-primary);
+      transition: opacity 0.2s;
+      text-decoration: none;
+    }
+    .pkg-confirm-primary:hover { opacity: 0.85; }
+    [data-theme="dark"] .pkg-confirm-primary { background: #f0f0f2; color: #09090b; }
+    .pkg-confirm-secondary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      color: var(--color-steel);
+      font-family: var(--font-primary);
+      font-size: 14px;
+      font-weight: 400;
+      border: 1px solid var(--color-fog);
+      border-radius: var(--radius-pill);
+      padding: 13px 20px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+    .pkg-confirm-secondary:hover { background: var(--color-mist); color: var(--color-obsidian); }
+    [data-theme="dark"] .pkg-confirm-secondary { border-color: rgba(255,255,255,0.1); color: #9090a0; }
+    [data-theme="dark"] .pkg-confirm-secondary:hover { background: rgba(255,255,255,0.05); color: #f0f0f2; }
+    .pkg-confirm-dismiss {
+      text-align: center;
+      font-size: 12px;
+      color: var(--color-ash);
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-family: var(--font-primary);
+      padding: 4px;
+    }
+    .pkg-confirm-dismiss:hover { color: var(--color-steel); }
+    .pkg-engagement {
+      font-size: 11.5px;
+      color: var(--color-ash);
+      font-weight: 400;
+      white-space: nowrap;
+    }
+    [data-theme="dark"] .pkg-engagement { color: #5a5a68; }
+
     /* ─── Reduced Motion ─────────────────────────────────────────── */
     @media (prefers-reduced-motion: reduce) {
       .ticker-track { animation: none; }
@@ -2239,14 +2363,14 @@
   </div>
   <nav class="mobile-menu-links">
     <a href="#services" onclick="closeMobileMenu()">Services</a>
-    <a href="#methodology" onclick="closeMobileMenu()">Solutions</a>
+    <a href="#methodology" onclick="closeMobileMenu()">How We Work</a>
     <a href="#results" onclick="closeMobileMenu()">Results</a>
     <a href="#packages" onclick="closeMobileMenu()">Packages</a>
     <a href="#about" onclick="closeMobileMenu()">About</a>
     <a href="javascript:void(0)" onclick="closeMobileMenu(); openBookings();">Contact</a>
   </nav>
   <div class="mobile-menu-cta">
-    <button class="btn-pill" onclick="closeMobileMenu(); openBookings();">Schedule a Discovery Call</button>
+    <button class="btn-pill" onclick="closeMobileMenu(); openBookings();">Schedule a Consultation</button>
   </div>
 </div>
 
@@ -2257,13 +2381,13 @@
       <a href="#" class="nav-logo" aria-label="Ibrahim Consulting home">Ibrahim<span> Consulting</span></a>
       <ul class="nav-links" role="list">
         <li><a href="#services">Services</a></li>
-        <li><a href="#methodology">Solutions</a></li>
+        <li><a href="#methodology">How We Work</a></li>
         <li><a href="#results">Results</a></li>
         <li><a href="#packages">Packages</a></li>
         <li><a href="#about">About</a></li>
       </ul>
 
-      <button class="btn-pill nav-cta-desktop" aria-label="Schedule a call" onclick="openBookings()">Schedule a Call</button>
+      <button class="btn-pill nav-cta-desktop" aria-label="Schedule a consultation" onclick="openBookings()">Schedule a Consultation</button>
       <button class="nav-mobile-toggle" onclick="openMobileMenu()" aria-label="Open menu" aria-expanded="false" id="menuToggle">
         <span></span><span></span><span></span>
       </button>
@@ -2339,7 +2463,7 @@
           </div>
         </div>
         <div style="display:flex;flex-direction:column;gap:12px">
-          <button class="btn-pill btn-pill-lg" type="button" onclick="openBookings()" style="width:100%;justify-content:center;background:var(--color-snow);color:var(--color-obsidian);box-shadow:none;">Schedule a Discovery Call</button>
+          <button class="btn-pill btn-pill-lg" type="button" onclick="openBookings()" style="width:100%;justify-content:center;background:var(--color-snow);color:var(--color-obsidian);box-shadow:none;">Schedule a Consultation</button>
           <p class="hero-note" style="text-align:right">No commitment required. Discovery calls are complimentary.</p>
           <div class="hero-social-icons" aria-label="Social media links" style="margin-top:4px;justify-content:flex-end">
             <a href="https://www.linkedin.com/in/shayanibrahim/" target="_blank" rel="noopener noreferrer" class="hero-social-icon" aria-label="LinkedIn">
@@ -2378,7 +2502,7 @@
         <div class="stat-row">
           <div class="stat-number">8</div>
           <div class="stat-divider"></div>
-          <div class="stat-label">Large-Businesses Supported</div>
+          <div class="stat-label">1,000+ Employees Supported</div>
         </div>
       </div>
       <div class="stat-block" role="listitem">
@@ -2386,7 +2510,7 @@
         <div class="stat-row">
           <div class="stat-number">5</div>
           <div class="stat-divider"></div>
-          <div class="stat-label">Medium-Businesses Supported</div>
+          <div class="stat-label">500 – 1,000 Employees Supported</div>
         </div>
       </div>
       <div class="stat-block" role="listitem">
@@ -2394,7 +2518,7 @@
         <div class="stat-row">
           <div class="stat-number">4</div>
           <div class="stat-divider"></div>
-          <div class="stat-label">Small-Businesses Supported</div>
+          <div class="stat-label">Less than 500 Employees Supported</div>
         </div>
       </div>
       <div class="stat-block" role="listitem">
@@ -2412,7 +2536,7 @@
 <!-- ─── Brand Strip ──────────────────────────────────────────────── -->
 <section class="brand-strip" aria-label="Brands we have supported">
   <div class="container">
-    <p style="text-align:center;font-size:17px;font-weight:600;color:var(--color-obsidian);letter-spacing:-0.2px;margin-bottom:32px;">17 companies — each one different. Every single one built into a top performer.</p>
+    <p style="text-align:center;font-size:17px;font-weight:600;color:var(--color-obsidian);letter-spacing:-0.2px;margin-bottom:32px;">24 companies — each one different. Every single one built into a top performer.</p>
     <div class="brand-logos">
 
       <!-- AT&T -->
@@ -2495,12 +2619,6 @@
           <p class="why-card-desc">The company grew — fast. But the foundation never caught up, and now everything feels harder than it should.</p>
         </li>
       </ul>
-      <div class="section-micro-cta dark-micro-cta">
-        <button class="micro-cta-btn" onclick="openBookings()">
-          Schedule a Discovery Call
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="8" x2="14" y2="8"/><polyline points="9,3 14,8 9,13"/></svg>
-        </button>
-      </div>
     </div>
   </div>
 </section>
@@ -2569,7 +2687,7 @@
           </svg>
         </div>
 
-        <h3 class="service-title">People & Leadership</h3>
+        <h3 class="service-title">Leadership & Coaching</h3>
         <p class="service-desc">Great structure only works if your leaders can actually execute it. We coach executives, develop managers, and help your leadership team show up with clarity and consistency — not just when things are easy.</p>
         <div class="service-outcomes">
           <span class="outcome-tag">Stronger Leaders</span>
@@ -2688,12 +2806,6 @@
       </article>
 
     </div>
-      <div class="section-micro-cta dark-micro-cta">
-        <button class="micro-cta-btn" onclick="openBookings()">
-          Schedule a Discovery Call
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="8" x2="14" y2="8"/><polyline points="9,3 14,8 9,13"/></svg>
-        </button>
-      </div>
     </div>
   </div>
 </section>
@@ -2892,7 +3004,7 @@
       </div>
       <div class="section-micro-cta dark-micro-cta">
         <button class="micro-cta-btn" onclick="openBookings()">
-          Schedule a Discovery Call
+          Schedule a Consultation
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="8" x2="14" y2="8"/><polyline points="9,3 14,8 9,13"/></svg>
         </button>
       </div>
@@ -2929,8 +3041,11 @@
         <p class="package-desc">We get inside your business, map how things actually work, and find what's costing you — time, money, or momentum. You leave with a clear picture of what to fix first and a roadmap to do it.</p>
         <div class="package-divider"></div>
         <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-          <a href="https://buy.stripe.com/3cI14a6eefom5SdfpdgEg05" target="_blank" rel="noopener" class="btn-checkout" style="flex-shrink:0">Get Started →</a>
-          <div class="package-price">$4,500</div>
+          <button class="btn-checkout" style="flex-shrink:0" onclick="confirmPackage('https://buy.stripe.com/3cI14a6eefom5SdfpdgEg05','Business Audit &amp; Strategic Roadmap — $4,500')">Get Started →</button>
+          <div style="text-align:right">
+            <div class="package-price">$4,500</div>
+            <div class="pkg-engagement">Typical Engagement: 3–4 weeks</div>
+          </div>
         </div>
       </article>
 
@@ -2946,8 +3061,11 @@
         </div>
         <div class="package-divider"></div>
         <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-          <a href="https://buy.stripe.com/5kQ9AGcCCfom2G14KzgEg06" target="_blank" rel="noopener" class="btn-checkout" style="flex-shrink:0">Get Started →</a>
-          <div class="package-price">$5,500</div>
+          <button class="btn-checkout" style="flex-shrink:0" onclick="confirmPackage('https://buy.stripe.com/5kQ9AGcCCfom2G14KzgEg06','Organizational Diagnostic — $5,500')">Get Started →</button>
+          <div style="text-align:right">
+            <div class="package-price">$5,500</div>
+            <div class="pkg-engagement">Typical Engagement: 4–6 weeks</div>
+          </div>
         </div>
       </article>
 
@@ -2973,8 +3091,11 @@
         </div>
         <div class="package-divider"></div>
         <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-          <a href="https://buy.stripe.com/cNieV0eKK4JIgwRa4TgEg07" target="_blank" rel="noopener" class="btn-checkout" style="flex-shrink:0">Get Started →</a>
-          <div class="package-price">$6,500</div>
+          <button class="btn-checkout" style="flex-shrink:0" onclick="confirmPackage('https://buy.stripe.com/cNieV0eKK4JIgwRa4TgEg07','Organizational Foundation Build — $6,500')">Get Started →</button>
+          <div style="text-align:right">
+            <div class="package-price">$6,500</div>
+            <div class="pkg-engagement">Typical Engagement: 8–10 weeks</div>
+          </div>
         </div>
       </article>
 
@@ -2990,8 +3111,11 @@
         </div>
         <div class="package-divider"></div>
         <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-          <a href="https://buy.stripe.com/00weV05aa5NM80l90PgEg08" target="_blank" rel="noopener" class="btn-checkout" style="flex-shrink:0">Get Started →</a>
-          <div class="package-price">$7,500</div>
+          <button class="btn-checkout" style="flex-shrink:0" onclick="confirmPackage('https://buy.stripe.com/00weV05aa5NM80l90PgEg08','Performance &amp; Future-State Transformation — $7,500')">Get Started →</button>
+          <div style="text-align:right">
+            <div class="package-price">$7,500</div>
+            <div class="pkg-engagement">Typical Engagement: 12–16 weeks</div>
+          </div>
         </div>
       </article>
 
@@ -3007,8 +3131,11 @@
         </div>
         <div class="package-divider"></div>
         <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-          <a href="https://buy.stripe.com/fZu6ou0TU1xwgwR3GvgEg09" target="_blank" rel="noopener" class="btn-checkout" style="flex-shrink:0">Get Started →</a>
-          <div class="package-price">$8,500</div>
+          <button class="btn-checkout" style="flex-shrink:0" onclick="confirmPackage('https://buy.stripe.com/fZu6ou0TU1xwgwR3GvgEg09','Embedded Scaling Partner — $8,500')">Get Started →</button>
+          <div style="text-align:right">
+            <div class="package-price">$8,500</div>
+            <div class="pkg-engagement">Typical Engagement: 24+ weeks</div>
+          </div>
         </div>
       </article>
 
@@ -3081,7 +3208,7 @@
 
       <div class="section-micro-cta">
         <button class="micro-cta-btn" onclick="openBookings()">
-          Schedule a Discovery Call
+          Schedule a Consultation
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="8" x2="14" y2="8"/><polyline points="9,3 14,8 9,13"/></svg>
         </button>
       </div>
@@ -3129,7 +3256,7 @@
     </div>
       <div class="section-micro-cta dark-micro-cta">
         <button class="micro-cta-btn" onclick="openBookings()">
-          Schedule a Discovery Call
+          Schedule a Consultation
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="8" x2="14" y2="8"/><polyline points="9,3 14,8 9,13"/></svg>
         </button>
       </div>
@@ -3198,10 +3325,10 @@
         <ul class="footer-links">
           <li><a href="#services">Organizational Design</a></li>
           <li><a href="#services">Operational Effectiveness</a></li>
-          <li><a href="#services">People & Leadership</a></li>
+          <li><a href="#services">Leadership & Coaching</a></li>
           <li><a href="#services">People Infrastructure</a></li>
           <li><a href="#services">Culture & Change</a></li>
-          <li><a href="#services">Growth Readiness</a></li>
+          <li><a href="#services">AI & Scale Readiness</a></li>
         </ul>
       </div>
       <div>
@@ -3218,8 +3345,9 @@
         <div class="footer-col-title">Company</div>
         <ul class="footer-links">
           <li><a href="#about">About</a></li>
-          <li><a href="#methodology">Solutions</a></li>
-        <li><a href="#results">Results</a></li>
+          <li><a href="#methodology">How We Work</a></li>
+          <li><a href="#results">Results</a></li>
+          <li><a href="#packages">Packages</a></li>
           <li><a href="javascript:void(0)" onclick="openBookings()">Contact</a></li>
           <li><a href="mailto:info@ibrahimconsulting.com">info@ibrahimconsulting.com</a></li>
         </ul>
@@ -3239,12 +3367,33 @@
   </svg>
 </button>
 
+<!-- ─── Package Confirmation Modal ───────────────────────────────── -->
+<div class="pkg-confirm-overlay" id="pkgConfirmOverlay" role="dialog" aria-modal="true" aria-labelledby="pkgConfirmTitle">
+  <div class="pkg-confirm-modal">
+    <div class="pkg-confirm-icon" aria-hidden="true">
+      <svg viewBox="0 0 20 20" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="10" cy="10" r="7"/><line x1="10" y1="7" x2="10" y2="10"/><circle cx="10" cy="13" r="0.5" fill="currentColor" stroke="none"/>
+      </svg>
+    </div>
+    <div>
+      <div class="pkg-confirm-title" id="pkgConfirmTitle">Before you purchase</div>
+      <p class="pkg-confirm-body">Want to talk it through first? A free consultation helps us make sure this package is the right fit for your business — no pressure, no commitment.</p>
+    </div>
+    <div class="pkg-confirm-name" id="pkgConfirmName"></div>
+    <div class="pkg-confirm-actions">
+      <button class="pkg-confirm-primary" onclick="openBookings(); closePkgConfirm();">Schedule a Consultation (Free)</button>
+      <a class="pkg-confirm-secondary" id="pkgConfirmLink" href="#" target="_blank" rel="noopener" onclick="closePkgConfirm()">Continue to Purchase</a>
+    </div>
+    <button class="pkg-confirm-dismiss" onclick="closePkgConfirm()">Dismiss</button>
+  </div>
+</div>
+
 <!-- ─── Microsoft Bookings Modal ──────────────────────────────────── -->
 <div class="bookings-overlay" id="bookingsOverlay" aria-modal="true" role="dialog" aria-label="Schedule a call" aria-hidden="true">
   <div class="bookings-modal">
     <div class="bookings-modal-header">
       <div>
-        <div class="bookings-modal-title">Schedule a Discovery Call</div>
+        <div class="bookings-modal-title">Schedule a Consultation</div>
         <div class="bookings-modal-sub">Ibrahim Consulting — select a date and time that works for you</div>
       </div>
       <button class="bookings-modal-close" onclick="closeBookings()" aria-label="Close scheduling window">
@@ -3301,8 +3450,22 @@
       caret.style.transform = 'rotate(180deg)';
     }
   }
+  function confirmPackage(url, name) {
+    document.getElementById('pkgConfirmName').textContent = name;
+    document.getElementById('pkgConfirmLink').href = url;
+    document.getElementById('pkgConfirmOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePkgConfirm() {
+    document.getElementById('pkgConfirmOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('pkgConfirmOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closePkgConfirm();
+  });
+
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeMobileMenu();
+    if (e.key === 'Escape') { closeMobileMenu(); closePkgConfirm(); }
   });
 
   const backToTop = document.getElementById('backToTop');
