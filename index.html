@@ -316,16 +316,47 @@
     [data-theme="dark"] .about-section { background: #141416; }
     [data-theme="dark"] .about-heading { color: #f0f0f2; }
     [data-theme="dark"] .about-body { color: #9090a0; }
-    [data-theme="dark"] .about-badge { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.08); color: #9090a0; }
+    [data-theme="dark"] .about-badge { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.12); color: #f0f0f2; }
+    [data-theme="dark"] .about-section .about-badge { color: #f0f0f2; }
     [data-theme="dark"] .about-photo { border-color: rgba(255,255,255,0.08); }
 
-    /* Firm stats (bottom) */
+    /* Differentiator (why-section) icons — white in dark mode */
+    [data-theme="dark"] .why-icon svg { stroke: #f0f0f2 !important; }
+    [data-theme="dark"] .why-card:hover .why-icon svg { stroke: var(--color-amber) !important; }
+
+    /* Firm stats (bottom) — match top stats bar */
     [data-theme="dark"] .firm-stats-section { background: #141416 !important; }
+    [data-theme="dark"] .firm-stats-grid { background: rgba(255,255,255,0.05) !important; }
     [data-theme="dark"] .firm-stats-grid > div { background: #1a1a1d !important; border-color: rgba(255,255,255,0.06) !important; }
     [data-theme="dark"] .firm-stats-grid > div:hover { background: #212126 !important; }
+    [data-theme="dark"] .firm-stat-num { color: #f0f0f2 !important; }
+    [data-theme="dark"] .firm-stats-grid > div > div:last-child { color: #6a6a78 !important; }
 
     /* Results section */
     [data-theme="dark"] .results-section { background: #141416; }
+
+    /* Results cards — match service-card style */
+    [data-theme="dark"] .results-grid > div {
+      background: #1a1a1d !important;
+      box-shadow: rgba(255,255,255,0.03) 0px 1px 0px 0px inset !important;
+    }
+    [data-theme="dark"] .results-grid > div:hover {
+      background: #212126 !important;
+      box-shadow: rgba(255,255,255,0.03) 0px 1px 0px 0px inset !important;
+    }
+    /* Stat chips inside results cards */
+    [data-theme="dark"] .results-grid > div [style*="background:var(--color-mist)"],
+    [data-theme="dark"] .results-grid > div [style*="background: var(--color-mist)"] {
+      background: #212126 !important;
+    }
+    /* Text inside results cards */
+    [data-theme="dark"] .results-grid p,
+    [data-theme="dark"] .results-grid [style*="color:var(--color-ink)"],
+    [data-theme="dark"] .results-grid [style*="color: var(--color-ink)"] { color: #c0c0cc !important; }
+    [data-theme="dark"] .results-grid [style*="color:var(--color-steel)"],
+    [data-theme="dark"] .results-grid [style*="color: var(--color-steel)"] { color: #6a6a78 !important; }
+    [data-theme="dark"] .results-grid [style*="color:var(--color-obsidian)"],
+    [data-theme="dark"] .results-grid [style*="color: var(--color-obsidian)"] { color: #f0f0f2 !important; }
 
     /* Footer */
     [data-theme="dark"] .footer { background: #0d0d0f; border-top-color: rgba(255,255,255,0.07); }
