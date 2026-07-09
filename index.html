@@ -325,7 +325,7 @@
 
     /* Differentiator (why-section) icons — white in dark mode */
     [data-theme="dark"] .why-icon svg { stroke: #f0f0f2 !important; }
-    [data-theme="dark"] .why-card:hover .why-icon svg { stroke: var(--color-amber) !important; }
+    [data-theme="dark"] .why-card:hover .why-icon svg { stroke: #ffffff !important; }
 
     /* Firm stats (bottom) — match top stats bar */
     [data-theme="dark"] .firm-stats-section { background: #141416 !important; }
@@ -1435,6 +1435,7 @@
     .why-card:hover .why-icon {
       background: var(--color-amber);
     }
+    .why-card:hover .why-icon svg { stroke: #ffffff; }
     .why-icon {
       width: 36px;
       height: 36px;
@@ -1445,7 +1446,7 @@
       justify-content: center;
       transition: background 0.2s;
     }
-    .why-icon svg { width: 16px; height: 16px; stroke: var(--color-ash); }
+    .why-icon svg { width: 16px; height: 16px; stroke: var(--color-ash); transition: stroke 0.2s; }
     .why-card-title {
       font-size: 15px;
       font-weight: 600;
