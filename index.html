@@ -2682,12 +2682,17 @@
     </div>
 
     <!-- À La Carte -->
-    <div class="package-tier-label" role="heading" aria-level="3" style="margin-top:48px">
+    <button class="package-tier-label alacarte-toggle" role="button" aria-expanded="false" aria-controls="alacarte-body" onclick="toggleAlacarte(this)" style="margin-top:48px;width:100%;background:none;border:none;cursor:pointer;padding:0">
       <span class="package-tier-line"></span>
-      <span class="package-tier-text">À La Carte — Build Your Own Engagement</span>
+      <span class="package-tier-text" style="display:flex;align-items:center;gap:10px;white-space:nowrap">
+        À La Carte — Build Your Own Engagement
+        <svg class="alacarte-caret" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;transition:transform 0.3s;flex-shrink:0"><polyline points="4,6 8,10 12,6"/></svg>
+      </span>
       <span class="package-tier-line"></span>
-    </div>
-    <p style="text-align:center;color:var(--color-steel);font-size:14px;margin:0 auto 36px;line-height:1.7">
+    </button>
+
+    <div id="alacarte-body" style="overflow:hidden;max-height:0;transition:max-height 0.45s ease,opacity 0.35s ease;opacity:0">
+    <p style="text-align:center;color:var(--color-steel);font-size:14px;margin:24px auto 36px;line-height:1.7">
       Need something specific? Select individual services and we'll scope it to fit your timeline and budget. All pricing available upon request.
     </p>
 
@@ -2738,6 +2743,7 @@
         <div style="font-size:14px;color:var(--color-steel);font-weight:400;font-family:var(--font-primary);letter-spacing:0">Pricing available upon request</div>
       </div>
     </article>
+    </div><!-- /alacarte-body -->
 
       <div class="section-micro-cta">
         <button class="micro-cta-btn" onclick="openBookings()">
@@ -2924,6 +2930,22 @@
   const bookingsUrl = 'https://outlook.office.com/bookwithme/user/69d18e0d1400441c82dfd0c222074676@ibrahimconsulting.com/meetingtype/GK9O0WUNx0i3Yz7XMbS3BQ2?anonymous&ismsaljsauthenabled&ep=mLinkFromTile';
   function openBookings() {
     window.open(bookingsUrl, '_blank', 'noopener,noreferrer');
+  }
+  function toggleAlacarte(btn) {
+    const body = document.getElementById('alacarte-body');
+    const caret = btn.querySelector('.alacarte-caret');
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    if (isOpen) {
+      body.style.maxHeight = '0';
+      body.style.opacity = '0';
+      btn.setAttribute('aria-expanded', 'false');
+      caret.style.transform = 'rotate(0deg)';
+    } else {
+      body.style.maxHeight = body.scrollHeight + 'px';
+      body.style.opacity = '1';
+      btn.setAttribute('aria-expanded', 'true');
+      caret.style.transform = 'rotate(180deg)';
+    }
   }
   function closeBookings() {}
   document.addEventListener('keydown', e => {
