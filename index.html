@@ -1958,7 +1958,7 @@
       #backToTop { bottom: 20px; right: 20px; width: 42px; height: 42px; }
     }
 
-    /* ─── Bookings Modal ─────────────────────────────────────────── */
+    /* ─── Contact Form Modal ─────────────────────────────────────── */
     .bookings-overlay {
       display: none;
       position: fixed;
@@ -1976,7 +1976,7 @@
       background: var(--color-snow);
       border-radius: var(--radius-card);
       width: 100%;
-      max-width: 820px;
+      max-width: 560px;
       max-height: 90vh;
       display: flex;
       flex-direction: column;
@@ -2015,15 +2015,102 @@
       transition: background 0.2s;
     }
     .bookings-modal-close:hover { background: var(--color-fog); }
-    .bookings-iframe {
-      width: 100%;
-      flex: 1;
-      border: none;
-      min-height: 600px;
+    .bookings-modal-body {
+      overflow-y: auto;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
+    .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .cf-field { display: flex; flex-direction: column; gap: 6px; }
+    .cf-field label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-steel);
+    }
+    .cf-field input,
+    .cf-field select,
+    .cf-field textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--color-fog);
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--color-obsidian);
+      background: var(--color-mist);
+      transition: border-color 0.15s, box-shadow 0.15s;
+      box-sizing: border-box;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .cf-field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2371717a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 32px;
+    }
+    .cf-field input:focus,
+    .cf-field select:focus,
+    .cf-field textarea:focus {
+      outline: none;
+      border-color: var(--color-amber);
+      box-shadow: 0 0 0 3px rgba(215,155,78,0.15);
+    }
+    .cf-field textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
+    .cf-submit {
+      width: 100%;
+      padding: 13px 24px;
+      background: var(--color-obsidian);
+      color: var(--color-snow);
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .cf-submit:hover { opacity: 0.85; }
+    .cf-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+    .cf-success {
+      display: none;
+      text-align: center;
+      padding: 32px 24px;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .cf-success-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #f0faf4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #16a34a;
+    }
+    .cf-success-title { font-size: 16px; font-weight: 700; color: var(--color-obsidian); }
+    .cf-success-body { font-size: 13px; color: var(--color-steel); line-height: 1.6; max-width: 320px; }
+    [data-theme="dark"] .cf-field input,
+    [data-theme="dark"] .cf-field select,
+    [data-theme="dark"] .cf-field textarea {
+      background: #1a1a1e;
+      border-color: #2a2a30;
+      color: var(--color-snow);
+    }
+    [data-theme="dark"] .cf-field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23a1a1aa' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    }
+    [data-theme="dark"] .cf-success-icon { background: #0d2818; color: #4ade80; }
     @media (max-width: 768px) {
       .bookings-modal { border-radius: var(--radius-card-compact); max-height: 95vh; }
-      .bookings-iframe { min-height: 500px; }
+      .cf-row { grid-template-columns: 1fr; }
     }
 
     /* ─── Mobile Nav Menu ────────────────────────────────────────── */
@@ -3389,27 +3476,68 @@
 </div>
 
 <!-- ─── Microsoft Bookings Modal ──────────────────────────────────── -->
-<div class="bookings-overlay" id="bookingsOverlay" aria-modal="true" role="dialog" aria-label="Schedule a call" aria-hidden="true">
+<div class="bookings-overlay" id="bookingsOverlay" aria-modal="true" role="dialog" aria-labelledby="bookingsTitle" aria-hidden="true">
   <div class="bookings-modal">
     <div class="bookings-modal-header">
       <div>
-        <div class="bookings-modal-title">Schedule a Consultation</div>
-        <div class="bookings-modal-sub">Ibrahim Consulting — select a date and time that works for you</div>
+        <div class="bookings-modal-title" id="bookingsTitle">Request a Consultation</div>
+        <div class="bookings-modal-sub">Ibrahim Consulting — we'll be in touch within 1 business day</div>
       </div>
-      <button class="bookings-modal-close" onclick="closeBookings()" aria-label="Close scheduling window">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#09090b" stroke-width="2" stroke-linecap="round">
+      <button class="bookings-modal-close" onclick="closeBookings()" aria-label="Close form">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/>
         </svg>
       </button>
     </div>
-    <iframe
-      class="bookings-iframe"
-      id="bookingsFrame"
-      src=""
-      data-src="https://outlook.office.com/bookwithme/user/69d18e0d1400441c82dfd0c222074676@ibrahimconsulting.com/meetingtype/GK9O0WUNx0i3Yz7XMbS3BQ2?anonymous&ismsaljsauthenabled&ep=mLinkFromTile"
-      title="Schedule a call with Ibrahim Consulting"
-      allowfullscreen
-    ></iframe>
+    <form class="bookings-modal-body" id="contactForm" novalidate>
+      <div class="cf-row">
+        <div class="cf-field">
+          <label for="cf-name">Full Name</label>
+          <input type="text" id="cf-name" name="name" placeholder="Jane Smith" required autocomplete="name">
+        </div>
+        <div class="cf-field">
+          <label for="cf-company">Company</label>
+          <input type="text" id="cf-company" name="company" placeholder="Acme Corp" required autocomplete="organization">
+        </div>
+      </div>
+      <div class="cf-row">
+        <div class="cf-field">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" placeholder="jane@acme.com" required autocomplete="email">
+        </div>
+        <div class="cf-field">
+          <label for="cf-phone">Phone</label>
+          <input type="tel" id="cf-phone" name="phone" placeholder="(555) 000-0000" autocomplete="tel">
+        </div>
+      </div>
+      <div class="cf-field">
+        <label for="cf-service">Service Needed</label>
+        <select id="cf-service" name="service" required>
+          <option value="" disabled selected>Select a package…</option>
+          <option value="Business Audit &amp; Strategic Roadmap ($4,500)">Business Audit &amp; Strategic Roadmap — $4,500</option>
+          <option value="Organizational Diagnostic ($5,500)">Organizational Diagnostic — $5,500</option>
+          <option value="Organizational Foundation Build ($6,500)">Organizational Foundation Build — $6,500</option>
+          <option value="Performance &amp; Future-State Transformation ($7,500)">Performance &amp; Future-State Transformation — $7,500</option>
+          <option value="Embedded Scaling Partner ($8,500)">Embedded Scaling Partner — $8,500</option>
+          <option value="Not sure — need to discuss">Not sure — need to discuss</option>
+        </select>
+      </div>
+      <div class="cf-field">
+        <label for="cf-details">Additional Details</label>
+        <textarea id="cf-details" name="details" placeholder="Tell us a bit about your business and what you're looking to improve…"></textarea>
+      </div>
+      <button type="submit" class="cf-submit" id="cfSubmitBtn">Submit Request</button>
+    </form>
+    <div class="cf-success" id="cfSuccess">
+      <div class="cf-success-icon">
+        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="4 11 9 16 18 7"/>
+        </svg>
+      </div>
+      <div class="cf-success-title">Request Received</div>
+      <p class="cf-success-body">Thank you — we'll review your request and be in touch within 1 business day to schedule your consultation.</p>
+      <button class="cf-submit" style="max-width:180px;margin-top:8px" onclick="closeBookings()">Close</button>
+    </div>
   </div>
 </div>
 
@@ -3430,10 +3558,68 @@
     toggle.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }
-  const bookingsUrl = 'https://outlook.office.com/bookwithme/user/69d18e0d1400441c82dfd0c222074676@ibrahimconsulting.com/meetingtype/GK9O0WUNx0i3Yz7XMbS3BQ2?anonymous&ismsaljsauthenabled&ep=mLinkFromTile';
-  function openBookings() {
-    window.open(bookingsUrl, '_blank', 'noopener,noreferrer');
+  function openBookings(preselect) {
+    const overlay = document.getElementById('bookingsOverlay');
+    const form = document.getElementById('contactForm');
+    const success = document.getElementById('cfSuccess');
+    form.style.display = '';
+    success.style.display = 'none';
+    if (preselect) {
+      const sel = document.getElementById('cf-service');
+      for (let i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value === preselect) { sel.selectedIndex = i; break; }
+      }
+    }
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('cf-name').focus(), 100);
   }
+  function closeBookings() {
+    const overlay = document.getElementById('bookingsOverlay');
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('bookingsOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeBookings();
+  });
+
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('cfSubmitBtn');
+    const form = this;
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    const data = {
+      name: document.getElementById('cf-name').value,
+      company: document.getElementById('cf-company').value,
+      email: document.getElementById('cf-email').value,
+      phone: document.getElementById('cf-phone').value,
+      service: document.getElementById('cf-service').value,
+      details: document.getElementById('cf-details').value,
+    };
+    try {
+      const res = await fetch('https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('cfSuccess').style.display = 'flex';
+        form.reset();
+      } else {
+        throw new Error('submit failed');
+      }
+    } catch {
+      alert('Something went wrong. Please email us directly at shayan@ibrahimconsulting.com');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Submit Request';
+    }
+  });
   function toggleAlacarte(btn) {
     const body = document.getElementById('alacarte-body');
     const caret = btn.querySelector('.alacarte-caret');
@@ -3465,7 +3651,7 @@
   });
 
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeMobileMenu(); closePkgConfirm(); }
+    if (e.key === 'Escape') { closeMobileMenu(); closePkgConfirm(); closeBookings(); }
   });
 
   const backToTop = document.getElementById('backToTop');
