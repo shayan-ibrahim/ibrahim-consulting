@@ -411,6 +411,8 @@
       font-size: 16px;
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
+      user-select: none;
+      -webkit-user-select: none;
     }
     .dot-grid {
       position: relative;
@@ -4085,6 +4087,9 @@
     const resultsSection = document.querySelector('.results-grid');
     if (resultsSection) odoObserver.observe(resultsSection);
   })();
+
+  // ── Disable right-click and text selection ───────────────────
+  document.addEventListener('contextmenu', e => e.preventDefault());
 
   // ── Card tilt on hover ────────────────────────────────────────
   (function() {
