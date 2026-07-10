@@ -412,17 +412,21 @@
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
-    body::before {
+    .dot-grid {
+      position: relative;
+    }
+    .dot-grid::before {
       content: '';
-      position: fixed;
+      position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle, rgba(0,0,0,0.055) 1px, transparent 1px);
+      background-image: radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px);
       background-size: 22px 22px;
       pointer-events: none;
       z-index: 0;
     }
-    [data-theme="dark"] body::before {
-      background-image: radial-gradient(circle, rgba(255,255,255,0.045) 1px, transparent 1px);
+    .dot-grid > * { position: relative; z-index: 1; }
+    [data-theme="dark"] .dot-grid::before {
+      background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
     }
     img { display: block; max-width: 100%; }
     a { text-decoration: none; color: inherit; }
@@ -2714,7 +2718,7 @@
 </section>
 
 <!-- ─── Stats ───────────────────────────────────────────────────── -->
-<section class="stats" aria-label="Key statistics">
+<section class="stats dot-grid" aria-label="Key statistics">
   <div class="container">
     <div class="stats-grid" role="list">
       <div class="stat-block" role="listitem">
@@ -2852,7 +2856,7 @@
 </section>
 
 <!-- ─── Services ─────────────────────────────────────────────────── -->
-<section class="services-section" id="services" aria-labelledby="services-heading">
+<section class="services-section dot-grid" id="services" aria-labelledby="services-heading">
   <div class="container">
     <div class="section-header">
       <div class="section-label">What We Do</div>
@@ -3041,7 +3045,7 @@
 </section>
 
 <!-- ─── Case Study ──────────────────────────────────────────────── -->
-<section class="about-section" id="results" aria-labelledby="case-study-heading" style="padding-top:80px;background:var(--color-mist);position:relative;z-index:1">
+<section class="about-section dot-grid" id="results" aria-labelledby="case-study-heading" style="padding-top:80px;background:var(--color-mist);position:relative;z-index:1">
   <div class="container">
     <div class="section-header">
       <div class="section-label">Results in Action</div>
@@ -3257,7 +3261,7 @@
 </section>
 
 <!-- ─── Packages ─────────────────────────────────────────────────── -->
-<section class="packages-section" id="packages" aria-labelledby="packages-heading">
+<section class="packages-section dot-grid" id="packages" aria-labelledby="packages-heading">
   <div class="container">
     <div class="section-header">
       <div class="section-label">Consulting Packages</div>
@@ -3511,7 +3515,7 @@
 </section>
 
 <!-- ─── Firm Stats ───────────────────────────────────────────────── -->
-<section style="background:var(--color-mist);padding:64px 0;position:relative;z-index:1" aria-label="About Ibrahim Consulting">
+<section class="dot-grid" style="background:var(--color-mist);padding:64px 0;position:relative;z-index:1" aria-label="About Ibrahim Consulting">
   <div class="container">
     <div class="firm-stats-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:2px;background:var(--color-fog);border-radius:var(--radius-card);overflow:hidden">
       <div class="stat-block" style="border-radius:var(--radius-card) 0 0 var(--radius-card)" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px';this.querySelector('.firm-stat-num').style.color='var(--color-amber)'" onmouseleave="this.style.transform='';this.style.boxShadow='';this.querySelector('.firm-stat-num').style.color=''">
