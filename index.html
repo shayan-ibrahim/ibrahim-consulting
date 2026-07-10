@@ -3800,15 +3800,24 @@
     requestAnimationFrame(tick);
   }
   const statNumbers = document.querySelectorAll('.stat-number');
-  let statAnimated = false;
+  const statOriginals = new Map();
+  statNumbers.forEach(el => statOriginals.set(el, el.textContent.trim()));
+  let statRunning = false;
   const statObserver = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting && !statAnimated) {
-      statAnimated = true;
+    if (entries[0].isIntersecting && !statRunning) {
+      statRunning = true;
       statNumbers.forEach(el => {
-        const raw = el.textContent.trim();
+        const raw = statOriginals.get(el);
         const num = parseFloat(raw.replace(/[^0-9.]/g, ''));
         const suffix = raw.replace(/[0-9.]/g, '');
         if (!isNaN(num)) animateCount(el, num, suffix, 2200);
+      });
+    } else if (!entries[0].isIntersecting) {
+      statRunning = false;
+      statNumbers.forEach(el => {
+        const raw = statOriginals.get(el);
+        const suffix = raw.replace(/[0-9.]/g, '');
+        el.textContent = '0' + suffix;
       });
     }
   }, { threshold: 0.3 });
@@ -3829,7 +3838,8 @@
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('fade-visible');
-        observer.unobserve(entry.target);
+      } else {
+        entry.target.classList.remove('fade-visible');
       }
     });
   }, { threshold: 0.06 });
@@ -3841,7 +3851,8 @@
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('rule-drawn');
-        ruleObserver.unobserve(entry.target);
+      } else {
+        entry.target.classList.remove('rule-drawn');
       }
     });
   }, { threshold: 0.5 });
@@ -3903,12 +3914,16 @@
     grids.forEach(grid => {
       const cards = Array.from(grid.children);
       cards.forEach(card => card.classList.add('card-stagger'));
+      const pendingTimers = new Map();
       const cardObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+          const idx = cards.indexOf(entry.target);
           if (entry.isIntersecting) {
-            const idx = cards.indexOf(entry.target);
-            setTimeout(() => entry.target.classList.add('card-visible'), idx * 110);
-            cardObserver.unobserve(entry.target);
+            const t = setTimeout(() => entry.target.classList.add('card-visible'), idx * 110);
+            pendingTimers.set(entry.target, t);
+          } else {
+            clearTimeout(pendingTimers.get(entry.target));
+            entry.target.classList.remove('card-visible');
           }
         });
       }, { threshold: 0.1 });
@@ -3939,18 +3954,27 @@
   // ── Result card odometer ─────────────────────────────────────
   (function() {
     const resultCards = document.querySelectorAll('.results-grid > div');
-    let odoAnimated = false;
+    // Cache original values on first read
+    const originals = new Map();
+    resultCards.forEach((card, ci) => {
+      card.querySelectorAll('[style*="font-size:22px"]').forEach((el, i) => {
+        originals.set(el, el.textContent.trim());
+      });
+    });
+    let odoRunning = false;
     const odoObserver = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting && !odoAnimated) {
-        odoAnimated = true;
+      if (entries[0].isIntersecting && !odoRunning) {
+        odoRunning = true;
         resultCards.forEach((card, ci) => {
           card.querySelectorAll('[style*="font-size:22px"]').forEach((el, i) => {
-            const raw = el.textContent.trim();
+            const raw = originals.get(el);
+            if (!raw) return;
             const num = parseFloat(raw.replace(/[^0-9.]/g, ''));
             if (isNaN(num) || num === 0) return;
             const prefix = raw.match(/^[^0-9]*/)[0];
             const suffix = raw.match(/[^0-9.]*$/)[0];
             const isFloat = raw.includes('.');
+            el.textContent = prefix + '0' + suffix;
             const delay = ci * 150 + i * 80;
             setTimeout(() => {
               const duration = 2200;
@@ -3966,7 +3990,18 @@
             }, delay);
           });
         });
-        odoObserver.disconnect();
+      } else if (!entries[0].isIntersecting) {
+        odoRunning = false;
+        // Reset to 0 so animation replays cleanly next time
+        resultCards.forEach(card => {
+          card.querySelectorAll('[style*="font-size:22px"]').forEach(el => {
+            const raw = originals.get(el);
+            if (!raw) return;
+            const prefix = raw.match(/^[^0-9]*/)[0];
+            const suffix = raw.match(/[^0-9.]*$/)[0];
+            el.textContent = prefix + '0' + suffix;
+          });
+        });
       }
     }, { threshold: 0.2 });
     const resultsSection = document.querySelector('.results-grid');
