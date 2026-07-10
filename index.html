@@ -77,7 +77,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
     /* ─── Design Tokens ─────────────────────────────────────────── */
     :root {
@@ -91,7 +91,8 @@
       --color-fog: #ececee;
       --color-mist: #f4f4f5;
       --color-snow: #ffffff;
-      --color-amber: #F54927;
+      --color-amber: #C9A84C;
+      --font-display: 'Playfair Display', Georgia, serif;
 
       /* Surface tokens — light mode */
       --surface-page: #f4f4f5;
@@ -387,17 +388,13 @@
     ul { list-style: none; }
 
     /* ─── Global Background Video ───────────────────────────────── */
-    #bg-video {
-      position: fixed;
+    #hero-pattern {
+      position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      z-index: 0;
-      opacity: 0.45;
+      opacity: 0.07;
       pointer-events: none;
-      will-change: transform;
-      transform: translateZ(0);
     }
     .nav, main, .footer, .ticker-wrap, .mobile-menu { position: relative; z-index: 1; }
     .stats, .brand-strip, .services-section, .packages-section {
@@ -557,7 +554,7 @@
       overflow: hidden;
       display: flex;
       align-items: flex-end;
-      background: transparent;
+      background: #0F0F0F;
     }
     .hero-overlay {
       position: absolute;
@@ -603,18 +600,19 @@
       background: #22c55e;
     }
     .hero-headline {
+      font-family: var(--font-display);
       font-size: clamp(40px, 5.5vw, 64px);
       font-weight: 700;
       color: var(--color-snow);
       line-height: 1.06;
-      letter-spacing: -1.5px;
+      letter-spacing: -1px;
       margin-bottom: 0;
     }
     .hero-headline .muted { color: var(--color-amber); font-weight: 300; }
     @keyframes tagline-rotate {
       0% { color: rgba(255,255,255,0.92); }
-      5% { color: #F54927; }
-      20% { color: #F54927; }
+      5% { color: #C9A84C; }
+      20% { color: #C9A84C; }
       27% { color: rgba(255,255,255,0.92); }
       100% { color: rgba(255,255,255,0.92); }
     }
@@ -810,11 +808,12 @@
       background: var(--color-ash);
     }
     .section-heading {
+      font-family: var(--font-display);
       font-size: clamp(32px, 3.5vw, 44px);
       font-weight: 700;
       color: var(--color-obsidian);
       line-height: 1.1;
-      letter-spacing: -0.8px;
+      letter-spacing: -0.5px;
     }
     .section-heading .muted { color: var(--color-amber); font-weight: 300; }
     .section-sub {
@@ -1001,11 +1000,12 @@
       align-items: end;
     }
     .methodology-heading {
+      font-family: var(--font-display);
       font-size: clamp(28px, 3vw, 40px);
       font-weight: 700;
       color: var(--color-snow);
       line-height: 1.12;
-      letter-spacing: -0.8px;
+      letter-spacing: -0.5px;
     }
     .methodology-heading .accent { color: var(--color-amber); font-weight: 300; }
     .methodology-sub {
@@ -1373,11 +1373,12 @@
       align-items: end;
     }
     .why-heading {
+      font-family: var(--font-display);
       font-size: clamp(28px, 3vw, 40px);
       font-weight: 700;
       color: var(--color-snow);
       line-height: 1.12;
-      letter-spacing: -0.8px;
+      letter-spacing: -0.5px;
     }
     .why-heading .accent { color: var(--color-amber); font-weight: 300; }
     .why-sub {
@@ -1521,11 +1522,12 @@
       box-shadow: var(--shadow-card-inset);
     }
     .about-heading {
+      font-family: var(--font-display);
       font-size: clamp(28px, 3vw, 40px);
       font-weight: 700;
       color: var(--color-obsidian);
       line-height: 1.12;
-      letter-spacing: -0.8px;
+      letter-spacing: -0.5px;
       margin-bottom: 20px;
     }
     .about-heading .muted { color: var(--color-amber); font-weight: 300; }
@@ -1912,15 +1914,42 @@
     }
 
     /* ─── Scroll Fade-in ─────────────────────────────────────────── */
+    /* ─── Scroll Progress Bar ───────────────────────────────────── */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--color-amber);
+      z-index: 9999;
+      transition: width 0.1s linear;
+      pointer-events: none;
+    }
+
+    /* ─── Section Rule Accent ───────────────────────────────────── */
+    .section-rule {
+      display: block;
+      width: 48px;
+      height: 2px;
+      background: var(--color-amber);
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+
+    /* ─── Fade + Slide Animations ───────────────────────────────── */
     .fade-hidden {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(32px);
+      transition: opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1);
     }
     .fade-visible {
       opacity: 1;
       transform: translateY(0);
     }
+    .fade-hidden.delay-1 { transition-delay: 0.08s; }
+    .fade-hidden.delay-2 { transition-delay: 0.16s; }
+    .fade-hidden.delay-3 { transition-delay: 0.24s; }
     @media (prefers-reduced-motion: reduce) {
       .fade-hidden { opacity: 1; transform: none; transition: none; }
     }
@@ -2434,11 +2463,23 @@
 </head>
 <body>
 
-<video id="bg-video" autoplay muted loop playsinline aria-hidden="true">
-  <source src="hero-video.mp4" type="video/mp4">
-</video>
+<svg id="hero-pattern" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#C9A84C" stroke-width="0.5"/>
+    </pattern>
+    <pattern id="diag" width="96" height="96" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="96" x2="96" y2="0" stroke="#C9A84C" stroke-width="0.5"/>
+      <line x1="-24" y1="96" x2="72" y2="0" stroke="#C9A84C" stroke-width="0.3"/>
+      <line x1="24" y1="96" x2="120" y2="0" stroke="#C9A84C" stroke-width="0.3"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#grid)"/>
+  <rect width="100%" height="100%" fill="url(#diag)" opacity="0.5"/>
+</svg>
 
 <!-- ─── Mobile Menu ─────────────────────────────────────────────── -->
+<div id="scroll-progress" aria-hidden="true"></div>
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Navigation menu">
   <div class="mobile-menu-header">
     <div class="nav-logo">Ibrahim<span> Consulting</span></div>
@@ -2715,6 +2756,7 @@
   <div class="container">
     <div class="section-header">
       <div class="section-label">What We Do</div>
+      <span class="section-rule" aria-hidden="true"></span>
       <h2 class="section-heading" id="services-heading">
         Six ways we <span class="muted">help you grow.</span>
       </h2>
@@ -2844,6 +2886,7 @@
     <div class="methodology-panel">
       <div style="margin-bottom:48px">
         <div class="section-label" style="color:var(--color-snow)"><span style="background:var(--color-snow)" aria-hidden="true"></span>How We Work</div>
+        <span class="section-rule" aria-hidden="true"></span>
         <h2 class="methodology-heading" id="methodology-heading">
           How we actually <span class="accent">get this done.</span>
         </h2>
@@ -2902,6 +2945,7 @@
   <div class="container">
     <div class="section-header">
       <div class="section-label">Results in Action</div>
+      <span class="section-rule" aria-hidden="true"></span>
       <h2 class="section-heading" id="case-study-heading">
         What this looks like <span class="muted">in practice.</span>
       </h2>
@@ -2924,18 +2968,30 @@
             Within 90 days they had a formalized org structure, defined department heads, and clear accountability across every level.
           </p>
         </div>
-        <div style="display:flex;flex-direction:column;gap:8px;margin-top:auto;padding-top:20px">
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--color-mist);border-radius:12px">
-            <div style="font-size:18px;font-weight:700;color:var(--color-obsidian);letter-spacing:-0.5px;flex-shrink:0;width:64px">40%</div>
-            <div style="font-size:12px;color:var(--color-steel);line-height:1.5">Reduction in manager escalations within first quarter</div>
+        <div style="margin-top:auto;padding-top:20px;display:flex;flex-direction:column;gap:12px">
+          <div style="background:var(--color-mist);border-radius:12px;padding:14px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+              <span style="font-size:11px;font-weight:600;color:var(--color-steel);text-transform:uppercase;letter-spacing:0.06em">Manager Escalations</span>
+              <span style="font-size:11px;color:var(--color-amber);font-weight:700">↓ 40%</span>
+            </div>
+            <div style="display:flex;gap:4px;align-items:center">
+              <span style="font-size:10px;color:var(--color-steel);width:32px">Before</span>
+              <div style="flex:1;height:6px;background:var(--color-fog);border-radius:3px"><div style="width:100%;height:100%;background:#d1d5db;border-radius:3px"></div></div>
+            </div>
+            <div style="display:flex;gap:4px;align-items:center;margin-top:4px">
+              <span style="font-size:10px;color:var(--color-steel);width:32px">After</span>
+              <div style="flex:1;height:6px;background:var(--color-fog);border-radius:3px"><div style="width:60%;height:100%;background:var(--color-amber);border-radius:3px"></div></div>
+            </div>
           </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--color-mist);border-radius:12px">
-            <div style="font-size:18px;font-weight:700;color:var(--color-obsidian);letter-spacing:-0.5px;flex-shrink:0;width:64px">60</div>
-            <div style="font-size:12px;color:var(--color-steel);line-height:1.5">Days to a fully formalized org structure</div>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--color-mist);border-radius:12px">
-            <div style="font-size:18px;font-weight:700;color:var(--color-obsidian);letter-spacing:-0.5px;flex-shrink:0;width:64px">3</div>
-            <div style="font-size:12px;color:var(--color-steel);line-height:1.5">States aligned under one consistent operating model</div>
+          <div style="display:flex;gap:8px">
+            <div style="flex:1;background:var(--color-mist);border-radius:12px;padding:12px;text-align:center">
+              <div style="font-size:22px;font-weight:800;color:var(--color-obsidian);letter-spacing:-0.5px">60</div>
+              <div style="font-size:11px;color:var(--color-steel);margin-top:2px">Days to full structure</div>
+            </div>
+            <div style="flex:1;background:var(--color-mist);border-radius:12px;padding:12px;text-align:center">
+              <div style="font-size:22px;font-weight:800;color:var(--color-obsidian);letter-spacing:-0.5px">3</div>
+              <div style="font-size:11px;color:var(--color-steel);margin-top:2px">States aligned</div>
+            </div>
           </div>
         </div>
       </div>
@@ -2955,18 +3011,30 @@
             Five acquisitions in seven months added 130+ locations and propelled the company to the second largest Metro by T-Mobile authorized dealer nationally.
           </p>
         </div>
-        <div style="display:flex;flex-direction:column;gap:8px;margin-top:auto;padding-top:20px">
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--color-mist);border-radius:12px">
-            <div style="font-size:18px;font-weight:700;color:var(--color-obsidian);letter-spacing:-0.5px;flex-shrink:0;width:64px">120%+</div>
-            <div style="font-size:12px;color:var(--color-steel);line-height:1.5">Quota sustained — top 10% nationally among T-Mobile authorized dealers</div>
+        <div style="margin-top:auto;padding-top:20px;display:flex;flex-direction:column;gap:12px">
+          <div style="background:var(--color-mist);border-radius:12px;padding:14px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+              <span style="font-size:11px;font-weight:600;color:var(--color-steel);text-transform:uppercase;letter-spacing:0.06em">Quota Attainment</span>
+              <span style="font-size:11px;color:var(--color-amber);font-weight:700">120%+ sustained</span>
+            </div>
+            <div style="display:flex;gap:4px;align-items:center">
+              <span style="font-size:10px;color:var(--color-steel);width:32px">Before</span>
+              <div style="flex:1;height:6px;background:var(--color-fog);border-radius:3px"><div style="width:65%;height:100%;background:#d1d5db;border-radius:3px"></div></div>
+            </div>
+            <div style="display:flex;gap:4px;align-items:center;margin-top:4px">
+              <span style="font-size:10px;color:var(--color-steel);width:32px">After</span>
+              <div style="flex:1;height:6px;background:var(--color-fog);border-radius:3px"><div style="width:100%;height:100%;background:var(--color-amber);border-radius:3px"></div></div>
+            </div>
           </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--color-mist);border-radius:12px">
-            <div style="font-size:18px;font-weight:700;color:var(--color-obsidian);letter-spacing:-0.5px;flex-shrink:0;width:64px">5</div>
-            <div style="font-size:12px;color:var(--color-steel);line-height:1.5">Acquisitions in 7 months, all closed on time with zero compliance flags</div>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--color-mist);border-radius:12px">
-            <div style="font-size:18px;font-weight:700;color:var(--color-obsidian);letter-spacing:-0.5px;flex-shrink:0;width:64px">#2</div>
-            <div style="font-size:12px;color:var(--color-steel);line-height:1.5">Largest Metro by T-Mobile authorized dealer nationally</div>
+          <div style="display:flex;gap:8px">
+            <div style="flex:1;background:var(--color-mist);border-radius:12px;padding:12px;text-align:center">
+              <div style="font-size:22px;font-weight:800;color:var(--color-obsidian);letter-spacing:-0.5px">5</div>
+              <div style="font-size:11px;color:var(--color-steel);margin-top:2px">Acquisitions in 7 months</div>
+            </div>
+            <div style="flex:1;background:var(--color-mist);border-radius:12px;padding:12px;text-align:center">
+              <div style="font-size:22px;font-weight:800;color:var(--color-obsidian);letter-spacing:-0.5px">#2</div>
+              <div style="font-size:11px;color:var(--color-steel);margin-top:2px">Nationally ranked</div>
+            </div>
           </div>
         </div>
       </div>
@@ -2986,18 +3054,30 @@
             A full operational overhaul transformed profitability and people performance across 1,200+ employees and 70+ locations.
           </p>
         </div>
-        <div style="display:flex;flex-direction:column;gap:8px;margin-top:auto;padding-top:20px">
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--color-mist);border-radius:12px">
-            <div style="font-size:18px;font-weight:700;color:var(--color-obsidian);letter-spacing:-0.5px;flex-shrink:0;width:64px">42%</div>
-            <div style="font-size:12px;color:var(--color-steel);line-height:1.5">Reduction in bottom-quartile turnover via payroll ROI coaching</div>
+        <div style="margin-top:auto;padding-top:20px;display:flex;flex-direction:column;gap:12px">
+          <div style="background:var(--color-mist);border-radius:12px;padding:14px">
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+              <span style="font-size:11px;font-weight:600;color:var(--color-steel);text-transform:uppercase;letter-spacing:0.06em">Employee Turnover</span>
+              <span style="font-size:11px;color:var(--color-amber);font-weight:700">↓ 42%</span>
+            </div>
+            <div style="display:flex;gap:4px;align-items:center">
+              <span style="font-size:10px;color:var(--color-steel);width:32px">Before</span>
+              <div style="flex:1;height:6px;background:var(--color-fog);border-radius:3px"><div style="width:100%;height:100%;background:#d1d5db;border-radius:3px"></div></div>
+            </div>
+            <div style="display:flex;gap:4px;align-items:center;margin-top:4px">
+              <span style="font-size:10px;color:var(--color-steel);width:32px">After</span>
+              <div style="flex:1;height:6px;background:var(--color-fog);border-radius:3px"><div style="width:58%;height:100%;background:var(--color-amber);border-radius:3px"></div></div>
+            </div>
           </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--color-mist);border-radius:12px">
-            <div style="font-size:18px;font-weight:700;color:var(--color-obsidian);letter-spacing:-0.5px;flex-shrink:0;width:64px">36%</div>
-            <div style="font-size:12px;color:var(--color-steel);line-height:1.5">Cut in overall attrition via structured onboarding &amp; reviews</div>
-          </div>
-          <div style="display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--color-mist);border-radius:12px">
-            <div style="font-size:18px;font-weight:700;color:var(--color-obsidian);letter-spacing:-0.5px;flex-shrink:0;width:64px">33%</div>
-            <div style="font-size:12px;color:var(--color-steel);line-height:1.5">Inventory shrink reduction — audit pass rates improved to 87%</div>
+          <div style="display:flex;gap:8px">
+            <div style="flex:1;background:var(--color-mist);border-radius:12px;padding:12px;text-align:center">
+              <div style="font-size:22px;font-weight:800;color:var(--color-obsidian);letter-spacing:-0.5px">36%</div>
+              <div style="font-size:11px;color:var(--color-steel);margin-top:2px">Attrition cut</div>
+            </div>
+            <div style="flex:1;background:var(--color-mist);border-radius:12px;padding:12px;text-align:center">
+              <div style="font-size:22px;font-weight:800;color:var(--color-obsidian);letter-spacing:-0.5px">87%</div>
+              <div style="font-size:11px;color:var(--color-steel);margin-top:2px">Audit pass rate</div>
+            </div>
           </div>
         </div>
       </div>
@@ -3019,6 +3099,7 @@
     <div class="why-panel">
       <div style="margin-bottom:48px">
         <div class="section-label" style="color:var(--color-snow)"><span style="background:var(--color-snow)" aria-hidden="true"></span>Our Differentiator</div>
+        <span class="section-rule" aria-hidden="true"></span>
         <h2 class="why-heading" id="why-heading">
           We've actually <span class="accent">done this work.</span>
         </h2>
@@ -3104,6 +3185,7 @@
   <div class="container">
     <div class="section-header">
       <div class="section-label">Consulting Packages</div>
+      <span class="section-rule" aria-hidden="true"></span>
       <h2 class="section-heading" id="packages-heading">
         Choose how you want <span class="muted">to work together.</span>
       </h2>
@@ -3316,6 +3398,7 @@
       </div>
     <div class="about-grid">
       <div>
+        <span class="section-rule" aria-hidden="true"></span>
         <h2 class="about-heading" id="about-heading">
           Real experience. <span class="muted">Real results.</span>
         </h2>
@@ -3667,11 +3750,52 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // ── Scroll fade-in ──────────────────────────────────────────
+  // ── Scroll progress bar ─────────────────────────────────────
+  const progressBar = document.getElementById('scroll-progress');
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const pct = (window.scrollY / (doc.scrollHeight - doc.clientHeight)) * 100;
+    progressBar.style.width = Math.min(pct, 100) + '%';
+  }, { passive: true });
+
+  // ── Stat counter animation ───────────────────────────────────
+  function animateCount(el, target, suffix, duration) {
+    const start = performance.now();
+    const isFloat = target % 1 !== 0;
+    function tick(now) {
+      const elapsed = Math.min((now - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - elapsed, 3);
+      const val = isFloat ? (ease * target).toFixed(1) : Math.round(ease * target);
+      el.textContent = val + suffix;
+      if (elapsed < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  const statNumbers = document.querySelectorAll('.stat-number');
+  let statAnimated = false;
+  const statObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !statAnimated) {
+      statAnimated = true;
+      statNumbers.forEach(el => {
+        const raw = el.textContent.trim();
+        const num = parseFloat(raw.replace(/[^0-9.]/g, ''));
+        const suffix = raw.replace(/[0-9.]/g, '');
+        if (!isNaN(num)) animateCount(el, num, suffix, 1400);
+      });
+    }
+  }, { threshold: 0.3 });
+  const statsSection = document.querySelector('.stats');
+  if (statsSection) statObserver.observe(statsSection);
+
+  // ── Scroll fade + slide ─────────────────────────────────────
   const fadeEls = document.querySelectorAll(
     '.stats, .problem-section, .services-section, .methodology-section, .packages-section, .why-section, .about-section, .cta-section, .footer'
   );
-  fadeEls.forEach(el => el.classList.add('fade-hidden'));
+  fadeEls.forEach((el, i) => {
+    el.classList.add('fade-hidden');
+    if (i % 3 === 1) el.classList.add('delay-1');
+    if (i % 3 === 2) el.classList.add('delay-2');
+  });
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -3680,7 +3804,7 @@
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.08 });
+  }, { threshold: 0.06 });
 
   fadeEls.forEach(el => observer.observe(el));
 
