@@ -216,7 +216,7 @@
     [data-theme="dark"] .nav-logo { color: #f0f0f2; }
     [data-theme="dark"] .nav-logo span { color: #5a5a68; }
     [data-theme="dark"] .nav-links a { color: #9090a0; }
-    [data-theme="dark"] .nav-links a:hover { color: #f0f0f2; }
+    [data-theme="dark"] .nav-links a:hover { color: var(--color-amber); }
     [data-theme="dark"] .btn-pill {
       background: #f0f0f2;
       color: #09090b;
@@ -453,7 +453,7 @@
       color: var(--color-graphite);
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--color-obsidian); }
+    .nav-links a:hover { color: var(--color-amber); }
     .btn-pill {
       display: inline-flex;
       align-items: center;
@@ -1950,6 +1950,47 @@
     .fade-hidden.delay-3 { transition-delay: 0.24s; }
     @media (prefers-reduced-motion: reduce) {
       .fade-hidden { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ─── Section Rule Draw ─────────────────────────────────────── */
+    .section-rule {
+      width: 0;
+      transition: width 0.55s cubic-bezier(0.22,1,0.36,1);
+    }
+    .section-rule.rule-drawn { width: 48px; }
+
+    /* ─── Headline Word Entrance ─────────────────────────────────── */
+    .hero-word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(24px);
+      clip-path: inset(0 0 100% 0);
+      transition: opacity 0.5s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.5s cubic-bezier(0.22,1,0.36,1),
+                  clip-path 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    .hero-word.word-visible {
+      opacity: 1;
+      transform: translateY(0);
+      clip-path: inset(0 0 0% 0);
+    }
+
+    /* ─── Staggered Cards ────────────────────────────────────────── */
+    .card-stagger {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.6s cubic-bezier(0.22,1,0.36,1);
+    }
+    .card-stagger.card-visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── Odometer numbers ───────────────────────────────────────── */
+    .odometer-num { display: inline-block; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .section-rule { width: 48px !important; transition: none; }
+      .hero-word { opacity: 1 !important; transform: none !important; clip-path: none !important; transition: none; }
+      .card-stagger { opacity: 1 !important; transform: none !important; transition: none; }
     }
 
     /* ─── Back to Top ─────────────────────────────────────────────── */
@@ -3794,6 +3835,143 @@
   }, { threshold: 0.06 });
 
   fadeEls.forEach(el => observer.observe(el));
+
+  // ── Section rule draw ────────────────────────────────────────
+  const ruleObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('rule-drawn');
+        ruleObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.section-rule').forEach(el => ruleObserver.observe(el));
+
+  // ── Hero headline word-by-word entrance ──────────────────────
+  (function() {
+    const h1 = document.getElementById('hero-heading');
+    if (!h1) return;
+    // Preserve HTML structure by walking text nodes only
+    function wrapWords(node) {
+      if (node.nodeType === 3) {
+        const words = node.textContent.split(/(\s+)/);
+        const frag = document.createDocumentFragment();
+        words.forEach(w => {
+          if (/^\s+$/.test(w)) {
+            frag.appendChild(document.createTextNode(w));
+          } else if (w) {
+            const span = document.createElement('span');
+            span.className = 'hero-word';
+            span.textContent = w;
+            frag.appendChild(span);
+          }
+        });
+        node.parentNode.replaceChild(frag, node);
+      } else if (node.nodeType === 1 && node.nodeName !== 'SPAN') {
+        Array.from(node.childNodes).forEach(wrapWords);
+      } else if (node.nodeType === 1) {
+        // existing spans (e.g. .muted) — wrap their text children
+        Array.from(node.childNodes).forEach(child => {
+          if (child.nodeType === 3) {
+            const words = child.textContent.split(/(\s+)/);
+            const frag = document.createDocumentFragment();
+            words.forEach(w => {
+              if (/^\s+$/.test(w)) {
+                frag.appendChild(document.createTextNode(w));
+              } else if (w) {
+                const sp = document.createElement('span');
+                sp.className = 'hero-word';
+                sp.textContent = w;
+                frag.appendChild(sp);
+              }
+            });
+            child.parentNode.replaceChild(frag, child);
+          }
+        });
+      }
+    }
+    Array.from(h1.childNodes).forEach(wrapWords);
+    const words = h1.querySelectorAll('.hero-word');
+    words.forEach((w, i) => {
+      setTimeout(() => w.classList.add('word-visible'), 120 + i * 65);
+    });
+  })();
+
+  // ── Staggered card reveals ───────────────────────────────────
+  (function() {
+    const grids = document.querySelectorAll('.results-grid, .services-grid, .packages-grid');
+    grids.forEach(grid => {
+      const cards = Array.from(grid.children);
+      cards.forEach(card => card.classList.add('card-stagger'));
+      const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const idx = cards.indexOf(entry.target);
+            setTimeout(() => entry.target.classList.add('card-visible'), idx * 110);
+            cardObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      cards.forEach(card => cardObserver.observe(card));
+    });
+  })();
+
+  // ── Parallax hero text ───────────────────────────────────────
+  (function() {
+    const heroBg = document.querySelector('.hero-bg');
+    const heroContent = document.querySelector('.hero-content');
+    if (!heroBg || !heroContent) return;
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const y = window.scrollY;
+          if (y < window.innerHeight) {
+            heroContent.style.transform = `translateY(${y * 0.18}px)`;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
+
+  // ── Result card odometer ─────────────────────────────────────
+  (function() {
+    const resultCards = document.querySelectorAll('.results-grid > div');
+    let odoAnimated = false;
+    const odoObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !odoAnimated) {
+        odoAnimated = true;
+        resultCards.forEach((card, ci) => {
+          card.querySelectorAll('[style*="font-size:22px"]').forEach((el, i) => {
+            const raw = el.textContent.trim();
+            const num = parseFloat(raw.replace(/[^0-9.]/g, ''));
+            if (isNaN(num) || num === 0) return;
+            const prefix = raw.match(/^[^0-9]*/)[0];
+            const suffix = raw.match(/[^0-9.]*$/)[0];
+            const isFloat = raw.includes('.');
+            const delay = ci * 150 + i * 80;
+            setTimeout(() => {
+              const duration = 1200;
+              const startTime = performance.now();
+              function tick(now) {
+                const t = Math.min((now - startTime) / duration, 1);
+                const ease = 1 - Math.pow(1 - t, 3);
+                const val = isFloat ? (ease * num).toFixed(1) : Math.round(ease * num);
+                el.textContent = prefix + val + suffix;
+                if (t < 1) requestAnimationFrame(tick);
+              }
+              requestAnimationFrame(tick);
+            }, delay);
+          });
+        });
+        odoObserver.disconnect();
+      }
+    }, { threshold: 0.2 });
+    const resultsSection = document.querySelector('.results-grid');
+    if (resultsSection) odoObserver.observe(resultsSection);
+  })();
 
 </script>
 </body>
