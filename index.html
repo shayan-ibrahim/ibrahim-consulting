@@ -647,6 +647,11 @@
       height: 6px;
       border-radius: 50%;
       background: #22c55e;
+      animation: eyebrow-dot-pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes eyebrow-dot-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.75); }
     }
     .hero-headline {
       font-size: clamp(40px, 5.5vw, 64px);
