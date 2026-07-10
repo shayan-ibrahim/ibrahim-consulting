@@ -934,7 +934,8 @@
       width: 28px;
       height: 28px;
       border-radius: 50%;
-      background: var(--color-amber);
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.15);
       flex-shrink: 0;
       display: flex;
       align-items: center;
@@ -942,9 +943,15 @@
       margin-top: 1px;
       font-size: 10px;
       font-weight: 600;
-      color: #ffffff;
+      color: var(--color-snow);
       letter-spacing: 0;
       font-family: var(--font-primary);
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .problem-row:hover .problem-icon {
+      background: var(--color-amber);
+      border-color: var(--color-amber);
+      color: #000;
     }
     .problem-icon svg { width: 12px; height: 12px; }
     .problem-text {
