@@ -3808,7 +3808,7 @@
         const raw = el.textContent.trim();
         const num = parseFloat(raw.replace(/[^0-9.]/g, ''));
         const suffix = raw.replace(/[0-9.]/g, '');
-        if (!isNaN(num)) animateCount(el, num, suffix, 2800);
+        if (!isNaN(num)) animateCount(el, num, suffix, 2000);
       });
     }
   }, { threshold: 0.3 });
