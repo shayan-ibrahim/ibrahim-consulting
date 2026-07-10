@@ -269,7 +269,7 @@
       background: #1a1a1d;
       box-shadow: rgba(255,255,255,0.03) 0px 1px 0px 0px inset;
     }
-    [data-theme="dark"] .service-card:hover { background: #212126; box-shadow: rgba(255,255,255,0.03) 0px 1px 0px 0px inset; transform: translateY(-3px); }
+    [data-theme="dark"] .service-card:hover { background: #212126; box-shadow: rgba(255,255,255,0.03) 0px 1px 0px 0px inset; }
     [data-theme="dark"] .service-icon { background: #212126; border-color: rgba(255,255,255,0.07); }
     [data-theme="dark"] .service-icon svg { stroke: #9090a0; }
     [data-theme="dark"] .service-title { color: #f0f0f2; }
@@ -355,7 +355,6 @@
       cursor: default;
     }
     .result-card:hover {
-      transform: translateY(-3px);
       box-shadow: var(--shadow-card-inset), rgba(0,0,0,0.06) 0px 8px 24px 0px;
     }
     .result-challenge-label { margin-bottom: 12px; align-self: start; }
@@ -966,7 +965,6 @@
       cursor: default;
     }
     .service-card:hover {
-      transform: translateY(-3px);
       box-shadow: var(--shadow-card-inset), rgba(0,0,0,0.06) 0px 8px 24px 0px;
     }
     .service-card:hover .service-icon svg { stroke: var(--color-amber); }
@@ -1152,7 +1150,6 @@
       cursor: default;
     }
     .package-card:hover {
-      transform: translateY(-3px);
       box-shadow: var(--shadow-card-inset), rgba(0,0,0,0.06) 0px 8px 24px 0px;
     }
     .package-card.featured-card {
@@ -3057,7 +3054,7 @@
     <div class="results-grid">
 
       <!-- Case Study 1 -->
-      <div class="result-card" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset,rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset'">
+      <div class="result-card">
         <div class="section-label result-challenge-label">The Challenge</div>
         <p class="result-challenge-text">A 70+ location retailer was struggling with role overlap and inconsistent execution across three states. Leadership was overwhelmed, managers lacked clarity, and performance varied wildly market to market.</p>
         <p class="result-quote">They had the talent. They had the locations. What they didn't have was structure.</p>
@@ -3092,7 +3089,7 @@
       </div>
 
       <!-- Case Study 2 -->
-      <div class="result-card" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset,rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset'">
+      <div class="result-card">
         <div class="section-label result-challenge-label">The Challenge</div>
         <p class="result-challenge-text">A 270+ retail operation needed to scale rapidly through acquisition while maintaining performance, compliance, and cultural consistency across a fast-growing national footprint.</p>
         <p class="result-quote">Speed without structure is how companies fall apart. The goal was to grow fast and stay disciplined.</p>
@@ -3127,7 +3124,7 @@
       </div>
 
       <!-- Case Study 3 -->
-      <div class="result-card" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset,rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset'">
+      <div class="result-card">
         <div class="section-label result-challenge-label">The Challenge</div>
         <p class="result-challenge-text">A $14M multi-state wireless retail operation was losing money in the wrong places — high turnover, poor inventory controls, inconsistent audit scores, and no visibility into who was actually driving results.</p>
         <p class="result-quote">The revenue was there. The profitability wasn't. Structure and accountability were the missing link.</p>
@@ -4083,16 +4080,23 @@
   (function() {
     const tiltCards = document.querySelectorAll('.service-card, .package-card, .result-card');
     tiltCards.forEach(card => {
+      card.style.willChange = 'transform';
+      card.style.transition = 'transform 0.4s cubic-bezier(0.23,1,0.32,1), box-shadow 0.2s';
+
+      card.addEventListener('mouseenter', () => {
+        card.style.transition = 'transform 0.15s cubic-bezier(0.23,1,0.32,1), box-shadow 0.2s';
+      });
+
       card.addEventListener('mousemove', e => {
         const r = card.getBoundingClientRect();
         const x = (e.clientX - r.left) / r.width - 0.5;
         const y = (e.clientY - r.top) / r.height - 0.5;
-        card.style.transform = `perspective(700px) rotateY(${x * 7}deg) rotateX(${-y * 7}deg) translateY(-3px)`;
-        card.style.transition = 'transform 0.08s ease-out, box-shadow 0.2s';
+        card.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-3px)`;
       });
+
       card.addEventListener('mouseleave', () => {
+        card.style.transition = 'transform 0.4s cubic-bezier(0.23,1,0.32,1), box-shadow 0.2s';
         card.style.transform = '';
-        card.style.transition = 'transform 0.35s ease, box-shadow 0.2s';
       });
     });
   })();
