@@ -413,6 +413,18 @@
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(0,0,0,0.055) 1px, transparent 1px);
+      background-size: 22px 22px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    [data-theme="dark"] body::before {
+      background-image: radial-gradient(circle, rgba(255,255,255,0.045) 1px, transparent 1px);
+    }
     img { display: block; max-width: 100%; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
@@ -502,7 +514,7 @@
       transition: opacity 0.2s, transform 0.15s;
     }
     .btn-pill:hover { opacity: 0.88; transform: translateY(-1px); }
-    .btn-pill:active { transform: translateY(0); }
+    .btn-pill:active { transform: translateY(0) scale(0.97); }
     .btn-pill-lg {
       font-size: 14px;
       padding: 11px 22px;
@@ -1385,7 +1397,7 @@
       white-space: nowrap;
     }
     .btn-checkout:hover { opacity: 0.85; transform: translateY(-1px); }
-    .btn-checkout:active { transform: translateY(0); }
+    .btn-checkout:active { transform: translateY(0) scale(0.97); }
     .featured-card .btn-checkout {
       background: var(--color-snow);
       color: var(--color-obsidian);
@@ -4065,6 +4077,24 @@
     }, { threshold: 0.2 });
     const resultsSection = document.querySelector('.results-grid');
     if (resultsSection) odoObserver.observe(resultsSection);
+  })();
+
+  // ── Card tilt on hover ────────────────────────────────────────
+  (function() {
+    const tiltCards = document.querySelectorAll('.service-card, .package-card, .result-card');
+    tiltCards.forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `perspective(700px) rotateY(${x * 7}deg) rotateX(${-y * 7}deg) translateY(-3px)`;
+        card.style.transition = 'transform 0.08s ease-out, box-shadow 0.2s';
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+        card.style.transition = 'transform 0.35s ease, box-shadow 0.2s';
+      });
+    });
   })();
 
 </script>
