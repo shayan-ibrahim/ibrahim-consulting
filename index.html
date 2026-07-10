@@ -1703,7 +1703,12 @@
       transition: gap 0.2s;
     }
     .micro-cta-btn:hover { gap: 12px; }
-    .micro-cta-btn svg { width: 16px; height: 16px; }
+    .micro-cta-btn svg {
+      width: 16px;
+      height: 16px;
+      animation: arrow-nudge 1.4s ease-in-out infinite;
+    }
+    .micro-cta-btn:hover svg { animation: none; transform: translateX(3px); }
     .dark-micro-cta .micro-cta-btn { color: rgba(255,255,255,0.7); }
     .dark-micro-cta .micro-cta-btn:hover { color: #fff; }
 
