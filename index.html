@@ -77,7 +77,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
   <style>
     /* ─── Design Tokens ─────────────────────────────────────────── */
     :root {
@@ -91,8 +91,7 @@
       --color-fog: #ececee;
       --color-mist: #f4f4f5;
       --color-snow: #ffffff;
-      --color-amber: #C9A84C;
-      --font-display: 'Playfair Display', Georgia, serif;
+      --color-amber: #F54927;
 
       /* Surface tokens — light mode */
       --surface-page: #f4f4f5;
@@ -388,13 +387,17 @@
     ul { list-style: none; }
 
     /* ─── Global Background Video ───────────────────────────────── */
-    #hero-pattern {
-      position: absolute;
+    #bg-video {
+      position: fixed;
       inset: 0;
       width: 100%;
       height: 100%;
-      opacity: 0.07;
+      object-fit: cover;
+      z-index: 0;
+      opacity: 0.45;
       pointer-events: none;
+      will-change: transform;
+      transform: translateZ(0);
     }
     .nav, main, .footer, .ticker-wrap, .mobile-menu { position: relative; z-index: 1; }
     .stats, .brand-strip, .services-section, .packages-section {
@@ -554,7 +557,7 @@
       overflow: hidden;
       display: flex;
       align-items: flex-end;
-      background: #0F0F0F;
+      background: transparent;
     }
     .hero-overlay {
       position: absolute;
@@ -600,7 +603,6 @@
       background: #22c55e;
     }
     .hero-headline {
-      font-family: var(--font-display);
       font-size: clamp(40px, 5.5vw, 64px);
       font-weight: 700;
       color: var(--color-snow);
@@ -611,8 +613,8 @@
     .hero-headline .muted { color: var(--color-amber); font-weight: 300; }
     @keyframes tagline-rotate {
       0% { color: rgba(255,255,255,0.92); }
-      5% { color: #C9A84C; }
-      20% { color: #C9A84C; }
+      5% { color: #F54927; }
+      20% { color: #F54927; }
       27% { color: rgba(255,255,255,0.92); }
       100% { color: rgba(255,255,255,0.92); }
     }
@@ -808,7 +810,6 @@
       background: var(--color-ash);
     }
     .section-heading {
-      font-family: var(--font-display);
       font-size: clamp(32px, 3.5vw, 44px);
       font-weight: 700;
       color: var(--color-obsidian);
@@ -1000,7 +1001,6 @@
       align-items: end;
     }
     .methodology-heading {
-      font-family: var(--font-display);
       font-size: clamp(28px, 3vw, 40px);
       font-weight: 700;
       color: var(--color-snow);
@@ -1373,7 +1373,6 @@
       align-items: end;
     }
     .why-heading {
-      font-family: var(--font-display);
       font-size: clamp(28px, 3vw, 40px);
       font-weight: 700;
       color: var(--color-snow);
@@ -1522,7 +1521,6 @@
       box-shadow: var(--shadow-card-inset);
     }
     .about-heading {
-      font-family: var(--font-display);
       font-size: clamp(28px, 3vw, 40px);
       font-weight: 700;
       color: var(--color-obsidian);
@@ -2463,20 +2461,9 @@
 </head>
 <body>
 
-<svg id="hero-pattern" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
-      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#C9A84C" stroke-width="0.5"/>
-    </pattern>
-    <pattern id="diag" width="96" height="96" patternUnits="userSpaceOnUse">
-      <line x1="0" y1="96" x2="96" y2="0" stroke="#C9A84C" stroke-width="0.5"/>
-      <line x1="-24" y1="96" x2="72" y2="0" stroke="#C9A84C" stroke-width="0.3"/>
-      <line x1="24" y1="96" x2="120" y2="0" stroke="#C9A84C" stroke-width="0.3"/>
-    </pattern>
-  </defs>
-  <rect width="100%" height="100%" fill="url(#grid)"/>
-  <rect width="100%" height="100%" fill="url(#diag)" opacity="0.5"/>
-</svg>
+<video id="bg-video" autoplay muted loop playsinline aria-hidden="true">
+  <source src="hero-video.mp4" type="video/mp4">
+</video>
 
 <!-- ─── Mobile Menu ─────────────────────────────────────────────── -->
 <div id="scroll-progress" aria-hidden="true"></div>
