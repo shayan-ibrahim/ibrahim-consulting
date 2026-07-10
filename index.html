@@ -334,18 +334,51 @@
     /* Results section */
     [data-theme="dark"] .results-section { background: #141416; }
 
+    /* Results cards — subgrid layout for cross-column alignment */
+    .results-grid {
+      display: grid !important;
+      grid-template-columns: repeat(3, minmax(0,1fr)) !important;
+      grid-template-rows: auto auto auto auto auto auto !important;
+      column-gap: 12px !important;
+      row-gap: 0 !important;
+      gap: unset !important;
+      align-items: unset !important;
+      grid-auto-rows: unset !important;
+    }
+    .result-card {
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-row: span 6;
+      background: var(--color-snow);
+      border-radius: var(--radius-card);
+      padding: 32px 28px;
+      box-shadow: var(--shadow-card-inset);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: default;
+    }
+    .result-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-card-inset), rgba(0,0,0,0.06) 0px 8px 24px 0px;
+    }
+    .result-challenge-label { margin-bottom: 12px; align-self: start; }
+    .result-challenge-text { font-size: 14px; color: var(--color-ink); line-height: 1.7; margin-bottom: 10px; align-self: start; }
+    .result-quote { font-size: 13px; color: var(--color-steel); line-height: 1.6; font-style: italic; padding-bottom: 20px; align-self: end; }
+    .result-outcome-label { margin-bottom: 12px; align-self: start; }
+    .result-outcome-text { font-size: 14px; color: var(--color-ink); line-height: 1.7; align-self: start; }
+    .result-metrics { padding-top: 20px; display: flex; flex-direction: column; gap: 12px; align-self: end; }
+
     /* Results cards — match service-card style */
-    [data-theme="dark"] .results-grid > div {
+    [data-theme="dark"] .result-card {
       background: #1a1a1d !important;
       box-shadow: rgba(255,255,255,0.03) 0px 1px 0px 0px inset !important;
     }
-    [data-theme="dark"] .results-grid > div:hover {
+    [data-theme="dark"] .result-card:hover {
       background: #212126 !important;
       box-shadow: rgba(255,255,255,0.03) 0px 1px 0px 0px inset !important;
     }
     /* Stat chips inside results cards */
-    [data-theme="dark"] .results-grid > div [style*="background:var(--color-mist)"],
-    [data-theme="dark"] .results-grid > div [style*="background: var(--color-mist)"] {
+    [data-theme="dark"] .result-card [style*="background:var(--color-mist)"],
+    [data-theme="dark"] .result-card [style*="background: var(--color-mist)"] {
       background: #212126 !important;
     }
     /* Text inside results cards */
@@ -3011,26 +3044,16 @@
       </h2>
       <p class="section-sub" style="max-width:75%">Real engagements. Real outcomes. Every number below came from an actual client.</p>
     </div>
-    <div class="results-grid" style="display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:12px;align-items:stretch">
+    <div class="results-grid">
 
       <!-- Case Study 1 -->
-      <div style="background:var(--color-snow);border-radius:var(--radius-card);padding:32px 28px;box-shadow:var(--shadow-card-inset);display:flex;flex-direction:column;transition:transform 0.2s,box-shadow 0.2s;cursor:default;" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset,rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset'">
-        <div style="flex:1">
-          <div class="section-label" style="margin-bottom:12px">The Challenge</div>
-          <div style="display:flex;flex-direction:column;min-height:120px">
-            <p style="font-size:14px;color:var(--color-ink);line-height:1.7;margin-bottom:10px;flex:1">
-              A 70+ location retailer was struggling with role overlap and inconsistent execution across three states. Leadership was overwhelmed, managers lacked clarity, and performance varied wildly market to market.
-            </p>
-            <p style="font-size:13px;color:var(--color-steel);line-height:1.6;font-style:italic;margin-bottom:20px">
-              They had the talent. They had the locations. What they didn't have was structure.
-            </p>
-          </div>
-          <div class="section-label" style="margin-bottom:12px">The Outcome</div>
-          <p style="font-size:14px;color:var(--color-ink);line-height:1.7;">
-            Within 90 days they had a formalized org structure, defined department heads, and clear accountability across every level.
-          </p>
-        </div>
-        <div style="margin-top:auto;padding-top:20px;display:flex;flex-direction:column;gap:12px">
+      <div class="result-card" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset,rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset'">
+        <div class="section-label result-challenge-label">The Challenge</div>
+        <p class="result-challenge-text">A 70+ location retailer was struggling with role overlap and inconsistent execution across three states. Leadership was overwhelmed, managers lacked clarity, and performance varied wildly market to market.</p>
+        <p class="result-quote">They had the talent. They had the locations. What they didn't have was structure.</p>
+        <div class="section-label result-outcome-label">The Outcome</div>
+        <p class="result-outcome-text">Within 90 days they had a formalized org structure, defined department heads, and clear accountability across every level.</p>
+        <div class="result-metrics">
           <div style="background:var(--color-mist);border-radius:12px;padding:14px">
             <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
               <span style="font-size:11px;font-weight:600;color:var(--color-steel);text-transform:uppercase;letter-spacing:0.06em">Manager Escalations</span>
@@ -3059,23 +3082,13 @@
       </div>
 
       <!-- Case Study 2 -->
-      <div style="background:var(--color-snow);border-radius:var(--radius-card);padding:32px 28px;box-shadow:var(--shadow-card-inset);display:flex;flex-direction:column;transition:transform 0.2s,box-shadow 0.2s;cursor:default;" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset,rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset'">
-        <div style="flex:1">
-          <div class="section-label" style="margin-bottom:12px">The Challenge</div>
-          <div style="display:flex;flex-direction:column;min-height:120px">
-            <p style="font-size:14px;color:var(--color-ink);line-height:1.7;margin-bottom:10px;flex:1">
-              A 270+ retail operation needed to scale rapidly through acquisition while maintaining performance, compliance, and cultural consistency across a fast-growing national footprint.
-            </p>
-            <p style="font-size:13px;color:var(--color-steel);line-height:1.6;font-style:italic;margin-bottom:20px">
-              Speed without structure is how companies fall apart. The goal was to grow fast and stay disciplined.
-            </p>
-          </div>
-          <div class="section-label" style="margin-bottom:12px">The Outcome</div>
-          <p style="font-size:14px;color:var(--color-ink);line-height:1.7;">
-            Five acquisitions in seven months added 130+ locations and propelled the company to 400+ national retail locations.
-          </p>
-        </div>
-        <div style="margin-top:auto;padding-top:20px;display:flex;flex-direction:column;gap:12px">
+      <div class="result-card" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset,rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset'">
+        <div class="section-label result-challenge-label">The Challenge</div>
+        <p class="result-challenge-text">A 270+ retail operation needed to scale rapidly through acquisition while maintaining performance, compliance, and cultural consistency across a fast-growing national footprint.</p>
+        <p class="result-quote">Speed without structure is how companies fall apart. The goal was to grow fast and stay disciplined.</p>
+        <div class="section-label result-outcome-label">The Outcome</div>
+        <p class="result-outcome-text">Five acquisitions in seven months added 130+ locations and propelled the company to 400+ national retail locations.</p>
+        <div class="result-metrics">
           <div style="background:var(--color-mist);border-radius:12px;padding:14px">
             <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
               <span style="font-size:11px;font-weight:600;color:var(--color-steel);text-transform:uppercase;letter-spacing:0.06em">Quota Attainment</span>
@@ -3104,23 +3117,13 @@
       </div>
 
       <!-- Case Study 3 -->
-      <div style="background:var(--color-snow);border-radius:var(--radius-card);padding:32px 28px;box-shadow:var(--shadow-card-inset);display:flex;flex-direction:column;transition:transform 0.2s,box-shadow 0.2s;cursor:default;" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset,rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset'">
-        <div style="flex:1">
-          <div class="section-label" style="margin-bottom:12px">The Challenge</div>
-          <div style="display:flex;flex-direction:column;min-height:120px">
-            <p style="font-size:14px;color:var(--color-ink);line-height:1.7;margin-bottom:10px;flex:1">
-              A $14M multi-state wireless retail operation was losing money in the wrong places — high turnover, poor inventory controls, inconsistent audit scores, and no visibility into who was actually driving results.
-            </p>
-            <p style="font-size:13px;color:var(--color-steel);line-height:1.6;font-style:italic;margin-bottom:20px">
-              The revenue was there. The profitability wasn't. Structure and accountability were the missing link.
-            </p>
-          </div>
-          <div class="section-label" style="margin-bottom:12px">The Outcome</div>
-          <p style="font-size:14px;color:var(--color-ink);line-height:1.7;">
-            A full operational overhaul transformed profitability and people performance across 1,200+ employees and 70+ locations.
-          </p>
-        </div>
-        <div style="margin-top:auto;padding-top:20px;display:flex;flex-direction:column;gap:12px">
+      <div class="result-card" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset,rgba(0,0,0,0.06) 0px 8px 24px 0px'" onmouseleave="this.style.transform='translateY(0)';this.style.boxShadow='rgb(228,228,231) 0px 1px 0px 0px inset'">
+        <div class="section-label result-challenge-label">The Challenge</div>
+        <p class="result-challenge-text">A $14M multi-state wireless retail operation was losing money in the wrong places — high turnover, poor inventory controls, inconsistent audit scores, and no visibility into who was actually driving results.</p>
+        <p class="result-quote">The revenue was there. The profitability wasn't. Structure and accountability were the missing link.</p>
+        <div class="section-label result-outcome-label">The Outcome</div>
+        <p class="result-outcome-text">A full operational overhaul transformed profitability and people performance across 1,200+ employees and 70+ locations.</p>
+        <div class="result-metrics">
           <div style="background:var(--color-mist);border-radius:12px;padding:14px">
             <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
               <span style="font-size:11px;font-weight:600;color:var(--color-steel);text-transform:uppercase;letter-spacing:0.06em">Employee Turnover</span>
@@ -4011,7 +4014,7 @@
 
   // ── Result card odometer ─────────────────────────────────────
   (function() {
-    const resultCards = document.querySelectorAll('.results-grid > div');
+    const resultCards = document.querySelectorAll('.result-card');
     // Cache original values on first read
     const originals = new Map();
     resultCards.forEach((card, ci) => {
