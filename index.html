@@ -432,16 +432,15 @@
     /* ─── Global Background Video ───────────────────────────────── */
     #bg-video {
       position: fixed;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 115%;
-      height: 115%;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      object-position: center top;
       z-index: 0;
-      opacity: 0;
+      opacity: 0.45;
       pointer-events: none;
+      will-change: transform;
+      transform: translateZ(0);
     }
     .nav, main, .footer, .ticker-wrap, .mobile-menu { position: relative; z-index: 1; }
     .stats, .brand-strip, .services-section, .packages-section {
@@ -2579,8 +2578,8 @@
 </head>
 <body>
 
-<video id="bg-video" muted playsinline preload="auto" aria-hidden="true">
-  <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260329_050842_be71947f-f16e-4a14-810c-06e83d23ddb5.mp4" type="video/mp4">
+<video id="bg-video" autoplay muted loop playsinline aria-hidden="true">
+  <source src="hero-video.mp4" type="video/mp4">
 </video>
 
 <!-- ─── Mobile Menu ─────────────────────────────────────────────── -->
@@ -4004,61 +4003,23 @@
   })();
 
   // ── Parallax hero text ───────────────────────────────────────
-  // ── Video background fade system ────────────────────────────
   (function() {
-    const video = document.getElementById('bg-video');
-    if (!video) return;
-    let fadeFrameId = null;
-    let fadingOut = false;
-
-    function cancelFade() {
-      if (fadeFrameId !== null) { cancelAnimationFrame(fadeFrameId); fadeFrameId = null; }
-    }
-    function fadeIn(duration) {
-      cancelFade();
-      const start = performance.now();
-      const startOpacity = parseFloat(video.style.opacity) || 0;
-      function step(now) {
-        const t = Math.min((now - start) / duration, 1);
-        video.style.opacity = startOpacity + (1 - startOpacity) * t;
-        if (t < 1) fadeFrameId = requestAnimationFrame(step);
-        else fadeFrameId = null;
+    const heroBg = document.querySelector('.hero-bg');
+    const heroContent = document.querySelector('.hero-content');
+    if (!heroBg || !heroContent) return;
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const y = window.scrollY;
+          if (y < window.innerHeight) {
+            heroContent.style.transform = `translateY(${y * 0.18}px)`;
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
-      fadeFrameId = requestAnimationFrame(step);
-    }
-    function fadeOut(duration, onDone) {
-      cancelFade();
-      const start = performance.now();
-      const startOpacity = parseFloat(video.style.opacity) || 1;
-      function step(now) {
-        const t = Math.min((now - start) / duration, 1);
-        video.style.opacity = startOpacity * (1 - t);
-        if (t < 1) fadeFrameId = requestAnimationFrame(step);
-        else { fadeFrameId = null; if (onDone) onDone(); }
-      }
-      fadeFrameId = requestAnimationFrame(step);
-    }
-
-    video.addEventListener('canplay', () => {
-      fadingOut = false;
-      video.play().catch(() => {});
-      fadeIn(250);
-    });
-    video.addEventListener('timeupdate', () => {
-      if (!fadingOut && video.duration && (video.duration - video.currentTime) <= 0.55) {
-        fadingOut = true;
-        fadeOut(250);
-      }
-    });
-    video.addEventListener('ended', () => {
-      video.style.opacity = 0;
-      fadingOut = false;
-      setTimeout(() => {
-        video.currentTime = 0;
-        video.play().catch(() => {});
-        fadeIn(250);
-      }, 100);
-    });
+    }, { passive: true });
   })();
 
   // ── Result card odometer ─────────────────────────────────────
