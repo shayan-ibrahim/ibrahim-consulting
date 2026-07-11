@@ -832,7 +832,10 @@
       letter-spacing: -1.5px;
       flex-shrink: 0;
       transition: color 0.2s;
+      min-width: 64px;
+      text-align: center;
     }
+    .firm-stat-num { min-width: 96px; }
     .stat-label {
       font-size: 11.5px;
       font-weight: 400;
@@ -1033,23 +1036,6 @@
       margin-top: 4px;
     }
     .outcome-break { flex-basis: 100%; height: 0; }
-
-    /* ─── Mobile Marquee ─────────────────────────────────────────── */
-    @keyframes marquee-pills {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .marquee-wrap {
-      overflow: hidden;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-    }
-    .marquee-track {
-      display: flex;
-      gap: 6px;
-      width: max-content;
-      animation: marquee-pills 16s linear infinite;
-    }
     .outcome-tag {
       background: var(--color-mist);
       border: 1px solid var(--color-fog);
@@ -2462,17 +2448,13 @@
       .hero-content { padding-top: 24px !important; padding-bottom: 80px !important; }
       /* 2. Scroll-down: handled via JS (adds .hidden class on scroll) */
       .scroll-down { margin-top: 40px !important; }
-      /* 3. Top stat bar: equal number width, aligned dividers and labels */
-      .stats .stat-number { min-width: 58px; }
+      /* 3. Top stat bar: alignment handled globally via .stat-number min-width */
       /* 4. Brand logos: tighten gap */
       .brand-logos { gap: 14px !important; }
-      /* 5+6. What we do: outcome pills → marquee (JS), outcome-break hidden */
-      .outcome-break { display: none !important; }
       /* 7. Results: gap between stacked cards */
       .results-grid { grid-template-columns: 1fr !important; gap: 16px 0 !important; }
       /* 8. About badges: marquee handled via JS */
-      /* 9. Bottom stat: equal number width */
-      .firm-stats-grid .stat-number { min-width: 80px; }
+      /* 9. Bottom stat: alignment handled globally via .firm-stat-num min-width */
       /* Existing overrides */
       .about-photo-mobile { display: block !important; width: 100%; border-radius: var(--radius-card-compact); margin: 16px 0; aspect-ratio: 2/3; object-fit: cover; object-position: center top; }
       .about-photo-col { display: none !important; }
@@ -4169,29 +4151,6 @@
     }, { passive: true });
   })();
 
-  // ── Mobile marquee for outcome pills + about badges ───────────
-  (function() {
-    if (window.innerWidth > 768) return;
-    const targets = [
-      ...document.querySelectorAll('.service-outcomes'),
-      ...document.querySelectorAll('.about-badge-row')
-    ];
-    targets.forEach(wrap => {
-      const items = Array.from(wrap.children).filter(el => !el.classList.contains('outcome-break'));
-      if (items.length === 0) return;
-      wrap.innerHTML = '';
-      const track = document.createElement('div');
-      track.className = 'marquee-track';
-      items.forEach(item => track.appendChild(item.cloneNode(true)));
-      items.forEach(item => {
-        const clone = item.cloneNode(true);
-        clone.setAttribute('aria-hidden', 'true');
-        track.appendChild(clone);
-      });
-      wrap.appendChild(track);
-      wrap.classList.add('marquee-wrap');
-    });
-  })();
 
   // ── Card tilt on hover ────────────────────────────────────────
   (function() {
