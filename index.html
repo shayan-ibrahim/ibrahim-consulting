@@ -2445,7 +2445,11 @@
       .hero-content { padding-top: 24px !important; padding-bottom: 80px !important; }
       /* 2. Scroll-down: handled via JS (adds .hidden class on scroll) */
       .scroll-down { margin-top: 40px !important; }
-      /* 3. Top stat bar: alignment handled globally via .stat-number min-width */
+      /* 3. Top stat bar: single column, number centered, dividers aligned */
+      .stats-grid { grid-template-columns: 1fr !important; }
+      .stats .stat-number { min-width: 56px; text-align: center; }
+      /* Bottom stat bar: same treatment, wider slot for "110%" */
+      .firm-stat-num { min-width: 88px; text-align: center; }
       /* 4. Brand logos: tighten gap */
       .brand-logos { gap: 14px !important; }
       /* 7. Results: gap between stacked cards */
