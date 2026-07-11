@@ -2444,10 +2444,10 @@
     }
 
     @media (max-width: 768px) {
-      /* Hero video: constrain to overlay height */
+      /* Hero video + bg: exact match so overlay covers video fully */
       #bg-video { height: 100svh !important; bottom: auto !important; }
       /* 1. Hero: raise content, full overlay, center content */
-      .hero-bg { align-items: flex-start !important; }
+      .hero-bg { height: 100svh !important; align-items: flex-start !important; overflow-y: hidden !important; }
       .hero-content { padding-top: 48px !important; padding-bottom: 48px !important; }
       /* What we do / Results / Packages: halve top padding */
       .services-section,
