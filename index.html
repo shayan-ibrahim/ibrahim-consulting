@@ -1033,6 +1033,23 @@
       margin-top: 4px;
     }
     .outcome-break { flex-basis: 100%; height: 0; }
+
+    /* ─── Mobile Marquee ─────────────────────────────────────────── */
+    @keyframes marquee-pills {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-wrap {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 6px;
+      width: max-content;
+      animation: marquee-pills 16s linear infinite;
+    }
     .outcome-tag {
       background: var(--color-mist);
       border: 1px solid var(--color-fog);
@@ -1995,7 +2012,9 @@
       text-transform: uppercase;
       cursor: pointer;
       animation: bounce-down 2s ease-in-out infinite;
+      transition: opacity 0.4s ease;
     }
+    .scroll-down.hidden { opacity: 0; pointer-events: none; }
     .scroll-down:hover { color: rgba(255,255,255,0.95); }
     .scroll-down svg { width: 16px; height: 16px; flex-shrink: 0; }
     @keyframes bounce-down {
@@ -2439,17 +2458,28 @@
     }
 
     @media (max-width: 768px) {
+      /* 1. Hero: raise content up */
+      .hero-content { padding-top: 24px !important; padding-bottom: 80px !important; }
+      /* 2. Scroll-down: handled via JS (adds .hidden class on scroll) */
       .scroll-down { margin-top: 40px !important; }
-      .hero-content { padding-bottom: 80px !important; }
-      .results-grid { grid-template-columns: 1fr !important; }
+      /* 3. Top stat bar: equal number width, aligned dividers and labels */
+      .stats .stat-number { min-width: 58px; }
+      /* 4. Brand logos: tighten gap */
+      .brand-logos { gap: 14px !important; }
+      /* 5+6. What we do: outcome pills → marquee (JS), outcome-break hidden */
+      .outcome-break { display: none !important; }
+      /* 7. Results: gap between stacked cards */
+      .results-grid { grid-template-columns: 1fr !important; gap: 16px 0 !important; }
+      /* 8. About badges: marquee handled via JS */
+      /* 9. Bottom stat: equal number width */
+      .firm-stats-grid .stat-number { min-width: 80px; }
+      /* Existing overrides */
       .about-photo-mobile { display: block !important; width: 100%; border-radius: var(--radius-card-compact); margin: 16px 0; aspect-ratio: 2/3; object-fit: cover; object-position: center top; }
       .about-photo-col { display: none !important; }
-      /* Bottom stats: 2-col on mobile, reset inline border-radii */
-      .firm-stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      /* Bottom stats: 1-col on mobile for alignment */
+      .firm-stats-grid { grid-template-columns: 1fr !important; }
       .firm-stats-grid > div { border-radius: 0 !important; }
       .firm-stats-grid > div:first-child { border-radius: var(--radius-card) var(--radius-card) 0 0 !important; }
-      .firm-stats-grid > div:nth-child(2) { border-radius: 0 !important; }
-      .firm-stats-grid > div:nth-child(3) { border-radius: 0 !important; }
       .firm-stats-grid > div:last-child { border-radius: 0 0 var(--radius-card) var(--radius-card) !important; }
     }
     .about-photo-mobile { display: none; }
@@ -3867,7 +3897,8 @@
     }
     requestAnimationFrame(tick);
   }
-  const statNumbers = document.querySelectorAll('.stat-number');
+  // Top stat bar numbers only (not firm stats)
+  const statNumbers = document.querySelectorAll('.stats .stat-number');
   const statOriginals = new Map();
   statNumbers.forEach(el => statOriginals.set(el, el.textContent.trim()));
   let statRunning = false;
@@ -3891,6 +3922,32 @@
   }, { threshold: 0.3 });
   const statsSection = document.querySelector('.stats');
   if (statsSection) statObserver.observe(statsSection);
+
+  // Firm stat bar numbers (bottom section) — separate observer
+  const firmStatNums = document.querySelectorAll('.firm-stat-num');
+  const firmOriginals = new Map();
+  firmStatNums.forEach(el => firmOriginals.set(el, el.textContent.trim()));
+  let firmRunning = false;
+  const firmObserver = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !firmRunning) {
+      firmRunning = true;
+      firmStatNums.forEach(el => {
+        const raw = firmOriginals.get(el);
+        const num = parseFloat(raw.replace(/[^0-9.]/g, ''));
+        const suffix = raw.replace(/[0-9.]/g, '');
+        if (!isNaN(num)) animateCount(el, num, suffix, 2200);
+      });
+    } else if (!entries[0].isIntersecting) {
+      firmRunning = false;
+      firmStatNums.forEach(el => {
+        const raw = firmOriginals.get(el);
+        const suffix = raw.replace(/[0-9.]/g, '');
+        el.textContent = '0' + suffix;
+      });
+    }
+  }, { threshold: 0.3 });
+  const firmStatsSection = document.querySelector('.firm-stats-grid');
+  if (firmStatsSection) firmObserver.observe(firmStatsSection);
 
   // ── Scroll fade + slide ─────────────────────────────────────
   const fadeEls = document.querySelectorAll(
@@ -4098,6 +4155,43 @@
 
   // ── Disable right-click and text selection ───────────────────
   document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // ── Scroll-down hide on scroll ────────────────────────────────
+  (function() {
+    const scrollBtn = document.querySelector('.scroll-down');
+    if (!scrollBtn) return;
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 60) {
+        scrollBtn.classList.add('hidden');
+      } else {
+        scrollBtn.classList.remove('hidden');
+      }
+    }, { passive: true });
+  })();
+
+  // ── Mobile marquee for outcome pills + about badges ───────────
+  (function() {
+    if (window.innerWidth > 768) return;
+    const targets = [
+      ...document.querySelectorAll('.service-outcomes'),
+      ...document.querySelectorAll('.about-badge-row')
+    ];
+    targets.forEach(wrap => {
+      const items = Array.from(wrap.children).filter(el => !el.classList.contains('outcome-break'));
+      if (items.length === 0) return;
+      wrap.innerHTML = '';
+      const track = document.createElement('div');
+      track.className = 'marquee-track';
+      items.forEach(item => track.appendChild(item.cloneNode(true)));
+      items.forEach(item => {
+        const clone = item.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
+      });
+      wrap.appendChild(track);
+      wrap.classList.add('marquee-wrap');
+    });
+  })();
 
   // ── Card tilt on hover ────────────────────────────────────────
   (function() {
