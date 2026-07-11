@@ -3945,8 +3945,7 @@
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('fade-visible');
-      } else {
-        entry.target.classList.remove('fade-visible');
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.06 });
