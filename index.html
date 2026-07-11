@@ -2441,10 +2441,18 @@
     }
 
     @media (max-width: 768px) {
-      /* 1. Hero: raise content up */
-      .hero-content { padding-top: 24px !important; padding-bottom: 80px !important; }
+      /* 1. Hero: raise content up — pin to top of hero-bg instead of bottom */
+      .hero-bg { align-items: flex-start !important; }
+      .hero-content { padding-top: 48px !important; padding-bottom: 80px !important; }
       /* 2. Scroll-down: handled via JS (adds .hidden class on scroll) */
       .scroll-down { margin-top: 40px !important; }
+      /* Brand strip: second sentence on new line */
+      .mobile-block { display: block; }
+      /* Section descriptions: full width */
+      .section-sub,
+      .problem-body,
+      .methodology-sub,
+      .why-sub { max-width: none !important; }
       /* 3. Top stat bar: single column, number centered, dividers aligned */
       .stats-grid { grid-template-columns: 1fr !important; }
       .stats .stat-number { min-width: 56px; text-align: center; }
@@ -2800,7 +2808,7 @@
 <!-- ─── Brand Strip ──────────────────────────────────────────────── -->
 <section class="brand-strip dot-grid" aria-label="Brands we have supported">
   <div class="container">
-    <p style="text-align:center;font-size:17px;font-weight:600;color:var(--color-obsidian);letter-spacing:-0.2px;margin-bottom:32px;">17 companies — each one different. Every single one built into a top performer.</p>
+    <p style="text-align:center;font-size:17px;font-weight:600;color:var(--color-obsidian);letter-spacing:-0.2px;margin-bottom:32px;">17 companies — each one different.<span class="mobile-break"> </span><span class="mobile-block">Every single one built into a top performer.</span></p>
     <div class="brand-logos">
 
       <!-- AT&T -->
