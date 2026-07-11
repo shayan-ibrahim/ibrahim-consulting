@@ -2441,9 +2441,14 @@
     }
 
     @media (max-width: 768px) {
-      /* 1. Hero: raise content up — pin to top of hero-bg instead of bottom */
+      /* 1. Hero: raise content, full overlay, center content */
       .hero-bg { align-items: flex-start !important; }
-      .hero-content { padding-top: 48px !important; padding-bottom: 80px !important; }
+      .hero-content { padding-top: 48px !important; padding-bottom: 80px !important; align-items: center !important; text-align: center !important; }
+      .hero-overlay { background: rgba(0,0,0,1) !important; }
+      /* Section header spacing for specific sections */
+      .services-section .section-header,
+      #results .section-header,
+      .packages-section .section-header { margin-bottom: 24px !important; }
       /* 2. Scroll-down: handled via JS (adds .hidden class on scroll) */
       .scroll-down { margin-top: 40px !important; }
       /* Hero: space above discovery call link */
