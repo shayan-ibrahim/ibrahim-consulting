@@ -2906,8 +2906,14 @@
       .pwa-about-avatar { width: 68px; height: 68px; border-radius: 50%; background: linear-gradient(135deg, #1a1a22, #2a2a34); border: 2px solid rgba(255,170,0,0.4); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: var(--color-amber); margin-bottom: 14px; letter-spacing: -0.5px; font-family: var(--font-primary); }
       .pwa-about-name { font-size: 21px; font-weight: 800; color: #fff; letter-spacing: -0.5px; margin-bottom: 3px; }
       .pwa-about-role { font-size: 12.5px; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
-      .pwa-about-badges { display: flex; flex-wrap: wrap; gap: 6px; }
-      .pwa-about-badge { font-size: 10.5px; font-weight: 600; padding: 4px 10px; border-radius: 100px; background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.1); }
+      .pwa-about-badges { overflow: hidden; margin-top: 2px; display: flex; flex-direction: column; gap: 7px; }
+      .pwa-badge-track-wrap { overflow: hidden; }
+      .pwa-badge-track { display: flex; gap: 7px; width: max-content; }
+      .pwa-badge-track--fwd { animation: pwa-badge-fwd 22s linear infinite; }
+      .pwa-badge-track--rev { animation: pwa-badge-rev 26s linear infinite; }
+      @keyframes pwa-badge-fwd { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+      @keyframes pwa-badge-rev { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+      .pwa-about-badge { font-size: 10.5px; font-weight: 600; padding: 5px 12px; border-radius: 100px; background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.1); white-space: nowrap; flex-shrink: 0; }
       .pwa-about-bio { background: #fff; padding: 20px; border-bottom: 1px solid #ececee; }
       .pwa-about-p { font-size: 13px; color: #52525b; line-height: 1.65; }
       .pwa-about-p + .pwa-about-p { margin-top: 11px; }
@@ -4752,15 +4758,34 @@
         <div class="pwa-about-name">Shayan Ibrahim</div>
         <div class="pwa-about-role">Founder &amp; Principal Consultant</div>
         <div class="pwa-about-badges">
-          <span class="pwa-about-badge">Former AT&amp;T Chief of Staff</span>
-          <span class="pwa-about-badge">18+ Years Experience</span>
-          <span class="pwa-about-badge">8K Locations Supported</span>
-          <span class="pwa-about-badge">Organizational Design</span>
-          <span class="pwa-about-badge">Leadership Effectiveness</span>
-          <span class="pwa-about-badge">Operational Improvement</span>
-          <span class="pwa-about-badge">Culture Transformation</span>
-          <span class="pwa-about-badge">Webforce Structure</span>
-          <span class="pwa-about-badge">Cross-Functional Alignment</span>
+          <div class="pwa-badge-track-wrap">
+            <div class="pwa-badge-track pwa-badge-track--fwd">
+              <span class="pwa-about-badge">Former AT&amp;T Chief of Staff</span>
+              <span class="pwa-about-badge">18+ Years Experience</span>
+              <span class="pwa-about-badge">8K Locations Supported</span>
+              <span class="pwa-about-badge">Organizational Design</span>
+              <span class="pwa-about-badge">Leadership Effectiveness</span>
+              <!-- duplicate for seamless loop -->
+              <span class="pwa-about-badge">Former AT&amp;T Chief of Staff</span>
+              <span class="pwa-about-badge">18+ Years Experience</span>
+              <span class="pwa-about-badge">8K Locations Supported</span>
+              <span class="pwa-about-badge">Organizational Design</span>
+              <span class="pwa-about-badge">Leadership Effectiveness</span>
+            </div>
+          </div>
+          <div class="pwa-badge-track-wrap">
+            <div class="pwa-badge-track pwa-badge-track--rev">
+              <span class="pwa-about-badge">Operational Improvement</span>
+              <span class="pwa-about-badge">Culture Transformation</span>
+              <span class="pwa-about-badge">Webforce Structure</span>
+              <span class="pwa-about-badge">Cross-Functional Alignment</span>
+              <!-- duplicate for seamless loop -->
+              <span class="pwa-about-badge">Operational Improvement</span>
+              <span class="pwa-about-badge">Culture Transformation</span>
+              <span class="pwa-about-badge">Webforce Structure</span>
+              <span class="pwa-about-badge">Cross-Functional Alignment</span>
+            </div>
+          </div>
         </div>
       </div>
       <div class="pwa-about-bio">
