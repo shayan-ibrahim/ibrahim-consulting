@@ -2929,7 +2929,7 @@
       .pwa-dark-hdr .pwa-hed { color: #fff; }
       .pwa-light-hdr .pwa-hed { color: #09090b; }
       .pwa-sub { font-size: 12.5px; line-height: 1.55; }
-      .pwa-dark-hdr .pwa-sub { color: rgba(255,255,255,0.42); }
+      .pwa-dark-hdr .pwa-sub { color: rgba(255,255,255,0.72); }
       .pwa-light-hdr .pwa-sub { color: #71717a; }
       .pwa-card-list { padding: 14px; display: flex; flex-direction: column; gap: 10px; background: #f4f4f5; }
 
@@ -2980,10 +2980,13 @@
       .pwa-pkg-timeline { font-size: 10.5px; color: #71717a; margin-top: 3px; }
 
       /* ══ ABOUT ════════════════════════════════════════════════════ */
-      .pwa-about-hdr { background: #09090b; padding: calc(env(safe-area-inset-top, 0px) + 20px) 20px 26px; }
+      .pwa-about-hdr { background: #09090b; padding: calc(env(safe-area-inset-top, 0px) + 20px) 20px 26px; position: relative; overflow: hidden; }
+      .pwa-about-hdr video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.45; pointer-events: none; z-index: 0; }
+      .pwa-about-hdr::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(5,5,10,0.3) 0%, rgba(5,5,10,0.05) 35%, rgba(5,5,10,0.6) 75%, rgba(5,5,10,0.94) 100%); z-index: 1; pointer-events: none; }
+      .pwa-about-hdr > *:not(video) { position: relative; z-index: 2; }
       .pwa-about-avatar { width: 68px; height: 68px; border-radius: 50%; background: linear-gradient(135deg, #1a1a22, #2a2a34); border: 2px solid rgba(255,170,0,0.4); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: var(--color-amber); margin-bottom: 14px; letter-spacing: -0.5px; font-family: var(--font-primary); }
       .pwa-about-name { font-size: 21px; font-weight: 800; color: #fff; letter-spacing: -0.5px; margin-bottom: 3px; }
-      .pwa-about-role { font-size: 12.5px; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
+      .pwa-about-role { font-size: 12.5px; color: rgba(255,255,255,0.72); margin-bottom: 14px; }
       .pwa-about-badges { overflow: hidden; margin-top: 2px; display: flex; flex-direction: column; gap: 7px; }
       .pwa-badge-track-wrap { overflow: hidden; }
       .pwa-badge-track { display: flex; gap: 7px; width: max-content; }
@@ -4831,7 +4834,7 @@
 
     <!-- ── ABOUT ──────────────────────────────────────────────────── -->
     <div class="pwa-screen" id="pwa-about">
-      <div class="pwa-about-hdr">
+      <div class="pwa-about-hdr"><video autoplay muted loop playsinline><source src="hero-video.mp4" type="video/mp4"></video>
         <div class="pwa-about-avatar">SI</div>
         <div class="pwa-about-name">Shayan Ibrahim</div>
         <div class="pwa-about-role">Founder, CEO &amp; Principal Consultant</div>
