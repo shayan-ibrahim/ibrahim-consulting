@@ -1026,14 +1026,9 @@
       cursor: default;
     }
     .service-card:hover {
-      background: var(--color-amber);
       box-shadow: var(--shadow-card-inset), rgba(0,0,0,0.06) 0px 8px 24px 0px;
     }
-    .service-card:hover .service-icon { background: rgba(255,255,255,0.25); }
-    .service-card:hover .service-icon svg { stroke: #fff; }
-    .service-card:hover .service-title { color: #fff; }
-    .service-card:hover .service-desc { color: rgba(255,255,255,0.82); }
-    .service-card:hover .service-badge { background: rgba(255,255,255,0.22); color: #fff; }
+    .service-card:hover .service-icon svg { stroke: var(--color-amber); }
     .service-icon {
       width: 44px;
       height: 44px;
