@@ -2737,7 +2737,8 @@
 
       /* ─ Screens ─ */
       .pwa-screen { display: none; }
-      .pwa-screen.active { display: block; min-height: 100%; }
+      .pwa-screen.active { display: block; min-height: 100%; animation: pwa-screen-fade 0.22s ease; }
+      @keyframes pwa-screen-fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
       /* ─ Tab bar ─ */
       #pwa-tabbar {
@@ -2751,6 +2752,16 @@
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         position: relative;
+      }
+      /* Sliding amber indicator */
+      #pwa-tab-indicator {
+        position: absolute;
+        top: 0;
+        height: 2px;
+        background: var(--color-amber);
+        border-radius: 0 0 2px 2px;
+        transition: left 0.25s cubic-bezier(0.4,0,0.2,1), width 0.25s cubic-bezier(0.4,0,0.2,1);
+        pointer-events: none;
       }
       .pwa-tab {
         flex: 1;
@@ -3003,6 +3014,95 @@
       .pwa-about-cta-hed { font-size: 19px; font-weight: 800; color: #fff; letter-spacing: -0.4px; margin-bottom: 5px; }
       .pwa-about-cta-sub { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.5; margin-bottom: 16px; }
       .pwa-about-cta-btn { background: var(--color-amber); color: #09090b; font-family: var(--font-primary); font-size: 14px; font-weight: 800; padding: 14px 24px; border-radius: 100px; border: none; cursor: pointer; width: 100%; -webkit-tap-highlight-color: transparent; }
+
+      /* ── 1. Scroll-triggered card entrance ────────────────────────── */
+      @keyframes pwa-fade-up {
+        from { opacity: 0; transform: translateY(18px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .pwa-reveal {
+        opacity: 0;
+      }
+      .pwa-reveal.visible {
+        animation: pwa-fade-up 0.42s cubic-bezier(0.22,1,0.36,1) forwards;
+      }
+
+      /* ── 3. Hero CTA shimmer ──────────────────────────────────────── */
+      .pwa-hero-cta { position: relative; overflow: hidden; }
+      .pwa-hero-cta::after {
+        content: '';
+        position: absolute;
+        top: 0; left: -100%; width: 60%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+        animation: pwa-shimmer 3.5s ease-in-out infinite;
+        animation-delay: 1.5s;
+      }
+      @keyframes pwa-shimmer {
+        0%   { left: -100%; }
+        40%  { left: 130%; }
+        100% { left: 130%; }
+      }
+
+      /* ── 4. Featured package glow pulse ──────────────────────────── */
+      @keyframes pwa-pkg-glow {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(255,170,0,0.0), 0 0 0 1px var(--color-amber); }
+        50%       { box-shadow: 0 0 18px 4px rgba(255,170,0,0.2), 0 0 0 1px var(--color-amber); }
+      }
+      .pwa-pkg.pwa-featured {
+        animation: pwa-pkg-glow 3s ease-in-out infinite;
+      }
+
+      /* ── 5. About avatar ring pulse ──────────────────────────────── */
+      @keyframes pwa-avatar-pulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(255,170,0,0.0); }
+        50%       { box-shadow: 0 0 0 6px rgba(255,170,0,0.15); }
+      }
+      .pwa-about-avatar {
+        animation: pwa-avatar-pulse 2.8s ease-in-out infinite;
+      }
+
+      /* ── 6. Card tap feedback ─────────────────────────────────────── */
+      .pwa-svc:active,
+      .pwa-phase:active,
+      .pwa-result:active,
+      .pwa-pkg:active {
+        transform: scale(0.97);
+        transition: transform 0.1s ease;
+      }
+      .pwa-svc, .pwa-phase, .pwa-result, .pwa-pkg {
+        transition: transform 0.2s ease;
+      }
+
+      /* ── 7. Hero staggered entrance ──────────────────────────────── */
+      @keyframes pwa-hero-in {
+        from { opacity: 0; transform: translateY(12px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .pwa-hero-wordmark {
+        animation: pwa-hero-in 0.5s ease both;
+        animation-delay: 0.1s;
+      }
+      .pwa-hero-tags {
+        animation: pwa-hero-in 0.5s ease both;
+        animation-delay: 0.25s;
+      }
+      .pwa-hero-h1 {
+        animation: pwa-hero-in 0.5s ease both;
+        animation-delay: 0.38s;
+      }
+      .pwa-hero-body {
+        animation: pwa-hero-in 0.5s ease both;
+        animation-delay: 0.5s;
+      }
+      .pwa-hero-cta-wrap {
+        animation: pwa-hero-in 0.5s ease both;
+        animation-delay: 0.62s;
+      }
+
+      /* ── 8. Phase card left amber accent ─────────────────────────── */
+      .pwa-phase {
+        border-left: 3px solid var(--color-amber);
+      }
     }
   </style>
 </head>
@@ -4620,37 +4720,37 @@
         <div class="pwa-sub">We build the structure, leadership, and operational discipline you need to scale.</div>
       </div>
       <div class="pwa-card-list">
-        <div class="pwa-svc">
+        <div class="pwa-svc pwa-reveal">
           <div class="pwa-svc-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
           <div class="pwa-svc-name">Organizational Design</div>
           <div class="pwa-svc-desc">We rebuild your organizational structure from the ground up — clear reporting lines, defined departments, and roles that match how your business actually runs today.</div>
           <div class="pwa-svc-pills"><span class="pwa-pill">Structure</span><span class="pwa-pill">Org Charts</span><span class="pwa-pill">Roles</span></div>
         </div>
-        <div class="pwa-svc">
+        <div class="pwa-svc pwa-reveal">
           <div class="pwa-svc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12,7 12,12 15,15"/></svg></div>
           <div class="pwa-svc-name">Operational Effectiveness</div>
           <div class="pwa-svc-desc">We follow the work across your entire business — every handoff, every bottleneck, every process that slows things down. Then we redesign it so your team spends time moving forward.</div>
           <div class="pwa-svc-pills"><span class="pwa-pill">Processes</span><span class="pwa-pill">Bottlenecks</span><span class="pwa-pill">Efficiency</span></div>
         </div>
-        <div class="pwa-svc">
+        <div class="pwa-svc pwa-reveal">
           <div class="pwa-svc-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
           <div class="pwa-svc-name">Leadership & Coaching</div>
           <div class="pwa-svc-desc">Great structure only works if your leaders can actually execute it. We coach executives, develop managers, and help your leadership team show up with clarity and consistency.</div>
           <div class="pwa-svc-pills"><span class="pwa-pill">Coaching</span><span class="pwa-pill">Managers</span><span class="pwa-pill">Clarity</span></div>
         </div>
-        <div class="pwa-svc">
+        <div class="pwa-svc pwa-reveal">
           <div class="pwa-svc-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg></div>
           <div class="pwa-svc-name">People Infrastructure</div>
           <div class="pwa-svc-desc">Job descriptions, evaluation frameworks, career paths, hiring processes. We build it properly so your people know what's expected and where they're headed.</div>
           <div class="pwa-svc-pills"><span class="pwa-pill">HR Systems</span><span class="pwa-pill">Job Design</span><span class="pwa-pill">Career Paths</span></div>
         </div>
-        <div class="pwa-svc">
+        <div class="pwa-svc pwa-reveal">
           <div class="pwa-svc-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
           <div class="pwa-svc-name">Culture & Change</div>
           <div class="pwa-svc-desc">Culture isn't a poster on the wall — it's how decisions get made when no one's watching. We help you translate your values into daily behaviors that actually stick.</div>
           <div class="pwa-svc-pills"><span class="pwa-pill">Values</span><span class="pwa-pill">Change Mgmt</span><span class="pwa-pill">Culture</span></div>
         </div>
-        <div class="pwa-svc">
+        <div class="pwa-svc pwa-reveal">
           <div class="pwa-svc-icon"><svg viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></div>
           <div class="pwa-svc-name">AI & Scale Readiness</div>
           <div class="pwa-svc-desc">We pinpoint where AI can reduce manual work and give your team a real edge — and build what you need to scale without breaking.</div>
@@ -4667,7 +4767,7 @@
         <div class="pwa-sub">No guessing games. Every engagement moves through the same three phases — and at each step, you'll know exactly what's happening and why.</div>
       </div>
       <div class="pwa-card-list">
-        <div class="pwa-phase">
+        <div class="pwa-phase pwa-reveal">
           <div class="pwa-phase-num">Phase 01</div>
           <div class="pwa-phase-title">We listen first.</div>
           <div class="pwa-phase-desc">Before recommending anything, we get inside your business. We talk to your people, observe how things actually run, and find what's really getting in the way.</div>
@@ -4679,7 +4779,7 @@
             <li>Strategic findings and gap report</li>
           </ul>
         </div>
-        <div class="pwa-phase">
+        <div class="pwa-phase pwa-reveal">
           <div class="pwa-phase-num">Phase 02</div>
           <div class="pwa-phase-title">We build the fix.</div>
           <div class="pwa-phase-desc">No templates dropped on your desk. We design solutions around how your business actually works — org structures, frameworks, and roadmaps you can actually use.</div>
@@ -4691,7 +4791,7 @@
             <li>Prioritized implementation roadmap</li>
           </ul>
         </div>
-        <div class="pwa-phase">
+        <div class="pwa-phase pwa-reveal">
           <div class="pwa-phase-num">Phase 03</div>
           <div class="pwa-phase-title">We stay until it works.</div>
           <div class="pwa-phase-desc">We don't hand over a deck and disappear. We stay in it — coaching, adjusting, following up — until the changes are real and your team owns them.</div>
@@ -4714,7 +4814,7 @@
         <div class="pwa-sub">Real engagements. Real outcomes. Every number below came from an actual client.</div>
       </div>
       <div class="pwa-card-list">
-        <div class="pwa-result">
+        <div class="pwa-result pwa-reveal">
           <div class="pwa-result-body">
             <div class="pwa-result-badge">The Challenge</div>
             <div class="pwa-result-challenge">A 70+ location retailer was struggling with role overlap and inconsistent execution across three states. Leadership was overwhelmed, managers lacked clarity.</div>
@@ -4728,7 +4828,7 @@
             <div class="pwa-metric amber"><div class="pwa-metric-num">↓40%</div><div class="pwa-metric-lbl">Manager escalations</div></div>
           </div>
         </div>
-        <div class="pwa-result">
+        <div class="pwa-result pwa-reveal">
           <div class="pwa-result-body">
             <div class="pwa-result-badge">The Challenge</div>
             <div class="pwa-result-challenge">A 270+ retail operation needed to scale rapidly through acquisition while maintaining performance, compliance, and cultural consistency.</div>
@@ -4742,7 +4842,7 @@
             <div class="pwa-metric amber"><div class="pwa-metric-num">120%</div><div class="pwa-metric-lbl">Quota attainment</div></div>
           </div>
         </div>
-        <div class="pwa-result">
+        <div class="pwa-result pwa-reveal">
           <div class="pwa-result-body">
             <div class="pwa-result-badge">The Challenge</div>
             <div class="pwa-result-challenge">A $14M multi-state wireless retail operation was losing money — high turnover, poor inventory controls, inconsistent audit scores, no visibility into results.</div>
@@ -4767,7 +4867,7 @@
         <div class="pwa-sub">Every engagement is fixed-scope, fixed-price — no retainers, no surprises.</div>
       </div>
       <div class="pwa-card-list">
-        <div class="pwa-pkg">
+        <div class="pwa-pkg pwa-reveal">
           <div class="pwa-pkg-name">Business Audit &amp; Strategic Roadmap</div>
           <div class="pwa-pkg-desc">We get inside your business, map how things actually work, and find what's costing you — time, money, or momentum. You leave with a clear picture of what to fix first.</div>
           <div class="pwa-pkg-footer">
@@ -4775,7 +4875,7 @@
             <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/3cI14a6eefom5SdfpdgEg05','Business Audit &amp; Strategic Roadmap — $4,500')">Get Started</button>
           </div>
         </div>
-        <div class="pwa-pkg">
+        <div class="pwa-pkg pwa-reveal">
           <div class="pwa-pkg-name">Organizational Diagnostic</div>
           <div class="pwa-pkg-desc">We take a targeted look at your leadership team, your departments, and how your org is structured — then tell you clearly where the cracks are and what's quietly holding back performance.</div>
           <div class="pwa-pkg-footer">
@@ -4783,7 +4883,7 @@
             <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/5kQ9AGcCCfom2G14KzgEg06','Organizational Diagnostic — $5,500')">Get Started</button>
           </div>
         </div>
-        <div class="pwa-pkg pwa-featured">
+        <div class="pwa-pkg pwa-featured pwa-reveal">
           <div class="pwa-pkg-name">Organizational Foundation Build</div>
           <div class="pwa-pkg-desc">We don't just diagnose — we build. Job descriptions, department structures, accountability frameworks. Everything your team needs to operate with clarity.</div>
           <div class="pwa-pkg-footer">
@@ -4791,7 +4891,7 @@
             <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/cNieV0eKK4JIgwRa4TgEg07','Organizational Foundation Build — $6,500')">Get Started</button>
           </div>
         </div>
-        <div class="pwa-pkg">
+        <div class="pwa-pkg pwa-reveal">
           <div class="pwa-pkg-name">Performance &amp; Future-State Transformation</div>
           <div class="pwa-pkg-desc">We sharpen how your teams are measured, redefine who's responsible for what, and design the organizational model your business needs to operate at its next stage.</div>
           <div class="pwa-pkg-footer">
@@ -4799,7 +4899,7 @@
             <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/00weV05aa5NM80l90PgEg08','Performance &amp; Future-State Transformation — $7,500')">Get Started</button>
           </div>
         </div>
-        <div class="pwa-pkg">
+        <div class="pwa-pkg pwa-reveal">
           <div class="pwa-pkg-name">Embedded Scaling Partner</div>
           <div class="pwa-pkg-desc">Full-access, embedded partnership. We work inside your business like a fractional COO — driving transformation from the inside, not from a deck.</div>
           <div class="pwa-pkg-footer">
@@ -4903,17 +5003,98 @@
       <span class="pwa-tab-label">About</span>
     </button>
     <div class="pwa-home-ind"></div>
+    <div id="pwa-tab-indicator"></div>
   </div>
 </div>
 
 <script>
+// ── Tab switching + indicator ────────────────────────────────────
 function pwaSwitchTab(btn) {
   document.querySelectorAll('.pwa-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.pwa-screen').forEach(s => s.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById('pwa-' + btn.dataset.screen).classList.add('active');
+  const screen = document.getElementById('pwa-' + btn.dataset.screen);
+  screen.classList.add('active');
   document.getElementById('pwa-content').scrollTop = 0;
+  movePwaIndicator(btn);
+  // Re-observe reveals on new screen
+  screen.querySelectorAll('.pwa-reveal:not(.visible)').forEach(el => revealObserver.observe(el));
+  // Trigger count-up for stat cells in the newly shown screen
+  screen.querySelectorAll('.pwa-snum, .pwa-fnum, .pwa-about-stat-num, .pwa-metric-num').forEach(el => {
+    if (!el.dataset.counted) triggerCountUp(el);
+  });
 }
+
+function movePwaIndicator(btn) {
+  const ind = document.getElementById('pwa-tab-indicator');
+  if (!ind || !btn) return;
+  const bar = document.getElementById('pwa-tabbar');
+  const btnRect = btn.getBoundingClientRect();
+  const barRect = bar.getBoundingClientRect();
+  ind.style.left  = (btnRect.left - barRect.left) + 'px';
+  ind.style.width = btnRect.width + 'px';
+}
+
+// Init indicator on load
+window.addEventListener('load', () => {
+  const activeTab = document.querySelector('.pwa-tab.active');
+  if (activeTab) movePwaIndicator(activeTab);
+});
+
+// ── Scroll-triggered reveal (IntersectionObserver) ───────────────
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const siblings = Array.from(el.parentElement.children).filter(c => c.classList.contains('pwa-reveal'));
+      const idx = siblings.indexOf(el);
+      el.style.animationDelay = (idx * 0.07) + 's';
+      el.classList.add('visible');
+      revealObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.pwa-reveal').forEach(el => revealObserver.observe(el));
+
+// ── Count-up animation ───────────────────────────────────────────
+function parseStatValue(text) {
+  const clean = text.trim();
+  const match = clean.match(/^([^0-9]*)([0-9]+(?:\.[0-9]+)?)([^0-9]*)$/);
+  if (!match) return null;
+  return { prefix: match[1], value: parseFloat(match[2]), suffix: match[3] };
+}
+
+function triggerCountUp(el) {
+  const parsed = parseStatValue(el.textContent);
+  if (!parsed || parsed.value === 0) return;
+  el.dataset.counted = '1';
+  const duration = 1100;
+  const start = performance.now();
+  const end = parsed.value;
+  function tick(now) {
+    const progress = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    const current = end < 10 ? Math.round(ease * end * 10) / 10 : Math.round(ease * end);
+    el.textContent = parsed.prefix + current + parsed.suffix;
+    if (progress < 1) requestAnimationFrame(tick);
+    else el.textContent = parsed.prefix + end + parsed.suffix;
+  }
+  requestAnimationFrame(tick);
+}
+
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      triggerCountUp(entry.target);
+      countObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.pwa-snum, .pwa-fnum, .pwa-about-stat-num, .pwa-metric-num').forEach(el => {
+  countObserver.observe(el);
+});
 </script>
 
 </body>
