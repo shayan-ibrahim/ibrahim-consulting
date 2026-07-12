@@ -2871,6 +2871,34 @@
       }
       .pwa-hero-discover em { color: var(--color-amber); font-style: normal; text-decoration: underline; text-underline-offset: 2px; }
 
+      /* Dot grid for PWA light sections */
+      .pwa-home-scroll,
+      .pwa-stats-wrap,
+      .pwa-brand-strip,
+      .pwa-about-bio,
+      .pwa-card-list,
+      .pwa-light-hdr { position: relative; }
+      .pwa-home-scroll::before,
+      .pwa-stats-wrap::before,
+      .pwa-brand-strip::before,
+      .pwa-about-bio::before,
+      .pwa-card-list::before,
+      .pwa-light-hdr::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+        background-size: 22px 22px;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .pwa-home-scroll > *,
+      .pwa-stats-wrap > *,
+      .pwa-brand-strip > *,
+      .pwa-about-bio > *,
+      .pwa-card-list > *,
+      .pwa-light-hdr > * { position: relative; z-index: 1; }
+
       /* Home scroll (stats / brand / firm stats) */
       .pwa-home-scroll { background: #fff; }
       .pwa-stats-wrap { padding: 22px 18px; border-bottom: 1px solid #ececee; }
