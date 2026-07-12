@@ -3032,10 +3032,12 @@
       .pwa-hero-cta::after {
         content: '';
         position: absolute;
-        top: 0; left: -100%; width: 60%; height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+        top: 0; left: -100%; width: 55%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(0,0,0,0.06), transparent);
         animation: pwa-shimmer 3.5s ease-in-out infinite;
-        animation-delay: 1.5s;
+        animation-delay: 1.8s;
+        pointer-events: none;
+        z-index: 1;
       }
       @keyframes pwa-shimmer {
         0%   { left: -100%; }
@@ -3045,11 +3047,12 @@
 
       /* ── 4. Featured package glow pulse ──────────────────────────── */
       @keyframes pwa-pkg-glow {
-        0%, 100% { box-shadow: 0 0 0 0 rgba(255,170,0,0.0), 0 0 0 1px var(--color-amber); }
-        50%       { box-shadow: 0 0 18px 4px rgba(255,170,0,0.2), 0 0 0 1px var(--color-amber); }
+        0%, 100% { box-shadow: 0 0 0 0 rgba(255,170,0,0.0); }
+        50%       { box-shadow: 0 0 18px 6px rgba(255,170,0,0.22); }
       }
-      .pwa-pkg.pwa-featured {
-        animation: pwa-pkg-glow 3s ease-in-out infinite;
+      .pwa-pkg.pwa-featured.visible {
+        animation: pwa-fade-up 0.42s cubic-bezier(0.22,1,0.36,1) forwards,
+                   pwa-pkg-glow 3s ease-in-out 0.5s infinite;
       }
 
       /* ── 5. About avatar ring pulse ──────────────────────────────── */
@@ -3061,16 +3064,12 @@
         animation: pwa-avatar-pulse 2.8s ease-in-out infinite;
       }
 
-      /* ── 6. Card tap feedback ─────────────────────────────────────── */
-      .pwa-svc:active,
-      .pwa-phase:active,
-      .pwa-result:active,
-      .pwa-pkg:active {
-        transform: scale(0.97);
-        transition: transform 0.1s ease;
-      }
+      /* ── 6. Card tap feedback (JS-driven, iOS-safe) ───────────────── */
       .pwa-svc, .pwa-phase, .pwa-result, .pwa-pkg {
-        transition: transform 0.2s ease;
+        transition: transform 0.15s ease;
+      }
+      .pwa-tap-active {
+        transform: scale(0.97) !important;
       }
 
       /* ── 7. Hero staggered entrance ──────────────────────────────── */
@@ -3097,11 +3096,6 @@
       .pwa-hero-cta-wrap {
         animation: pwa-hero-in 0.5s ease both;
         animation-delay: 0.62s;
-      }
-
-      /* ── 8. Phase card left amber accent ─────────────────────────── */
-      .pwa-phase {
-        border-left: 3px solid var(--color-amber);
       }
     }
   </style>
@@ -5056,6 +5050,13 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.08 });
 
 document.querySelectorAll('.pwa-reveal').forEach(el => revealObserver.observe(el));
+
+// ── Card tap feedback (iOS-safe) ─────────────────────────────────
+document.querySelectorAll('.pwa-svc, .pwa-phase, .pwa-result, .pwa-pkg').forEach(el => {
+  el.addEventListener('touchstart', () => el.classList.add('pwa-tap-active'), { passive: true });
+  el.addEventListener('touchend',   () => el.classList.remove('pwa-tap-active'), { passive: true });
+  el.addEventListener('touchcancel',() => el.classList.remove('pwa-tap-active'), { passive: true });
+});
 
 // ── Count-up animation ───────────────────────────────────────────
 function parseStatValue(text) {
