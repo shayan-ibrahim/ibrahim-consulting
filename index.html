@@ -2816,9 +2816,8 @@
       .pwa-hero-discover {
         font-size: 12px;
         color: rgba(255,255,255,0.42);
-        display: flex;
-        align-items: center;
-        gap: 5px;
+        display: block;
+        text-align: right;
       }
       .pwa-hero-discover em { color: var(--color-amber); font-style: normal; text-decoration: underline; text-underline-offset: 2px; }
 
@@ -4522,7 +4521,7 @@
               <span class="pwa-hero-tag" style="color:rgba(255,255,255,0.2)">·</span>
               <span class="pwa-hero-tag">Growth</span>
             </div>
-            <h1 class="pwa-hero-h1">Build the <span style="color:var(--color-amber);font-weight:800">structure</span> your business needs to scale.</h1>
+            <h1 class="pwa-hero-h1">Build the <span style="color:var(--color-amber);font-weight:300">structure</span> your business needs to scale.</h1>
             <p class="pwa-hero-body">We work alongside founders and executives to bring order to the chaos — building real accountability and real momentum.</p>
             <div style="display:flex;justify-content:flex-end;margin-bottom:12px">
               <button class="pwa-hero-cta" onclick="openBookings()">
@@ -4549,12 +4548,14 @@
         <div class="pwa-brand-strip">
           <p>17 companies — each one different.<br>Every single one built into a top performer.</p>
         </div>
-        <div class="pwa-firm-wrap">
-          <div class="pwa-firm-eyebrow">About the Firm</div>
-          <div class="pwa-firm-row"><div class="pwa-fdiv"></div><div><div class="pwa-fnum">18+</div><div class="pwa-flbl">Years of hands-on business transformation</div></div></div>
-          <div class="pwa-firm-row"><div class="pwa-fdiv"></div><div><div class="pwa-fnum">6</div><div class="pwa-flbl">Fundamental areas for your company</div></div></div>
-          <div class="pwa-firm-row"><div class="pwa-fdiv"></div><div><div class="pwa-fnum">3</div><div class="pwa-flbl">Phase process — Assess, Design, Implement</div></div></div>
-          <div class="pwa-firm-row"><div class="pwa-fdiv"></div><div><div class="pwa-fnum">110%</div><div class="pwa-flbl">Average quota attainment across client portfolio</div></div></div>
+        <div class="pwa-stats-wrap">
+          <div class="pwa-stats-eyebrow">About the Firm</div>
+          <div class="pwa-stats-grid">
+            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">18+</div><div class="pwa-slbl">Years of hands-on business transformation</div></div></div>
+            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">6</div><div class="pwa-slbl">Fundamental areas for your company</div></div></div>
+            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">3</div><div class="pwa-slbl">Phase process — Assess, Design, Implement</div></div></div>
+            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">110%</div><div class="pwa-slbl">Average quota attainment across client portfolio</div></div></div>
+          </div>
         </div>
       </div>
     </div>
@@ -4775,10 +4776,13 @@
         <p class="pwa-about-p">What I found in every company I've touched is the same gap: the business is growing, but the infrastructure holding it together isn't. That gap — between ambition and execution — is exactly what Ibrahim Consulting exists to close.</p>
         <p class="pwa-about-p">I went to school for Architecture. I loved the systems logic and design thinking, and have carried that structural mindset into every business I've touched since. What I bring is strategic clarity, operational rigor, and a people-first approach that makes growth feel less like chaos and more like momentum.</p>
       </div>
-      <div class="pwa-about-stats">
-        <div class="pwa-about-stat"><div class="pwa-about-stat-num">18+</div><div class="pwa-about-stat-lbl">Years of hands-on business transformation across industries and company sizes</div></div>
-        <div class="pwa-about-stat"><div class="pwa-about-stat-num">400+</div><div class="pwa-about-stat-lbl">Retail locations overseen as VP across 18 states at AT&amp;T</div></div>
-        <div class="pwa-about-stat"><div class="pwa-about-stat-num">17</div><div class="pwa-about-stat-lbl">Companies transformed — every single one built into a top performer</div></div>
+      <div class="pwa-stats-wrap">
+        <div class="pwa-stats-eyebrow">By the Numbers</div>
+        <div class="pwa-stats-grid">
+          <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">18+</div><div class="pwa-slbl">Years of hands-on business transformation</div></div></div>
+          <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">400+</div><div class="pwa-slbl">Retail locations overseen as VP at AT&amp;T</div></div></div>
+          <div class="pwa-stat-cell" style="grid-column: 1 / -1"><div class="pwa-sdiv"></div><div><div class="pwa-snum">17</div><div class="pwa-slbl">Companies transformed — every single one built into a top performer</div></div></div>
+        </div>
       </div>
       <div class="pwa-about-cta">
         <div class="pwa-about-cta-hed">Ready to build something that actually works?</div>
