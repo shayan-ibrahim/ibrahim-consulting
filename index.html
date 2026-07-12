@@ -1592,10 +1592,18 @@
       align-items: center;
     }
     .about-badge-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      overflow: hidden;
       margin-bottom: 24px;
+    }
+    .about-badge-track {
+      display: flex;
+      gap: 8px;
+      width: max-content;
+      animation: about-badge-scroll 30s linear infinite;
+    }
+    @keyframes about-badge-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
     .about-badge {
       background: var(--color-snow);
@@ -3813,15 +3821,27 @@
   <div class="container">
     <div class="about-panel">
       <div class="about-badge-row" style="margin-bottom:32px">
-        <span class="about-badge">Former AT&amp;T Chief of Staff</span>
-        <span class="about-badge">18+ Years Experience</span>
-        <span class="about-badge">8K Locations Supported</span>
-        <span class="about-badge">Organizational Design</span>
-        <span class="about-badge">Leadership Effectiveness</span>
-        <span class="about-badge">Operational Improvement</span>
-        <span class="about-badge">Culture Transformation</span>
-        <span class="about-badge">Webforce Structure</span>
-        <span class="about-badge">Cross-Functional Alignment</span>
+        <div class="about-badge-track">
+          <span class="about-badge">Former AT&amp;T Chief of Staff</span>
+          <span class="about-badge">18+ Years Experience</span>
+          <span class="about-badge">8K Locations Supported</span>
+          <span class="about-badge">Organizational Design</span>
+          <span class="about-badge">Leadership Effectiveness</span>
+          <span class="about-badge">Operational Improvement</span>
+          <span class="about-badge">Culture Transformation</span>
+          <span class="about-badge">Webforce Structure</span>
+          <span class="about-badge">Cross-Functional Alignment</span>
+          <!-- duplicate for seamless loop -->
+          <span class="about-badge">Former AT&amp;T Chief of Staff</span>
+          <span class="about-badge">18+ Years Experience</span>
+          <span class="about-badge">8K Locations Supported</span>
+          <span class="about-badge">Organizational Design</span>
+          <span class="about-badge">Leadership Effectiveness</span>
+          <span class="about-badge">Operational Improvement</span>
+          <span class="about-badge">Culture Transformation</span>
+          <span class="about-badge">Webforce Structure</span>
+          <span class="about-badge">Cross-Functional Alignment</span>
+        </div>
       </div>
     <div class="about-grid">
       <div>
