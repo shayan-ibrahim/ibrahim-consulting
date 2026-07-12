@@ -210,10 +210,14 @@
 
     /* Nav */
     [data-theme="dark"] .nav {
+      background: rgba(10,10,14,0.97);
+      border-bottom-color: var(--surface-nav-border);
+    }
+    [data-theme="dark"] .nav.nav--scrolled {
       background: rgba(10,10,14,0.6);
       border-bottom-color: rgba(255,255,255,0.06);
     }
-    [data-theme="dark"] .nav:hover {
+    [data-theme="dark"] .nav.nav--scrolled:hover {
       background: rgba(10,10,14,0.97);
       border-bottom-color: var(--surface-nav-border);
     }
@@ -470,13 +474,17 @@
       left: 0;
       right: 0;
       z-index: 100;
-      background: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.98);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(0,0,0,0.07);
-      transition: background 0.25s ease, border-color 0.25s ease;
+      border-bottom: 1px solid var(--color-fog);
+      transition: background 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
     }
-    .nav:hover {
+    .nav.nav--scrolled {
+      background: rgba(255,255,255,0.6);
+      border-bottom-color: rgba(0,0,0,0.07);
+    }
+    .nav.nav--scrolled:hover {
       background: rgba(255,255,255,0.97);
       border-bottom-color: var(--color-fog);
     }
@@ -4484,6 +4492,21 @@
         scrollBtn.classList.remove('hidden');
       }
     }, { passive: true });
+  })();
+
+  // Nav: solid at top, frosted when scrolled
+  (function() {
+    const nav = document.querySelector('.nav');
+    if (!nav) return;
+    function updateNav() {
+      if (window.scrollY > 10) {
+        nav.classList.add('nav--scrolled');
+      } else {
+        nav.classList.remove('nav--scrolled');
+      }
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
   })();
 
 
