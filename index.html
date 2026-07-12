@@ -278,8 +278,8 @@
       box-shadow: rgba(255,255,255,0.03) 0px 1px 0px 0px inset;
     }
     [data-theme="dark"] .service-card:hover { background: #212126; box-shadow: rgba(255,255,255,0.03) 0px 1px 0px 0px inset; }
-    [data-theme="dark"] .service-icon { background: #212126; border-color: rgba(255,255,255,0.07); }
-    [data-theme="dark"] .service-icon svg { stroke: #9090a0; }
+    [data-theme="dark"] .service-icon { background: rgba(255,170,0,0.1); border: none; }
+    [data-theme="dark"] .service-icon svg { stroke: var(--color-amber); }
     [data-theme="dark"] .service-title { color: #f0f0f2; }
     [data-theme="dark"] .service-desc { color: #9090a0; }
     [data-theme="dark"] .service-badge { background: #2e2e3a; color: #c0c0cc; }
@@ -1033,13 +1033,13 @@
       width: 44px;
       height: 44px;
       border-radius: 12px;
-      background: var(--color-mist);
-      border: 1px solid var(--color-fog);
+      background: rgba(255,170,0,0.12);
+      border: none;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .service-icon svg { width: 20px; height: 20px; stroke: var(--color-graphite); }
+    .service-icon svg { width: 20px; height: 20px; stroke: var(--color-amber); }
     .service-card:hover .service-badge {
       background: var(--color-amber);
       color: #fff;
