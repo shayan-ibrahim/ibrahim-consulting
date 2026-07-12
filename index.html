@@ -2900,6 +2900,7 @@
       .pwa-pkg-price span { font-size: 12px; font-weight: 500; color: #71717a; }
       .pwa-pkg-btn { background: #09090b; color: #fff; font-family: var(--font-primary); font-size: 12px; font-weight: 700; padding: 9px 16px; border-radius: 100px; border: none; cursor: pointer; -webkit-tap-highlight-color: transparent; }
       .pwa-pkg.pwa-featured .pwa-pkg-btn { background: var(--color-amber); color: #09090b; }
+      .pwa-pkg-timeline { font-size: 10.5px; color: #71717a; margin-top: 3px; }
 
       /* ══ ABOUT ════════════════════════════════════════════════════ */
       .pwa-about-hdr { background: #09090b; padding: calc(env(safe-area-inset-top, 0px) + 20px) 20px 26px; }
@@ -4518,16 +4519,19 @@
               <span class="pwa-hero-tag">Leadership</span>
               <span class="pwa-hero-tag" style="color:rgba(255,255,255,0.2)">·</span>
               <span class="pwa-hero-tag">Accountability</span>
+              <span class="pwa-hero-tag" style="color:rgba(255,255,255,0.2)">·</span>
+              <span class="pwa-hero-tag">Growth</span>
             </div>
-            <h1 class="pwa-hero-h1">Build the <span class="pwa-muted">structure</span> your business needs to scale.</h1>
+            <h1 class="pwa-hero-h1">Build the <span style="color:var(--color-amber);font-weight:800">structure</span> your business needs to scale.</h1>
             <p class="pwa-hero-body">We work alongside founders and executives to bring order to the chaos — building real accountability and real momentum.</p>
-            <button class="pwa-hero-cta" onclick="openBookings()">
-              Schedule a Consultation
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px"><line x1="2" y1="8" x2="14" y2="8"/><polyline points="9,3 14,8 9,13"/></svg>
-            </button>
-            <div class="pwa-hero-discover">
-              <em>Discovery calls are complimentary</em>
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:11px;height:11px"><line x1="2" y1="8" x2="14" y2="8"/><polyline points="9,3 14,8 9,13"/></svg>
+            <div style="display:flex;justify-content:flex-end;margin-bottom:12px">
+              <button class="pwa-hero-cta" onclick="openBookings()">
+                Schedule a Consultation
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px"><line x1="2" y1="8" x2="14" y2="8"/><polyline points="9,3 14,8 9,13"/></svg>
+              </button>
+            </div>
+            <div style="text-align:right">
+              <span class="pwa-hero-discover">Discovery calls are complimentary</span>
             </div>
           </div>
         </div>
@@ -4713,27 +4717,42 @@
         <div class="pwa-pkg">
           <div class="pwa-pkg-name">Business Audit &amp; Strategic Roadmap</div>
           <div class="pwa-pkg-desc">We get inside your business, map how things actually work, and find what's costing you — time, money, or momentum. You leave with a clear picture of what to fix first.</div>
-          <div class="pwa-pkg-footer"><div class="pwa-pkg-price">$4,500 <span>/ engagement</span></div><button class="pwa-pkg-btn" onclick="openBookings()">Inquire</button></div>
+          <div class="pwa-pkg-footer">
+            <div><div class="pwa-pkg-price">$4,500 <span>/ engagement</span></div><div class="pwa-pkg-timeline">Typical Engagement: 3–4 weeks</div></div>
+            <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/3cI14a6eefom5SdfpdgEg05','Business Audit &amp; Strategic Roadmap — $4,500')">Get Started</button>
+          </div>
         </div>
         <div class="pwa-pkg">
           <div class="pwa-pkg-name">Organizational Diagnostic</div>
           <div class="pwa-pkg-desc">We take a targeted look at your leadership team, your departments, and how your org is structured — then tell you clearly where the cracks are and what's quietly holding back performance.</div>
-          <div class="pwa-pkg-footer"><div class="pwa-pkg-price">$5,500 <span>/ engagement</span></div><button class="pwa-pkg-btn" onclick="openBookings()">Inquire</button></div>
+          <div class="pwa-pkg-footer">
+            <div><div class="pwa-pkg-price">$5,500 <span>/ engagement</span></div><div class="pwa-pkg-timeline">Typical Engagement: 4–6 weeks</div></div>
+            <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/5kQ9AGcCCfom2G14KzgEg06','Organizational Diagnostic — $5,500')">Get Started</button>
+          </div>
         </div>
         <div class="pwa-pkg pwa-featured">
           <div class="pwa-pkg-name">Organizational Foundation Build</div>
           <div class="pwa-pkg-desc">We don't just diagnose — we build. Job descriptions, department structures, accountability frameworks. Everything your team needs to operate with clarity.</div>
-          <div class="pwa-pkg-footer"><div class="pwa-pkg-price">$6,500 <span>/ engagement</span></div><button class="pwa-pkg-btn" onclick="openBookings()">Inquire</button></div>
+          <div class="pwa-pkg-footer">
+            <div><div class="pwa-pkg-price">$6,500 <span>/ engagement</span></div><div class="pwa-pkg-timeline">Typical Engagement: 8–10 weeks</div></div>
+            <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/cNieV0eKK4JIgwRa4TgEg07','Organizational Foundation Build — $6,500')">Get Started</button>
+          </div>
         </div>
         <div class="pwa-pkg">
           <div class="pwa-pkg-name">Performance &amp; Future-State Transformation</div>
           <div class="pwa-pkg-desc">We sharpen how your teams are measured, redefine who's responsible for what, and design the organizational model your business needs to operate at its next stage.</div>
-          <div class="pwa-pkg-footer"><div class="pwa-pkg-price">$7,500 <span>/ engagement</span></div><button class="pwa-pkg-btn" onclick="openBookings()">Inquire</button></div>
+          <div class="pwa-pkg-footer">
+            <div><div class="pwa-pkg-price">$7,500 <span>/ engagement</span></div><div class="pwa-pkg-timeline">Typical Engagement: 12–16 weeks</div></div>
+            <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/00weV05aa5NM80l90PgEg08','Performance &amp; Future-State Transformation — $7,500')">Get Started</button>
+          </div>
         </div>
         <div class="pwa-pkg">
           <div class="pwa-pkg-name">Embedded Scaling Partner</div>
           <div class="pwa-pkg-desc">Full-access, embedded partnership. We work inside your business like a fractional COO — driving transformation from the inside, not from a deck.</div>
-          <div class="pwa-pkg-footer"><div class="pwa-pkg-price">$8,500 <span>/ engagement</span></div><button class="pwa-pkg-btn" onclick="openBookings()">Inquire</button></div>
+          <div class="pwa-pkg-footer">
+            <div><div class="pwa-pkg-price">$8,500 <span>/ engagement</span></div><div class="pwa-pkg-timeline">Typical Engagement: 24+ weeks</div></div>
+            <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/fZu6ou0TU1xwgwR3GvgEg09','Embedded Scaling Partner — $8,500')">Get Started</button>
+          </div>
         </div>
       </div>
     </div>
