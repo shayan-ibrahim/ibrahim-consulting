@@ -842,6 +842,24 @@
       line-height: 1.5;
     }
 
+    /* ─── Desktop Stats (PWA-matched style) ─────────────────────── */
+    .desktop-stats-wrap { }
+    .desktop-stats-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-steel); margin-bottom: 14px; }
+    .desktop-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--color-fog); border-radius: var(--radius-card); overflow: hidden; }
+    .desktop-stat-cell { background: var(--color-snow); padding: 26px 22px; display: flex; flex-direction: column; gap: 6px; transition: transform 0.2s, box-shadow 0.2s; cursor: default; position: relative; z-index: 0; }
+    .desktop-stat-cell:hover { transform: translateY(-3px); box-shadow: rgba(0,0,0,0.06) 0px 8px 24px 0px; z-index: 1; }
+    .desktop-stat-cell:hover .desktop-snum { color: var(--color-amber); }
+    .desktop-snum { font-size: 38px; font-weight: 800; color: var(--color-obsidian); letter-spacing: -1.5px; line-height: 1; transition: color 0.2s; }
+    .desktop-slbl { font-size: 11.5px; color: var(--color-steel); line-height: 1.45; }
+    [data-theme="dark"] .desktop-stat-cell { background: #1a1a1d; }
+    [data-theme="dark"] .desktop-stat-cell:hover { background: #212126; box-shadow: none; transform: none; }
+    [data-theme="dark"] .desktop-snum { color: #f0f0f2; }
+    @media (prefers-color-scheme: dark) {
+      .desktop-stat-cell { background: #1a1a1d; }
+      .desktop-stat-cell:hover { background: #212126; box-shadow: none; transform: none; }
+      .desktop-snum { color: #f0f0f2; }
+    }
+
     /* ─── Section Headers ────────────────────────────────────────── */
     .section-header {
       margin-bottom: 48px;
@@ -3081,37 +3099,24 @@
 <!-- ─── Stats ───────────────────────────────────────────────────── -->
 <section class="stats dot-grid" aria-label="Key statistics">
   <div class="container">
-    <div class="stats-grid" role="list">
-      <div class="stat-block" role="listitem">
-        <div class="stat-category">Reach</div>
-        <div class="stat-row">
-          <div class="stat-number">80%+</div>
-          <div class="stat-divider"></div>
-          <div class="stat-label">Companies ranked in the top 10%</div>
+    <div class="desktop-stats-wrap">
+      <div class="desktop-stats-eyebrow">Client Portfolio</div>
+      <div class="desktop-stats-grid" role="list">
+        <div class="desktop-stat-cell" role="listitem">
+          <div class="desktop-snum">80%+</div>
+          <div class="desktop-slbl">Companies ranked in the top 10%</div>
         </div>
-      </div>
-      <div class="stat-block" role="listitem">
-        <div class="stat-category">Enterprise</div>
-        <div class="stat-row">
-          <div class="stat-number">8</div>
-          <div class="stat-divider"></div>
-          <div class="stat-label">Enterprise companies supported</div>
+        <div class="desktop-stat-cell" role="listitem">
+          <div class="desktop-snum">8</div>
+          <div class="desktop-slbl">Enterprise companies supported</div>
         </div>
-      </div>
-      <div class="stat-block" role="listitem">
-        <div class="stat-category">SMB</div>
-        <div class="stat-row">
-          <div class="stat-number">9</div>
-          <div class="stat-divider"></div>
-          <div class="stat-label">Small to Medium companies supported</div>
+        <div class="desktop-stat-cell" role="listitem">
+          <div class="desktop-snum">9</div>
+          <div class="desktop-slbl">Small to Medium companies supported</div>
         </div>
-      </div>
-      <div class="stat-block" role="listitem">
-        <div class="stat-category">Scale</div>
-        <div class="stat-row">
-          <div class="stat-number">8K</div>
-          <div class="stat-divider"></div>
-          <div class="stat-label">National locations supported</div>
+        <div class="desktop-stat-cell" role="listitem">
+          <div class="desktop-snum">8K</div>
+          <div class="desktop-slbl">National locations supported</div>
         </div>
       </div>
     </div>
@@ -3883,37 +3888,24 @@
 <!-- ─── Firm Stats ───────────────────────────────────────────────── -->
 <section class="dot-grid" style="background:var(--color-mist);padding:64px 0;position:relative;z-index:1" aria-label="About Ibrahim Consulting">
   <div class="container">
-    <div class="firm-stats-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--color-fog);border-radius:var(--radius-card);overflow:hidden">
-      <div class="stat-block" style="border-radius:var(--radius-card) 0 0 var(--radius-card)" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px';this.querySelector('.firm-stat-num').style.color='var(--color-amber)'" onmouseleave="this.style.transform='';this.style.boxShadow='';this.querySelector('.firm-stat-num').style.color=''">
-        <div class="stat-category">Experience</div>
-        <div class="stat-row">
-          <div class="stat-number firm-stat-num">18+</div>
-          <div class="stat-divider"></div>
-          <div class="stat-label">Years of hands-on business transformation</div>
+    <div class="desktop-stats-wrap">
+      <div class="desktop-stats-eyebrow">About the Firm</div>
+      <div class="desktop-stats-grid firm-stats-grid" role="list">
+        <div class="desktop-stat-cell" role="listitem">
+          <div class="desktop-snum">18+</div>
+          <div class="desktop-slbl">Years of hands-on business transformation</div>
         </div>
-      </div>
-      <div class="stat-block" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px';this.querySelector('.firm-stat-num').style.color='var(--color-amber)'" onmouseleave="this.style.transform='';this.style.boxShadow='';this.querySelector('.firm-stat-num').style.color=''">
-        <div class="stat-category">Method</div>
-        <div class="stat-row">
-          <div class="stat-number firm-stat-num">3</div>
-          <div class="stat-divider"></div>
-          <div class="stat-label">Phase process — Assess, Design, Implement</div>
+        <div class="desktop-stat-cell" role="listitem">
+          <div class="desktop-snum">3</div>
+          <div class="desktop-slbl">Phase process — Assess, Design, Implement</div>
         </div>
-      </div>
-      <div class="stat-block" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px';this.querySelector('.firm-stat-num').style.color='var(--color-amber)'" onmouseleave="this.style.transform='';this.style.boxShadow='';this.querySelector('.firm-stat-num').style.color=''">
-        <div class="stat-category">Packages</div>
-        <div class="stat-row">
-          <div class="stat-number firm-stat-num">5</div>
-          <div class="stat-divider"></div>
-          <div class="stat-label">Packages — Diagnostic to Embedded Partner</div>
+        <div class="desktop-stat-cell" role="listitem">
+          <div class="desktop-snum">5</div>
+          <div class="desktop-slbl">Packages — Diagnostic to Embedded Partner</div>
         </div>
-      </div>
-      <div class="stat-block" style="border-radius:0 var(--radius-card) var(--radius-card) 0" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='rgba(0,0,0,0.06) 0px 8px 24px 0px';this.querySelector('.firm-stat-num').style.color='var(--color-amber)'" onmouseleave="this.style.transform='';this.style.boxShadow='';this.querySelector('.firm-stat-num').style.color=''">
-        <div class="stat-category">Commitment</div>
-        <div class="stat-row">
-          <div class="stat-number firm-stat-num">110%</div>
-          <div class="stat-divider"></div>
-          <div class="stat-label">Average quota attainment across client portfolios</div>
+        <div class="desktop-stat-cell" role="listitem">
+          <div class="desktop-snum">110%</div>
+          <div class="desktop-slbl">Average quota attainment across client portfolios</div>
         </div>
       </div>
     </div>
