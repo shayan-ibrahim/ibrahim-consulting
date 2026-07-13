@@ -4268,6 +4268,23 @@
       btn.textContent = 'Submit Request';
     }
   });
+  function togglePwaAlacarte(btn) {
+    const body = document.getElementById('pwa-alacarte-body');
+    const caret = btn.querySelector('svg');
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    if (isOpen) {
+      body.style.maxHeight = '0';
+      body.style.opacity = '0';
+      btn.setAttribute('aria-expanded', 'false');
+      caret.style.transform = 'rotate(0deg)';
+    } else {
+      body.style.maxHeight = body.scrollHeight + 'px';
+      body.style.opacity = '1';
+      btn.setAttribute('aria-expanded', 'true');
+      caret.style.transform = 'rotate(180deg)';
+    }
+  }
+
   function toggleAlacarte(btn) {
     const body = document.getElementById('alacarte-body');
     const caret = btn.querySelector('.alacarte-caret');
@@ -4961,35 +4978,44 @@
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
             <span style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#09090b;background:var(--color-amber);padding:3px 8px;border-radius:100px">À La Carte</span>
           </div>
-          <div class="pwa-pkg-name" style="padding-right:0">Standalone Services</div>
-          <div class="pwa-pkg-desc">Expert support where you need it most — without committing to a full engagement. Each service is scoped, priced, and delivered independently.</div>
-          <div style="margin-bottom:16px">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-amber);margin-bottom:6px">Brand &amp; Design</div>
-            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px">
-              <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Logo Design &amp; Brand Identity</li>
-              <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Marketing &amp; Promotional Materials</li>
-              <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Graphic Design &amp; Visual Assets</li>
-              <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Presentation Design</li>
-              <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Website Design &amp; Development</li>
-              <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Social Media Templates &amp; Creative</li>
-            </ul>
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-amber);margin-bottom:6px;margin-top:14px">People &amp; Leadership</div>
-            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px">
-              <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Leadership Coaching (Individual or Team)</li>
-              <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Executive Communication Training</li>
-              <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Performance Management Systems</li>
-              <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Onboarding &amp; Offboarding Program Design</li>
-              <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Culture-Building Workshops &amp; Facilitation</li>
-              <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Employee Handbook &amp; Policy Documentation</li>
-            </ul>
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-amber);margin-bottom:6px;margin-top:14px">Technology &amp; Operations</div>
-            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px">
-              <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Microsoft Office Suite Training</li>
-              <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>SharePoint Development &amp; Deployment</li>
-              <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>AI Tools Training &amp; Team Adoption</li>
-            </ul>
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px">
+            <div style="flex:1">
+              <div class="pwa-pkg-name" style="padding-right:0">Standalone Services</div>
+              <div class="pwa-pkg-desc">Expert support where you need it most — without committing to a full engagement. Each service is scoped, priced, and delivered independently.</div>
+            </div>
+            <button onclick="togglePwaAlacarte(this)" aria-expanded="false" style="flex-shrink:0;margin-top:2px;width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,170,0,0.35);background:rgba(255,170,0,0.07);display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent">
+              <svg viewBox="0 0 16 16" fill="none" stroke="#FFAA00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px;transition:transform 0.3s ease"><polyline points="4,6 8,10 12,6"/></svg>
+            </button>
           </div>
-          <div style="height:1px;background:#ececee;margin-bottom:14px"></div>
+          <div id="pwa-alacarte-body" style="overflow:hidden;max-height:0;opacity:0;transition:max-height 0.4s ease,opacity 0.3s ease;margin-top:0">
+            <div style="padding-top:14px">
+              <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-amber);margin-bottom:6px">Brand &amp; Design</div>
+              <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px">
+                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Logo Design &amp; Brand Identity</li>
+                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Marketing &amp; Promotional Materials</li>
+                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Graphic Design &amp; Visual Assets</li>
+                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Presentation Design</li>
+                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Website Design &amp; Development</li>
+                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Social Media Templates &amp; Creative</li>
+              </ul>
+              <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-amber);margin-bottom:6px;margin-top:14px">People &amp; Leadership</div>
+              <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px">
+                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Leadership Coaching (Individual or Team)</li>
+                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Executive Communication Training</li>
+                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Performance Management Systems</li>
+                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Onboarding &amp; Offboarding Program Design</li>
+                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Culture-Building Workshops &amp; Facilitation</li>
+                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Employee Handbook &amp; Policy Documentation</li>
+              </ul>
+              <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-amber);margin-bottom:6px;margin-top:14px">Technology &amp; Operations</div>
+              <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px">
+                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Microsoft Office Suite Training</li>
+                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>SharePoint Development &amp; Deployment</li>
+                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>AI Tools Training &amp; Team Adoption</li>
+              </ul>
+            </div>
+          </div>
+          <div style="height:1px;background:#ececee;margin-top:14px;margin-bottom:14px"></div>
           <div class="pwa-pkg-footer">
             <div style="font-size:13px;color:#71717a;font-weight:400">Pricing available upon request</div>
             <button class="pwa-pkg-btn" style="background:var(--color-amber);color:#09090b" onclick="openBookings()">Request Pricing</button>
