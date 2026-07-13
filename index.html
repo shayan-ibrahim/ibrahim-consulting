@@ -1351,8 +1351,8 @@
     }
     @keyframes caret-wiggle {
       0%, 100% { transform: translateY(0); }
-      25% { transform: translateY(3px); }
-      75% { transform: translateY(-1px); }
+      40% { transform: translateY(4px); }
+      70% { transform: translateY(-1px); }
     }
     @keyframes arrow-nudge {
       0%, 100% { transform: translateX(0); }
@@ -4277,11 +4277,13 @@
       body.style.opacity = '0';
       btn.setAttribute('aria-expanded', 'false');
       caret.style.transform = 'rotate(0deg)';
+      caret.style.animation = 'caret-wiggle 1.4s ease-in-out infinite';
     } else {
       body.style.maxHeight = body.scrollHeight + 'px';
       body.style.opacity = '1';
       btn.setAttribute('aria-expanded', 'true');
       caret.style.transform = 'rotate(180deg)';
+      caret.style.animation = 'none';
     }
   }
 
@@ -4984,7 +4986,7 @@
               <div class="pwa-pkg-desc">Expert support where you need it most — without committing to a full engagement. Each service is scoped, priced, and delivered independently.</div>
             </div>
             <button onclick="togglePwaAlacarte(this)" aria-expanded="false" style="flex-shrink:0;margin-top:2px;width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,170,0,0.35);background:rgba(255,170,0,0.07);display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-tap-highlight-color:transparent">
-              <svg viewBox="0 0 16 16" fill="none" stroke="#FFAA00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px;transition:transform 0.3s ease"><polyline points="4,6 8,10 12,6"/></svg>
+              <svg viewBox="0 0 16 16" fill="none" stroke="#FFAA00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px;transition:transform 0.3s ease;animation:caret-wiggle 1.4s ease-in-out infinite"><polyline points="4,6 8,10 12,6"/></svg>
             </button>
           </div>
           <div id="pwa-alacarte-body" style="overflow:hidden;max-height:0;opacity:0;transition:max-height 0.4s ease,opacity 0.3s ease;margin-top:0">
