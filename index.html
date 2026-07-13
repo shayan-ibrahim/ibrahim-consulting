@@ -3015,6 +3015,12 @@
       .pwa-about-cta-sub { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.5; margin-bottom: 16px; }
       .pwa-about-cta-btn { background: var(--color-amber); color: #09090b; font-family: var(--font-primary); font-size: 14px; font-weight: 800; padding: 14px 24px; border-radius: 100px; border: none; cursor: pointer; width: 100%; -webkit-tap-highlight-color: transparent; }
 
+      /* ── PWA Ticker ───────────────────────────────────────────────── */
+      .pwa-ticker { overflow: hidden; background: var(--color-obsidian); padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .pwa-ticker-track { display: flex; width: max-content; animation: ticker-scroll 30s linear infinite; }
+      .pwa-ticker-item { white-space: nowrap; font-size: 12px; font-weight: 500; color: var(--color-ash); margin-right: 28px; display: flex; align-items: center; }
+      .pwa-ticker-item::after { content: ''; display: block; width: 4px; height: 4px; border-radius: 50%; background: var(--color-graphite); flex-shrink: 0; margin-left: 28px; }
+
       /* ── 1. Scroll-triggered card entrance ────────────────────────── */
       @keyframes pwa-fade-up {
         from { opacity: 0; transform: translateY(18px); }
@@ -4671,6 +4677,30 @@
               <span class="pwa-hero-discover">Discovery calls are complimentary</span>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="pwa-ticker" aria-hidden="true">
+        <div class="pwa-ticker-track">
+          <div class="pwa-ticker-item">Startups</div>
+          <div class="pwa-ticker-item">Founder-Led Businesses</div>
+          <div class="pwa-ticker-item">Small Businesses</div>
+          <div class="pwa-ticker-item">Mid-Sized Companies</div>
+          <div class="pwa-ticker-item">Rapid Growth Companies</div>
+          <div class="pwa-ticker-item">Scaling Organizations</div>
+          <div class="pwa-ticker-item">Post-Acquisition Teams</div>
+          <div class="pwa-ticker-item">Restructuring Businesses</div>
+          <div class="pwa-ticker-item">Expanding Enterprises</div>
+          <div class="pwa-ticker-item">Operational Leaders</div>
+          <div class="pwa-ticker-item">Startups</div>
+          <div class="pwa-ticker-item">Founder-Led Businesses</div>
+          <div class="pwa-ticker-item">Small Businesses</div>
+          <div class="pwa-ticker-item">Mid-Sized Companies</div>
+          <div class="pwa-ticker-item">Rapid Growth Companies</div>
+          <div class="pwa-ticker-item">Scaling Organizations</div>
+          <div class="pwa-ticker-item">Post-Acquisition Teams</div>
+          <div class="pwa-ticker-item">Restructuring Businesses</div>
+          <div class="pwa-ticker-item">Expanding Enterprises</div>
+          <div class="pwa-ticker-item">Operational Leaders</div>
         </div>
       </div>
       <div class="pwa-home-scroll">
