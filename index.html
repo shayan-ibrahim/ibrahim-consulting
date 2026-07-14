@@ -875,7 +875,10 @@
     .desktop-stat-inner { display: flex; flex-direction: column; gap: 8px; }
     .desktop-snum { font-size: 48px; font-weight: 800; color: var(--color-obsidian); letter-spacing: -2.5px; line-height: 1; }
     .desktop-snum::before { content: '+'; }
-    .desktop-slbl { font-size: 11px; color: var(--color-steel); line-height: 1.5; margin-top: 4px; }
+    .desktop-stitle { font-size: 12px; font-weight: 600; color: var(--color-obsidian); line-height: 1.3; margin-top: 10px; }
+    .desktop-slbl { font-size: 11px; font-weight: 400; color: var(--color-steel); line-height: 1.5; margin-top: 3px; }
+    [data-theme="dark"] .desktop-stitle { color: #f0f0f2; }
+    @media (prefers-color-scheme: dark) { .desktop-stitle { color: #f0f0f2; } }
     [data-theme="dark"] .desktop-stats-grid { background: transparent; }
     [data-theme="dark"] .desktop-stat-cell { background: transparent; border-right-color: rgba(255,255,255,0.1); }
     [data-theme="dark"] .desktop-stat-accent { background: rgba(255,255,255,0.1); }
@@ -2919,7 +2922,8 @@
       .pwa-sdiv { width: 2px; height: 30px; background: var(--color-amber); border-radius: 2px; flex-shrink: 0; margin-top: 3px; }
       .pwa-snum { font-size: 25px; font-weight: 800; color: #09090b; letter-spacing: -0.8px; line-height: 1; }
       .pwa-snum::before { content: '+'; }
-      .pwa-slbl { font-size: 10.5px; color: #71717a; line-height: 1.35; margin-top: 4px; }
+      .pwa-stitle { font-size: 11px; font-weight: 600; color: #09090b; line-height: 1.3; margin-top: 8px; }
+      .pwa-slbl { font-size: 10px; font-weight: 400; color: #71717a; line-height: 1.35; margin-top: 2px; }
       .pwa-brand-strip { padding: 18px 22px; border-bottom: 1px solid #ececee; text-align: center; background: #f4f4f5; }
       .pwa-brand-strip p { font-size: 13px; font-weight: 600; color: #18181b; line-height: 1.55; letter-spacing: -0.1px; }
       .pwa-firm-wrap { background: #09090b; padding: 22px 18px; }
@@ -3273,10 +3277,10 @@
     <div class="desktop-stats-wrap">
       <div class="desktop-stats-eyebrow">Client Portfolio</div>
       <div class="desktop-stats-grid" role="list">
-        <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">82%</div><div class="desktop-slbl">Companies ranked in the top 10%</div></div></div>
-        <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">8</div><div class="desktop-slbl">Enterprise companies supported</div></div></div>
-        <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">9</div><div class="desktop-slbl">Small to Medium companies supported</div></div></div>
-        <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">8K</div><div class="desktop-slbl">National locations supported</div></div></div>
+        <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">82%</div><div class="desktop-stitle">Top performers</div><div class="desktop-slbl">Companies ranked in the top 10%</div></div></div>
+        <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">8</div><div class="desktop-stitle">Enterprise clients</div><div class="desktop-slbl">Enterprise companies supported</div></div></div>
+        <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">9</div><div class="desktop-stitle">SMB clients</div><div class="desktop-slbl">Small to medium companies supported</div></div></div>
+        <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">8K</div><div class="desktop-stitle">Locations nationwide</div><div class="desktop-slbl">National locations supported</div></div></div>
       </div>
     </div>
   </div>
@@ -4044,10 +4048,10 @@
     <div class="desktop-stats-wrap">
       <div class="desktop-stats-eyebrow">About the Firm</div>
       <div class="desktop-stats-grid firm-stats-grid" role="list">
-        <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">18</div><div class="desktop-slbl">Years of hands-on business transformation</div></div></div>
-        <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">3</div><div class="desktop-slbl">Phase process — Assess, Design, Implement</div></div></div>
-        <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">5</div><div class="desktop-slbl">Packages — Diagnostic to Embedded Partner</div></div></div>
-        <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">110%</div><div class="desktop-slbl">Average quota attainment across client portfolios</div></div></div>
+        <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">18</div><div class="desktop-stitle">Years experience</div><div class="desktop-slbl">Hands-on business transformation</div></div></div>
+        <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">3</div><div class="desktop-stitle">Phase process</div><div class="desktop-slbl">Assess, Design, Implement</div></div></div>
+        <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">5</div><div class="desktop-stitle">Service packages</div><div class="desktop-slbl">Diagnostic to Embedded Partner</div></div></div>
+        <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">110%</div><div class="desktop-stitle">Quota attainment</div><div class="desktop-slbl">Average across client portfolios</div></div></div>
       </div>
     </div>
   </div>
@@ -4775,10 +4779,10 @@
         <div class="pwa-stats-wrap">
           <div class="pwa-stats-eyebrow">Client Portfolio</div>
           <div class="pwa-stats-grid">
-            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">82%</div><div class="pwa-slbl">Companies ranked in the top 10%</div></div></div>
-            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">8</div><div class="pwa-slbl">Enterprise companies supported</div></div></div>
-            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">9</div><div class="pwa-slbl">Small to Medium companies supported</div></div></div>
-            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">8K</div><div class="pwa-slbl">National locations supported</div></div></div>
+            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">82%</div><div class="pwa-stitle">Top performers</div><div class="pwa-slbl">Companies ranked in the top 10%</div></div></div>
+            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">8</div><div class="pwa-stitle">Enterprise clients</div><div class="pwa-slbl">Enterprise companies supported</div></div></div>
+            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">9</div><div class="pwa-stitle">SMB clients</div><div class="pwa-slbl">Small to medium companies supported</div></div></div>
+            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">8K</div><div class="pwa-stitle">Locations nationwide</div><div class="pwa-slbl">National locations supported</div></div></div>
           </div>
         </div>
         <div class="pwa-brand-strip">
@@ -4787,10 +4791,10 @@
         <div class="pwa-stats-wrap">
           <div class="pwa-stats-eyebrow">About the Firm</div>
           <div class="pwa-stats-grid">
-            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">18</div><div class="pwa-slbl">Years of hands-on business transformation</div></div></div>
-            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">3</div><div class="pwa-slbl">Phase process — Assess, Design, Implement</div></div></div>
-            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">5</div><div class="pwa-slbl">Packages — Diagnostic to Embedded Partner</div></div></div>
-            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">110%</div><div class="pwa-slbl">Average quota attainment across client portfolios</div></div></div>
+            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">18</div><div class="pwa-stitle">Years experience</div><div class="pwa-slbl">Hands-on business transformation</div></div></div>
+            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">3</div><div class="pwa-stitle">Phase process</div><div class="pwa-slbl">Assess, Design, Implement</div></div></div>
+            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">5</div><div class="pwa-stitle">Service packages</div><div class="pwa-slbl">Diagnostic to Embedded Partner</div></div></div>
+            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">110%</div><div class="pwa-stitle">Quota attainment</div><div class="pwa-slbl">Average across client portfolios</div></div></div>
           </div>
         </div>
         <div class="pwa-clients-strip" style="background:#f4f4f5;padding:22px 18px;border-top:1px solid #ececee;">
