@@ -868,9 +868,9 @@
     .desktop-stats-wrap { padding: 32px 0; }
     .desktop-stats-eyebrow { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-steel); margin-bottom: 16px; }
     .desktop-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; background: transparent; border-radius: 0; overflow: visible; }
-    .desktop-stat-cell { background: transparent; padding: 0 28px; display: flex; flex-direction: column; gap: 0; border-right: 1px solid rgba(0,0,0,0.1); }
+    .desktop-stat-cell { background: transparent; padding: 0 28px; display: flex; flex-direction: row; align-items: flex-start; gap: 14px; border-right: 1px solid rgba(0,0,0,0.1); }
     .desktop-stat-cell:last-child { border-right: none; }
-    .desktop-stat-accent { width: 28px; height: 3px; border-radius: 2px; background: var(--color-fog); margin-bottom: 16px; transition: background 0.2s; }
+    .desktop-stat-accent { width: 3px; height: 40px; border-radius: 2px; background: var(--color-fog); flex-shrink: 0; margin-top: 4px; transition: background 0.2s; }
     .desktop-stat-cell:first-child .desktop-stat-accent { background: var(--color-amber); }
     .desktop-stat-cell:hover .desktop-stat-accent { background: var(--color-amber); }
     .desktop-stat-inner { display: flex; flex-direction: column; gap: 8px; }
@@ -1716,8 +1716,8 @@
 
     /* ─── Footer ─────────────────────────────────────────────────── */
     .footer {
-      background: var(--color-snow);
-      border-top: 1px solid var(--color-fog);
+      background: #09090b;
+      border-top: none;
       padding: 48px 0 32px;
     }
     .footer-inner {
@@ -1735,13 +1735,15 @@
     .footer-logo {
       font-size: 16px;
       font-weight: 700;
-      color: var(--color-obsidian);
+      color: #ffffff;
       margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
-    .footer-logo span { font-weight: 300; color: var(--color-steel); }
+    .footer-logo span { font-weight: 300; color: rgba(255,255,255,0.4); }
     .footer-brand-desc {
       font-size: 13px;
-      color: var(--color-steel);
+      color: rgba(255,255,255,0.45);
       line-height: 1.6;
     }
     .footer-col-title {
@@ -1749,7 +1751,7 @@
       font-weight: 600;
       letter-spacing: 1.2px;
       text-transform: uppercase;
-      color: var(--color-graphite);
+      color: rgba(255,255,255,0.35);
       margin-bottom: 16px;
     }
     .footer-links {
@@ -1759,21 +1761,21 @@
     }
     .footer-links a {
       font-size: 13px;
-      color: var(--color-steel);
+      color: rgba(255,255,255,0.55);
       font-weight: 400;
       transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--color-obsidian); }
+    .footer-links a:hover { color: #ffffff; }
     .footer-bottom {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding-top: 28px;
-      border-top: 1px solid var(--color-fog);
+      border-top: 1px solid rgba(255,255,255,0.08);
     }
     .footer-copy {
       font-size: 13px;
-      color: var(--color-ash);
+      color: rgba(255,255,255,0.3);
       font-weight: 400;
     }
     .footer-tagline {
@@ -1781,7 +1783,7 @@
       font-weight: 600;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: var(--color-pebble);
+      color: rgba(255,255,255,0.3);
     }
 
     /* ─── Package Tier Labels ──────────────────────────────────────── */
