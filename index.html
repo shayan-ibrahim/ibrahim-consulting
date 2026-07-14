@@ -866,8 +866,8 @@
     /* ─── Desktop Stats (PWA-matched style) ─────────────────────── */
     .desktop-stats-wrap { }
     .desktop-stats-eyebrow { display: none; }
-    .desktop-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; background: var(--color-snow); border-radius: var(--radius-card); overflow: hidden; }
-    .desktop-stat-cell { background: var(--color-snow); padding: 28px 32px; display: flex; flex-direction: column; gap: 0; border-right: 1px solid var(--color-fog); }
+    .desktop-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; background: transparent; border-radius: var(--radius-card); overflow: hidden; }
+    .desktop-stat-cell { background: transparent; padding: 28px 32px; display: flex; flex-direction: column; gap: 0; border-right: 1px solid rgba(0,0,0,0.1); }
     .desktop-stat-cell:last-child { border-right: none; }
     .desktop-stat-accent { width: 28px; height: 3px; border-radius: 2px; background: var(--color-fog); margin-bottom: 16px; transition: background 0.2s; }
     .desktop-stat-cell:first-child .desktop-stat-accent { background: var(--color-amber); }
@@ -875,14 +875,14 @@
     .desktop-stat-inner { display: flex; flex-direction: column; gap: 8px; }
     .desktop-snum { font-size: 48px; font-weight: 800; color: var(--color-obsidian); letter-spacing: -2.5px; line-height: 1; }
     .desktop-slbl { font-size: 11px; color: var(--color-steel); line-height: 1.5; margin-top: 4px; }
-    [data-theme="dark"] .desktop-stats-grid { background: #111113; }
-    [data-theme="dark"] .desktop-stat-cell { background: #111113; border-right-color: rgba(255,255,255,0.07); }
+    [data-theme="dark"] .desktop-stats-grid { background: transparent; }
+    [data-theme="dark"] .desktop-stat-cell { background: transparent; border-right-color: rgba(255,255,255,0.1); }
     [data-theme="dark"] .desktop-stat-accent { background: rgba(255,255,255,0.1); }
     [data-theme="dark"] .desktop-stat-cell:first-child .desktop-stat-accent { background: var(--color-amber); }
     [data-theme="dark"] .desktop-snum { color: #f0f0f2; }
     @media (prefers-color-scheme: dark) {
-      .desktop-stats-grid { background: #111113; }
-      .desktop-stat-cell { background: #111113; border-right-color: rgba(255,255,255,0.07); }
+      .desktop-stats-grid { background: transparent; }
+      .desktop-stat-cell { background: transparent; border-right-color: rgba(255,255,255,0.1); }
       .desktop-stat-accent { background: rgba(255,255,255,0.1); }
       .desktop-stat-cell:first-child .desktop-stat-accent { background: var(--color-amber); }
       .desktop-snum { color: #f0f0f2; }
