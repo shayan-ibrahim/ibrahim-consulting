@@ -4414,6 +4414,34 @@
   const firmStatsSection = document.querySelector('.firm-stats-grid');
   if (firmStatsSection) firmObserver.observe(firmStatsSection);
 
+  // Desktop stat bars (.desktop-snum) — top and bottom sections
+  function makeDesktopStatObserver(sectionEl) {
+    const nums = sectionEl.querySelectorAll('.desktop-snum');
+    const originals = new Map();
+    nums.forEach(el => originals.set(el, el.textContent.trim()));
+    let running = false;
+    const obs = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !running) {
+        running = true;
+        nums.forEach(el => {
+          const raw = originals.get(el);
+          const num = parseFloat(raw.replace(/[^0-9.]/g, ''));
+          const suffix = raw.replace(/[0-9.]/g, '');
+          if (!isNaN(num)) animateCount(el, num, suffix, 2200);
+        });
+      } else if (!entries[0].isIntersecting) {
+        running = false;
+        nums.forEach(el => {
+          const raw = originals.get(el);
+          const suffix = raw.replace(/[0-9.]/g, '');
+          el.textContent = '0' + suffix;
+        });
+      }
+    }, { threshold: 0.3 });
+    obs.observe(sectionEl);
+  }
+  document.querySelectorAll('.desktop-stats-grid').forEach(makeDesktopStatObserver);
+
   // ── Scroll fade + slide ─────────────────────────────────────
   const fadeEls = document.querySelectorAll(
     '.stats, .problem-section, .services-section, .methodology-section, .packages-section, .why-section, .about-section, .cta-section, .footer'
