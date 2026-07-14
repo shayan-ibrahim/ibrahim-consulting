@@ -874,6 +874,7 @@
     .desktop-stat-cell:hover .desktop-stat-accent { background: var(--color-amber); }
     .desktop-stat-inner { display: flex; flex-direction: column; gap: 8px; }
     .desktop-snum { font-size: 48px; font-weight: 800; color: var(--color-obsidian); letter-spacing: -2.5px; line-height: 1; }
+    .desktop-snum::before { content: '+'; }
     .desktop-slbl { font-size: 11px; color: var(--color-steel); line-height: 1.5; margin-top: 4px; }
     [data-theme="dark"] .desktop-stats-grid { background: transparent; }
     [data-theme="dark"] .desktop-stat-cell { background: transparent; border-right-color: rgba(255,255,255,0.1); }
@@ -2917,6 +2918,7 @@
       .pwa-stat-cell { background: #fff; padding: 15px 12px; display: flex; align-items: flex-start; gap: 10px; }
       .pwa-sdiv { width: 2px; height: 30px; background: var(--color-amber); border-radius: 2px; flex-shrink: 0; margin-top: 3px; }
       .pwa-snum { font-size: 25px; font-weight: 800; color: #09090b; letter-spacing: -0.8px; line-height: 1; }
+      .pwa-snum::before { content: '+'; }
       .pwa-slbl { font-size: 10.5px; color: #71717a; line-height: 1.35; margin-top: 4px; }
       .pwa-brand-strip { padding: 18px 22px; border-bottom: 1px solid #ececee; text-align: center; background: #f4f4f5; }
       .pwa-brand-strip p { font-size: 13px; font-weight: 600; color: #18181b; line-height: 1.55; letter-spacing: -0.1px; }
@@ -4042,7 +4044,7 @@
     <div class="desktop-stats-wrap">
       <div class="desktop-stats-eyebrow">About the Firm</div>
       <div class="desktop-stats-grid firm-stats-grid" role="list">
-        <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">18+</div><div class="desktop-slbl">Years of hands-on business transformation</div></div></div>
+        <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">18</div><div class="desktop-slbl">Years of hands-on business transformation</div></div></div>
         <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">3</div><div class="desktop-slbl">Phase process — Assess, Design, Implement</div></div></div>
         <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">5</div><div class="desktop-slbl">Packages — Diagnostic to Embedded Partner</div></div></div>
         <div class="desktop-stat-cell" role="listitem"><div class="desktop-stat-accent"></div><div class="desktop-stat-inner"><div class="desktop-snum">110%</div><div class="desktop-slbl">Average quota attainment across client portfolios</div></div></div>
@@ -4785,7 +4787,7 @@
         <div class="pwa-stats-wrap">
           <div class="pwa-stats-eyebrow">About the Firm</div>
           <div class="pwa-stats-grid">
-            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">18+</div><div class="pwa-slbl">Years of hands-on business transformation</div></div></div>
+            <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">18</div><div class="pwa-slbl">Years of hands-on business transformation</div></div></div>
             <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">3</div><div class="pwa-slbl">Phase process — Assess, Design, Implement</div></div></div>
             <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">5</div><div class="pwa-slbl">Packages — Diagnostic to Embedded Partner</div></div></div>
             <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">110%</div><div class="pwa-slbl">Average quota attainment across client portfolios</div></div></div>
@@ -5112,7 +5114,7 @@
       <div class="pwa-stats-wrap">
         <div class="pwa-stats-eyebrow">By the Numbers</div>
         <div class="pwa-stats-grid">
-          <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">18+</div><div class="pwa-slbl">Years of hands-on business transformation</div></div></div>
+          <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">18</div><div class="pwa-slbl">Years of hands-on business transformation</div></div></div>
           <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">17</div><div class="pwa-slbl">Companies transformed — every single one built into a top performer</div></div></div>
           <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">5</div><div class="pwa-slbl">Packages — Diagnostic to Embedded Partner</div></div></div>
           <div class="pwa-stat-cell"><div class="pwa-sdiv"></div><div><div class="pwa-snum">8K</div><div class="pwa-slbl">National locations supported</div></div></div>
