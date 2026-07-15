@@ -244,7 +244,6 @@
     [data-theme="dark"] .ticker-wrap { background: #0d0d0f; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
 
     /* Section headers */
-    [data-theme="dark"] .section-heading { color: #f0f0f2; }
     [data-theme="dark"] .section-label { color: #9090a0; }
     [data-theme="dark"] .section-label::before { background: #4a4a58; }
     [data-theme="dark"] .section-sub { color: #9090a0; }
@@ -257,14 +256,6 @@
       background: #141416;
     }
 
-    /* Stats */
-    [data-theme="dark"] .stats-grid { background: rgba(255,255,255,0.05); }
-    [data-theme="dark"] .stat-block { background: #1a1a1d; }
-    [data-theme="dark"] .stat-block:hover { background: #212126; box-shadow: none; transform: none; }
-    [data-theme="dark"] .stat-number { color: #f0f0f2; }
-    [data-theme="dark"] .stat-label { color: #6a6a78; }
-    [data-theme="dark"] .stat-divider { background: rgba(255,255,255,0.1); }
-    [data-theme="dark"] .stat-category { color: var(--color-amber); }
     [data-theme="dark"] .firm-stats-grid { background: rgba(255,255,255,0.05) !important; }
 
     /* Brand strip */
@@ -326,7 +317,6 @@
     [data-theme="dark"] .about-heading { color: #f0f0f2; }
     [data-theme="dark"] .about-body { color: #9090a0; }
     [data-theme="dark"] .about-badge { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.12); color: #f0f0f2; }
-    [data-theme="dark"] .about-section .about-badge { color: #f0f0f2; }
     [data-theme="dark"] .about-photo { border-color: rgba(255,255,255,0.08); }
 
     /* Differentiator (why-section) icons — white in dark mode */
@@ -336,7 +326,6 @@
     /* Firm stats (bottom) — match top stats bar */
     [data-theme="dark"] .firm-stats-grid > div { background: #1a1a1d !important; border-color: rgba(255,255,255,0.06) !important; }
     [data-theme="dark"] .firm-stats-grid > div:hover { background: #212126 !important; }
-    [data-theme="dark"] .firm-stat-num { color: #f0f0f2 !important; }
     [data-theme="dark"] .firm-stats-grid > div > div:last-child { color: #6a6a78 !important; }
 
     /* Results section */
@@ -792,76 +781,6 @@
     .stats {
       padding: 32px 0;
       background: var(--color-snow);
-    }
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-      background: var(--color-fog);
-      border-radius: var(--radius-card);
-      overflow: hidden;
-    }
-    .stat-block {
-      background: var(--color-snow);
-      padding: 24px 22px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      cursor: default;
-      position: relative;
-      z-index: 0;
-    }
-    .stat-block:hover { transform: translateY(-3px); box-shadow: rgba(0,0,0,0.06) 0px 8px 24px 0px; z-index: 1; }
-    .stat-block:first-child { border-radius: var(--radius-card) 0 0 0; }
-    .stat-block:nth-child(5) { border-radius: 0 var(--radius-card) 0 0; }
-    .stat-block:nth-child(6) { border-radius: 0 0 0 var(--radius-card); }
-    .stat-block:last-child { border-radius: 0 0 var(--radius-card) 0; }
-    .stat-block:hover .stat-number { color: var(--color-amber); }
-    .firm-stats-grid > div:hover .firm-stat-num { color: var(--color-amber) !important; }
-    .stat-category {
-      font-size: 9px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--color-amber);
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .stat-category::before {
-      content: '';
-      width: 14px;
-      height: 1px;
-      background: var(--color-amber);
-      opacity: 0.6;
-      flex-shrink: 0;
-    }
-    .stat-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .stat-divider {
-      width: 1px;
-      height: 28px;
-      background: var(--color-fog);
-      flex-shrink: 0;
-    }
-    .stat-number {
-      font-size: 36px;
-      font-weight: 800;
-      color: var(--color-obsidian);
-      line-height: 1;
-      letter-spacing: -1.5px;
-      flex-shrink: 0;
-      transition: color 0.2s;
-    }
-    .stat-label {
-      font-size: 11.5px;
-      font-weight: 400;
-      color: var(--color-steel);
-      line-height: 1.5;
     }
 
     /* ─── Desktop Stats (PWA-matched style) ─────────────────────── */
@@ -1568,7 +1487,6 @@
       color: rgba(255,255,255,0.88);
       line-height: 1.6;
     }
-    .problem-row .why-card-desc { color: rgba(255,255,255,0.88); }
 
     /* ─── CTA Section ────────────────────────────────────────────── */
     .cta-section {
@@ -2076,16 +1994,6 @@
       pointer-events: none;
     }
 
-    /* ─── Section Rule Accent ───────────────────────────────────── */
-    .section-rule {
-      display: block;
-      width: 48px;
-      height: 2px;
-      background: var(--color-amber);
-      border-radius: 2px;
-      margin-bottom: 16px;
-    }
-
     /* ─── Fade + Slide Animations ───────────────────────────────── */
     .fade-hidden {
       opacity: 0;
@@ -2103,9 +2011,14 @@
       .fade-hidden { opacity: 1; transform: none; transition: none; }
     }
 
-    /* ─── Section Rule Draw ─────────────────────────────────────── */
+    /* ─── Section Rule ──────────────────────────────────────────── */
     .section-rule {
+      display: block;
       width: 0;
+      height: 2px;
+      background: var(--color-amber);
+      border-radius: 2px;
+      margin-bottom: 16px;
       transition: width 0.55s cubic-bezier(0.22,1,0.36,1);
     }
     .section-rule.rule-drawn { width: 48px; }
@@ -2380,11 +2293,6 @@
     /* ─── Responsive ─────────────────────────────────────────────── */
     @media (max-width: 1024px) {
       .hero-right { max-width: 540px; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .stat-block:first-child { border-radius: var(--radius-card) var(--radius-card) 0 0; }
-      .stat-block:last-child { border-radius: 0 0 var(--radius-card) var(--radius-card); }
-      .stat-block:nth-child(2) { border-radius: 0; }
-      .stat-block:nth-child(3) { border-radius: 0; }
       .problem-panel { grid-template-columns: 1fr; gap: 40px; padding: 40px 36px; }
       .services-grid { grid-template-columns: repeat(2, 1fr); }
       .methodology-panel { padding: 40px 36px; }
@@ -2415,9 +2323,6 @@
       .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
     }
     @media (max-width: 480px) {
-      .stats-grid { grid-template-columns: 1fr; }
-      .stat-block { border-radius: 0 !important; }
-      .stats-grid { border-radius: var(--radius-card-compact); }
       .hero-tagline { font-size: 11px; letter-spacing: 1.2px; }
     }
 
@@ -2523,11 +2428,6 @@
       .problem-body,
       .methodology-sub,
       .why-sub { max-width: none !important; }
-      /* 3. Top stat bar: single column, number centered, dividers aligned */
-      .stats-grid { grid-template-columns: 1fr !important; }
-      .stats .stat-number { min-width: 56px; text-align: center; }
-      /* Bottom stat bar: same treatment, wider slot for "110%" */
-      .firm-stat-num { min-width: 88px; text-align: center; }
       /* 4. Brand logos: tighten gap */
       .brand-logos { gap: 14px !important; }
       /* 7. Results: gap between stacked cards */
@@ -4361,58 +4261,6 @@
     }
     requestAnimationFrame(tick);
   }
-  // Top stat bar numbers only (not firm stats)
-  const statNumbers = document.querySelectorAll('.stats .stat-number');
-  const statOriginals = new Map();
-  statNumbers.forEach(el => statOriginals.set(el, el.textContent.trim()));
-  let statRunning = false;
-  const statObserver = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting && !statRunning) {
-      statRunning = true;
-      statNumbers.forEach(el => {
-        const raw = statOriginals.get(el);
-        const num = parseFloat(raw.replace(/[^0-9.]/g, ''));
-        const suffix = raw.replace(/[0-9.]/g, '');
-        if (!isNaN(num)) animateCount(el, num, suffix, 2200);
-      });
-    } else if (!entries[0].isIntersecting) {
-      statRunning = false;
-      statNumbers.forEach(el => {
-        const raw = statOriginals.get(el);
-        const suffix = raw.replace(/[0-9.]/g, '');
-        el.textContent = '0' + suffix;
-      });
-    }
-  }, { threshold: 0.3 });
-  const statsSection = document.querySelector('.stats');
-  if (statsSection) statObserver.observe(statsSection);
-
-  // Firm stat bar numbers (bottom section) — separate observer
-  const firmStatNums = document.querySelectorAll('.firm-stat-num');
-  const firmOriginals = new Map();
-  firmStatNums.forEach(el => firmOriginals.set(el, el.textContent.trim()));
-  let firmRunning = false;
-  const firmObserver = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting && !firmRunning) {
-      firmRunning = true;
-      firmStatNums.forEach(el => {
-        const raw = firmOriginals.get(el);
-        const num = parseFloat(raw.replace(/[^0-9.]/g, ''));
-        const suffix = raw.replace(/[0-9.]/g, '');
-        if (!isNaN(num)) animateCount(el, num, suffix, 2200);
-      });
-    } else if (!entries[0].isIntersecting) {
-      firmRunning = false;
-      firmStatNums.forEach(el => {
-        const raw = firmOriginals.get(el);
-        const suffix = raw.replace(/[0-9.]/g, '');
-        el.textContent = '0' + suffix;
-      });
-    }
-  }, { threshold: 0.3 });
-  const firmStatsSection = document.querySelector('.firm-stats-grid');
-  if (firmStatsSection) firmObserver.observe(firmStatsSection);
-
   // Desktop stat bars (.desktop-snum) — top and bottom sections
   function makeDesktopStatObserver(sectionEl) {
     const nums = sectionEl.querySelectorAll('.desktop-snum');
