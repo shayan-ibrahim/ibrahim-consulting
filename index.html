@@ -2706,14 +2706,6 @@
         object-fit: cover;
         opacity: 0.45;
         pointer-events: none;
-        -webkit-mask-image: -webkit-radial-gradient(white, black);
-      }
-      .pwa-hero video::-webkit-media-controls,
-      .pwa-hero video::-webkit-media-controls-panel,
-      .pwa-hero video::-webkit-media-controls-play-button,
-      .pwa-hero video::-webkit-media-controls-start-playback-button {
-        display: none !important;
-        -webkit-appearance: none;
       }
       .pwa-hero-overlay {
         position: absolute;
@@ -4502,7 +4494,6 @@
 
   // ── Disable right-click and text selection ───────────────────
   document.addEventListener('contextmenu', e => e.preventDefault());
-  document.querySelectorAll('.pwa-screen.active video').forEach(v => { v.muted = true; v.play().catch(() => {}); });
 
   // ── Scroll-down hide on scroll ────────────────────────────────
   (function() {
@@ -4569,7 +4560,7 @@
     <!-- ── HOME ─────────────────────────────────────────────────── -->
     <div class="pwa-screen active" id="pwa-home">
       <div class="pwa-hero">
-        <video autoplay muted loop playsinline webkit-playsinline x-webkit-airplay="deny">
+        <video autoplay muted loop playsinline>
           <source src="hero-video.mp4" type="video/mp4">
         </video>
         <div class="pwa-hero-overlay"></div>
@@ -5022,7 +5013,6 @@ function pwaSwitchTab(btn) {
   btn.classList.add('active');
   const screen = document.getElementById('pwa-' + btn.dataset.screen);
   screen.classList.add('active');
-  screen.querySelectorAll('video').forEach(v => { v.muted = true; v.play().catch(() => {}); });
   document.getElementById('pwa-content').scrollTop = 0;
   movePwaIndicator(btn);
   // Re-observe reveals on new screen
