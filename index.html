@@ -2706,6 +2706,14 @@
         object-fit: cover;
         opacity: 0.45;
         pointer-events: none;
+        -webkit-mask-image: -webkit-radial-gradient(white, black);
+      }
+      .pwa-hero video::-webkit-media-controls,
+      .pwa-hero video::-webkit-media-controls-panel,
+      .pwa-hero video::-webkit-media-controls-play-button,
+      .pwa-hero video::-webkit-media-controls-start-playback-button {
+        display: none !important;
+        -webkit-appearance: none;
       }
       .pwa-hero-overlay {
         position: absolute;
@@ -4561,7 +4569,7 @@
     <!-- ── HOME ─────────────────────────────────────────────────── -->
     <div class="pwa-screen active" id="pwa-home">
       <div class="pwa-hero">
-        <video autoplay muted loop playsinline>
+        <video autoplay muted loop playsinline webkit-playsinline x-webkit-airplay="deny">
           <source src="hero-video.mp4" type="video/mp4">
         </video>
         <div class="pwa-hero-overlay"></div>
