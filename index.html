@@ -4494,6 +4494,7 @@
 
   // ── Disable right-click and text selection ───────────────────
   document.addEventListener('contextmenu', e => e.preventDefault());
+  document.querySelectorAll('.pwa-screen.active video').forEach(v => { v.muted = true; v.play().catch(() => {}); });
 
   // ── Scroll-down hide on scroll ────────────────────────────────
   (function() {
@@ -5013,6 +5014,7 @@ function pwaSwitchTab(btn) {
   btn.classList.add('active');
   const screen = document.getElementById('pwa-' + btn.dataset.screen);
   screen.classList.add('active');
+  screen.querySelectorAll('video').forEach(v => { v.muted = true; v.play().catch(() => {}); });
   document.getElementById('pwa-content').scrollTop = 0;
   movePwaIndicator(btn);
   // Re-observe reveals on new screen
