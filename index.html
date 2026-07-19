@@ -2681,12 +2681,11 @@
       }
       .pwa-tab.active { color: var(--color-amber); }
       .pwa-tab-icon { position: relative; width: 22px; height: 22px; }
-      .pwa-tab svg { position: absolute; inset: 0; width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; transition: opacity 0.2s ease, transform 0.2s ease; }
-      .pwa-tab svg.icon-outline { opacity: 1; transform: scale(1); }
-      .pwa-tab svg.icon-filled { opacity: 0; transform: scale(0.8); }
-      .pwa-tab.active svg.icon-outline { opacity: 0; transform: scale(1.15); }
-      .pwa-tab.active svg.icon-filled { opacity: 1; transform: scale(1); animation: tab-pop 0.25s cubic-bezier(0.34,1.56,0.64,1) both; }
-      @keyframes tab-pop { from { transform: scale(0.7); } to { transform: scale(1); } }
+      .pwa-tab svg { position: absolute; inset: 0; width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; transition: opacity 0.22s ease, transform 0.28s cubic-bezier(0.34,1.4,0.64,1); }
+      .pwa-tab svg.i-off { opacity: 1; transform: scale(1); }
+      .pwa-tab svg.i-on  { opacity: 0; transform: scale(0.72); }
+      .pwa-tab.active svg.i-off { opacity: 0; transform: scale(1.18); }
+      .pwa-tab.active svg.i-on  { opacity: 1; transform: scale(1); }
       .pwa-tab-label { font-size: 9px; font-weight: 600; letter-spacing: 0.01em; line-height: 1; }
       .pwa-home-ind {
         position: absolute;
@@ -4983,43 +4982,43 @@
   <div id="pwa-tabbar">
     <button class="pwa-tab active" data-screen="home" onclick="pwaSwitchTab(this)">
       <div class="pwa-tab-icon">
-        <svg class="icon-outline" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
-        <svg class="icon-filled" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z" fill="currentColor" stroke="none"/><path d="M9 21V12h6v9" stroke="var(--color-obsidian)" stroke-width="1.8" fill="none"/></svg>
+        <svg class="i-off" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+        <svg class="i-on" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z" stroke-width="1.8"/><path d="M9 21V12h6v9" stroke-width="1.8"/><rect x="13.5" y="10" width="4" height="3.5" rx="0.5" fill="currentColor" stroke="none"/></svg>
       </div>
       <span class="pwa-tab-label">Home</span>
     </button>
     <button class="pwa-tab" data-screen="services" onclick="pwaSwitchTab(this)">
       <div class="pwa-tab-icon">
-        <svg class="icon-outline" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg>
-        <svg class="icon-filled" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1" fill="currentColor" stroke="none"/><rect x="14" y="4" width="6" height="6" rx="1" fill="currentColor" stroke="none"/><rect x="4" y="14" width="6" height="6" rx="1" fill="currentColor" stroke="none"/><rect x="14" y="14" width="6" height="6" rx="1" fill="currentColor" stroke="none"/></svg>
+        <svg class="i-off" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg>
+        <svg class="i-on" viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/><rect x="13" y="2" width="8" height="8" rx="1.5" stroke-width="2"/></svg>
       </div>
       <span class="pwa-tab-label">Services</span>
     </button>
     <button class="pwa-tab" data-screen="approach" onclick="pwaSwitchTab(this)">
       <div class="pwa-tab-icon">
-        <svg class="icon-outline" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M12 19h4.5a3.5 3.5 0 0 0 0-7h-8a3.5 3.5 0 0 1 0-7H12"/></svg>
-        <svg class="icon-filled" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2" fill="currentColor" stroke="none"/><circle cx="18" cy="5" r="2" fill="currentColor" stroke="none"/><path d="M12 19h4.5a3.5 3.5 0 0 0 0-7h-8a3.5 3.5 0 0 1 0-7H12" stroke-width="2.5"/></svg>
+        <svg class="i-off" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M12 19h4.5a3.5 3.5 0 0 0 0-7h-8a3.5 3.5 0 0 1 0-7H12"/></svg>
+        <svg class="i-on" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2" stroke-width="1.8"/><circle cx="18" cy="5" r="2.5" stroke-width="2.2"/><path d="M12 19h4.5a3.5 3.5 0 0 0 0-7h-8a3.5 3.5 0 0 1 0-7H12" stroke-width="1.8"/><polyline points="15.5,2.5 18,5 20.5,2.5" stroke-width="1.8" fill="none"/></svg>
       </div>
       <span class="pwa-tab-label">Approach</span>
     </button>
     <button class="pwa-tab" data-screen="results" onclick="pwaSwitchTab(this)">
       <div class="pwa-tab-icon">
-        <svg class="icon-outline" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
-        <svg class="icon-filled" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7" stroke-width="2.5"/><polyline points="14 7 21 7 21 14" stroke-width="2.5"/><polygon points="3,17 9,11 13,15 21,7 21,20 3,20" fill="currentColor" opacity="0.25" stroke="none"/></svg>
+        <svg class="i-off" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
+        <svg class="i-on" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7" stroke-width="2"/><line x1="18" y1="5" x2="18" y2="1" stroke-width="1.8"/><polyline points="15.5,3.5 18,1 20.5,3.5" stroke-width="1.8" fill="none"/></svg>
       </div>
       <span class="pwa-tab-label">Results</span>
     </button>
     <button class="pwa-tab" data-screen="packages" onclick="pwaSwitchTab(this)">
       <div class="pwa-tab-icon">
-        <svg class="icon-outline" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27,6.96 12,12.01 20.73,6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-        <svg class="icon-filled" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" fill="currentColor" stroke="none"/><polyline points="3.27,6.96 12,12.01 20.73,6.96" stroke="rgba(9,9,11,0.5)" stroke-width="1.5" fill="none"/><line x1="12" y1="22.08" x2="12" y2="12" stroke="rgba(9,9,11,0.5)" stroke-width="1.5"/></svg>
+        <svg class="i-off" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27,6.96 12,12.01 20.73,6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        <svg class="i-on" viewBox="0 0 24 24"><path d="M3 9v7a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V9" stroke-width="1.8"/><line x1="12" y1="22.08" x2="12" y2="12" stroke-width="1.8"/><line x1="3.27" y1="8" x2="12" y2="12.5" stroke-width="1.8"/><line x1="20.73" y1="8" x2="12" y2="12.5" stroke-width="1.8"/><path d="M4 6.5L12 2l8 4.5" stroke-width="1.8" stroke-linecap="round"/><path d="M2.5 5L10 1" stroke-width="1.5" stroke-linecap="round" opacity="0.45"/></svg>
       </div>
       <span class="pwa-tab-label">Packages</span>
     </button>
     <button class="pwa-tab" data-screen="about" onclick="pwaSwitchTab(this)">
       <div class="pwa-tab-icon">
-        <svg class="icon-outline" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        <svg class="icon-filled" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-width="2" fill="none"/><circle cx="12" cy="7" r="4" fill="currentColor" stroke="none"/></svg>
+        <svg class="i-off" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <svg class="i-on" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-width="1.8"/><circle cx="12" cy="7" r="4" stroke-width="1.8"/><path d="M16 12 Q19 9 20 6" stroke-width="1.8" stroke-linecap="round" fill="none"/><circle cx="20" cy="5.5" r="1.2" fill="currentColor" stroke="none"/></svg>
       </div>
       <span class="pwa-tab-label">About</span>
     </button>
