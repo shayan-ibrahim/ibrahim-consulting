@@ -2680,12 +2680,9 @@
         transition: color 0.15s ease;
       }
       .pwa-tab.active { color: var(--color-amber); }
-      .pwa-tab svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.15s ease; }
-      .pwa-tab.active svg { stroke-width: 2.2; transform: scale(1.12); }
-      .pwa-tab-label { font-size: 9px; font-weight: 600; letter-spacing: 0.01em; line-height: 1; transition: font-weight 0.15s; }
-      .pwa-tab.active .pwa-tab-label { font-weight: 700; }
-      .pwa-tab-icon-wrap { position: relative; display: flex; align-items: center; justify-content: center; width: 44px; height: 26px; border-radius: 13px; transition: background 0.2s ease; }
-      .pwa-tab.active .pwa-tab-icon-wrap { background: rgba(255,170,0,0.12); }
+      .pwa-tab svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+      .pwa-tab.active svg { stroke-width: 2.2; }
+      .pwa-tab-label { font-size: 9px; font-weight: 600; letter-spacing: 0.01em; line-height: 1; }
       .pwa-home-ind {
         position: absolute;
         bottom: 7px; left: 50%; transform: translateX(-50%);
@@ -4980,27 +4977,27 @@
   <!-- Tab Bar -->
   <div id="pwa-tabbar">
     <button class="pwa-tab active" data-screen="home" onclick="pwaSwitchTab(this)">
-      <div class="pwa-tab-icon-wrap"><svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg></div>
+      <svg viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
       <span class="pwa-tab-label">Home</span>
     </button>
     <button class="pwa-tab" data-screen="services" onclick="pwaSwitchTab(this)">
-      <div class="pwa-tab-icon-wrap"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg></div>
+      <svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg>
       <span class="pwa-tab-label">Services</span>
     </button>
     <button class="pwa-tab" data-screen="approach" onclick="pwaSwitchTab(this)">
-      <div class="pwa-tab-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M12 19h4.5a3.5 3.5 0 0 0 0-7h-8a3.5 3.5 0 0 1 0-7H12"/></svg></div>
+      <svg viewBox="0 0 24 24"><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M12 19h4.5a3.5 3.5 0 0 0 0-7h-8a3.5 3.5 0 0 1 0-7H12"/></svg>
       <span class="pwa-tab-label">Approach</span>
     </button>
     <button class="pwa-tab" data-screen="results" onclick="pwaSwitchTab(this)">
-      <div class="pwa-tab-icon-wrap"><svg viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg></div>
+      <svg viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
       <span class="pwa-tab-label">Results</span>
     </button>
     <button class="pwa-tab" data-screen="packages" onclick="pwaSwitchTab(this)">
-      <div class="pwa-tab-icon-wrap"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27,6.96 12,12.01 20.73,6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></div>
+      <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27,6.96 12,12.01 20.73,6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
       <span class="pwa-tab-label">Packages</span>
     </button>
     <button class="pwa-tab" data-screen="about" onclick="pwaSwitchTab(this)">
-      <div class="pwa-tab-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       <span class="pwa-tab-label">About</span>
     </button>
     <div class="pwa-home-ind"></div>
