@@ -3117,11 +3117,14 @@
       }
     }
   .svc-list { display: flex; flex-direction: column; gap: 3px; }
-  .svc-item { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border-radius: 6px; cursor: pointer; border: 1px solid transparent; transition: background 0.12s, border-color 0.12s; }
+  .svc-item { display: flex; align-items: flex-start; gap: 10px; padding: 6px 8px; border-radius: 6px; cursor: pointer; border: 1px solid transparent; transition: background 0.12s, border-color 0.12s; }
   .svc-item:hover { background: rgba(0,0,0,0.03); }
-  .svc-item input[type=checkbox] { accent-color: var(--color-amber); width: 14px; height: 14px; flex-shrink: 0; cursor: pointer; }
+  .svc-item input[type=checkbox] { accent-color: var(--color-amber); width: 14px; height: 14px; flex-shrink: 0; cursor: pointer; margin-top: 2px; }
+  .svc-item-body { flex: 1; min-width: 0; }
+  .svc-item-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
   .svc-item-name { font-size: 13px; color: var(--color-steel); flex: 1; line-height: 1.4; }
-  .svc-item-price { font-size: 12px; color: var(--color-steel); white-space: nowrap; }
+  .svc-item-price { font-size: 12px; color: var(--color-steel); white-space: nowrap; flex-shrink: 0; }
+  .svc-item-desc { font-size: 11px; color: #a1a1aa; line-height: 1.45; margin-top: 4px; padding-left: 8px; border-left: 2px solid rgba(255,170,0,0.45); }
   .svc-summary { background: rgba(255,170,0,0.07); border: 1px solid rgba(255,170,0,0.25); border-radius: 8px; padding: 10px 12px; }
   [data-theme="dark"] .svc-summary { background: rgba(255,170,0,0.10); border-color: rgba(255,170,0,0.30); }
   .svc-summary-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
@@ -3995,12 +3998,12 @@
           <h3 class="package-name">People &amp; Leadership Services</h3>
           <p class="package-desc" style="flex:none">Select the services you need — or bundle all six for the best rate.</p>
           <div class="svc-list">
-            <label class="svc-item"><input type="checkbox" value="2500" onchange="calcCard('pl',6500)"><span class="svc-item-name">Leadership Coaching (1–4 Individuals)</span><span class="svc-item-price">$2,500</span></label>
-            <label class="svc-item"><input type="checkbox" value="1800" onchange="calcCard('pl',6500)"><span class="svc-item-name">Executive Communication Training</span><span class="svc-item-price">$1,800</span></label>
-            <label class="svc-item"><input type="checkbox" value="1500" onchange="calcCard('pl',6500)"><span class="svc-item-name">Performance Management Systems</span><span class="svc-item-price">$1,500</span></label>
-            <label class="svc-item"><input type="checkbox" value="1200" onchange="calcCard('pl',6500)"><span class="svc-item-name">Onboarding &amp; Offboarding Program Design</span><span class="svc-item-price">$1,200</span></label>
-            <label class="svc-item"><input type="checkbox" value="1000" onchange="calcCard('pl',6500)"><span class="svc-item-name">Culture-Building Workshops &amp; Facilitation</span><span class="svc-item-price">$1,000</span></label>
-            <label class="svc-item"><input type="checkbox" value="800" onchange="calcCard('pl',6500)"><span class="svc-item-name">Employee Handbook &amp; Policy Documentation</span><span class="svc-item-price">$800</span></label>
+            <label class="svc-item"><input type="checkbox" value="2500" onchange="calcCard('pl',6500)"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Leadership Coaching (1–4 Individuals)</span><span class="svc-item-price">$2,500</span></div><div class="svc-item-desc">One-on-one and small-group coaching to sharpen focus, decision-making, and presence.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="1800" onchange="calcCard('pl',6500)"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Executive Communication Training</span><span class="svc-item-price">$1,800</span></div><div class="svc-item-desc">Build confidence delivering to boards, clients, and internal teams under pressure.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="1500" onchange="calcCard('pl',6500)"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Performance Management Systems</span><span class="svc-item-price">$1,500</span></div><div class="svc-item-desc">Goal frameworks, review cycles, and accountability structures that actually get used.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="1200" onchange="calcCard('pl',6500)"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Onboarding &amp; Offboarding Program Design</span><span class="svc-item-price">$1,200</span></div><div class="svc-item-desc">Structured entry and exit processes that protect culture and reduce costly gaps.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="1000" onchange="calcCard('pl',6500)"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Culture-Building Workshops &amp; Facilitation</span><span class="svc-item-price">$1,000</span></div><div class="svc-item-desc">Facilitated sessions that align your team around shared values, norms, and ways of working.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="800" onchange="calcCard('pl',6500)"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Employee Handbook &amp; Policy Documentation</span><span class="svc-item-price">$800</span></div><div class="svc-item-desc">Clear, practical policies your team can actually understand and follow.</div></div></label>
           </div>
           <div class="svc-summary" id="pl-summary" style="display:none">
             <div class="svc-summary-row">
@@ -4024,12 +4027,12 @@
           <h3 class="package-name">Brand &amp; Design Services</h3>
           <p class="package-desc" style="flex:none">Select the services you need — or bundle all six for the best rate.</p>
           <div class="svc-list">
-            <label class="svc-item"><input type="checkbox" value="3500" onchange="calcCard('bd',5800)"><span class="svc-item-name">Website Design &amp; Development</span><span class="svc-item-price">$3,500</span></label>
-            <label class="svc-item"><input type="checkbox" value="1200" onchange="calcCard('bd',5800)"><span class="svc-item-name">Logo Design &amp; Brand Identity</span><span class="svc-item-price">$1,200</span></label>
-            <label class="svc-item"><input type="checkbox" value="800" onchange="calcCard('bd',5800)"><span class="svc-item-name">Marketing &amp; Promotional Materials</span><span class="svc-item-price">$800</span></label>
-            <label class="svc-item"><input type="checkbox" value="650" onchange="calcCard('bd',5800)"><span class="svc-item-name">Graphic Design &amp; Visual Assets</span><span class="svc-item-price">$650</span></label>
-            <label class="svc-item"><input type="checkbox" value="600" onchange="calcCard('bd',5800)"><span class="svc-item-name">Social Media Templates &amp; Creative</span><span class="svc-item-price">$600</span></label>
-            <label class="svc-item"><input type="checkbox" value="500" onchange="calcCard('bd',5800)"><span class="svc-item-name">Presentation Design</span><span class="svc-item-price">$500</span></label>
+            <label class="svc-item"><input type="checkbox" value="3500" onchange="calcCard('bd',5800)"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Website Design &amp; Development</span><span class="svc-item-price">$3,500</span></div><div class="svc-item-desc">A professional site built to convert — clean, fast, and aligned with your brand.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="1200" onchange="calcCard('bd',5800)"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Logo Design &amp; Brand Identity</span><span class="svc-item-price">$1,200</span></div><div class="svc-item-desc">A cohesive visual identity that positions your business with clarity and confidence.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="800" onchange="calcCard('bd',5800)"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Marketing &amp; Promotional Materials</span><span class="svc-item-price">$800</span></div><div class="svc-item-desc">Print and digital collateral that represents your brand at every touchpoint.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="650" onchange="calcCard('bd',5800)"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Graphic Design &amp; Visual Assets</span><span class="svc-item-price">$650</span></div><div class="svc-item-desc">Custom visuals for internal and external use, built to brand standards.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="600" onchange="calcCard('bd',5800)"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Social Media Templates &amp; Creative</span><span class="svc-item-price">$600</span></div><div class="svc-item-desc">On-brand templates your team can use consistently across platforms.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="500" onchange="calcCard('bd',5800)"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Presentation Design</span><span class="svc-item-price">$500</span></div><div class="svc-item-desc">Polished decks that make your ideas land — for pitches, clients, and internal use.</div></div></label>
           </div>
           <div class="svc-summary" id="bd-summary" style="display:none">
             <div class="svc-summary-row">
@@ -4053,9 +4056,9 @@
           <h3 class="package-name">Technology &amp; Operations Services</h3>
           <p class="package-desc" style="flex:none">Select the services you need — or bundle all three for the best rate.</p>
           <div class="svc-list">
-            <label class="svc-item"><input type="checkbox" value="2500" onchange="calcCard('to',4200)"><span class="svc-item-name">SharePoint Development &amp; Deployment</span><span class="svc-item-price">$2,500</span></label>
-            <label class="svc-item"><input type="checkbox" value="1500" onchange="calcCard('to',4200)"><span class="svc-item-name">AI Tools Training &amp; Team Adoption</span><span class="svc-item-price">$1,500</span></label>
-            <label class="svc-item"><input type="checkbox" value="1200" onchange="calcCard('to',4200)"><span class="svc-item-name">Microsoft Office Suite Training</span><span class="svc-item-price">$1,200</span></label>
+            <label class="svc-item"><input type="checkbox" value="2500" onchange="calcCard('to',4200)"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">SharePoint Development &amp; Deployment</span><span class="svc-item-price">$2,500</span></div><div class="svc-item-desc">A custom SharePoint environment built for how your team actually works.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="1500" onchange="calcCard('to',4200)"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">AI Tools Training &amp; Team Adoption</span><span class="svc-item-price">$1,500</span></div><div class="svc-item-desc">Hands-on training to help your team get real value from AI tools, fast.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="1200" onchange="calcCard('to',4200)"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Microsoft Office Suite Training</span><span class="svc-item-price">$1,200</span></div><div class="svc-item-desc">Practical training that turns everyday tools into productivity assets.</div></div></label>
           </div>
           <div class="svc-summary" id="to-summary" style="display:none">
             <div class="svc-summary-row">
@@ -5275,12 +5278,12 @@
         <div class="pwa-pkg pwa-reveal" id="pwa-pl-card">
           <div class="pwa-pkg-name">People &amp; Leadership Services</div>
           <div class="svc-list" style="margin-top:6px">
-            <label class="svc-item"><input type="checkbox" value="2500" onchange="calcCard('ppl',6500,'pwa-pl-card')"><span class="svc-item-name">Leadership Coaching (1–4 Individuals)</span><span class="svc-item-price">$2,500</span></label>
-            <label class="svc-item"><input type="checkbox" value="1800" onchange="calcCard('ppl',6500,'pwa-pl-card')"><span class="svc-item-name">Executive Communication Training</span><span class="svc-item-price">$1,800</span></label>
-            <label class="svc-item"><input type="checkbox" value="1500" onchange="calcCard('ppl',6500,'pwa-pl-card')"><span class="svc-item-name">Performance Management Systems</span><span class="svc-item-price">$1,500</span></label>
-            <label class="svc-item"><input type="checkbox" value="1200" onchange="calcCard('ppl',6500,'pwa-pl-card')"><span class="svc-item-name">Onboarding &amp; Offboarding Program Design</span><span class="svc-item-price">$1,200</span></label>
-            <label class="svc-item"><input type="checkbox" value="1000" onchange="calcCard('ppl',6500,'pwa-pl-card')"><span class="svc-item-name">Culture-Building Workshops &amp; Facilitation</span><span class="svc-item-price">$1,000</span></label>
-            <label class="svc-item"><input type="checkbox" value="800" onchange="calcCard('ppl',6500,'pwa-pl-card')"><span class="svc-item-name">Employee Handbook &amp; Policy Documentation</span><span class="svc-item-price">$800</span></label>
+            <label class="svc-item"><input type="checkbox" value="2500" onchange="calcCard('ppl',6500,'pwa-pl-card')"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Leadership Coaching (1–4 Individuals)</span><span class="svc-item-price">$2,500</span></div><div class="svc-item-desc">One-on-one and small-group coaching to sharpen focus, decision-making, and presence.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="1800" onchange="calcCard('ppl',6500,'pwa-pl-card')"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Executive Communication Training</span><span class="svc-item-price">$1,800</span></div><div class="svc-item-desc">Build confidence delivering to boards, clients, and internal teams under pressure.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="1500" onchange="calcCard('ppl',6500,'pwa-pl-card')"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Performance Management Systems</span><span class="svc-item-price">$1,500</span></div><div class="svc-item-desc">Goal frameworks, review cycles, and accountability structures that actually get used.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="1200" onchange="calcCard('ppl',6500,'pwa-pl-card')"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Onboarding &amp; Offboarding Program Design</span><span class="svc-item-price">$1,200</span></div><div class="svc-item-desc">Structured entry and exit processes that protect culture and reduce costly gaps.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="1000" onchange="calcCard('ppl',6500,'pwa-pl-card')"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Culture-Building Workshops &amp; Facilitation</span><span class="svc-item-price">$1,000</span></div><div class="svc-item-desc">Facilitated sessions that align your team around shared values, norms, and ways of working.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="800" onchange="calcCard('ppl',6500,'pwa-pl-card')"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Employee Handbook &amp; Policy Documentation</span><span class="svc-item-price">$800</span></div><div class="svc-item-desc">Clear, practical policies your team can actually understand and follow.</div></div></label>
           </div>
           <div class="svc-summary" id="ppl-summary" style="display:none;margin-top:10px">
             <div class="svc-summary-row"><span class="svc-count-label" id="ppl-count-label"></span><div><div class="svc-orig-price" id="ppl-orig-price" style="display:none"></div><div class="svc-disc-price" id="ppl-disc-price"></div></div></div>
@@ -5293,12 +5296,12 @@
         <div class="pwa-pkg pwa-reveal" id="pwa-bd-card">
           <div class="pwa-pkg-name">Brand &amp; Design Services</div>
           <div class="svc-list" style="margin-top:6px">
-            <label class="svc-item"><input type="checkbox" value="3500" onchange="calcCard('pbd',5800,'pwa-bd-card')"><span class="svc-item-name">Website Design &amp; Development</span><span class="svc-item-price">$3,500</span></label>
-            <label class="svc-item"><input type="checkbox" value="1200" onchange="calcCard('pbd',5800,'pwa-bd-card')"><span class="svc-item-name">Logo Design &amp; Brand Identity</span><span class="svc-item-price">$1,200</span></label>
-            <label class="svc-item"><input type="checkbox" value="800" onchange="calcCard('pbd',5800,'pwa-bd-card')"><span class="svc-item-name">Marketing &amp; Promotional Materials</span><span class="svc-item-price">$800</span></label>
-            <label class="svc-item"><input type="checkbox" value="650" onchange="calcCard('pbd',5800,'pwa-bd-card')"><span class="svc-item-name">Graphic Design &amp; Visual Assets</span><span class="svc-item-price">$650</span></label>
-            <label class="svc-item"><input type="checkbox" value="600" onchange="calcCard('pbd',5800,'pwa-bd-card')"><span class="svc-item-name">Social Media Templates &amp; Creative</span><span class="svc-item-price">$600</span></label>
-            <label class="svc-item"><input type="checkbox" value="500" onchange="calcCard('pbd',5800,'pwa-bd-card')"><span class="svc-item-name">Presentation Design</span><span class="svc-item-price">$500</span></label>
+            <label class="svc-item"><input type="checkbox" value="3500" onchange="calcCard('pbd',5800,'pwa-bd-card')"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Website Design &amp; Development</span><span class="svc-item-price">$3,500</span></div><div class="svc-item-desc">A professional site built to convert — clean, fast, and aligned with your brand.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="1200" onchange="calcCard('pbd',5800,'pwa-bd-card')"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Logo Design &amp; Brand Identity</span><span class="svc-item-price">$1,200</span></div><div class="svc-item-desc">A cohesive visual identity that positions your business with clarity and confidence.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="800" onchange="calcCard('pbd',5800,'pwa-bd-card')"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Marketing &amp; Promotional Materials</span><span class="svc-item-price">$800</span></div><div class="svc-item-desc">Print and digital collateral that represents your brand at every touchpoint.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="650" onchange="calcCard('pbd',5800,'pwa-bd-card')"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Graphic Design &amp; Visual Assets</span><span class="svc-item-price">$650</span></div><div class="svc-item-desc">Custom visuals for internal and external use, built to brand standards.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="600" onchange="calcCard('pbd',5800,'pwa-bd-card')"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Social Media Templates &amp; Creative</span><span class="svc-item-price">$600</span></div><div class="svc-item-desc">On-brand templates your team can use consistently across platforms.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="500" onchange="calcCard('pbd',5800,'pwa-bd-card')"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Presentation Design</span><span class="svc-item-price">$500</span></div><div class="svc-item-desc">Polished decks that make your ideas land — for pitches, clients, and internal use.</div></div></label>
           </div>
           <div class="svc-summary" id="pbd-summary" style="display:none;margin-top:10px">
             <div class="svc-summary-row"><span class="svc-count-label" id="pbd-count-label"></span><div><div class="svc-orig-price" id="pbd-orig-price" style="display:none"></div><div class="svc-disc-price" id="pbd-disc-price"></div></div></div>
@@ -5311,9 +5314,9 @@
         <div class="pwa-pkg pwa-reveal" id="pwa-to-card">
           <div class="pwa-pkg-name">Technology &amp; Operations Services</div>
           <div class="svc-list" style="margin-top:6px">
-            <label class="svc-item"><input type="checkbox" value="2500" onchange="calcCard('pto',4200,'pwa-to-card')"><span class="svc-item-name">SharePoint Development &amp; Deployment</span><span class="svc-item-price">$2,500</span></label>
-            <label class="svc-item"><input type="checkbox" value="1500" onchange="calcCard('pto',4200,'pwa-to-card')"><span class="svc-item-name">AI Tools Training &amp; Team Adoption</span><span class="svc-item-price">$1,500</span></label>
-            <label class="svc-item"><input type="checkbox" value="1200" onchange="calcCard('pto',4200,'pwa-to-card')"><span class="svc-item-name">Microsoft Office Suite Training</span><span class="svc-item-price">$1,200</span></label>
+            <label class="svc-item"><input type="checkbox" value="2500" onchange="calcCard('pto',4200,'pwa-to-card')"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">SharePoint Development &amp; Deployment</span><span class="svc-item-price">$2,500</span></div><div class="svc-item-desc">A custom SharePoint environment built for how your team actually works.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="1500" onchange="calcCard('pto',4200,'pwa-to-card')"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">AI Tools Training &amp; Team Adoption</span><span class="svc-item-price">$1,500</span></div><div class="svc-item-desc">Hands-on training to help your team get real value from AI tools, fast.</div></div></label>
+            <label class="svc-item"><input type="checkbox" value="1200" onchange="calcCard('pto',4200,'pwa-to-card')"><div class="svc-item-body"><div class="svc-item-top"><span class="svc-item-name">Microsoft Office Suite Training</span><span class="svc-item-price">$1,200</span></div><div class="svc-item-desc">Practical training that turns everyday tools into productivity assets.</div></div></label>
           </div>
           <div class="svc-summary" id="pto-summary" style="display:none;margin-top:10px">
             <div class="svc-summary-row"><span class="svc-count-label" id="pto-count-label"></span><div><div class="svc-orig-price" id="pto-orig-price" style="display:none"></div><div class="svc-disc-price" id="pto-disc-price"></div></div></div>
