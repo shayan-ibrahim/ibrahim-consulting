@@ -4184,6 +4184,9 @@
     document.getElementById('pkg-tab-products').style.color = isConsulting ? '#a1a1aa' : 'var(--color-amber)';
     document.getElementById('pkg-ul-consulting').style.display = isConsulting ? '' : 'none';
     document.getElementById('pkg-ul-products').style.display = isConsulting ? 'none' : '';
+    document.getElementById('pkg-hdr-eyebrow').textContent = isConsulting ? 'Consulting Packages' : 'Products & Services';
+    document.getElementById('pkg-hdr-hed').textContent = isConsulting ? 'Scoped for where you are.' : 'Right-sized for what you need.';
+    document.getElementById('pkg-hdr-sub').textContent = isConsulting ? 'Every engagement is fixed-scope with no surprises. Every package includes an AI assessment to identify opportunities to give your team more leverage.' : 'Expert support where you need it most — without committing to a full engagement. Each service is scoped, priced, and delivered independently.';
   }
 
   function togglePwaAlacarte(btn) {
@@ -4828,9 +4831,9 @@
     <!-- ── PACKAGES ───────────────────────────────────────────────── -->
     <div class="pwa-screen" id="pwa-packages">
       <div class="pwa-dark-hdr"><video autoplay muted loop playsinline><source src="hero-video.mp4" type="video/mp4"></video>
-        <div class="pwa-eyebrow">Consulting Packages</div>
-        <div class="pwa-hed">Scoped for where you are.</div>
-        <div class="pwa-sub">Every engagement is fixed-scope with no surprises. Every package includes an AI assessment to identify opportunities to give your team more leverage.</div>
+        <div class="pwa-eyebrow" id="pkg-hdr-eyebrow">Consulting Packages</div>
+        <div class="pwa-hed" id="pkg-hdr-hed">Scoped for where you are.</div>
+        <div class="pwa-sub" id="pkg-hdr-sub">Every engagement is fixed-scope with no surprises. Every package includes an AI assessment to identify opportunities to give your team more leverage.</div>
       </div>
       <!-- ── Package sub-tabs ── -->
       <div style="display:flex;border-bottom:1px solid #e4e4e7;background:#f4f4f5;padding:0 14px">
@@ -4882,50 +4885,52 @@
       </div>
       <!-- ── Products & Services tab ── -->
       <div id="pkg-panel-products" class="pwa-card-list" style="display:none">
-        <div class="pwa-pkg pwa-reveal" style="border-style:dashed;border-color:rgba(255,170,0,0.4)">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px">
-            <span style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#09090b;background:var(--color-amber);padding:3px 8px;border-radius:100px">À La Carte</span>
-            <button onclick="togglePwaAlacarte(this)" aria-expanded="false" style="flex-shrink:0;display:flex;align-items:center;gap:6px;border:none;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;padding:0">
-              <span class="pwa-alacarte-toggle-label" style="font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,170,0,0.85)">Show More</span>
-              <span style="width:26px;height:26px;border-radius:50%;border:1px solid rgba(255,170,0,0.35);background:rgba(255,170,0,0.07);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-                <svg viewBox="0 0 16 16" fill="none" stroke="#FFAA00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px;transition:transform 0.3s ease;animation:caret-wiggle 1.4s ease-in-out infinite"><polyline points="4,6 8,10 12,6"/></svg>
-              </span>
-            </button>
+        <div class="pwa-pkg pwa-reveal">
+          <div class="pwa-pkg-name">Brand &amp; Design</div>
+          <div class="pwa-pkg-desc">
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px">
+              <li style="padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Logo Design &amp; Brand Identity</li>
+              <li style="padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Marketing &amp; Promotional Materials</li>
+              <li style="padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Graphic Design &amp; Visual Assets</li>
+              <li style="padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Presentation Design</li>
+              <li style="padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Website Design &amp; Development</li>
+              <li style="padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Social Media Templates &amp; Creative</li>
+            </ul>
           </div>
-          <div class="pwa-pkg-name" style="padding-right:0">Standalone Services</div>
-          <div class="pwa-pkg-desc">Expert support where you need it most — without committing to a full engagement. Each service is scoped, priced, and delivered independently.</div>
-          <div id="pwa-alacarte-body" style="overflow:hidden;max-height:0;opacity:0;transition:max-height 0.4s ease,opacity 0.3s ease;margin-top:0">
-            <div style="padding-top:14px">
-              <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-amber);margin-bottom:6px">Brand &amp; Design</div>
-              <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px">
-                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Logo Design &amp; Brand Identity</li>
-                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Marketing &amp; Promotional Materials</li>
-                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Graphic Design &amp; Visual Assets</li>
-                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Presentation Design</li>
-                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Website Design &amp; Development</li>
-                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Social Media Templates &amp; Creative</li>
-              </ul>
-              <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-amber);margin-bottom:6px;margin-top:14px">People &amp; Leadership</div>
-              <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px">
-                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Leadership Coaching (Individual or Team)</li>
-                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Executive Communication Training</li>
-                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Performance Management Systems</li>
-                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Onboarding &amp; Offboarding Program Design</li>
-                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Culture-Building Workshops &amp; Facilitation</li>
-                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Employee Handbook &amp; Policy Documentation</li>
-              </ul>
-              <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-amber);margin-bottom:6px;margin-top:14px">Technology &amp; Operations</div>
-              <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:4px">
-                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Microsoft Office Suite Training</li>
-                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>SharePoint Development &amp; Deployment</li>
-                <li style="font-size:12px;color:#52525b;padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>AI Tools Training &amp; Team Adoption</li>
-              </ul>
-            </div>
-          </div>
-          <div style="height:1px;background:#ececee;margin-top:14px;margin-bottom:14px"></div>
           <div class="pwa-pkg-footer">
             <div style="font-size:13px;color:#71717a;font-weight:400">Pricing available upon request</div>
-            <button class="pwa-pkg-btn" style="background:var(--color-amber);color:#09090b" onclick="openBookings()">Request Pricing</button>
+            <button class="pwa-pkg-btn" onclick="openBookings()">Request Pricing</button>
+          </div>
+        </div>
+        <div class="pwa-pkg pwa-reveal">
+          <div class="pwa-pkg-name">People &amp; Leadership</div>
+          <div class="pwa-pkg-desc">
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px">
+              <li style="padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Leadership Coaching (Individual or Team)</li>
+              <li style="padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Executive Communication Training</li>
+              <li style="padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Performance Management Systems</li>
+              <li style="padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Onboarding &amp; Offboarding Program Design</li>
+              <li style="padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Culture-Building Workshops &amp; Facilitation</li>
+              <li style="padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Employee Handbook &amp; Policy Documentation</li>
+            </ul>
+          </div>
+          <div class="pwa-pkg-footer">
+            <div style="font-size:13px;color:#71717a;font-weight:400">Pricing available upon request</div>
+            <button class="pwa-pkg-btn" onclick="openBookings()">Request Pricing</button>
+          </div>
+        </div>
+        <div class="pwa-pkg pwa-reveal">
+          <div class="pwa-pkg-name">Technology &amp; Operations</div>
+          <div class="pwa-pkg-desc">
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px">
+              <li style="padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>Microsoft Office Suite Training</li>
+              <li style="padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>SharePoint Development &amp; Deployment</li>
+              <li style="padding-left:12px;position:relative"><span style="position:absolute;left:0;color:var(--color-amber)">›</span>AI Tools Training &amp; Team Adoption</li>
+            </ul>
+          </div>
+          <div class="pwa-pkg-footer">
+            <div style="font-size:13px;color:#71717a;font-weight:400">Pricing available upon request</div>
+            <button class="pwa-pkg-btn" onclick="openBookings()">Request Pricing</button>
           </div>
         </div>
       </div>
