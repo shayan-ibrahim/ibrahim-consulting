@@ -4176,6 +4176,16 @@
       btn.textContent = 'Submit Request';
     }
   });
+  function switchPkgTab(tab) {
+    const isConsulting = tab === 'consulting';
+    document.getElementById('pkg-panel-consulting').style.display = isConsulting ? '' : 'none';
+    document.getElementById('pkg-panel-products').style.display = isConsulting ? 'none' : '';
+    document.getElementById('pkg-tab-consulting').style.color = isConsulting ? 'var(--color-amber)' : 'rgba(255,255,255,0.35)';
+    document.getElementById('pkg-tab-products').style.color = isConsulting ? 'rgba(255,255,255,0.35)' : 'var(--color-amber)';
+    document.getElementById('pkg-ul-consulting').style.display = isConsulting ? '' : 'none';
+    document.getElementById('pkg-ul-products').style.display = isConsulting ? 'none' : '';
+  }
+
   function togglePwaAlacarte(btn) {
     const body = document.getElementById('pwa-alacarte-body');
     const caret = btn.querySelector('svg');
@@ -4822,7 +4832,13 @@
         <div class="pwa-hed">Scoped for where you are.</div>
         <div class="pwa-sub">Every engagement is fixed-scope with no surprises. Every package includes an AI assessment to identify opportunities to give your team more leverage.</div>
       </div>
-      <div class="pwa-card-list">
+      <!-- ── Package sub-tabs ── -->
+      <div style="display:flex;border-bottom:1px solid rgba(255,255,255,0.08);padding:0 16px;background:#09090b">
+        <button id="pkg-tab-consulting" onclick="switchPkgTab('consulting')" style="flex:1;background:none;border:none;padding:11px 6px 10px;font-size:11px;font-weight:700;letter-spacing:0.01em;color:var(--color-amber);cursor:pointer;position:relative;-webkit-tap-highlight-color:transparent">Consulting Packages<span id="pkg-ul-consulting" style="position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--color-amber);border-radius:2px 2px 0 0"></span></button>
+        <button id="pkg-tab-products" onclick="switchPkgTab('products')" style="flex:1;background:none;border:none;padding:11px 6px 10px;font-size:11px;font-weight:700;letter-spacing:0.01em;color:rgba(255,255,255,0.35);cursor:pointer;position:relative;-webkit-tap-highlight-color:transparent">Products &amp; Services<span id="pkg-ul-products" style="position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--color-amber);border-radius:2px 2px 0 0;display:none"></span></button>
+      </div>
+      <!-- ── Consulting Packages tab ── -->
+      <div id="pkg-panel-consulting" class="pwa-card-list">
         <div class="pwa-pkg pwa-reveal">
           <div class="pwa-pkg-name">Business Audit &amp; Strategic Roadmap</div>
           <div class="pwa-pkg-desc">We get inside your business, map how things actually work, and find what's costing you — time, money, or momentum. You leave with a clear picture of what to fix first.</div>
@@ -4863,6 +4879,9 @@
             <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/fZu6ou0TU1xwgwR3GvgEg09','Embedded Scaling Partner — $8,500')">Get Started</button>
           </div>
         </div>
+      </div>
+      <!-- ── Products & Services tab ── -->
+      <div id="pkg-panel-products" class="pwa-card-list" style="display:none">
         <div class="pwa-pkg pwa-reveal" style="border-style:dashed;border-color:rgba(255,170,0,0.4)">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px">
             <span style="font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#09090b;background:var(--color-amber);padding:3px 8px;border-radius:100px">À La Carte</span>
