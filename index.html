@@ -4263,32 +4263,21 @@
     var saveEl = document.getElementById(cardId+'-savings-label');
     if (count === 0) { summary.style.display = 'none'; return; }
     summary.style.display = 'block';
-    var isBundle = count === boxes.length;
-    if (isBundle) {
-      var saved = total - bundlePrice;
-      countEl.textContent = 'Full bundle · best rate';
+    var rates = [0, 0, 0.05, 0.10, 0.12, 0.15];
+    var rate = rates[Math.min(count, rates.length - 1)];
+    countEl.textContent = count + ' service' + (count > 1 ? 's' : '') + ' selected';
+    if (rate > 0) {
+      var disc = Math.round(total * (1 - rate));
+      var sv = total - disc;
       origEl.textContent = '$' + total.toLocaleString();
       origEl.style.display = 'block';
-      discEl.textContent = '$' + bundlePrice.toLocaleString();
-      saveEl.textContent = 'You save $' + saved.toLocaleString() + ' with the full bundle';
+      discEl.textContent = '$' + disc.toLocaleString();
+      saveEl.textContent = 'You save $' + sv.toLocaleString() + ' · ' + Math.round(rate * 100) + '% multi-service discount';
       saveEl.style.display = 'block';
     } else {
-      var rates = [0, 0, 0.05, 0.10, 0.12, 0.15];
-      var rate = rates[Math.min(count, rates.length - 1)];
-      countEl.textContent = count + ' service' + (count > 1 ? 's' : '') + ' selected';
-      if (rate > 0) {
-        var disc = Math.round(total * (1 - rate));
-        var sv = total - disc;
-        origEl.textContent = '$' + total.toLocaleString();
-        origEl.style.display = 'block';
-        discEl.textContent = '$' + disc.toLocaleString();
-        saveEl.textContent = 'You save $' + sv.toLocaleString() + ' · ' + Math.round(rate * 100) + '% multi-service discount';
-        saveEl.style.display = 'block';
-      } else {
-        origEl.style.display = 'none';
-        discEl.textContent = '$' + total.toLocaleString();
-        saveEl.style.display = 'none';
-      }
+      origEl.style.display = 'none';
+      discEl.textContent = '$' + total.toLocaleString();
+      saveEl.style.display = 'none';
     }
   }
 
