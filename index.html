@@ -5060,6 +5060,7 @@ function pwaSwitchTab(btn) {
   const screen = document.getElementById('pwa-' + btn.dataset.screen);
   screen.classList.add('active');
   document.getElementById('pwa-content').scrollTop = 0;
+  if (btn.dataset.screen === 'packages') switchPkgTab('consulting');
   movePwaIndicator(btn);
   // Re-observe reveals on new screen
   screen.querySelectorAll('.pwa-reveal:not(.visible)').forEach(el => revealObserver.observe(el));
