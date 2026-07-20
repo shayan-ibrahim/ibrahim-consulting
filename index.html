@@ -1276,6 +1276,24 @@
       color: #ffffff;
       border: none;
     }
+    .package-badge-icon {
+      padding: 7px 9px;
+      background: rgba(255,170,0,0.09);
+      border: 1px solid rgba(255,170,0,0.2);
+    }
+    .package-badge-icon svg {
+      width: 16px; height: 16px;
+      stroke: var(--color-amber);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      display: block;
+    }
+    [data-theme="dark"] .package-badge-icon {
+      background: rgba(255,170,0,0.12);
+      border-color: rgba(255,170,0,0.28);
+    }
     .alacarte-card {
       border: 1.5px dashed rgba(63,63,70,0.25);
       background: rgba(255,255,255,0.6);
@@ -3844,7 +3862,7 @@
 
         <!-- People & Leadership -->
         <article class="package-card" role="listitem">
-          <span class="package-badge">People &amp; Leadership</span>
+          <span class="package-badge package-badge-icon" aria-label="People &amp; Leadership"><svg viewBox="0 0 20 20"><circle cx="10" cy="6" r="3"/><path d="M4 17c0-3.314 2.686-6 6-6s6 2.686 6 6"/></svg></span>
           <h3 class="package-name">People &amp; Leadership</h3>
           <p class="package-desc" style="flex:none">Select the services you need — or bundle all six for the best rate.</p>
           <div class="svc-list">
@@ -3874,7 +3892,7 @@
 
         <!-- Brand & Design -->
         <article class="package-card" role="listitem">
-          <span class="package-badge">Brand &amp; Design</span>
+          <span class="package-badge package-badge-icon" aria-label="Brand &amp; Design"><svg viewBox="0 0 20 20"><path d="M14.5 2.5l3 3L8 15l-4 1 1-4 9.5-9.5z"/></svg></span>
           <h3 class="package-name">Brand &amp; Design</h3>
           <p class="package-desc" style="flex:none">Select the services you need — or bundle all six for the best rate.</p>
           <div class="svc-list">
@@ -3904,7 +3922,7 @@
 
         <!-- Technology & Operations -->
         <article class="package-card" role="listitem">
-          <span class="package-badge">Technology &amp; Operations</span>
+          <span class="package-badge package-badge-icon" aria-label="Technology &amp; Operations"><svg viewBox="0 0 20 20"><rect x="2" y="3" width="16" height="11" rx="1.5"/><path d="M7 18h6M10 14v4"/></svg></span>
           <h3 class="package-name">Technology &amp; Operations</h3>
           <p class="package-desc" style="flex:none">Select the services you need — or bundle all three for the best rate.</p>
           <div class="svc-list">
