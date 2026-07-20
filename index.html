@@ -1350,6 +1350,71 @@
       animation: none;
       transform: rotate(180deg);
     }
+    .pkg-learn-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--color-amber);
+      font-size: 12px;
+      font-weight: 600;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-family: var(--font-primary);
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+    .pkg-learn-caret {
+      width: 12px; height: 12px;
+      stroke: var(--color-amber);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: transform 0.25s ease;
+      animation: caret-wiggle 1.4s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    .pkg-learn-btn[aria-expanded="true"] .pkg-learn-caret {
+      transform: rotate(180deg);
+      animation: none;
+    }
+    .pkg-learn-body {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.32s ease, opacity 0.2s ease;
+    }
+    .pkg-learn-body.open {
+      max-height: 600px;
+      opacity: 1;
+    }
+    .pkg-learn-list {
+      margin: 10px 0 6px;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+    .pkg-learn-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--color-steel);
+      line-height: 1.45;
+    }
+    .pkg-learn-list li::before {
+      content: '';
+      width: 5px; height: 5px;
+      background: var(--color-amber);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+    [data-theme="dark"] .pkg-learn-list li { color: #9090a0; }
     .alacarte-plus {
       font-size: 24px;
       line-height: 0;
@@ -3766,6 +3831,17 @@
         <span class="package-badge">Entry Point</span>
         <h3 class="package-name">Business Audit &amp; Strategic Roadmap</h3>
         <p class="package-desc">We get inside your business, map how things actually work, and find what's costing you — time, money, or momentum. You leave with a clear picture of what to fix first and a roadmap to do it.</p>
+        <button class="pkg-learn-btn" onclick="toggleLearnMore(this)" aria-expanded="false">Learn more <svg class="pkg-learn-caret" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></button>
+        <div class="pkg-learn-body">
+          <ul class="pkg-learn-list">
+            <li>Business operations mapping and workflow documentation</li>
+            <li>Revenue and cost structure analysis</li>
+            <li>Identification of key bottlenecks and inefficiencies</li>
+            <li>Prioritized strategic action plan and roadmap</li>
+            <li>Written findings report with clear recommendations</li>
+            <li>90-minute kickoff and debrief sessions included</li>
+          </ul>
+        </div>
         <div class="package-divider"></div>
         <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
           <button class="btn-checkout" style="flex-shrink:0" onclick="confirmPackage('https://buy.stripe.com/3cI14a6eefom5SdfpdgEg05','Business Audit &amp; Strategic Roadmap — $4,500')">Get Started →</button>
@@ -3782,6 +3858,17 @@
         <span class="package-badge">Diagnostic</span>
         <h3 class="package-name">Organizational Diagnostic</h3>
         <p class="package-desc">We take a targeted look at your leadership team, your departments, and how your org is structured — then tell you clearly where the cracks are and what's quietly holding back performance.</p>
+        <button class="pkg-learn-btn" onclick="toggleLearnMore(this)" aria-expanded="false">Learn more <svg class="pkg-learn-caret" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></button>
+        <div class="pkg-learn-body">
+          <ul class="pkg-learn-list">
+            <li>Everything in Package 1</li>
+            <li>In-depth leadership team assessment</li>
+            <li>Departmental structure and capacity review</li>
+            <li>Reporting line and span-of-control analysis</li>
+            <li>Performance gap identification across departments</li>
+            <li>Org chart redesign recommendations</li>
+          </ul>
+        </div>
         <div class="package-includes" aria-label="Includes everything from Package 1">
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,6 5,9 10,3"/></svg>
           Includes everything in Package 1
@@ -3812,6 +3899,17 @@
         <span class="package-badge featured">Most Requested</span>
         <h3 class="package-name">Organizational Foundation Build</h3>
         <p class="package-desc">We build the infrastructure your business has been operating without — job descriptions, clear reporting lines, accountability structures, and department frameworks that give your team something solid to build on.</p>
+        <button class="pkg-learn-btn" onclick="toggleLearnMore(this)" aria-expanded="false">Learn more <svg class="pkg-learn-caret" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></button>
+        <div class="pkg-learn-body">
+          <ul class="pkg-learn-list">
+            <li>Everything in Packages 1 &amp; 2</li>
+            <li>Custom job descriptions for all key roles</li>
+            <li>Defined reporting lines and accountability structures</li>
+            <li>Department frameworks with clear ownership</li>
+            <li>Performance management templates and scorecards</li>
+            <li>Role clarity documentation for each team</li>
+          </ul>
+        </div>
         <div class="package-includes" aria-label="Includes everything from Packages 1 and 2">
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,6 5,9 10,3"/></svg>
           Includes everything in Packages 1 &amp; 2
@@ -3832,6 +3930,17 @@
         <span class="package-badge">Transformation</span>
         <h3 class="package-name">Performance &amp; Future-State Transformation</h3>
         <p class="package-desc">We sharpen how your teams are measured, redefine who's responsible for what, and design the organizational model your business needs to operate at its next stage — not just where it is today.</p>
+        <button class="pkg-learn-btn" onclick="toggleLearnMore(this)" aria-expanded="false">Learn more <svg class="pkg-learn-caret" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></button>
+        <div class="pkg-learn-body">
+          <ul class="pkg-learn-list">
+            <li>Everything in Packages 1, 2 &amp; 3</li>
+            <li>KPI and performance metrics design</li>
+            <li>RACI responsibility matrix development</li>
+            <li>Future-state organizational model design</li>
+            <li>Leadership alignment and change readiness sessions</li>
+            <li>Transition planning and implementation roadmap</li>
+          </ul>
+        </div>
         <div class="package-includes" aria-label="Includes everything from Packages 1, 2 and 3">
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,6 5,9 10,3"/></svg>
           Includes everything in Packages 1, 2 &amp; 3
@@ -3852,6 +3961,18 @@
         <span class="package-badge">Full Partnership</span>
         <h3 class="package-name">Embedded Scaling Partner</h3>
         <p class="package-desc">We work inside your business like a fractional COO — driving transformation from the inside, not from a deck. Workflow design, leadership coaching, field and corporate alignment, and on-the-ground execution support until the changes actually take hold.</p>
+        <button class="pkg-learn-btn" onclick="toggleLearnMore(this)" aria-expanded="false">Learn more <svg class="pkg-learn-caret" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></button>
+        <div class="pkg-learn-body">
+          <ul class="pkg-learn-list">
+            <li>Everything in Packages 1, 2, 3 &amp; 4</li>
+            <li>Ongoing fractional COO-level support</li>
+            <li>Workflow design and hands-on implementation</li>
+            <li>Ongoing leadership coaching and team development</li>
+            <li>Field and corporate team alignment sessions</li>
+            <li>Weekly progress reviews and executive check-ins</li>
+            <li>On-the-ground execution support until changes take hold</li>
+          </ul>
+        </div>
         <div class="package-includes" aria-label="Includes everything from all previous packages">
           <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2,6 5,9 10,3"/></svg>
           Includes everything in Packages 1, 2, 3 &amp; 4
@@ -4282,6 +4403,12 @@
   }
 
   var _pendingCheckout = null;
+
+  function toggleLearnMore(btn) {
+    var isOpen = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+    btn.nextElementSibling.classList.toggle('open', !isOpen);
+  }
 
   function confirmProductsCheckout(cardId, containerId) {
     var container = containerId
@@ -5054,6 +5181,17 @@
         <div class="pwa-pkg pwa-reveal">
           <div class="pwa-pkg-name">Business Audit &amp; Strategic Roadmap</div>
           <div class="pwa-pkg-desc">We get inside your business, map how things actually work, and find what's costing you — time, money, or momentum. You leave with a clear picture of what to fix first.</div>
+          <button class="pkg-learn-btn" onclick="toggleLearnMore(this)" aria-expanded="false">Learn more <svg class="pkg-learn-caret" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></button>
+          <div class="pkg-learn-body">
+            <ul class="pkg-learn-list">
+              <li>Business operations mapping and workflow documentation</li>
+              <li>Revenue and cost structure analysis</li>
+              <li>Identification of key bottlenecks and inefficiencies</li>
+              <li>Prioritized strategic action plan and roadmap</li>
+              <li>Written findings report with clear recommendations</li>
+              <li>90-minute kickoff and debrief sessions included</li>
+            </ul>
+          </div>
           <div class="pwa-pkg-footer">
             <div><div class="pwa-pkg-price">$4,500 <span>/ engagement</span></div><div class="pwa-pkg-timeline">Typical Engagement: 4 weeks</div></div>
             <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/3cI14a6eefom5SdfpdgEg05','Business Audit &amp; Strategic Roadmap — $4,500')">Get Started</button>
@@ -5062,6 +5200,17 @@
         <div class="pwa-pkg pwa-reveal">
           <div class="pwa-pkg-name">Organizational Diagnostic</div>
           <div class="pwa-pkg-desc">We take a targeted look at your leadership team, your departments, and how your org is structured — then tell you clearly where the cracks are and what's quietly holding back performance.</div>
+          <button class="pkg-learn-btn" onclick="toggleLearnMore(this)" aria-expanded="false">Learn more <svg class="pkg-learn-caret" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></button>
+          <div class="pkg-learn-body">
+            <ul class="pkg-learn-list">
+              <li>Everything in Package 1</li>
+              <li>In-depth leadership team assessment</li>
+              <li>Departmental structure and capacity review</li>
+              <li>Reporting line and span-of-control analysis</li>
+              <li>Performance gap identification across departments</li>
+              <li>Org chart redesign recommendations</li>
+            </ul>
+          </div>
           <div class="pwa-pkg-footer">
             <div><div class="pwa-pkg-price">$5,500 <span>/ engagement</span></div><div class="pwa-pkg-timeline">Typical Engagement: 6 weeks</div></div>
             <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/5kQ9AGcCCfom2G14KzgEg06','Organizational Diagnostic — $5,500')">Get Started</button>
@@ -5070,6 +5219,17 @@
         <div class="pwa-pkg pwa-featured pwa-reveal">
           <div class="pwa-pkg-name">Organizational Foundation Build</div>
           <div class="pwa-pkg-desc">We don't just diagnose — we build. Job descriptions, clear reporting lines, accountability structures, and department frameworks that give your team something solid to build on.</div>
+          <button class="pkg-learn-btn" onclick="toggleLearnMore(this)" aria-expanded="false">Learn more <svg class="pkg-learn-caret" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></button>
+          <div class="pkg-learn-body">
+            <ul class="pkg-learn-list">
+              <li>Everything in Packages 1 &amp; 2</li>
+              <li>Custom job descriptions for all key roles</li>
+              <li>Defined reporting lines and accountability structures</li>
+              <li>Department frameworks with clear ownership</li>
+              <li>Performance management templates and scorecards</li>
+              <li>Role clarity documentation for each team</li>
+            </ul>
+          </div>
           <div class="pwa-pkg-footer">
             <div><div class="pwa-pkg-price">$6,500 <span>/ engagement</span></div><div class="pwa-pkg-timeline">Typical Engagement: 8 weeks</div></div>
             <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/cNieV0eKK4JIgwRa4TgEg07','Organizational Foundation Build — $6,500')">Get Started</button>
@@ -5078,6 +5238,17 @@
         <div class="pwa-pkg pwa-reveal">
           <div class="pwa-pkg-name">Performance &amp; Future-State Transformation</div>
           <div class="pwa-pkg-desc">We sharpen how your teams are measured, redefine who's responsible for what, and design the organizational model your business needs to operate at its next stage.</div>
+          <button class="pkg-learn-btn" onclick="toggleLearnMore(this)" aria-expanded="false">Learn more <svg class="pkg-learn-caret" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></button>
+          <div class="pkg-learn-body">
+            <ul class="pkg-learn-list">
+              <li>Everything in Packages 1, 2 &amp; 3</li>
+              <li>KPI and performance metrics design</li>
+              <li>RACI responsibility matrix development</li>
+              <li>Future-state organizational model design</li>
+              <li>Leadership alignment and change readiness sessions</li>
+              <li>Transition planning and implementation roadmap</li>
+            </ul>
+          </div>
           <div class="pwa-pkg-footer">
             <div><div class="pwa-pkg-price">$7,500 <span>/ engagement</span></div><div class="pwa-pkg-timeline">Typical Engagement: 10 weeks</div></div>
             <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/00weV05aa5NM80l90PgEg08','Performance &amp; Future-State Transformation — $7,500')">Get Started</button>
@@ -5086,6 +5257,18 @@
         <div class="pwa-pkg pwa-reveal">
           <div class="pwa-pkg-name">Embedded Scaling Partner</div>
           <div class="pwa-pkg-desc">We work inside your business like a fractional COO — driving transformation from the inside, not from a deck. Workflow design, leadership coaching, field and corporate alignment, and on-the-ground execution support until the changes actually take hold.</div>
+          <button class="pkg-learn-btn" onclick="toggleLearnMore(this)" aria-expanded="false">Learn more <svg class="pkg-learn-caret" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4"/></svg></button>
+          <div class="pkg-learn-body">
+            <ul class="pkg-learn-list">
+              <li>Everything in Packages 1, 2, 3 &amp; 4</li>
+              <li>Ongoing fractional COO-level support</li>
+              <li>Workflow design and hands-on implementation</li>
+              <li>Ongoing leadership coaching and team development</li>
+              <li>Field and corporate team alignment sessions</li>
+              <li>Weekly progress reviews and executive check-ins</li>
+              <li>On-the-ground execution support until changes take hold</li>
+            </ul>
+          </div>
           <div class="pwa-pkg-footer">
             <div><div class="pwa-pkg-price">$8,500 <span>/ engagement</span></div><div class="pwa-pkg-timeline">Typical Engagement: 12+ weeks</div></div>
             <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/fZu6ou0TU1xwgwR3GvgEg09','Embedded Scaling Partner — $8,500')">Get Started</button>
