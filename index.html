@@ -2937,7 +2937,7 @@
       .pwa-sub { font-size: 12.5px; line-height: 1.55; }
       .pwa-dark-hdr .pwa-sub { color: rgba(255,255,255,0.72); }
       .pwa-light-hdr .pwa-sub { color: #71717a; }
-      .pwa-card-list { padding: 14px; display: flex; flex-direction: column; gap: 10px; background: #f4f4f5; }
+      .pwa-card-list { padding: 14px; padding-top: 6px; display: flex; flex-direction: column; gap: 0; background: #f4f4f5; }
 
       /* ══ SERVICE CARDS ═══════════════════════════════════════════ */
       .pwa-svc { background: #fff; border-radius: 14px; padding: 17px; border: 1px solid #ececee; }
@@ -2972,8 +2972,14 @@
       .pwa-metric.amber { background: rgba(255,170,0,0.08); border-color: rgba(255,170,0,0.22); }
       .pwa-metric.amber .pwa-metric-num { color: var(--color-amber); }
 
+      /* ══ FOLDER TAB WRAPPER ══════════════════════════════════════ */
+      .folder-wrap { position: relative; margin-top: 22px; }
+      .folder-tab { position: absolute; top: -20px; left: 0; height: 22px; width: 148px; background: #fff; border-radius: 8px 8px 0 0; box-shadow: -2px -3px 8px rgba(0,0,0,0.05), 2px -3px 8px rgba(0,0,0,0.04); display: flex; align-items: center; padding: 0 10px; gap: 6px; }
+      .folder-tab-dot { width: 6px; height: 6px; border-radius: 50%; background: #FFAA00; flex-shrink: 0; }
+      .folder-tab-label { font-size: 8.5px; font-weight: 800; color: #09090b; letter-spacing: 0.04em; text-transform: uppercase; white-space: nowrap; }
+
       /* ══ PACKAGE CARDS ═══════════════════════════════════════════ */
-      .pwa-pkg { background: #fff; border-radius: 14px; padding: 18px; border: 1px solid #ececee; position: relative; overflow: hidden; }
+      .pwa-pkg { background: #fff; border-radius: 0 14px 14px 14px; padding: 18px; border: 1px solid #ececee; position: relative; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.05), 0 12px 32px rgba(0,0,0,0.04); }
       .pwa-pkg.pwa-featured { border-color: var(--color-amber); }
       .pwa-pkg.pwa-featured::before { content: 'Most Popular'; position: absolute; top: 14px; right: 14px; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #09090b; background: var(--color-amber); padding: 3px 8px; border-radius: 100px; }
       .pwa-pkg-name { font-size: 15px; font-weight: 800; color: #09090b; letter-spacing: -0.3px; margin-bottom: 6px; padding-right: 80px; }
@@ -5204,6 +5210,7 @@
       <div style="display:flex;justify-content:center;padding:14px 20px 0"><div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,170,0,0.1);border:1px solid rgba(255,170,0,0.25);border-radius:100px;padding:5px 12px"><svg viewBox="0 0 14 14" width="11" height="11" fill="none" stroke="#FFAA00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="7" r="5.5"/><polyline points="7,4 7,7 9,8.5"/></svg><span style="font-size:11px;font-weight:700;color:#FFAA00;letter-spacing:0.01em;font-family:var(--font-primary)">All included sessions are 90 minutes</span></div></div>
       <!-- ── Consulting Packages tab ── -->
       <div id="pkg-panel-consulting" class="pwa-card-list">
+        <div class="folder-wrap"><div class="folder-tab"><div class="folder-tab-dot"></div><div class="folder-tab-label">Package 01</div></div>
         <div class="pwa-pkg pwa-reveal">
           <div class="pwa-pkg-name">Business Audit &amp; Strategic Roadmap</div>
           <div class="pwa-pkg-desc">We get inside your business, map how things actually work, and find what's costing you — time, money, or momentum. You leave with a clear picture of what to fix first.</div>
@@ -5222,7 +5229,8 @@
             <div><div class="pwa-pkg-price">$4,500 <span>/ engagement</span></div><div class="pwa-pkg-timeline">Typical Engagement: 4 weeks</div></div>
             <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/3cI14a6eefom5SdfpdgEg05','Business Audit &amp; Strategic Roadmap — $4,500')">Get Started</button>
           </div>
-        </div>
+        </div></div>
+        <div class="folder-wrap"><div class="folder-tab"><div class="folder-tab-dot"></div><div class="folder-tab-label">Package 02</div></div>
         <div class="pwa-pkg pwa-reveal">
           <div class="pwa-pkg-name">Organizational Diagnostic</div>
           <div class="pwa-pkg-desc">We take a targeted look at your leadership team, your departments, and how your org is structured — then tell you clearly where the cracks are and what's quietly holding back performance.</div>
@@ -5241,7 +5249,8 @@
             <div><div class="pwa-pkg-price">$5,500 <span>/ engagement</span></div><div class="pwa-pkg-timeline">Typical Engagement: 6 weeks</div></div>
             <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/5kQ9AGcCCfom2G14KzgEg06','Organizational Diagnostic — $5,500')">Get Started</button>
           </div>
-        </div>
+        </div></div>
+        <div class="folder-wrap"><div class="folder-tab"><div class="folder-tab-dot"></div><div class="folder-tab-label">Package 03</div></div>
         <div class="pwa-pkg pwa-featured pwa-reveal">
           <div class="pwa-pkg-name">Organizational Foundation Build</div>
           <div class="pwa-pkg-desc">We don't just diagnose — we build. Job descriptions, clear reporting lines, accountability structures, and department frameworks that give your team something solid to build on.</div>
@@ -5260,7 +5269,8 @@
             <div><div class="pwa-pkg-price">$6,500 <span>/ engagement</span></div><div class="pwa-pkg-timeline">Typical Engagement: 8 weeks</div></div>
             <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/cNieV0eKK4JIgwRa4TgEg07','Organizational Foundation Build — $6,500')">Get Started</button>
           </div>
-        </div>
+        </div></div>
+        <div class="folder-wrap"><div class="folder-tab"><div class="folder-tab-dot"></div><div class="folder-tab-label">Package 04</div></div>
         <div class="pwa-pkg pwa-reveal">
           <div class="pwa-pkg-name">Performance &amp; Future-State Transformation</div>
           <div class="pwa-pkg-desc">We sharpen how your teams are measured, redefine who's responsible for what, and design the organizational model your business needs to operate at its next stage.</div>
@@ -5279,7 +5289,8 @@
             <div><div class="pwa-pkg-price">$7,500 <span>/ engagement</span></div><div class="pwa-pkg-timeline">Typical Engagement: 10 weeks</div></div>
             <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/00weV05aa5NM80l90PgEg08','Performance &amp; Future-State Transformation — $7,500')">Get Started</button>
           </div>
-        </div>
+        </div></div>
+        <div class="folder-wrap"><div class="folder-tab"><div class="folder-tab-dot"></div><div class="folder-tab-label">Package 05</div></div>
         <div class="pwa-pkg pwa-reveal">
           <div class="pwa-pkg-name">Embedded Scaling Partner</div>
           <div class="pwa-pkg-desc">We work inside your business like a fractional COO — driving transformation from the inside, not from a deck. Workflow design, leadership coaching, field and corporate alignment, and on-the-ground execution support until the changes actually take hold.</div>
@@ -5299,10 +5310,11 @@
             <div><div class="pwa-pkg-price">$8,500 <span>/ engagement</span></div><div class="pwa-pkg-timeline">Typical Engagement: 12+ weeks</div></div>
             <button class="pwa-pkg-btn" onclick="confirmPackage('https://buy.stripe.com/fZu6ou0TU1xwgwR3GvgEg09','Embedded Scaling Partner — $8,500')">Get Started</button>
           </div>
-        </div>
+        </div></div>
       </div>
       <!-- ── Products & Services tab ── -->
       <div id="pkg-panel-products" class="pwa-card-list" style="display:none">
+        <div class="folder-wrap"><div class="folder-tab"><div class="folder-tab-dot"></div><div class="folder-tab-label">People &amp; Leadership</div></div>
         <div class="pwa-pkg pwa-reveal" id="pwa-pl-card">
           <div class="pwa-pkg-name">People &amp; Leadership Services</div>
           <div style="font-size:11px;color:#71717a;margin-top:4px;margin-bottom:2px">Select the services you need — or bundle all five for the best rate.</div>
@@ -5320,7 +5332,8 @@
           <div class="pwa-pkg-footer" style="margin-top:12px">
             <button class="pwa-pkg-btn" onclick="confirmProductsCheckout('ppl','pwa-pl-card')">Get Started</button>
           </div>
-        </div>
+        </div></div>
+        <div class="folder-wrap"><div class="folder-tab"><div class="folder-tab-dot"></div><div class="folder-tab-label">Brand &amp; Design</div></div>
         <div class="pwa-pkg pwa-reveal" id="pwa-bd-card">
           <div class="pwa-pkg-name">Brand &amp; Design Services</div>
           <div style="font-size:11px;color:#71717a;margin-top:4px;margin-bottom:2px">Select the services you need — or bundle all five for the best rate.</div>
@@ -5338,7 +5351,8 @@
           <div class="pwa-pkg-footer" style="margin-top:12px">
             <button class="pwa-pkg-btn" onclick="confirmProductsCheckout('pbd','pwa-bd-card')">Get Started</button>
           </div>
-        </div>
+        </div></div>
+        <div class="folder-wrap"><div class="folder-tab"><div class="folder-tab-dot"></div><div class="folder-tab-label">Technology &amp; Ops</div></div>
         <div class="pwa-pkg pwa-reveal" id="pwa-to-card">
           <div class="pwa-pkg-name">Technology &amp; Operations Services</div>
           <div style="font-size:11px;color:#71717a;margin-top:4px;margin-bottom:2px">Select the services you need — or bundle all five for the best rate.</div>
@@ -5356,7 +5370,8 @@
           <div class="pwa-pkg-footer" style="margin-top:12px">
             <button class="pwa-pkg-btn" onclick="confirmProductsCheckout('pto','pwa-to-card')">Get Started</button>
           </div>
-        </div>
+        </div></div>
+        <div class="folder-wrap"><div class="folder-tab"><div class="folder-tab-dot"></div><div class="folder-tab-label">Communication &amp; Docs</div></div>
         <div class="pwa-pkg pwa-reveal" id="pwa-dc-card">
           <div class="pwa-pkg-name">Communication &amp; Document Services</div>
           <div style="font-size:11px;color:#71717a;margin-top:4px;margin-bottom:2px">Select the services you need — or bundle all five for the best rate.</div>
@@ -5374,7 +5389,7 @@
           <div class="pwa-pkg-footer" style="margin-top:12px">
             <button class="pwa-pkg-btn" onclick="confirmProductsCheckout('pdc','pwa-dc-card')">Get Started</button>
           </div>
-        </div>
+        </div></div>
       </div>
     </div>
 
