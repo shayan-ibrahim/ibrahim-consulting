@@ -4250,9 +4250,10 @@
     document.getElementById('pkg-hdr-sub').textContent = isConsulting ? 'Every engagement is fixed-scope with no surprises. Every package includes an AI assessment to identify opportunities to give your team more leverage.' : 'Expert support where you need it most — without committing to a full engagement. Each service is scoped, priced, and delivered independently.';
   }
 
-  function calcCard(cardId, bundlePrice) {
-    var nth = cardId==='pl' ? 1 : cardId==='bd' ? 2 : 3;
-    var boxes = document.querySelectorAll('#desk-pkg-panel-products .package-card:nth-child('+nth+') input[type=checkbox]');
+  function calcCard(cardId, bundlePrice, containerId) {
+    var boxes = containerId
+      ? document.getElementById(containerId).querySelectorAll('input[type=checkbox]')
+      : (function(){ var n=cardId==='pl'?1:cardId==='bd'?2:3; return document.querySelectorAll('#desk-pkg-panel-products .package-card:nth-child('+n+') input[type=checkbox]'); })();
     var total = 0, count = 0;
     boxes.forEach(function(b) { if (b.checked) { total += parseInt(b.value); count++; } });
     var summary = document.getElementById(cardId+'-summary');
@@ -5005,50 +5006,56 @@
       </div>
       <!-- ── Products & Services tab ── -->
       <div id="pkg-panel-products" class="pwa-card-list" style="display:none">
-        <div class="pwa-pkg pwa-reveal" style="display:flex;flex-direction:column;min-height:204px">
+        <div class="pwa-pkg pwa-reveal" id="pwa-pl-card">
           <div class="pwa-pkg-name">People &amp; Leadership</div>
-          <div class="pwa-pkg-desc" style="flex:1">
-            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px">
-              <li style="padding-left:12px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Leadership Coaching (Individual or Team)</li>
-              <li style="padding-left:12px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Executive Communication Training</li>
-              <li style="padding-left:12px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Performance Management Systems</li>
-              <li style="padding-left:12px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Onboarding &amp; Offboarding Program Design</li>
-              <li style="padding-left:12px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Culture-Building Workshops &amp; Facilitation</li>
-              <li style="padding-left:12px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Employee Handbook &amp; Policy Documentation</li>
-            </ul>
+          <div class="svc-list" style="margin-top:6px">
+            <label class="svc-item"><input type="checkbox" value="2500" onchange="calcCard('ppl',6500,'pwa-pl-card')"><span class="svc-item-name">Leadership Coaching (Individual or Team)</span><span class="svc-item-price">$2,500</span></label>
+            <label class="svc-item"><input type="checkbox" value="1800" onchange="calcCard('ppl',6500,'pwa-pl-card')"><span class="svc-item-name">Executive Communication Training</span><span class="svc-item-price">$1,800</span></label>
+            <label class="svc-item"><input type="checkbox" value="1500" onchange="calcCard('ppl',6500,'pwa-pl-card')"><span class="svc-item-name">Performance Management Systems</span><span class="svc-item-price">$1,500</span></label>
+            <label class="svc-item"><input type="checkbox" value="1200" onchange="calcCard('ppl',6500,'pwa-pl-card')"><span class="svc-item-name">Onboarding &amp; Offboarding Program Design</span><span class="svc-item-price">$1,200</span></label>
+            <label class="svc-item"><input type="checkbox" value="1000" onchange="calcCard('ppl',6500,'pwa-pl-card')"><span class="svc-item-name">Culture-Building Workshops &amp; Facilitation</span><span class="svc-item-price">$1,000</span></label>
+            <label class="svc-item"><input type="checkbox" value="800" onchange="calcCard('ppl',6500,'pwa-pl-card')"><span class="svc-item-name">Employee Handbook &amp; Policy Documentation</span><span class="svc-item-price">$800</span></label>
           </div>
-          <div class="pwa-pkg-footer">
+          <div class="svc-summary" id="ppl-summary" style="display:none;margin-top:10px">
+            <div class="svc-summary-row"><span class="svc-count-label" id="ppl-count-label"></span><div><div class="svc-orig-price" id="ppl-orig-price" style="display:none"></div><div class="svc-disc-price" id="ppl-disc-price"></div></div></div>
+            <div class="svc-savings-label" id="ppl-savings-label" style="display:none"></div>
+          </div>
+          <div class="pwa-pkg-footer" style="margin-top:12px">
             <div style="font-size:11px;color:#71717a;font-weight:400;text-align:right">Pricing available upon request</div>
             <button class="pwa-pkg-btn" onclick="openBookings()">Request Pricing</button>
           </div>
         </div>
-        <div class="pwa-pkg pwa-reveal" style="display:flex;flex-direction:column;min-height:204px">
+        <div class="pwa-pkg pwa-reveal" id="pwa-bd-card">
           <div class="pwa-pkg-name">Brand &amp; Design</div>
-          <div class="pwa-pkg-desc" style="flex:1">
-            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px">
-              <li style="padding-left:12px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Logo Design &amp; Brand Identity</li>
-              <li style="padding-left:12px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Marketing &amp; Promotional Materials</li>
-              <li style="padding-left:12px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Graphic Design &amp; Visual Assets</li>
-              <li style="padding-left:12px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Presentation Design</li>
-              <li style="padding-left:12px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Website Design &amp; Development</li>
-              <li style="padding-left:12px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Social Media Templates &amp; Creative</li>
-            </ul>
+          <div class="svc-list" style="margin-top:6px">
+            <label class="svc-item"><input type="checkbox" value="3500" onchange="calcCard('pbd',5800,'pwa-bd-card')"><span class="svc-item-name">Website Design &amp; Development</span><span class="svc-item-price">$3,500</span></label>
+            <label class="svc-item"><input type="checkbox" value="1200" onchange="calcCard('pbd',5800,'pwa-bd-card')"><span class="svc-item-name">Logo Design &amp; Brand Identity</span><span class="svc-item-price">$1,200</span></label>
+            <label class="svc-item"><input type="checkbox" value="800" onchange="calcCard('pbd',5800,'pwa-bd-card')"><span class="svc-item-name">Marketing &amp; Promotional Materials</span><span class="svc-item-price">$800</span></label>
+            <label class="svc-item"><input type="checkbox" value="650" onchange="calcCard('pbd',5800,'pwa-bd-card')"><span class="svc-item-name">Graphic Design &amp; Visual Assets</span><span class="svc-item-price">$650</span></label>
+            <label class="svc-item"><input type="checkbox" value="600" onchange="calcCard('pbd',5800,'pwa-bd-card')"><span class="svc-item-name">Social Media Templates &amp; Creative</span><span class="svc-item-price">$600</span></label>
+            <label class="svc-item"><input type="checkbox" value="500" onchange="calcCard('pbd',5800,'pwa-bd-card')"><span class="svc-item-name">Presentation Design</span><span class="svc-item-price">$500</span></label>
           </div>
-          <div class="pwa-pkg-footer">
+          <div class="svc-summary" id="pbd-summary" style="display:none;margin-top:10px">
+            <div class="svc-summary-row"><span class="svc-count-label" id="pbd-count-label"></span><div><div class="svc-orig-price" id="pbd-orig-price" style="display:none"></div><div class="svc-disc-price" id="pbd-disc-price"></div></div></div>
+            <div class="svc-savings-label" id="pbd-savings-label" style="display:none"></div>
+          </div>
+          <div class="pwa-pkg-footer" style="margin-top:12px">
             <div style="font-size:11px;color:#71717a;font-weight:400;text-align:right">Pricing available upon request</div>
             <button class="pwa-pkg-btn" onclick="openBookings()">Request Pricing</button>
           </div>
         </div>
-        <div class="pwa-pkg pwa-reveal" style="display:flex;flex-direction:column;min-height:204px">
+        <div class="pwa-pkg pwa-reveal" id="pwa-to-card">
           <div class="pwa-pkg-name">Technology &amp; Operations</div>
-          <div class="pwa-pkg-desc" style="flex:1">
-            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px">
-              <li style="padding-left:12px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Microsoft Office Suite Training</li>
-              <li style="padding-left:12px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>SharePoint Development &amp; Deployment</li>
-              <li style="padding-left:12px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>AI Tools Training &amp; Team Adoption</li>
-            </ul>
+          <div class="svc-list" style="margin-top:6px">
+            <label class="svc-item"><input type="checkbox" value="2500" onchange="calcCard('pto',4200,'pwa-to-card')"><span class="svc-item-name">SharePoint Development &amp; Deployment</span><span class="svc-item-price">$2,500</span></label>
+            <label class="svc-item"><input type="checkbox" value="1500" onchange="calcCard('pto',4200,'pwa-to-card')"><span class="svc-item-name">AI Tools Training &amp; Team Adoption</span><span class="svc-item-price">$1,500</span></label>
+            <label class="svc-item"><input type="checkbox" value="1200" onchange="calcCard('pto',4200,'pwa-to-card')"><span class="svc-item-name">Microsoft Office Suite Training</span><span class="svc-item-price">$1,200</span></label>
           </div>
-          <div class="pwa-pkg-footer">
+          <div class="svc-summary" id="pto-summary" style="display:none;margin-top:10px">
+            <div class="svc-summary-row"><span class="svc-count-label" id="pto-count-label"></span><div><div class="svc-orig-price" id="pto-orig-price" style="display:none"></div><div class="svc-disc-price" id="pto-disc-price"></div></div></div>
+            <div class="svc-savings-label" id="pto-savings-label" style="display:none"></div>
+          </div>
+          <div class="pwa-pkg-footer" style="margin-top:12px">
             <div style="font-size:11px;color:#71717a;font-weight:400;text-align:right">Pricing available upon request</div>
             <button class="pwa-pkg-btn" onclick="openBookings()">Request Pricing</button>
           </div>
