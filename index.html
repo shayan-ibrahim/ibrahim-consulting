@@ -1280,6 +1280,7 @@
       padding: 7px 9px;
       background: rgba(255,170,0,0.09);
       border: 1px solid rgba(255,170,0,0.2);
+      transition: background 0.2s, border-color 0.2s;
     }
     .package-badge-icon svg {
       width: 16px; height: 16px;
@@ -1289,6 +1290,14 @@
       stroke-linecap: round;
       stroke-linejoin: round;
       display: block;
+      transition: stroke 0.2s;
+    }
+    .package-card:hover .package-badge-icon {
+      background: var(--color-amber);
+      border-color: var(--color-amber);
+    }
+    .package-card:hover .package-badge-icon svg {
+      stroke: #ffffff;
     }
     [data-theme="dark"] .package-badge-icon {
       background: rgba(255,170,0,0.12);
