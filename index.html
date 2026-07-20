@@ -3026,6 +3026,19 @@
         animation-delay: 0.62s;
       }
     }
+  .svc-list { display: flex; flex-direction: column; gap: 3px; }
+  .svc-item { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border-radius: 6px; cursor: pointer; border: 1px solid transparent; transition: background 0.12s, border-color 0.12s; }
+  .svc-item:hover { background: rgba(0,0,0,0.03); }
+  .svc-item input[type=checkbox] { accent-color: var(--color-amber); width: 14px; height: 14px; flex-shrink: 0; cursor: pointer; }
+  .svc-item-name { font-size: 13px; color: var(--color-steel); flex: 1; line-height: 1.4; }
+  .svc-item-price { font-size: 12px; color: var(--color-steel); white-space: nowrap; }
+  .svc-summary { background: var(--color-parchment, #f9f9f9); border: 1px solid var(--color-fog); border-radius: 8px; padding: 10px 12px; }
+  [data-theme="dark"] .svc-summary { background: rgba(255,255,255,0.04); }
+  .svc-summary-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .svc-count-label { font-size: 12px; color: var(--color-steel); }
+  .svc-orig-price { font-size: 11px; color: var(--color-steel); text-decoration: line-through; text-align: right; }
+  .svc-disc-price { font-size: 16px; font-weight: 700; color: var(--color-ink); text-align: right; font-family: var(--font-primary); }
+  .svc-savings-label { font-size: 11px; color: var(--color-amber); text-align: right; margin-top: 2px; font-weight: 500; }
   @keyframes deskPkgPanelIn {
     from { opacity: 0; transform: translateY(10px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -3833,15 +3846,25 @@
         <article class="package-card" role="listitem">
           <span class="package-badge">People &amp; Leadership</span>
           <h3 class="package-name">People &amp; Leadership</h3>
-          <p class="package-desc" style="flex:none">Expert support for your team and leadership — scoped, priced, and delivered independently.</p>
-          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px;font-size:14px;color:var(--color-steel)">
-            <li style="padding-left:14px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Leadership Coaching (Individual or Team)</li>
-            <li style="padding-left:14px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Executive Communication Training</li>
-            <li style="padding-left:14px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Performance Management Systems</li>
-            <li style="padding-left:14px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Onboarding &amp; Offboarding Program Design</li>
-            <li style="padding-left:14px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Culture-Building Workshops &amp; Facilitation</li>
-            <li style="padding-left:14px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Employee Handbook &amp; Policy Documentation</li>
-          </ul>
+          <p class="package-desc" style="flex:none">Select the services you need — or bundle all six for the best rate.</p>
+          <div class="svc-list">
+            <label class="svc-item"><input type="checkbox" value="2500" onchange="calcCard('pl',6500)"><span class="svc-item-name">Leadership Coaching (Individual or Team)</span><span class="svc-item-price">$2,500</span></label>
+            <label class="svc-item"><input type="checkbox" value="1800" onchange="calcCard('pl',6500)"><span class="svc-item-name">Executive Communication Training</span><span class="svc-item-price">$1,800</span></label>
+            <label class="svc-item"><input type="checkbox" value="1500" onchange="calcCard('pl',6500)"><span class="svc-item-name">Performance Management Systems</span><span class="svc-item-price">$1,500</span></label>
+            <label class="svc-item"><input type="checkbox" value="1200" onchange="calcCard('pl',6500)"><span class="svc-item-name">Onboarding &amp; Offboarding Program Design</span><span class="svc-item-price">$1,200</span></label>
+            <label class="svc-item"><input type="checkbox" value="1000" onchange="calcCard('pl',6500)"><span class="svc-item-name">Culture-Building Workshops &amp; Facilitation</span><span class="svc-item-price">$1,000</span></label>
+            <label class="svc-item"><input type="checkbox" value="800" onchange="calcCard('pl',6500)"><span class="svc-item-name">Employee Handbook &amp; Policy Documentation</span><span class="svc-item-price">$800</span></label>
+          </div>
+          <div class="svc-summary" id="pl-summary" style="display:none">
+            <div class="svc-summary-row">
+              <span class="svc-count-label" id="pl-count-label"></span>
+              <div>
+                <div class="svc-orig-price" id="pl-orig-price" style="display:none"></div>
+                <div class="svc-disc-price" id="pl-disc-price"></div>
+              </div>
+            </div>
+            <div class="svc-savings-label" id="pl-savings-label" style="display:none"></div>
+          </div>
           <div class="package-divider" style="margin-top:auto"></div>
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
             <button class="btn-checkout" style="flex-shrink:0" onclick="openBookings()">Request Pricing →</button>
@@ -3853,15 +3876,25 @@
         <article class="package-card" role="listitem">
           <span class="package-badge">Brand &amp; Design</span>
           <h3 class="package-name">Brand &amp; Design</h3>
-          <p class="package-desc" style="flex:none">Creative and visual services to build a brand that works as hard as your business does.</p>
-          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px;font-size:14px;color:var(--color-steel)">
-            <li style="padding-left:14px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Logo Design &amp; Brand Identity</li>
-            <li style="padding-left:14px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Marketing &amp; Promotional Materials</li>
-            <li style="padding-left:14px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Graphic Design &amp; Visual Assets</li>
-            <li style="padding-left:14px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Presentation Design</li>
-            <li style="padding-left:14px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Website Design &amp; Development</li>
-            <li style="padding-left:14px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Social Media Templates &amp; Creative</li>
-          </ul>
+          <p class="package-desc" style="flex:none">Select the services you need — or bundle all six for the best rate.</p>
+          <div class="svc-list">
+            <label class="svc-item"><input type="checkbox" value="1200" onchange="calcCard('bd',5800)"><span class="svc-item-name">Logo Design &amp; Brand Identity</span><span class="svc-item-price">$1,200</span></label>
+            <label class="svc-item"><input type="checkbox" value="800" onchange="calcCard('bd',5800)"><span class="svc-item-name">Marketing &amp; Promotional Materials</span><span class="svc-item-price">$800</span></label>
+            <label class="svc-item"><input type="checkbox" value="650" onchange="calcCard('bd',5800)"><span class="svc-item-name">Graphic Design &amp; Visual Assets</span><span class="svc-item-price">$650</span></label>
+            <label class="svc-item"><input type="checkbox" value="500" onchange="calcCard('bd',5800)"><span class="svc-item-name">Presentation Design</span><span class="svc-item-price">$500</span></label>
+            <label class="svc-item"><input type="checkbox" value="3500" onchange="calcCard('bd',5800)"><span class="svc-item-name">Website Design &amp; Development</span><span class="svc-item-price">$3,500</span></label>
+            <label class="svc-item"><input type="checkbox" value="600" onchange="calcCard('bd',5800)"><span class="svc-item-name">Social Media Templates &amp; Creative</span><span class="svc-item-price">$600</span></label>
+          </div>
+          <div class="svc-summary" id="bd-summary" style="display:none">
+            <div class="svc-summary-row">
+              <span class="svc-count-label" id="bd-count-label"></span>
+              <div>
+                <div class="svc-orig-price" id="bd-orig-price" style="display:none"></div>
+                <div class="svc-disc-price" id="bd-disc-price"></div>
+              </div>
+            </div>
+            <div class="svc-savings-label" id="bd-savings-label" style="display:none"></div>
+          </div>
           <div class="package-divider" style="margin-top:auto"></div>
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
             <button class="btn-checkout" style="flex-shrink:0" onclick="openBookings()">Request Pricing →</button>
@@ -3873,12 +3906,22 @@
         <article class="package-card" role="listitem">
           <span class="package-badge">Technology &amp; Operations</span>
           <h3 class="package-name">Technology &amp; Operations</h3>
-          <p class="package-desc" style="flex:none">Hands-on technology support to modernize how your team works and operates.</p>
-          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px;font-size:14px;color:var(--color-steel)">
-            <li style="padding-left:14px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>Microsoft Office Suite Training</li>
-            <li style="padding-left:14px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>SharePoint Development &amp; Deployment</li>
-            <li style="padding-left:14px;position:relative;line-height:1.4"><span style="position:absolute;left:0;top:5px;width:4px;height:4px;background:var(--color-amber);border-radius:50%"></span>AI Tools Training &amp; Team Adoption</li>
-          </ul>
+          <p class="package-desc" style="flex:none">Select the services you need — or bundle all three for the best rate.</p>
+          <div class="svc-list">
+            <label class="svc-item"><input type="checkbox" value="1200" onchange="calcCard('to',4200)"><span class="svc-item-name">Microsoft Office Suite Training</span><span class="svc-item-price">$1,200</span></label>
+            <label class="svc-item"><input type="checkbox" value="2500" onchange="calcCard('to',4200)"><span class="svc-item-name">SharePoint Development &amp; Deployment</span><span class="svc-item-price">$2,500</span></label>
+            <label class="svc-item"><input type="checkbox" value="1500" onchange="calcCard('to',4200)"><span class="svc-item-name">AI Tools Training &amp; Team Adoption</span><span class="svc-item-price">$1,500</span></label>
+          </div>
+          <div class="svc-summary" id="to-summary" style="display:none">
+            <div class="svc-summary-row">
+              <span class="svc-count-label" id="to-count-label"></span>
+              <div>
+                <div class="svc-orig-price" id="to-orig-price" style="display:none"></div>
+                <div class="svc-disc-price" id="to-disc-price"></div>
+              </div>
+            </div>
+            <div class="svc-savings-label" id="to-savings-label" style="display:none"></div>
+          </div>
           <div class="package-divider" style="margin-top:auto"></div>
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
             <button class="btn-checkout" style="flex-shrink:0" onclick="openBookings()">Request Pricing →</button>
@@ -4205,6 +4248,47 @@
     document.getElementById('pkg-hdr-eyebrow').textContent = isConsulting ? 'Consulting Packages' : 'Products & Services';
     document.getElementById('pkg-hdr-hed').textContent = isConsulting ? 'Scoped for where you are.' : 'Right-sized for what you need.';
     document.getElementById('pkg-hdr-sub').textContent = isConsulting ? 'Every engagement is fixed-scope with no surprises. Every package includes an AI assessment to identify opportunities to give your team more leverage.' : 'Expert support where you need it most — without committing to a full engagement. Each service is scoped, priced, and delivered independently.';
+  }
+
+  function calcCard(cardId, bundlePrice) {
+    var nth = cardId==='pl' ? 1 : cardId==='bd' ? 2 : 3;
+    var boxes = document.querySelectorAll('#desk-pkg-panel-products .package-card:nth-child('+nth+') input[type=checkbox]');
+    var total = 0, count = 0;
+    boxes.forEach(function(b) { if (b.checked) { total += parseInt(b.value); count++; } });
+    var summary = document.getElementById(cardId+'-summary');
+    var countEl = document.getElementById(cardId+'-count-label');
+    var origEl = document.getElementById(cardId+'-orig-price');
+    var discEl = document.getElementById(cardId+'-disc-price');
+    var saveEl = document.getElementById(cardId+'-savings-label');
+    if (count === 0) { summary.style.display = 'none'; return; }
+    summary.style.display = 'block';
+    var isBundle = count === boxes.length;
+    if (isBundle) {
+      var saved = total - bundlePrice;
+      countEl.textContent = 'Full bundle · best rate';
+      origEl.textContent = '$' + total.toLocaleString();
+      origEl.style.display = 'block';
+      discEl.textContent = '$' + bundlePrice.toLocaleString();
+      saveEl.textContent = 'You save $' + saved.toLocaleString() + ' with the full bundle';
+      saveEl.style.display = 'block';
+    } else {
+      var rates = [0, 0, 0.05, 0.10, 0.12, 0.15];
+      var rate = rates[Math.min(count, rates.length - 1)];
+      countEl.textContent = count + ' service' + (count > 1 ? 's' : '') + ' selected';
+      if (rate > 0) {
+        var disc = Math.round(total * (1 - rate));
+        var sv = total - disc;
+        origEl.textContent = '$' + total.toLocaleString();
+        origEl.style.display = 'block';
+        discEl.textContent = '$' + disc.toLocaleString();
+        saveEl.textContent = 'You save $' + sv.toLocaleString() + ' · ' + Math.round(rate * 100) + '% multi-service discount';
+        saveEl.style.display = 'block';
+      } else {
+        origEl.style.display = 'none';
+        discEl.textContent = '$' + total.toLocaleString();
+        saveEl.style.display = 'none';
+      }
+    }
   }
 
   function switchDeskPkgTab(tab) {
