@@ -3894,7 +3894,7 @@
           </div>
           <div class="package-divider" style="margin-top:auto"></div>
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-            <button class="btn-checkout" style="flex-shrink:0" onclick="checkoutServices('pl')">Get Started →</button>
+            <button class="btn-checkout" style="flex-shrink:0" onclick="confirmProductsCheckout('pl')">Get Started →</button>
           </div>
         </article>
 
@@ -3923,7 +3923,7 @@
           </div>
           <div class="package-divider" style="margin-top:auto"></div>
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-            <button class="btn-checkout" style="flex-shrink:0" onclick="checkoutServices('bd')">Get Started →</button>
+            <button class="btn-checkout" style="flex-shrink:0" onclick="confirmProductsCheckout('bd')">Get Started →</button>
           </div>
         </article>
 
@@ -3949,7 +3949,7 @@
           </div>
           <div class="package-divider" style="margin-top:auto"></div>
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-            <button class="btn-checkout" style="flex-shrink:0" onclick="checkoutServices('to')">Get Started →</button>
+            <button class="btn-checkout" style="flex-shrink:0" onclick="confirmProductsCheckout('to')">Get Started →</button>
           </div>
         </article>
 
@@ -4274,19 +4274,18 @@
     document.getElementById('pkg-hdr-sub').textContent = isConsulting ? 'Every engagement is fixed-scope with no surprises. Every package includes an AI assessment to identify opportunities to give your team more leverage.' : 'Expert support where you need it most — without committing to a full engagement. Each service is scoped, priced, and delivered independently.';
   }
 
-  async function checkoutServices(cardId, containerId) {
+  var _pendingCheckout = null;
+
+  function confirmProductsCheckout(cardId, containerId) {
     var container = containerId
       ? document.getElementById(containerId)
-      : (function() { var n = cardId==='pl'?1:cardId==='bd'?2:3; return document.querySelector('#desk-pkg-panel-products .package-card:nth-child('+n+')'); })();
+      : (function() { var n=cardId==='pl'?1:cardId==='bd'?2:3; return document.querySelector('#desk-pkg-panel-products .package-card:nth-child('+n+')'); })();
 
     var items = [];
     container.querySelectorAll('.svc-item').forEach(function(label) {
       var cb = label.querySelector('input[type=checkbox]');
       if (cb && cb.checked) {
-        items.push({
-          name: label.querySelector('.svc-item-name').textContent.trim(),
-          price: parseInt(cb.value)
-        });
+        items.push({ name: label.querySelector('.svc-item-name').textContent.trim(), price: parseInt(cb.value) });
       }
     });
 
@@ -4294,9 +4293,31 @@
 
     var rates = [0, 0, 0.05, 0.10, 0.12, 0.15];
     var discountRate = rates[Math.min(items.length, rates.length - 1)];
-
     var titleEl = container.querySelector('.package-name, .pwa-pkg-name');
     var cardTitle = titleEl ? titleEl.textContent.trim() : 'Consulting Services';
+    var total = items.reduce(function(s, i) { return s + i.price; }, 0);
+    var finalPrice = discountRate > 0 ? Math.round(total * (1 - discountRate)) : total;
+    var summary = cardTitle + ' — ' + items.length + ' service' + (items.length > 1 ? 's' : '') + ' · $' + finalPrice.toLocaleString();
+    if (discountRate > 0) summary += ' (' + Math.round(discountRate * 100) + '% discount applied)';
+
+    _pendingCheckout = { cardId: cardId, containerId: containerId, items: items, discountRate: discountRate, cardTitle: cardTitle };
+
+    var link = document.getElementById('pkgConfirmLink');
+    link.removeAttribute('href');
+    link.onclick = function(e) { e.preventDefault(); closePkgConfirm(); executeProductsCheckout(); };
+
+    document.getElementById('pkgConfirmName').textContent = summary;
+    document.getElementById('pkgConfirmOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  async function executeProductsCheckout() {
+    if (!_pendingCheckout) return;
+    var p = _pendingCheckout; _pendingCheckout = null;
+
+    var container = p.containerId
+      ? document.getElementById(p.containerId)
+      : (function() { var n=p.cardId==='pl'?1:p.cardId==='bd'?2:3; return document.querySelector('#desk-pkg-panel-products .package-card:nth-child('+n+')'); })();
 
     var btn = container.querySelector('.btn-checkout, .pwa-pkg-btn');
     var origHtml = btn.innerHTML;
@@ -4307,14 +4328,11 @@
       var res = await fetch('/.netlify/functions/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items: items, discountRate: discountRate, cardTitle: cardTitle })
+        body: JSON.stringify({ items: p.items, discountRate: p.discountRate, cardTitle: p.cardTitle })
       });
       var data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        throw new Error(data.error || 'No URL returned');
-      }
+      if (data.url) { window.location.href = data.url; }
+      else { throw new Error(data.error || 'No URL returned'); }
     } catch (err) {
       btn.innerHTML = origHtml;
       btn.disabled = false;
@@ -4411,7 +4429,9 @@
   }
   function confirmPackage(url, name) {
     document.getElementById('pkgConfirmName').textContent = name;
-    document.getElementById('pkgConfirmLink').href = url;
+    var link = document.getElementById('pkgConfirmLink');
+    link.href = url;
+    link.onclick = null;
     document.getElementById('pkgConfirmOverlay').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -5082,7 +5102,7 @@
             <div class="svc-savings-label" id="ppl-savings-label" style="display:none"></div>
           </div>
           <div class="pwa-pkg-footer" style="margin-top:12px">
-            <button class="pwa-pkg-btn" onclick="checkoutServices('ppl','pwa-pl-card')">Get Started</button>
+            <button class="pwa-pkg-btn" onclick="confirmProductsCheckout('ppl','pwa-pl-card')">Get Started</button>
           </div>
         </div>
         <div class="pwa-pkg pwa-reveal" id="pwa-bd-card">
@@ -5100,7 +5120,7 @@
             <div class="svc-savings-label" id="pbd-savings-label" style="display:none"></div>
           </div>
           <div class="pwa-pkg-footer" style="margin-top:12px">
-            <button class="pwa-pkg-btn" onclick="checkoutServices('pbd','pwa-bd-card')">Get Started</button>
+            <button class="pwa-pkg-btn" onclick="confirmProductsCheckout('pbd','pwa-bd-card')">Get Started</button>
           </div>
         </div>
         <div class="pwa-pkg pwa-reveal" id="pwa-to-card">
@@ -5115,7 +5135,7 @@
             <div class="svc-savings-label" id="pto-savings-label" style="display:none"></div>
           </div>
           <div class="pwa-pkg-footer" style="margin-top:12px">
-            <button class="pwa-pkg-btn" onclick="checkoutServices('pto','pwa-to-card')">Get Started</button>
+            <button class="pwa-pkg-btn" onclick="confirmProductsCheckout('pto','pwa-to-card')">Get Started</button>
           </div>
         </div>
       </div>
