@@ -4180,8 +4180,8 @@
     const isConsulting = tab === 'consulting';
     document.getElementById('pkg-panel-consulting').style.display = isConsulting ? '' : 'none';
     document.getElementById('pkg-panel-products').style.display = isConsulting ? 'none' : '';
-    document.getElementById('pkg-tab-consulting').style.color = isConsulting ? 'var(--color-amber)' : 'rgba(255,255,255,0.35)';
-    document.getElementById('pkg-tab-products').style.color = isConsulting ? 'rgba(255,255,255,0.35)' : 'var(--color-amber)';
+    document.getElementById('pkg-tab-consulting').style.color = isConsulting ? '#09090b' : '#a1a1aa';
+    document.getElementById('pkg-tab-products').style.color = isConsulting ? '#a1a1aa' : '#09090b';
     document.getElementById('pkg-ul-consulting').style.display = isConsulting ? '' : 'none';
     document.getElementById('pkg-ul-products').style.display = isConsulting ? 'none' : '';
   }
@@ -4833,9 +4833,9 @@
         <div class="pwa-sub">Every engagement is fixed-scope with no surprises. Every package includes an AI assessment to identify opportunities to give your team more leverage.</div>
       </div>
       <!-- ── Package sub-tabs ── -->
-      <div style="display:flex;border-bottom:1px solid rgba(255,255,255,0.08);padding:0 16px;background:#09090b">
-        <button id="pkg-tab-consulting" onclick="switchPkgTab('consulting')" style="flex:1;background:none;border:none;padding:11px 6px 10px;font-size:11px;font-weight:700;letter-spacing:0.01em;color:var(--color-amber);cursor:pointer;position:relative;-webkit-tap-highlight-color:transparent">Consulting Packages<span id="pkg-ul-consulting" style="position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--color-amber);border-radius:2px 2px 0 0"></span></button>
-        <button id="pkg-tab-products" onclick="switchPkgTab('products')" style="flex:1;background:none;border:none;padding:11px 6px 10px;font-size:11px;font-weight:700;letter-spacing:0.01em;color:rgba(255,255,255,0.35);cursor:pointer;position:relative;-webkit-tap-highlight-color:transparent">Products &amp; Services<span id="pkg-ul-products" style="position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--color-amber);border-radius:2px 2px 0 0;display:none"></span></button>
+      <div style="display:flex;border-bottom:1px solid #e4e4e7;background:#f4f4f5;padding:0 14px">
+        <button id="pkg-tab-consulting" onclick="switchPkgTab('consulting')" style="flex:1;background:none;border:none;padding:11px 6px 10px;font-size:11px;font-weight:700;letter-spacing:0.01em;color:#09090b;cursor:pointer;position:relative;-webkit-tap-highlight-color:transparent">Consulting Packages<span id="pkg-ul-consulting" style="position:absolute;bottom:-1px;left:0;right:0;height:2px;background:#09090b;border-radius:2px 2px 0 0"></span></button>
+        <button id="pkg-tab-products" onclick="switchPkgTab('products')" style="flex:1;background:none;border:none;padding:11px 6px 10px;font-size:11px;font-weight:700;letter-spacing:0.01em;color:#a1a1aa;cursor:pointer;position:relative;-webkit-tap-highlight-color:transparent">Products &amp; Services<span id="pkg-ul-products" style="position:absolute;bottom:-1px;left:0;right:0;height:2px;background:#09090b;border-radius:2px 2px 0 0;display:none"></span></button>
       </div>
       <!-- ── Consulting Packages tab ── -->
       <div id="pkg-panel-consulting" class="pwa-card-list">
