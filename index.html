@@ -3894,7 +3894,7 @@
           </div>
           <div class="package-divider" style="margin-top:auto"></div>
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-            <button class="btn-checkout" style="flex-shrink:0" onclick="openBookings()">Get Started →</button>
+            <button class="btn-checkout" style="flex-shrink:0" onclick="checkoutServices('pl')">Get Started →</button>
           </div>
         </article>
 
@@ -3923,7 +3923,7 @@
           </div>
           <div class="package-divider" style="margin-top:auto"></div>
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-            <button class="btn-checkout" style="flex-shrink:0" onclick="openBookings()">Get Started →</button>
+            <button class="btn-checkout" style="flex-shrink:0" onclick="checkoutServices('bd')">Get Started →</button>
           </div>
         </article>
 
@@ -3949,7 +3949,7 @@
           </div>
           <div class="package-divider" style="margin-top:auto"></div>
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
-            <button class="btn-checkout" style="flex-shrink:0" onclick="openBookings()">Get Started →</button>
+            <button class="btn-checkout" style="flex-shrink:0" onclick="checkoutServices('to')">Get Started →</button>
           </div>
         </article>
 
@@ -4272,6 +4272,54 @@
     document.getElementById('pkg-hdr-eyebrow').textContent = isConsulting ? 'Consulting Packages' : 'Products & Services';
     document.getElementById('pkg-hdr-hed').textContent = isConsulting ? 'Scoped for where you are.' : 'Right-sized for what you need.';
     document.getElementById('pkg-hdr-sub').textContent = isConsulting ? 'Every engagement is fixed-scope with no surprises. Every package includes an AI assessment to identify opportunities to give your team more leverage.' : 'Expert support where you need it most — without committing to a full engagement. Each service is scoped, priced, and delivered independently.';
+  }
+
+  async function checkoutServices(cardId, containerId) {
+    var container = containerId
+      ? document.getElementById(containerId)
+      : (function() { var n = cardId==='pl'?1:cardId==='bd'?2:3; return document.querySelector('#desk-pkg-panel-products .package-card:nth-child('+n+')'); })();
+
+    var items = [];
+    container.querySelectorAll('.svc-item').forEach(function(label) {
+      var cb = label.querySelector('input[type=checkbox]');
+      if (cb && cb.checked) {
+        items.push({
+          name: label.querySelector('.svc-item-name').textContent.trim(),
+          price: parseInt(cb.value)
+        });
+      }
+    });
+
+    if (items.length === 0) { openBookings(); return; }
+
+    var rates = [0, 0, 0.05, 0.10, 0.12, 0.15];
+    var discountRate = rates[Math.min(items.length, rates.length - 1)];
+
+    var titleEl = container.querySelector('.package-name, .pwa-pkg-name');
+    var cardTitle = titleEl ? titleEl.textContent.trim() : 'Consulting Services';
+
+    var btn = container.querySelector('.btn-checkout, .pwa-pkg-btn');
+    var origHtml = btn.innerHTML;
+    btn.innerHTML = 'Processing…';
+    btn.disabled = true;
+
+    try {
+      var res = await fetch('/.netlify/functions/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: items, discountRate: discountRate, cardTitle: cardTitle })
+      });
+      var data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        throw new Error(data.error || 'No URL returned');
+      }
+    } catch (err) {
+      btn.innerHTML = origHtml;
+      btn.disabled = false;
+      alert('Something went wrong. Please try again or contact us directly.');
+    }
   }
 
   function calcCard(cardId, bundlePrice, containerId) {
@@ -5034,7 +5082,7 @@
             <div class="svc-savings-label" id="ppl-savings-label" style="display:none"></div>
           </div>
           <div class="pwa-pkg-footer" style="margin-top:12px">
-            <button class="pwa-pkg-btn" onclick="openBookings()">Request Pricing</button>
+            <button class="pwa-pkg-btn" onclick="checkoutServices('ppl','pwa-pl-card')">Get Started</button>
           </div>
         </div>
         <div class="pwa-pkg pwa-reveal" id="pwa-bd-card">
@@ -5052,7 +5100,7 @@
             <div class="svc-savings-label" id="pbd-savings-label" style="display:none"></div>
           </div>
           <div class="pwa-pkg-footer" style="margin-top:12px">
-            <button class="pwa-pkg-btn" onclick="openBookings()">Request Pricing</button>
+            <button class="pwa-pkg-btn" onclick="checkoutServices('pbd','pwa-bd-card')">Get Started</button>
           </div>
         </div>
         <div class="pwa-pkg pwa-reveal" id="pwa-to-card">
@@ -5067,7 +5115,7 @@
             <div class="svc-savings-label" id="pto-savings-label" style="display:none"></div>
           </div>
           <div class="pwa-pkg-footer" style="margin-top:12px">
-            <button class="pwa-pkg-btn" onclick="openBookings()">Request Pricing</button>
+            <button class="pwa-pkg-btn" onclick="checkoutServices('pto','pwa-to-card')">Get Started</button>
           </div>
         </div>
       </div>
