@@ -340,47 +340,53 @@
     .results-grid {
       display: grid !important;
       grid-template-columns: repeat(3, minmax(0,1fr)) !important;
-      grid-template-rows: auto auto auto auto auto auto !important;
-      gap: 0 12px !important;
-      align-items: unset !important;
+      gap: 16px !important;
+      align-items: stretch !important;
+      grid-template-rows: unset !important;
       grid-auto-rows: unset !important;
     }
     .result-card {
-      display: grid;
-      grid-template-rows: subgrid;
-      grid-row: span 6;
-      background: var(--color-snow);
+      display: flex;
+      flex-direction: column;
       border-radius: var(--radius-card);
-      padding: 32px 28px;
-      box-shadow: var(--shadow-card-inset);
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
       transition: transform 0.2s, box-shadow 0.2s;
       cursor: default;
     }
     .result-card:hover {
-      box-shadow: var(--shadow-card-inset), rgba(0,0,0,0.06) 0px 8px 24px 0px;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.12), 0 12px 32px rgba(0,0,0,0.1);
     }
-    .result-challenge-label { margin-bottom: 12px; align-self: start; }
-    .result-challenge-text { font-size: 14px; color: var(--color-ink); line-height: 1.7; margin-bottom: 10px; align-self: start; }
-    .result-quote { font-size: 13px; color: var(--color-steel); line-height: 1.6; font-style: italic; padding-bottom: 36px; align-self: start; }
-    .result-outcome-label { margin-bottom: 12px; align-self: start; }
-    .result-outcome-text { font-size: 14px; color: var(--color-ink); line-height: 1.7; align-self: start; }
-    .result-metrics { padding-top: 20px; display: flex; flex-direction: column; gap: 12px; align-self: end; }
+    .result-top {
+      background: #0d0d10;
+      padding: 28px 24px 24px;
+    }
+    .result-bottom {
+      flex: 1;
+      background: var(--color-snow);
+      padding: 22px 24px 24px;
+      display: flex;
+      flex-direction: column;
+    }
+    .result-challenge-label { margin-bottom: 10px; }
+    .result-challenge-text { font-size: 13.5px; color: #c0c4cc; line-height: 1.65; margin-bottom: 12px; }
+    .result-quote { font-size: 12.5px; color: #5a5f6e; line-height: 1.6; font-style: italic; border-left: 2px solid var(--color-amber); padding-left: 12px; }
+    .result-outcome-label { margin-bottom: 10px; }
+    .result-hero-stat { font-size: 46px; font-weight: 900; color: var(--color-obsidian); letter-spacing: -1.5px; line-height: 1; margin-bottom: 4px; }
+    .result-hero-stat-unit { font-size: 18px; font-weight: 700; color: var(--color-amber); margin-left: 2px; }
+    .result-outcome-text { font-size: 13px; color: var(--color-steel); line-height: 1.6; margin-bottom: 16px; }
+    .result-metrics { margin-top: auto; display: flex; flex-direction: column; gap: 12px; }
 
-    /* Results cards — match service-card style */
-    [data-theme="dark"] .result-card {
-      background: #1a1a1d !important;
-      box-shadow: rgba(255,255,255,0.03) 0px 1px 0px 0px inset !important;
-    }
-    [data-theme="dark"] .result-card:hover {
-      background: #212126 !important;
-      box-shadow: rgba(255,255,255,0.03) 0px 1px 0px 0px inset !important;
-    }
-    /* Stat chips inside results cards */
+    /* Results cards — dark mode */
+    [data-theme="dark"] .result-top { background: #0a0a0b !important; }
+    [data-theme="dark"] .result-bottom { background: #1a1a1d !important; }
+    [data-theme="dark"] .result-hero-stat { color: #f0f0f2 !important; }
+    [data-theme="dark"] .result-outcome-text { color: #8a8a98 !important; }
     [data-theme="dark"] .result-card [style*="background:var(--color-mist)"],
     [data-theme="dark"] .result-card [style*="background: var(--color-mist)"] {
       background: #212126 !important;
     }
-    /* Text inside results cards */
     [data-theme="dark"] .results-grid p,
     [data-theme="dark"] .results-grid [style*="color:var(--color-ink)"],
     [data-theme="dark"] .results-grid [style*="color: var(--color-ink)"] { color: #c0c0cc !important; }
@@ -3588,34 +3594,39 @@
 
       <!-- Case Study 1 -->
       <div class="result-card">
-        <div class="section-label result-challenge-label">The Challenge</div>
-        <p class="result-challenge-text">A 70+ location retailer was struggling with role overlap and inconsistent execution across three states. Leadership was overwhelmed, managers lacked clarity, and performance varied wildly market to market.</p>
-        <p class="result-quote">They had the talent. They had the locations. What they didn't have was structure.</p>
-        <div class="section-label result-outcome-label">The Outcome</div>
-        <p class="result-outcome-text">Within 45 days they had a formalized org structure, defined department heads, and clear accountability across every level.</p>
-        <div class="result-metrics">
-          <div style="background:var(--color-mist);border-radius:12px;padding:14px">
-            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
-              <span style="font-size:11px;font-weight:600;color:var(--color-steel);text-transform:uppercase;letter-spacing:0.06em">Manager Escalations</span>
-              <span style="font-size:11px;color:var(--color-amber);font-weight:700">↓ 40%</span>
+        <div class="result-top">
+          <div class="section-label result-challenge-label">The Challenge</div>
+          <p class="result-challenge-text">A 70+ location retailer was struggling with role overlap and inconsistent execution across three states. Leadership was overwhelmed, managers lacked clarity, and performance varied wildly market to market.</p>
+          <p class="result-quote">They had the talent. They had the locations. What they didn't have was structure.</p>
+        </div>
+        <div class="result-bottom">
+          <div class="section-label result-outcome-label">The Outcome</div>
+          <div class="result-hero-stat">45<span class="result-hero-stat-unit">days</span></div>
+          <p class="result-outcome-text">Formalized org structure, defined department heads, and clear accountability across every level — in under seven weeks.</p>
+          <div class="result-metrics">
+            <div style="background:var(--color-mist);border-radius:12px;padding:14px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+                <span style="font-size:11px;font-weight:600;color:var(--color-steel);text-transform:uppercase;letter-spacing:0.06em">Manager Escalations</span>
+                <span style="font-size:11px;color:var(--color-amber);font-weight:700">↓ 40%</span>
+              </div>
+              <div style="display:flex;gap:4px;align-items:center">
+                <span style="font-size:10px;color:var(--color-steel);width:32px">Before</span>
+                <div style="flex:1;height:6px;background:var(--color-fog);border-radius:3px"><div class="bar-fill" data-bar-width="100" style="width:0%;height:100%;background:#d1d5db;border-radius:3px;transition:width 0.9s cubic-bezier(0.22,1,0.36,1)"></div></div>
+              </div>
+              <div style="display:flex;gap:4px;align-items:center;margin-top:4px">
+                <span style="font-size:10px;color:var(--color-steel);width:32px">After</span>
+                <div style="flex:1;height:6px;background:var(--color-fog);border-radius:3px"><div class="bar-fill" data-bar-width="60" style="width:0%;height:100%;background:var(--color-amber);border-radius:3px;transition:width 0.9s cubic-bezier(0.22,1,0.36,1)"></div></div>
+              </div>
             </div>
-            <div style="display:flex;gap:4px;align-items:center">
-              <span style="font-size:10px;color:var(--color-steel);width:32px">Before</span>
-              <div style="flex:1;height:6px;background:var(--color-fog);border-radius:3px"><div class="bar-fill" data-bar-width="100" style="width:0%;height:100%;background:#d1d5db;border-radius:3px;transition:width 0.9s cubic-bezier(0.22,1,0.36,1)"></div></div>
-            </div>
-            <div style="display:flex;gap:4px;align-items:center;margin-top:4px">
-              <span style="font-size:10px;color:var(--color-steel);width:32px">After</span>
-              <div style="flex:1;height:6px;background:var(--color-fog);border-radius:3px"><div class="bar-fill" data-bar-width="60" style="width:0%;height:100%;background:var(--color-amber);border-radius:3px;transition:width 0.9s cubic-bezier(0.22,1,0.36,1)"></div></div>
-            </div>
-          </div>
-          <div style="display:flex;gap:8px">
-            <div style="flex:1;background:var(--color-mist);border-radius:12px;padding:12px;text-align:center">
-              <div style="font-size:22px;font-weight:800;color:var(--color-obsidian);letter-spacing:-0.5px">45</div>
-              <div style="font-size:11px;color:var(--color-steel);margin-top:2px">Days to full structure</div>
-            </div>
-            <div style="flex:1;background:var(--color-mist);border-radius:12px;padding:12px;text-align:center">
-              <div style="font-size:22px;font-weight:800;color:var(--color-obsidian);letter-spacing:-0.5px">3</div>
-              <div style="font-size:11px;color:var(--color-steel);margin-top:2px">States aligned</div>
+            <div style="display:flex;gap:8px">
+              <div style="flex:1;background:var(--color-mist);border-radius:12px;padding:12px;text-align:center">
+                <div style="font-size:20px;font-weight:800;color:var(--color-obsidian);letter-spacing:-0.5px">45</div>
+                <div style="font-size:11px;color:var(--color-steel);margin-top:2px">Days to full structure</div>
+              </div>
+              <div style="flex:1;background:var(--color-mist);border-radius:12px;padding:12px;text-align:center">
+                <div style="font-size:20px;font-weight:800;color:var(--color-obsidian);letter-spacing:-0.5px">3</div>
+                <div style="font-size:11px;color:var(--color-steel);margin-top:2px">States aligned</div>
+              </div>
             </div>
           </div>
         </div>
@@ -3623,34 +3634,39 @@
 
       <!-- Case Study 2 -->
       <div class="result-card">
-        <div class="section-label result-challenge-label">The Challenge</div>
-        <p class="result-challenge-text">A 270+ retail operation needed to scale rapidly through acquisition while maintaining performance, compliance, and cultural consistency across a fast-growing national footprint.</p>
-        <p class="result-quote">Speed without structure is how companies fall apart. The goal was to grow fast and stay disciplined.</p>
-        <div class="section-label result-outcome-label">The Outcome</div>
-        <p class="result-outcome-text">Five acquisitions in seven months added 130+ locations and propelled the company to 400+ national retail locations.</p>
-        <div class="result-metrics">
-          <div style="background:var(--color-mist);border-radius:12px;padding:14px">
-            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
-              <span style="font-size:11px;font-weight:600;color:var(--color-steel);text-transform:uppercase;letter-spacing:0.06em">Quota Attainment</span>
-              <span style="font-size:11px;color:var(--color-amber);font-weight:700">120%+ sustained</span>
+        <div class="result-top">
+          <div class="section-label result-challenge-label">The Challenge</div>
+          <p class="result-challenge-text">A 270+ retail operation needed to scale rapidly through acquisition while maintaining performance, compliance, and cultural consistency across a fast-growing national footprint.</p>
+          <p class="result-quote">Speed without structure is how companies fall apart. The goal was to grow fast and stay disciplined.</p>
+        </div>
+        <div class="result-bottom">
+          <div class="section-label result-outcome-label">The Outcome</div>
+          <div class="result-hero-stat">400<span class="result-hero-stat-unit">+locations</span></div>
+          <p class="result-outcome-text">Five acquisitions in seven months added 130+ locations without performance degradation or cultural breakdown.</p>
+          <div class="result-metrics">
+            <div style="background:var(--color-mist);border-radius:12px;padding:14px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+                <span style="font-size:11px;font-weight:600;color:var(--color-steel);text-transform:uppercase;letter-spacing:0.06em">Quota Attainment</span>
+                <span style="font-size:11px;color:var(--color-amber);font-weight:700">120%+ sustained</span>
+              </div>
+              <div style="display:flex;gap:4px;align-items:center">
+                <span style="font-size:10px;color:var(--color-steel);width:32px">Before</span>
+                <div style="flex:1;height:6px;background:var(--color-fog);border-radius:3px"><div class="bar-fill" data-bar-width="65" style="width:0%;height:100%;background:#d1d5db;border-radius:3px;transition:width 0.9s cubic-bezier(0.22,1,0.36,1)"></div></div>
+              </div>
+              <div style="display:flex;gap:4px;align-items:center;margin-top:4px">
+                <span style="font-size:10px;color:var(--color-steel);width:32px">After</span>
+                <div style="flex:1;height:6px;background:var(--color-fog);border-radius:3px"><div class="bar-fill" data-bar-width="100" style="width:0%;height:100%;background:var(--color-amber);border-radius:3px;transition:width 0.9s cubic-bezier(0.22,1,0.36,1)"></div></div>
+              </div>
             </div>
-            <div style="display:flex;gap:4px;align-items:center">
-              <span style="font-size:10px;color:var(--color-steel);width:32px">Before</span>
-              <div style="flex:1;height:6px;background:var(--color-fog);border-radius:3px"><div class="bar-fill" data-bar-width="65" style="width:0%;height:100%;background:#d1d5db;border-radius:3px;transition:width 0.9s cubic-bezier(0.22,1,0.36,1)"></div></div>
-            </div>
-            <div style="display:flex;gap:4px;align-items:center;margin-top:4px">
-              <span style="font-size:10px;color:var(--color-steel);width:32px">After</span>
-              <div style="flex:1;height:6px;background:var(--color-fog);border-radius:3px"><div class="bar-fill" data-bar-width="100" style="width:0%;height:100%;background:var(--color-amber);border-radius:3px;transition:width 0.9s cubic-bezier(0.22,1,0.36,1)"></div></div>
-            </div>
-          </div>
-          <div style="display:flex;gap:8px">
-            <div style="flex:1;background:var(--color-mist);border-radius:12px;padding:12px;text-align:center">
-              <div style="font-size:22px;font-weight:800;color:var(--color-obsidian);letter-spacing:-0.5px">130+</div>
-              <div style="font-size:11px;color:var(--color-steel);margin-top:2px">New locations</div>
-            </div>
-            <div style="flex:1;background:var(--color-mist);border-radius:12px;padding:12px;text-align:center">
-              <div style="font-size:22px;font-weight:800;color:var(--color-obsidian);letter-spacing:-0.5px">5</div>
-              <div style="font-size:11px;color:var(--color-steel);margin-top:2px">Acquisitions in 7 months</div>
+            <div style="display:flex;gap:8px">
+              <div style="flex:1;background:var(--color-mist);border-radius:12px;padding:12px;text-align:center">
+                <div style="font-size:20px;font-weight:800;color:var(--color-obsidian);letter-spacing:-0.5px">130+</div>
+                <div style="font-size:11px;color:var(--color-steel);margin-top:2px">New locations</div>
+              </div>
+              <div style="flex:1;background:var(--color-mist);border-radius:12px;padding:12px;text-align:center">
+                <div style="font-size:20px;font-weight:800;color:var(--color-obsidian);letter-spacing:-0.5px">5</div>
+                <div style="font-size:11px;color:var(--color-steel);margin-top:2px">Acquisitions in 7 months</div>
+              </div>
             </div>
           </div>
         </div>
@@ -3658,34 +3674,39 @@
 
       <!-- Case Study 3 -->
       <div class="result-card">
-        <div class="section-label result-challenge-label">The Challenge</div>
-        <p class="result-challenge-text">A $14M multi-state wireless retail operation was losing money in the wrong places — high turnover, poor inventory controls, inconsistent audit scores, and no visibility into who was actually driving results.</p>
-        <p class="result-quote">The revenue was there. The profitability wasn't. Structure and accountability were the missing link.</p>
-        <div class="section-label result-outcome-label">The Outcome</div>
-        <p class="result-outcome-text">A full operational overhaul transformed profitability and people performance across 1,200+ employees and 70+ locations.</p>
-        <div class="result-metrics">
-          <div style="background:var(--color-mist);border-radius:12px;padding:14px">
-            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
-              <span style="font-size:11px;font-weight:600;color:var(--color-steel);text-transform:uppercase;letter-spacing:0.06em">Employee Turnover</span>
-              <span style="font-size:11px;color:var(--color-amber);font-weight:700">↓ 42%</span>
+        <div class="result-top">
+          <div class="section-label result-challenge-label">The Challenge</div>
+          <p class="result-challenge-text">A $14M multi-state wireless retail operation was losing money in the wrong places — high turnover, poor inventory controls, inconsistent audit scores, and no visibility into who was actually driving results.</p>
+          <p class="result-quote">The revenue was there. The profitability wasn't. Structure and accountability were the missing link.</p>
+        </div>
+        <div class="result-bottom">
+          <div class="section-label result-outcome-label">The Outcome</div>
+          <div class="result-hero-stat">42<span class="result-hero-stat-unit">%↓ turnover</span></div>
+          <p class="result-outcome-text">A full operational overhaul transformed profitability and people performance across 1,200+ employees and 70+ locations.</p>
+          <div class="result-metrics">
+            <div style="background:var(--color-mist);border-radius:12px;padding:14px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+                <span style="font-size:11px;font-weight:600;color:var(--color-steel);text-transform:uppercase;letter-spacing:0.06em">Employee Turnover</span>
+                <span style="font-size:11px;color:var(--color-amber);font-weight:700">↓ 42%</span>
+              </div>
+              <div style="display:flex;gap:4px;align-items:center">
+                <span style="font-size:10px;color:var(--color-steel);width:32px">Before</span>
+                <div style="flex:1;height:6px;background:var(--color-fog);border-radius:3px"><div class="bar-fill" data-bar-width="100" style="width:0%;height:100%;background:#d1d5db;border-radius:3px;transition:width 0.9s cubic-bezier(0.22,1,0.36,1)"></div></div>
+              </div>
+              <div style="display:flex;gap:4px;align-items:center;margin-top:4px">
+                <span style="font-size:10px;color:var(--color-steel);width:32px">After</span>
+                <div style="flex:1;height:6px;background:var(--color-fog);border-radius:3px"><div class="bar-fill" data-bar-width="58" style="width:0%;height:100%;background:var(--color-amber);border-radius:3px;transition:width 0.9s cubic-bezier(0.22,1,0.36,1)"></div></div>
+              </div>
             </div>
-            <div style="display:flex;gap:4px;align-items:center">
-              <span style="font-size:10px;color:var(--color-steel);width:32px">Before</span>
-              <div style="flex:1;height:6px;background:var(--color-fog);border-radius:3px"><div class="bar-fill" data-bar-width="100" style="width:0%;height:100%;background:#d1d5db;border-radius:3px;transition:width 0.9s cubic-bezier(0.22,1,0.36,1)"></div></div>
-            </div>
-            <div style="display:flex;gap:4px;align-items:center;margin-top:4px">
-              <span style="font-size:10px;color:var(--color-steel);width:32px">After</span>
-              <div style="flex:1;height:6px;background:var(--color-fog);border-radius:3px"><div class="bar-fill" data-bar-width="58" style="width:0%;height:100%;background:var(--color-amber);border-radius:3px;transition:width 0.9s cubic-bezier(0.22,1,0.36,1)"></div></div>
-            </div>
-          </div>
-          <div style="display:flex;gap:8px">
-            <div style="flex:1;background:var(--color-mist);border-radius:12px;padding:12px;text-align:center">
-              <div style="font-size:22px;font-weight:800;color:var(--color-obsidian);letter-spacing:-0.5px">36%</div>
-              <div style="font-size:11px;color:var(--color-steel);margin-top:2px">Attrition cut</div>
-            </div>
-            <div style="flex:1;background:var(--color-mist);border-radius:12px;padding:12px;text-align:center">
-              <div style="font-size:22px;font-weight:800;color:var(--color-obsidian);letter-spacing:-0.5px">87%</div>
-              <div style="font-size:11px;color:var(--color-steel);margin-top:2px">Audit pass rate</div>
+            <div style="display:flex;gap:8px">
+              <div style="flex:1;background:var(--color-mist);border-radius:12px;padding:12px;text-align:center">
+                <div style="font-size:20px;font-weight:800;color:var(--color-obsidian);letter-spacing:-0.5px">36%</div>
+                <div style="font-size:11px;color:var(--color-steel);margin-top:2px">Attrition cut</div>
+              </div>
+              <div style="flex:1;background:var(--color-mist);border-radius:12px;padding:12px;text-align:center">
+                <div style="font-size:20px;font-weight:800;color:var(--color-obsidian);letter-spacing:-0.5px">87%</div>
+                <div style="font-size:11px;color:var(--color-steel);margin-top:2px">Audit pass rate</div>
+              </div>
             </div>
           </div>
         </div>
