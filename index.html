@@ -362,6 +362,8 @@
     .result-top {
       background: #0d0d10;
       padding: 28px 24px 24px;
+      display: flex;
+      flex-direction: column;
     }
     .result-bottom {
       background: var(--color-snow);
@@ -371,10 +373,10 @@
     }
     .result-challenge-label { margin-bottom: 10px; }
     .result-challenge-text { font-size: 13.5px; color: #c0c4cc; line-height: 1.65; margin-bottom: 12px; }
-    .result-quote { font-size: 12.5px; color: #5a5f6e; line-height: 1.6; font-style: italic; border-left: 2px solid var(--color-amber); padding-left: 12px; }
-    .result-outcome-label { margin-bottom: 10px; }
-    .result-hero-stat { font-size: 46px; font-weight: 900; color: var(--color-obsidian); letter-spacing: -1.5px; line-height: 1; margin-bottom: 4px; }
-    .result-hero-stat-unit { font-size: 18px; font-weight: 700; color: var(--color-amber); margin-left: 2px; }
+    .result-quote { font-size: 12.5px; color: #5a5f6e; line-height: 1.6; font-style: italic; border-left: 2px solid var(--color-amber); padding-left: 12px; margin-top: auto; }
+    .result-outcome-label { margin-bottom: 8px; }
+    .result-hero-stat { font-size: 46px; font-weight: 900; color: var(--color-obsidian); letter-spacing: -1.5px; line-height: 1; margin-bottom: 2px; }
+    .result-hero-stat-unit { font-size: 11px; font-weight: 700; color: var(--color-amber); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
     .result-outcome-text { font-size: 13px; color: var(--color-steel); line-height: 1.6; margin-bottom: 16px; }
     .result-metrics { margin-top: auto; display: flex; flex-direction: column; gap: 12px; }
 
@@ -2971,10 +2973,10 @@
       .pwa-result-challenge { font-size: 12.5px; color: #c0c4cc; line-height: 1.55; font-weight: 400; margin-bottom: 8px; }
       .pwa-result-quote { font-size: 11.5px; color: #4b5563; font-style: italic; border-left: 2px solid var(--color-amber); padding-left: 10px; line-height: 1.5; }
       .pwa-result-ol { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-amber); margin-bottom: 6px; }
-      .pwa-result-hero-stat { font-size: 38px; font-weight: 900; color: #09090b; letter-spacing: -1px; line-height: 1; margin-bottom: 4px; }
-      .pwa-result-hero-unit { font-size: 14px; font-weight: 700; color: var(--color-amber); margin-left: 2px; }
-      .pwa-result-outcome { font-size: 12px; color: #71717a; line-height: 1.5; margin-bottom: 13px; }
-      .pwa-result-metrics { background: #f4f4f5; padding: 13px; display: flex; gap: 7px; }
+      .pwa-result-hero-stat { font-size: 38px; font-weight: 900; color: #09090b; letter-spacing: -1px; line-height: 1; margin-bottom: 2px; }
+      .pwa-result-hero-unit { font-size: 10px; font-weight: 700; color: var(--color-amber); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+      .pwa-result-outcome { font-size: 12px; color: #71717a; line-height: 1.5; margin-bottom: 18px; }
+      .pwa-result-metrics { background: #f4f4f5; padding: 8px 13px 13px; display: flex; gap: 7px; }
       .pwa-metric { flex: 1; background: #fff; border-radius: 10px; padding: 10px 7px; text-align: center; border: 1px solid #ececee; }
       .pwa-metric-num { font-size: 19px; font-weight: 800; color: #09090b; letter-spacing: -0.5px; }
       .pwa-metric-lbl { font-size: 9.5px; color: #71717a; margin-top: 2px; line-height: 1.3; }
@@ -3604,7 +3606,8 @@
         </div>
         <div class="result-bottom">
           <div class="section-label result-outcome-label">The Outcome</div>
-          <div class="result-hero-stat">45<span class="result-hero-stat-unit">days</span></div>
+          <div class="result-hero-stat">45</div>
+          <div class="result-hero-stat-unit">days</div>
           <p class="result-outcome-text">Formalized org structure, defined department heads, and clear accountability across every level — in under seven weeks.</p>
           <div class="result-metrics">
             <div style="background:var(--color-mist);border-radius:12px;padding:14px">
@@ -3644,7 +3647,8 @@
         </div>
         <div class="result-bottom">
           <div class="section-label result-outcome-label">The Outcome</div>
-          <div class="result-hero-stat">400<span class="result-hero-stat-unit">+locations</span></div>
+          <div class="result-hero-stat">400+</div>
+          <div class="result-hero-stat-unit">locations</div>
           <p class="result-outcome-text">Five acquisitions in seven months added 130+ locations without performance degradation or cultural breakdown.</p>
           <div class="result-metrics">
             <div style="background:var(--color-mist);border-radius:12px;padding:14px">
@@ -3684,7 +3688,8 @@
         </div>
         <div class="result-bottom">
           <div class="section-label result-outcome-label">The Outcome</div>
-          <div class="result-hero-stat">42<span class="result-hero-stat-unit">%↓ turnover</span></div>
+          <div class="result-hero-stat">42%↓</div>
+          <div class="result-hero-stat-unit">turnover</div>
           <p class="result-outcome-text">A full operational overhaul transformed profitability and people performance across 1,200+ employees and 70+ locations.</p>
           <div class="result-metrics">
             <div style="background:var(--color-mist);border-radius:12px;padding:14px">
@@ -5176,7 +5181,8 @@
           </div>
           <div class="pwa-result-bottom">
             <div class="pwa-result-ol">The Outcome</div>
-            <div class="pwa-result-hero-stat">45<span class="pwa-result-hero-unit">days</span></div>
+            <div class="pwa-result-hero-stat">45</div>
+            <div class="pwa-result-hero-unit">days</div>
             <div class="pwa-result-outcome">Formalized org structure, defined department heads, and clear accountability across every level.</div>
           </div>
           <div class="pwa-result-metrics">
@@ -5193,7 +5199,8 @@
           </div>
           <div class="pwa-result-bottom">
             <div class="pwa-result-ol">The Outcome</div>
-            <div class="pwa-result-hero-stat">400<span class="pwa-result-hero-unit">+ locations</span></div>
+            <div class="pwa-result-hero-stat">400+</div>
+            <div class="pwa-result-hero-unit">locations</div>
             <div class="pwa-result-outcome">Five acquisitions in seven months added 130+ locations without performance degradation.</div>
           </div>
           <div class="pwa-result-metrics">
@@ -5210,7 +5217,8 @@
           </div>
           <div class="pwa-result-bottom">
             <div class="pwa-result-ol">The Outcome</div>
-            <div class="pwa-result-hero-stat">42<span class="pwa-result-hero-unit">%↓ turnover</span></div>
+            <div class="pwa-result-hero-stat">42%↓</div>
+            <div class="pwa-result-hero-unit">turnover</div>
             <div class="pwa-result-outcome">Full operational overhaul across 1,200+ employees and 70+ locations.</div>
           </div>
           <div class="pwa-result-metrics">
