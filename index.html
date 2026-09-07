@@ -1899,18 +1899,21 @@
     }
     .brand-logos {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
-      gap: 56px;
+      gap: 0;
       flex-wrap: wrap;
     }
     .brand-logo-item {
       display: flex;
       flex-direction: column;
       align-items: center;
+      flex: 1;
+      min-width: 0;
       gap: 6px;
       opacity: 0.75;
       transition: opacity 0.2s;
+      padding: 0 24px;
     }
     .brand-logo-item:hover { opacity: 1; }
     .brand-logo-att {
@@ -3316,24 +3319,20 @@
     <div class="brand-logos">
 
       <!-- AT&T -->
-      <div class="brand-logo-item">
+      <div class="brand-logo-item" style="border-right:1px solid var(--color-fog)">
         <div style="height:36px;display:flex;align-items:center;justify-content:center">
           <span class="att-wordmark">AT&amp;T</span>
         </div>
         <div style="font-size:14px;color:var(--color-graphite);margin-top:4px;text-align:center;line-height:1.6">18 new companies. 13 top dealers. Nationwide coverage. 10+ departments.</div>
       </div>
 
-      <div style="width:1px;height:80px;background:var(--color-fog);align-self:center"></div>
-
       <!-- Cricket Wireless -->
-      <div class="brand-logo-item">
+      <div class="brand-logo-item" style="border-right:1px solid var(--color-fog)">
         <div style="height:36px;display:flex;align-items:center;justify-content:center">
           <span style="font-size:32px;font-weight:700;color:#00AA46;letter-spacing:-0.5px;font-family:var(--font-primary)">Cricket</span>
         </div>
         <div style="font-size:14px;color:var(--color-graphite);margin-top:4px;text-align:center;line-height:1.6">3 top dealers. 6 states. 5+ departments.</div>
       </div>
-
-      <div style="width:1px;height:80px;background:var(--color-fog);align-self:center"></div>
 
       <!-- Metro by T-Mobile -->
       <div class="brand-logo-item">
