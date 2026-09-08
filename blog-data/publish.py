@@ -74,7 +74,7 @@ def desktop_featured(p):
         for w in tag_words
     )
     return f'''      <!-- Featured -->
-      <article style="grid-column:1/3;grid-row:1/3;background:var(--color-obsidian);border:1px solid rgba(255,170,0,.15);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:box-shadow .2s,transform .2s;position:relative" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 48px rgba(0,0,0,.25)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+      <article style="grid-column:1/3;grid-row:1/3;background:var(--color-obsidian);border:none;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;cursor:pointer;transition:box-shadow .2s,transform .2s;position:relative" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 48px rgba(0,0,0,.25)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
         <div style="flex:1;min-height:200px;position:relative;padding:44px 40px 36px;display:flex;flex-direction:column;justify-content:space-between">
           <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,170,0,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,170,0,.06) 1px,transparent 1px);background-size:36px 36px"></div>
           <div style="position:absolute;top:-60px;right:-60px;width:280px;height:280px;background:radial-gradient(circle,rgba(255,170,0,.12) 0%,transparent 70%);pointer-events:none"></div>
@@ -107,7 +107,7 @@ def desktop_featured(p):
 def desktop_small(p, col, row):
     if p is None:
         return f'''      <!-- Card coming soon -->
-      <article style="grid-column:{col};grid-row:{row};background:var(--color-snow);border:1px solid var(--color-fog);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;gap:10px;opacity:.6;cursor:pointer;transition:box-shadow .2s,transform .2s" onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 24px rgba(0,0,0,.07)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+      <article style="grid-column:{col};grid-row:{row};background:var(--color-snow);border:1px solid var(--color-fog);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;gap:10px;opacity:.85;cursor:pointer;transition:box-shadow .2s,transform .2s" onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 24px rgba(0,0,0,.07)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
         <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--color-amber)">Coming Soon</div>
         <h3 style="font-size:16px;font-weight:700;color:var(--color-obsidian);line-height:1.3;letter-spacing:-0.2px;text-wrap:balance;flex:1">More insights on the way</h3>
         <div style="display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--color-fog);margin-top:4px">
@@ -118,7 +118,7 @@ def desktop_small(p, col, row):
     cat = esc(p["category"].title())
     pub = fmt_datetime(p["publish_date"])
     return f'''      <!-- Card {p['number']:02d} -->
-      <article style="grid-column:{col};grid-row:{row};background:var(--color-snow);border:1px solid var(--color-fog);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;gap:10px;opacity:.6;cursor:pointer;transition:box-shadow .2s,transform .2s" onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 24px rgba(0,0,0,.07)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
+      <article style="grid-column:{col};grid-row:{row};background:var(--color-snow);border:1px solid var(--color-fog);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;gap:10px;opacity:.85;cursor:pointer;transition:box-shadow .2s,transform .2s" onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 24px rgba(0,0,0,.07)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
         <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--color-amber)">{cat}</div>
         <h3 style="font-size:16px;font-weight:700;color:var(--color-obsidian);line-height:1.3;letter-spacing:-0.2px;text-wrap:balance;flex:1">{title}</h3>
         <div style="display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--color-fog);margin-top:4px">
