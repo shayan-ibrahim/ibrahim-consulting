@@ -2,9 +2,8 @@ name: Publish Weekly Blog Post
 
 on:
   schedule:
-    # Every Monday at 14:00 UTC = 9:00am CDT (UTC-5) / 10:00am CST (UTC-6)
     - cron: '0 14 * * 1'
-  workflow_dispatch:   # Allow manual trigger for testing
+  workflow_dispatch:
 
 jobs:
   publish:
@@ -15,6 +14,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -29,16 +30,9 @@ jobs:
           git config user.name "Ibrahim Consulting Bot"
           git config user.email "shayan.ibrahim@gmail.com"
           if git diff --quiet; then
-            echo "No changes — post may have already been published or schedule is outside range."
+            echo "No changes - outside publish window."
           else
-            WEEK=$(python3 -c "
-from datetime import date
-start = date(2026, 9, 14)
-today = date.today()
-week = (today - start).days // 7 + 1
-print(week)
-")
             git add index.html
-            git commit -m "chore: publish blog post $WEEK [automated]"
+            git commit -m "chore: publish weekly blog post [automated]"
             git push
           fi
