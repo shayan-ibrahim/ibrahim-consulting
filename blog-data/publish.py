@@ -32,6 +32,11 @@ def fmt_date(iso):
     return d.strftime("%b %-d, %Y")
 
 
+def fmt_datetime(iso):
+    """Return publish date + time, e.g. 'Sep 14, 2026 · 9:00am CT'"""
+    return fmt_date(iso) + " · 9:00am CT"
+
+
 def read_time(post):
     rt = post.get("read_time", "")
     if rt and rt.isdigit():
@@ -59,7 +64,7 @@ def excerpt(body, max_chars=280):
 def desktop_featured(p):
     title = esc(p["title"])
     cat = esc(p["category"].title())
-    pub = fmt_date(p["publish_date"])
+    pub = fmt_datetime(p["publish_date"])
     rt = read_time(p)
     ex = excerpt(p["body"], 320)
     num = f"{p['number']:02d}"
@@ -92,7 +97,7 @@ def desktop_featured(p):
           <div style="display:flex;align-items:center;justify-content:space-between">
             <div style="display:flex;align-items:center;gap:8px">
               <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#1a1a22,#2a2a34);border:1.5px solid rgba(255,170,0,.4);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--color-amber);flex-shrink:0">SI</div>
-              <div><div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.7)">Shayan Ibrahim</div><div style="font-size:11px;color:rgba(255,255,255,.3)">{pub} · {rt} min</div></div>
+              <div><div style="font-size:12px;font-weight:700;color:rgba(255,255,255,.7)">Shayan Ibrahim</div><div style="font-size:11px;color:rgba(255,255,255,.3)">{pub}</div></div>
             </div>
           </div>
         </div>
@@ -111,7 +116,7 @@ def desktop_small(p, col, row):
       </article>'''
     title = esc(p["title"])
     cat = esc(p["category"].title())
-    pub = fmt_date(p["publish_date"])
+    pub = fmt_datetime(p["publish_date"])
     return f'''      <!-- Card {p['number']:02d} -->
       <article style="grid-column:{col};grid-row:{row};background:var(--color-snow);border:1px solid var(--color-fog);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;gap:10px;opacity:.6;cursor:pointer;transition:box-shadow .2s,transform .2s" onmouseenter="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 24px rgba(0,0,0,.07)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
         <div style="font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--color-amber)">{cat}</div>
@@ -128,8 +133,7 @@ def desktop_small(p, col, row):
 def pwa_featured(p):
     title = esc(p["title"])
     cat = esc(p["category"].title())
-    pub = fmt_date(p["publish_date"])
-    rt = read_time(p)
+    pub = fmt_datetime(p["publish_date"])
     ex = excerpt(p["body"], 200)
     return f'''        <!-- Featured post -->
         <article style="background:var(--color-obsidian);border:1px solid rgba(255,170,0,.18);border-radius:14px;overflow:hidden">
@@ -147,7 +151,7 @@ def pwa_featured(p):
           <div style="padding:14px 20px 18px;border-top:1px solid rgba(255,255,255,.06)">
             <div style="display:flex;align-items:center;gap:7px">
               <div style="width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#1a1a22,#2a2a34);border:1.5px solid rgba(255,170,0,.4);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:var(--color-amber)">SI</div>
-              <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.6)">{pub} · {rt} min</div>
+              <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.6)">{pub}</div>
             </div>
           </div>
         </article>'''
@@ -161,7 +165,7 @@ def pwa_small(p):
           </article>'''
     title = esc(p["title"])
     cat = esc(p["category"].title())
-    pub = fmt_date(p["publish_date"])
+    pub = fmt_datetime(p["publish_date"])
     return f'''          <article style="background:#fff;border:1px solid #ececee;border-radius:12px;padding:18px 16px;display:flex;flex-direction:column;gap:8px;opacity:.55">
             <div style="font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--color-amber)">{cat}</div>
             <h3 style="font-size:13px;font-weight:700;color:#09090b;line-height:1.3;flex:1">{title}</h3>
