@@ -3163,6 +3163,22 @@
   .desk-pkg-panel-anim {
     animation: deskPkgPanelIn 0.22s ease;
   }
+
+  /* ── Our Differentiator → light theme (like Results in Action) ── */
+  .why-section { background: var(--color-mist) !important; }
+  .why-section .why-panel { background: transparent; padding: 0; }
+  .why-section .why-heading { color: var(--color-obsidian); }
+  .why-section .why-sub { color: var(--color-graphite); }
+  .why-section .why-card { background: var(--color-snow); border: 1px solid var(--color-fog); }
+  .why-section .why-card:hover { background: var(--color-fog); }
+  .why-section .why-icon { background: var(--color-fog); }
+  .why-section .why-icon svg { stroke: var(--color-graphite); }
+  .why-section .why-card-title { color: var(--color-obsidian); }
+  .why-section .why-card-desc { color: var(--color-graphite); }
+
+  /* ── Blog → dark theme (like Approach) ── */
+  .blog-section { background: transparent !important; }
+  .blog-panel { background: rgba(9,9,11,0.84); border-radius: var(--radius-card); padding: 56px 64px; }
   </style>
 </head>
 <body>
@@ -3747,7 +3763,7 @@
   <div class="container">
     <div class="why-panel">
       <div style="margin-bottom:48px">
-        <div class="section-label" style="color:var(--color-snow)"><span style="background:var(--color-snow)" aria-hidden="true"></span>Our Differentiator</div>
+        <div class="section-label"><span aria-hidden="true"></span>Our Differentiator</div>
         <span class="section-rule" aria-hidden="true"></span>
         <h2 class="why-heading" id="why-heading">
           We've actually <span class="accent">done this work.</span>
@@ -3830,12 +3846,13 @@
 </section>
 
 <!-- ─── Blog ──────────────────────────────────────────────────────── -->
-<section class="blog-section dot-grid" id="blog" aria-labelledby="blog-heading" style="padding:80px 0;background:var(--color-mist)">
+<section class="blog-section dot-grid" id="blog" aria-labelledby="blog-heading" style="padding:80px 0">
   <div class="container">
-    <div class="section-label">Insights &amp; Perspectives</div>
+    <div class="blog-panel">
+    <div class="section-label" style="color:var(--color-snow)"><span style="background:var(--color-snow)" aria-hidden="true"></span>Insights &amp; Perspectives</div>
     <span class="section-rule" aria-hidden="true"></span>
-    <h2 class="section-heading" id="blog-heading" style="margin-bottom:12px">Ideas from the <span class="muted">field.</span></h2>
-    <p class="section-sub" style="margin-bottom:56px;max-width:900px;white-space:nowrap">Real-world insights on organizational design, operational discipline, and building companies that hold under pressure.</p>
+    <h2 class="section-heading" id="blog-heading" style="margin-bottom:12px;color:var(--color-snow)">Ideas from the <span style="color:var(--color-amber);font-weight:300">field.</span></h2>
+    <p class="section-sub" style="margin-bottom:56px;max-width:900px;white-space:nowrap;color:rgba(255,255,255,0.65)">Real-world insights on organizational design, operational discipline, and building companies that hold under pressure.</p>
 
     <!-- Bento grid -->
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto;gap:16px">
@@ -3902,7 +3919,8 @@
     </div>
 
     <div style="display:flex;justify-content:center;margin-top:48px">
-      <a href="#" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-primary);font-size:13px;font-weight:700;color:var(--color-obsidian);background:transparent;border:1.5px solid var(--color-fog);border-radius:8px;padding:12px 24px;text-decoration:none;letter-spacing:.04em;transition:border-color .2s,color .2s" onmouseenter="this.style.borderColor='var(--color-amber)';this.style.color='var(--color-amber)'" onmouseleave="this.style.borderColor='var(--color-fog)';this.style.color='var(--color-obsidian)'">View all posts <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg></a>
+      <a href="#" style="display:inline-flex;align-items:center;gap:8px;font-family:var(--font-primary);font-size:13px;font-weight:700;color:rgba(255,255,255,0.7);background:transparent;border:1.5px solid rgba(255,255,255,0.2);border-radius:8px;padding:12px 24px;text-decoration:none;letter-spacing:.04em;transition:border-color .2s,color .2s" onmouseenter="this.style.borderColor='var(--color-amber)';this.style.color='var(--color-amber)'" onmouseleave="this.style.borderColor='rgba(255,255,255,0.2)';this.style.color='rgba(255,255,255,0.7)'">View all posts <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="7" x2="12" y2="7"/><polyline points="8,3 12,7 8,11"/></svg></a>
+    </div>
     </div>
   </div>
 </section>
