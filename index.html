@@ -4419,7 +4419,9 @@
         </svg>
       </button>
     </div>
-    <form class="bookings-modal-body" id="contactForm" novalidate>
+    <form class="bookings-modal-body" id="contactForm" name="contact" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="form-name" value="contact">
+      <input type="hidden" name="bot-field" style="display:none">
       <div class="cf-row">
         <div class="cf-field">
           <label for="cf-name">Full Name</label>
@@ -4532,10 +4534,13 @@
       details: document.getElementById('cf-details').value,
     };
     try {
-      const res = await fetch('https://formspree.io/f/mnjkenaa', {
+      const formData = new URLSearchParams();
+      formData.append('form-name', 'contact');
+      Object.entries(data).forEach(([k, v]) => formData.append(k, v));
+      const res = await fetch('/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString(),
       });
       if (res.ok) {
         form.style.display = 'none';
