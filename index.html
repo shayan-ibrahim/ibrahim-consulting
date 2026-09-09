@@ -4419,9 +4419,7 @@
         </svg>
       </button>
     </div>
-    <form class="bookings-modal-body" id="contactForm" name="contact" data-netlify="true" netlify-honeypot="bot-field" novalidate>
-      <input type="hidden" name="form-name" value="contact">
-      <input type="hidden" name="bot-field" style="display:none">
+    <form class="bookings-modal-body" id="contactForm" novalidate>
       <div class="cf-row">
         <div class="cf-field">
           <label for="cf-name">Full Name</label>
@@ -4535,9 +4533,11 @@
     };
     try {
       const formData = new URLSearchParams();
-      formData.append('form-name', 'contact');
       Object.entries(data).forEach(([k, v]) => formData.append(k, v));
-      const res = await fetch('/', {
+      formData.append('_subject', `New inquiry from ${data.name} — ${data.service}`);
+      formData.append('_captcha', 'false');
+      formData.append('_template', 'table');
+      const res = await fetch('https://formsubmit.co/shayan.ibrahim@ibrahimconsulting.com', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: formData.toString(),
